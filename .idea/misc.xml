@@ -5,7 +5,18 @@
       <map>
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/activity_main.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/activity_movie.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_blank.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_categories.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_favorite.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_home.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_movie.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_popular.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_populer.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_search.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_settings.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_tv.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/home_fragment.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/menu/bottom_bar.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/menu/top_app_bar.xml" value="0.371875" />
       </map>
     </option>

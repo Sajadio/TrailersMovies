@@ -1,4 +1,4 @@
-package com.example.movie.ui.fragment.settings
+package com.example.movie.ui.fragment.details.movie
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,14 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import com.example.movie.R
-import com.example.movie.databinding.FragmentSettingsBinding
+import com.example.movie.databinding.FragmentMovieBinding
 
-class SettingsFragment: Fragment() {
+class MovieFragment: Fragment() {
 
-    private var _binding: FragmentSettingsBinding? = null
-    private val binding: FragmentSettingsBinding get() = _binding!!
+    private var _binding: FragmentMovieBinding? = null
+    private val binding: FragmentMovieBinding get() = _binding!!
 
 
     override fun onCreateView(
@@ -21,17 +20,12 @@ class SettingsFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie, container, false)
         return _binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.favorite.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_settingsFragment_to_favoriteFragment)
-        }
-
     }
 
     override fun onDestroyView() {
