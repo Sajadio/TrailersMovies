@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--    Custom color -->
+
+    <color name="blackDark">#3D3D3D</color>
+    <color name="blackLight">#4B4B4B</color>
+    <color name="redLight">#C0392B</color>
+    <color name="gry">#80DCDDE1</color>
+
 </resources>

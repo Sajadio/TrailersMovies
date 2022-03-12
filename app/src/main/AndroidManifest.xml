@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Movie">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activity.MovieActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
