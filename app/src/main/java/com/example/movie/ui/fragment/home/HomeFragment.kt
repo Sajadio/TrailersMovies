@@ -1,18 +1,24 @@
 package com.example.movie.ui.fragment.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.movie.R
 import com.example.movie.databinding.FragmentHomeBinding
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import com.example.movie.data.model.Category
+import com.example.movie.data.model.Popular
+import com.example.movie.data.model.Trend
+import com.example.movie.data.repository.Repository
+import com.example.movie.ui.fragment.home.adapter.HomeAdapter
+import com.example.movie.ui.fragment.home.adapter.OnClickListener
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), OnClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding get() = _binding!!
@@ -24,37 +30,23 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        binding.toolbar.title = ""
+        binding.toolbar.subtitle = ""
         return _binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.topAppBar)
+        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
+        setHasOptionsMenu(true)
 
-        binding.movie.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_homeFragment_to_moiveFragment)
-        }
-
-        binding.tv.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_homeFragment_to_TVFragment)
-        }
-
-        binding.category.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_homeFragment_to_categoriesFragment)
-        }
-
-        binding.popular.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_homeFragment_to_popularFragment)
-        }
-
-        binding.search.setOnClickListener { view ->
+        binding.btnSearch.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
         }
 
-        binding.settings.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
-        }
-
+        val adapter = HomeAdapter(Repository.getAllItems(), lifecycle, this)
+        binding.parentRecyclerView.adapter = adapter
+        binding.parentRecyclerView.setHasFixedSize(true)
 
     }
 
@@ -64,5 +56,19 @@ class HomeFragment : Fragment() {
         // for prevent memory leaks
         _binding = null
     }
+
+
+    override fun trendItem(trend: Trend) {
+        Toast.makeText(requireContext(),"trend",Toast.LENGTH_SHORT).show()
+    }
+
+    override fun categoryItem(category: Category) {
+       Toast.makeText(requireContext(),"category",Toast.LENGTH_SHORT).show()
+    }
+
+    override fun popularItem(popular: Popular) {
+        Toast.makeText(requireContext(),"popular",Toast.LENGTH_SHORT).show()
+    }
+
 
 }

@@ -1,94 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="adapter"
+            type="com.example.movie.ui.fragment.home.adapter.HomeAdapter" />
+        <variable
+            name="movie"
+            type="com.example.movie.ui.fragment.home.vm.HomeViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="16dp"
+            android:minHeight="?attr/actionBarSize"
+            app:contentInsetEnd="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/topAppBar"
-                android:layout_width="match_parent"
-                android:background="?attr/colorPrimary"
-                android:elevation="4dp"
-                android:layout_height="?attr/actionBarSize"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:navigationIcon="@drawable/ic_baseline_menu_24"
-                app:title="@string/page_title" />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnMenu"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="start"
+                android:background="@drawable/shadow_menu_btn"
+                android:src="@drawable/ic_baseline_menu_24" />
 
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <!-- Note: A RecyclerView can also be used -->
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="vertical"
+            <TextView
+                android:id="@+id/titleToolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_height="match_parent">
+                android:gravity="center"
+                android:text="@string/home"
+                android:textColor="@color/blackDark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/search"
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Search"
-                    android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnSearch"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:background="@drawable/shadow_search_btn"
+                android:outlineProvider="bounds"
+                android:src="@drawable/ic_baseline_search_24"
+                android:translationZ="16dp" />
 
+        </androidx.appcompat.widget.Toolbar>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/movie"
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Movie"
-                    android:layout_height="wrap_content"/>
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gryLight"
+            app:layout_constraintEnd_toEndOf="@+id/toolbar"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/toolbar"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/tv"
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="TV"
-                    android:layout_height="wrap_content"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/category"
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Category"
-                    android:layout_height="wrap_content"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/popular"
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="popular"
-                    android:layout_height="wrap_content"/>
-
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/settings"
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Settings"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/parent_recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewLine" />
 
 
-        </androidx.core.widget.NestedScrollView>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <!--        <androidx.core.widget.NestedScrollView-->
+        <!--            android:id="@+id/nestedScrollView"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:layout_marginTop="8dp"-->
+        <!--            app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/slider_view">-->
+
+
+        <!--            <RelativeLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent">-->
+
+        <!--                <HorizontalScrollView-->
+        <!--                    android:id="@+id/chipGroupEposiodeScroll"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_alignParentStart="true"-->
+        <!--                    android:layout_alignParentTop="true"-->
+        <!--                    android:layout_alignParentEnd="true"-->
+        <!--                    android:scrollbarSize="0dp"-->
+        <!--                    app:layout_constraintEnd_toEndOf="parent">-->
+
+        <!--                    <com.google.android.material.chip.ChipGroup-->
+        <!--                        android:id="@+id/chipGroupTypeMS"-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:layout_marginTop="4dp"-->
+        <!--                        app:chipSpacing="8dp"-->
+        <!--                        app:singleLine="true"-->
+        <!--                        app:singleSelection="true" />-->
+
+        <!--                </HorizontalScrollView>-->
+
+        <!--                <androidx.recyclerview.widget.RecyclerView-->
+        <!--                    android:id="@+id/recycler_view_category"-->
+        <!--                    android:layout_width="0dp"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_below="@+id/chipGroupEposiodeScroll"-->
+        <!--                    android:layout_alignParentStart="true"-->
+        <!--                    android:layout_alignParentEnd="true"-->
+        <!--                    android:orientation="horizontal"-->
+        <!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+        <!--                    tools:listitem="@layout/layout_item_card_category" />-->
+
+        <!--            </RelativeLayout>-->
+
+        <!--        </androidx.core.widget.NestedScrollView>-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

@@ -53,4 +53,16 @@ dependencies {
     def nav_version = "2.4.1"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // pluto
+    implementation 'com.opensooq.android:pluto:1.6'
+
+    implementation 'com.yarolegovich:discrete-scrollview:1.5.1'
+
+    // Glid
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+
+
+
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/movieTVImg"
+            android:layout_width="124dp"
+            android:layout_height="124dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/img" />
+
+        <ImageView
+            android:id="@+id/coverMovieTVImg"
+            android:layout_width="124dp"
+            android:layout_height="124dp"
+            android:background="#74000000"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/movieTVImg"
+            app:layout_constraintEnd_toEndOf="@+id/movieTVImg"
+            app:layout_constraintStart_toStartOf="@+id/movieTVImg"
+            app:layout_constraintTop_toTopOf="@+id/movieTVImg"
+            tools:ignore="VectorDrawableCompat" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:drawableStart="@drawable/ic_outline_remove_red_eye_24"
+            android:gravity="center"
+            android:text=" 4K"
+            android:textColor="@color/whiteLight"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/coverMovieTVImg"
+            app:layout_constraintTop_toTopOf="@+id/coverMovieTVImg" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actorName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start|center"
+            android:text="Tome Hairy"
+            android:textColor="@color/whiteLight"
+            android:textSize="14sp"
+            android:layout_marginStart="4dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/rating"
+            app:layout_constraintEnd_toEndOf="@+id/coverMovieTVImg"
+            app:layout_constraintStart_toStartOf="@+id/coverMovieTVImg" />
+
+        <RatingBar
+            android:id="@+id/rating"
+            style="@style/CustomRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:layout_marginStart="4dp"
+            android:rating="3.5"
+            app:layout_constraintBottom_toBottomOf="@+id/coverMovieTVImg"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

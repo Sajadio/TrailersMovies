@@ -1,0 +1,11 @@
+package com.example.movie.ui.fragment.home.adapter
+
+import com.example.movie.data.model.Category
+import com.example.movie.data.model.Popular
+import com.example.movie.data.model.Trend
+
+interface OnClickListener {
+    fun trendItem(trend:Trend)
+    fun categoryItem(category: Category)
+    fun popularItem(popular: Popular)
+}

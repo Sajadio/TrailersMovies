@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgActors"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/img" />
+
+
+        <ImageView
+            android:id="@+id/coverActorImg"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#74000000"
+            app:layout_constraintBottom_toBottomOf="@+id/imgActors"
+            app:layout_constraintEnd_toEndOf="@+id/imgActors"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imgActors"
+            tools:ignore="VectorDrawableCompat" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Tome Hairy"
+            android:textColor="@color/blackLight"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/imgActors"
+            app:layout_constraintStart_toStartOf="@+id/imgActors"
+            app:layout_constraintTop_toBottomOf="@+id/imgActors" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
