@@ -1,6 +1,7 @@
 package com.example.movie.data.model
 
 import androidx.annotation.DrawableRes
+import com.example.movie.utils.ViewType
 
 data class Category(
     val ids: Int,
@@ -8,6 +9,5 @@ data class Category(
     val type: Type,
     val rate: Float,
     @field:DrawableRes
-    val posterId: Int,
-    val viewMore: Boolean
+    val posterId: Int
 )

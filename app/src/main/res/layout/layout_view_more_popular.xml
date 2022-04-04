@@ -15,12 +15,12 @@
         android:layout_marginBottom="8dp">
 
         <TextView
-            android:id="@+id/titleCategory"
+            android:id="@+id/titlePopular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center|start"
-            android:text="@string/category"
+            android:text="@string/popular"
             android:textColor="@color/blackDark"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/viewMoreCategory"
+            android:id="@+id/viewMorePopular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -38,7 +38,7 @@
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/titleCategory" />
+            app:layout_constraintTop_toTopOf="@+id/titlePopular" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

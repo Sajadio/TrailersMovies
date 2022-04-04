@@ -1,5 +1,6 @@
 package com.example.movie.data.network
 
+import android.view.View
 import com.example.movie.R
 import com.example.movie.data.model.*
 import com.example.movie.utils.ListAdapterItem
@@ -13,9 +14,11 @@ object ApiProvider {
         val list = mutableListOf<ListAdapterItem<Any>>()
         list.add(ListAdapterItem(getTrend(), ViewType.TREND))
         list.add(ListAdapterItem(getType(), ViewType.CHIPS_TYPE))
+        list.add(ListAdapterItem(R.string.viewMore, ViewType.VIEW_MORE_CATEGORY))
         list.add(ListAdapterItem(getCategory(), ViewType.CATEGORY))
-        list.add(ListAdapterItem(R.string.popular, ViewType.TITLE))
+        list.add(ListAdapterItem(R.string.viewMore, ViewType.VIEW_MORE_POPULAR))
         getPopular().map { list.add(ListAdapterItem(it, ViewType.POPULAR)) }
+
         return list
     }
 
@@ -57,7 +60,7 @@ object ApiProvider {
         return items
     }
 
-     fun getCategory(): MutableList<Category> {
+    fun getCategory(): MutableList<Category> {
         val items = mutableListOf<Category>()
         items.add(
             Category(
@@ -65,7 +68,6 @@ object ApiProvider {
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel,
-                viewMore = true
             )
         )
         items.add(
@@ -74,8 +76,8 @@ object ApiProvider {
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel,
-                viewMore = true
-            )
+
+                )
         )
         items.add(
             Category(
@@ -83,8 +85,8 @@ object ApiProvider {
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel,
-                viewMore = true
-            )
+
+                )
         )
         items.add(
             Category(
@@ -92,8 +94,8 @@ object ApiProvider {
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel,
-                viewMore = true
-            )
+
+                )
         )
         items.add(
             Category(
@@ -101,8 +103,8 @@ object ApiProvider {
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel,
-                viewMore = true
-            )
+
+                )
         )
         items.add(
             Category(
@@ -110,8 +112,8 @@ object ApiProvider {
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel,
-                viewMore = true
-            )
+
+                )
         )
         items.add(
             Category(
@@ -119,8 +121,8 @@ object ApiProvider {
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel,
-                viewMore = true
-            )
+
+                )
         )
         items.add(
             Category(
@@ -128,8 +130,17 @@ object ApiProvider {
                 title = "Steve",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.img,
-                viewMore = true
-            )
+
+                )
+        )
+        items.add(
+            Category(
+                ids = 1,
+                title = "SbiderMan",
+                rate = 3.3f,
+                type = getType(), posterId = R.drawable.ic_captain_marvel,
+
+                )
         )
         return items
     }
@@ -198,6 +209,14 @@ object ApiProvider {
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel
+            )
+        )
+        items.add(
+            Popular(
+                ids = 1,
+                title = "SbiderMan",
+                rate = 3.3f,
+                type = getType(), posterId = R.drawable.img
             )
         )
         return items

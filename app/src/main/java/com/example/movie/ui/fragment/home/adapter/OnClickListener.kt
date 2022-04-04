@@ -6,6 +6,8 @@ import com.example.movie.data.model.Trend
 
 interface OnClickListener {
     fun trendItem(trend:Trend)
-    fun categoryItem(category: Category)
-    fun popularItem(popular: Popular)
+    fun category(category: Int)
+    fun openItem(category: Category)
+    fun popular(popular:Int)
+
 }

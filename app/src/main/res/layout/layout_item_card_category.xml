@@ -15,14 +15,16 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardCategory"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:backgroundTint="@color/gryDark"
+        android:layout_width="170dp"
+        android:layout_marginBottom="8dp"
+        android:layout_height="210dp"
+        android:layout_marginEnd="5dp"
         android:checkable="true"
         android:clickable="true"
         android:focusable="true"
+        app:cardBackgroundColor="@color/gryLight"
         app:cardCornerRadius="5dp"
+        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -111,15 +113,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/type"
                 tools:rating="3.5" />
 
-            <include
-                android:id="@+id/viewMore"
-                layout="@layout/layout_view_more_category"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/posterCategory"
-                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

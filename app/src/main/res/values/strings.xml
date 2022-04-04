@@ -21,4 +21,9 @@
     <string name="related">Related</string>
     <string name="season">Season 1</string>
     <string name="viewMore">View More</string>
+    <string name="category">Category</string>
+    <string name="testing">for dialog</string>
+    <string name="decline">Cancel</string>
+    <string name="accept">Ok</string>
+    <string name="series">Series</string>
 </resources>

@@ -39,8 +39,9 @@ class HomeAdapter(
         return when (viewType) {
             TREND -> TrendViewHolder(v)
             CHIPS_TYPE -> TypeViewHolder(v, layoutInflater)
+            VIEW_MORE_CATEGORY -> ViewMoreViewHolderCategory(v)
             CATEGORY -> CategoryViewHolder(v)
-            TITLE -> TitleViewHolder(v)
+            VIEW_MORE_POPULAR -> ViewMorePopularViewHolder(v)
             POPULAR -> PopularViewHolder(v)
             else -> throw Exception("UNKNOWN VIEW TYPE")
         }
@@ -51,11 +52,13 @@ class HomeAdapter(
         when (holder) {
             is TrendViewHolder -> bindTrending(holder, position)
             is TypeViewHolder -> bindTyping(holder, position)
+            is ViewMoreViewHolderCategory -> bindViewMoreCategory(holder, position)
             is CategoryViewHolder -> bindCategory(holder, position)
-            is TitleViewHolder -> bindTitle(holder, position)
+            is ViewMorePopularViewHolder -> bindViewMorePopular(holder, position)
             is PopularViewHolder -> bindPopular(holder, position)
         }
     }
+
 
     private fun bindTrending(holder: TrendViewHolder, position: Int) {
         val trendList = data[position].item as MutableList<Trend>
@@ -99,6 +102,12 @@ class HomeAdapter(
     }
 
 
+    private fun bindViewMoreCategory(holder: HomeAdapter.ViewMoreViewHolderCategory, position: Int) {
+        holder.binding.viewMoreCategory.setOnClickListener {
+            listener.category(1)
+        }
+    }
+
     private fun bindCategory(holder: CategoryViewHolder, position: Int) {
         val categoryList = data[position].item as List<Category>
         val adapter = CategoryAdapter(categoryList, listener)
@@ -108,17 +117,16 @@ class HomeAdapter(
         }
     }
 
-    private fun bindTitle(holder: HomeAdapter.TitleViewHolder, position: Int) {
-        holder.binding.titleToolbar
-    }
 
+    private fun bindViewMorePopular(holder: HomeAdapter.ViewMorePopularViewHolder, position: Int) {
+//        holder.binding.viewpopular.setOnClickListener {
+//            listener.popularMove(data[position].item as List<Popular>)
+//        }
+    }
 
     private fun bindPopular(holder: PopularViewHolder, position: Int) {
         val popular = data[position].item as Popular
         holder.binding.apply {
-//            if (position == list.size - 1)
-//                showMore.visibility = View.VISIBLE
-
             posterPopular.loadImage(popular.posterId)
             titleMS.text = popular.title
             popular.type.type.forEach {
@@ -126,9 +134,6 @@ class HomeAdapter(
             }
             rating.rating = popular.rate
             date.text = "2022"
-            popularCard.setOnClickListener {
-                listener.popularItem(popular)
-            }
         }
     }
 
@@ -138,10 +143,10 @@ class HomeAdapter(
     override fun getItemViewType(position: Int) = when (data[position].type) {
         ViewType.TREND -> TREND
         ViewType.CHIPS_TYPE -> CHIPS_TYPE
+        ViewType.VIEW_MORE_CATEGORY -> VIEW_MORE_CATEGORY
         ViewType.CATEGORY -> CATEGORY
-        ViewType.TITLE -> TITLE
+        ViewType.VIEW_MORE_POPULAR -> VIEW_MORE_POPULAR
         ViewType.POPULAR -> POPULAR
-        else -> throw IllegalStateException("Unknown view")
     }
 
     abstract class BaseViewHolder(binder: View) :
@@ -159,15 +164,21 @@ class HomeAdapter(
         val binding = LayoutChipsGroupTypeBinding.bind(itemView)
     }
 
+    inner class ViewMoreViewHolderCategory(itemView: View) :
+        BaseViewHolder(itemView) {
+        val binding = LayoutViewMoreCategoryBinding.bind(itemView)
+    }
+
     inner class CategoryViewHolder(itemView: View) :
         BaseViewHolder(itemView) {
         val binding = LayoutRvCategoryBinding.bind(itemView)
     }
 
-    inner class TitleViewHolder(itemView: View) :
+    inner class ViewMorePopularViewHolder(itemView: View) :
         BaseViewHolder(itemView) {
-        val binding = LayoutTextBinding.bind(itemView)
+        val binding = LayoutViewMorePopularBinding.bind(itemView)
     }
+
 
     inner class PopularViewHolder(itemView: View) :
         BaseViewHolder(itemView) {
@@ -177,10 +188,10 @@ class HomeAdapter(
     companion object {
         const val TREND = R.layout.layout_rv_trend_item
         const val CHIPS_TYPE = R.layout.layout_chips_group_type
+        const val VIEW_MORE_CATEGORY = R.layout.layout_view_more_category
         const val CATEGORY = R.layout.layout_rv_category
-        const val TITLE = R.layout.layout_text
+        const val VIEW_MORE_POPULAR = R.layout.layout_view_more_popular
         const val POPULAR = R.layout.layout_item_card_popular
-        const val INVALID = -1
 
     }
 

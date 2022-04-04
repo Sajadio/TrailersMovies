@@ -14,7 +14,7 @@
 
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="400dp"
+            android:layout_width="390dp"
             android:layout_height="wrap_content"
             android:checkable="true"
             android:clickable="true"
