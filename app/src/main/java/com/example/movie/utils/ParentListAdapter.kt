@@ -1,5 +1,5 @@
 package com.example.movie.utils
 
-interface ListAdapterItem2{
+interface ParentListAdapter{
     val ids:Int
 }

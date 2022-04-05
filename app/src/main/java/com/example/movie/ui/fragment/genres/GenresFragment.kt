@@ -8,29 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.movie.R
 import com.example.movie.databinding.FragmentGenresBinding
+import com.example.movie.databinding.FragmentSettingsBinding
+import com.example.movie.ui.base.BaseFragment
+import com.example.movie.utils.setAsActionBar
 
-class GenresFragment: Fragment() {
+class GenresFragment : BaseFragment<FragmentGenresBinding>(R.layout.fragment_genres) {
 
-    private var _binding: FragmentGenresBinding? = null
-    private val binding: FragmentGenresBinding get() = _binding!!
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_genres, container, false)
-        return _binding?.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
-        binding.toolbar.title = ""
-        binding.toolbar.subtitle = ""
-        binding.titleToolbar.text = "Categories"
-        setHasOptionsMenu(true)
+    override fun initial() {
+        binding.titleToolbar.text = "Generes"
+        (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar,true)
 
         binding.movie.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_categoriesFragment_to_moiveFragment)
@@ -46,12 +32,6 @@ class GenresFragment: Fragment() {
         binding.toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24)
         binding.toolbar.setNavigationOnClickListener { activity!!.onBackPressed() }
         super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // for prevent memory leaks
-        _binding = null
     }
 
 }

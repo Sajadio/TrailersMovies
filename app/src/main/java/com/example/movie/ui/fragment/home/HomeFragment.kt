@@ -16,29 +16,15 @@ import com.example.movie.data.repository.Repository
 import com.example.movie.ui.fragment.home.adapter.HomeAdapter
 import com.example.movie.ui.fragment.home.adapter.OnClickListener
 import android.widget.ArrayAdapter
+import com.example.movie.ui.base.BaseFragment
+import com.example.movie.utils.setAsActionBar
 
 
-class HomeFragment : Fragment(), OnClickListener {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), OnClickListener {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding: FragmentHomeBinding get() = _binding!!
+    override fun initial() {
+        (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar,false)
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        binding.toolbar.title = ""
-        binding.toolbar.subtitle = ""
-        return _binding?.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
-        setHasOptionsMenu(true)
         filterResult(resources.getString(R.string.movie))
 
         binding.btnSearch.setOnClickListener { view ->
@@ -50,7 +36,7 @@ class HomeFragment : Fragment(), OnClickListener {
         binding.parentRecyclerView.setHasFixedSize(true)
 
         binding.btnMenu.setOnClickListener {
-            showDialog(view)
+            view?.let { it1 -> showDialog(it1) }
         }
 
     }
@@ -58,16 +44,23 @@ class HomeFragment : Fragment(), OnClickListener {
     private fun showDialog(view: View) {
 
         val builderSingle = AlertDialog.Builder(requireContext())
-        val arrayAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.select_dialog_singlechoice)
+        val arrayAdapter =
+            ArrayAdapter<String>(requireContext(), android.R.layout.select_dialog_singlechoice)
         arrayAdapter.add(resources.getString(R.string.settings))
         arrayAdapter.add(resources.getString(R.string.movie))
         arrayAdapter.add(resources.getString(R.string.tv))
 
         builderSingle.setAdapter(arrayAdapter) { _, which ->
-            when(arrayAdapter.getItem(which)){
-                resources.getString(R.string.settings) -> {view.findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)}
-                resources.getString(R.string.movie) -> {view.findNavController().navigate(R.id.action_homeFragment_to_moiveFragment)}
-                resources.getString(R.string.tv) -> {view.findNavController().navigate(R.id.action_homeFragment_to_tvFragment)}
+            when (arrayAdapter.getItem(which)) {
+                resources.getString(R.string.settings) -> {
+                    view.findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+                }
+                resources.getString(R.string.movie) -> {
+                    view.findNavController().navigate(R.id.action_homeFragment_to_moiveFragment)
+                }
+                resources.getString(R.string.tv) -> {
+                    view.findNavController().navigate(R.id.action_homeFragment_to_tvFragment)
+                }
             }
         }
         builderSingle.show()
@@ -75,13 +68,6 @@ class HomeFragment : Fragment(), OnClickListener {
 
     private fun filterResult(string: String) {
         binding.titleToolbar.text = string
-    }
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // for prevent memory leaks
-        _binding = null
     }
 
 
@@ -100,6 +86,5 @@ class HomeFragment : Fragment(), OnClickListener {
     override fun popular(popular: Int) {
         Toast.makeText(requireContext(), "popularMove", Toast.LENGTH_SHORT).show()
     }
-
 
 }

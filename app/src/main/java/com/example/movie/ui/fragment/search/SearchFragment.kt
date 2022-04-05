@@ -18,36 +18,22 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.MenuItemCompat
 
 import androidx.core.content.ContextCompat.getSystemService
+import com.example.movie.databinding.FragmentPopularBinding
+import com.example.movie.ui.base.BaseFragment
+import com.example.movie.utils.setAsActionBar
 
 
+class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search),
+    androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
 
-
-class SearchFragment : Fragment(), androidx.appcompat.widget.SearchView.OnQueryTextListener {
-
-    private var _binding: FragmentSearchBinding? = null
-    private val binding: FragmentSearchBinding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false)
-        return _binding?.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
-        binding.toolbar.title = ""
-        binding.toolbar.subtitle = ""
-        setHasOptionsMenu(true)
+    override fun initial() {
+        (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar,true)
     }
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.top_app_bar,menu)
+        inflater.inflate(R.menu.top_app_bar, menu)
         menu.findItem(R.id.delete).isVisible = false
         val search = menu.findItem(R.id.search)
         var searchView = search?.actionView as? androidx.appcompat.widget.SearchView
@@ -55,13 +41,9 @@ class SearchFragment : Fragment(), androidx.appcompat.widget.SearchView.OnQueryT
         searchView?.setOnQueryTextListener(this)
         searchView?.maxWidth = Integer.MAX_VALUE
 
-        binding.toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24)
-        binding.toolbar.setNavigationOnClickListener { activity!!.onBackPressed() }
-
         super.onCreateOptionsMenu(menu, inflater)
 
     }
-
 
 
     override fun onQueryTextSubmit(query: String?) = false
@@ -70,12 +52,5 @@ class SearchFragment : Fragment(), androidx.appcompat.widget.SearchView.OnQueryT
         Log.d("sajjadio", "onQueryTextChange: $newText")
         return true
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // for prevent memory leaks
-        _binding = null
-    }
-
 
 }

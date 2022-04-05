@@ -9,31 +9,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.movie.R
+import com.example.movie.databinding.FragmentHomeBinding
 import com.example.movie.databinding.FragmentPopularBinding
+import com.example.movie.ui.base.BaseFragment
+import com.example.movie.utils.setAsActionBar
 
-class PopularFragment : Fragment(){
+class PopularFragment : BaseFragment<FragmentPopularBinding>(R.layout.fragment_popular) {
 
-    private var _binding: FragmentPopularBinding? = null
-    private val binding: FragmentPopularBinding get() = _binding!!
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_popular, container, false)
-        return _binding?.root
-    }
 
     @SuppressLint("ResourceAsColor")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
-        binding.toolbar.title = ""
-        binding.toolbar.subtitle = ""
-        setHasOptionsMenu(true)
-
+    override fun initial() {
+        (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar,true)
     }
 
 
@@ -43,9 +29,4 @@ class PopularFragment : Fragment(){
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // for prevent memory leaks
-        _binding = null
-    }
 }

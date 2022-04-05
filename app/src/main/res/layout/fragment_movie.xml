@@ -43,6 +43,7 @@
             android:layout_marginTop="16dp"
             android:minHeight="?attr/actionBarSize"
             app:contentInsetEnd="0dp"
+            android:theme="@style/MyThemeOverlay_Toolbar2"
             app:contentInsetLeft="0dp"
             app:contentInsetRight="0dp"
             app:contentInsetStart="0dp"

@@ -1,14 +1,11 @@
 package com.example.movie.ui.fragment.details.tv
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.fragment.findNavController
 import com.example.movie.R
 import com.example.movie.data.m.Season
 import com.example.movie.databinding.LayoutBottomSheetBinding
@@ -48,6 +45,9 @@ class OptionsBottomSheetFragment : BottomSheetDialogFragment(), BaseOnClickItem<
 
         binding.rvSeasons.adapter = SeasonAdapter(list,this)
 
+        Log.d("sajjadio", "bind: ")
+
+
     }
 
 
@@ -60,7 +60,9 @@ class OptionsBottomSheetFragment : BottomSheetDialogFragment(), BaseOnClickItem<
         }
     }
 
+
     override fun clickedItem(item: Season) {
+
     }
 
     override fun onDestroyView() {

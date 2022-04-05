@@ -1,6 +1,8 @@
 package com.example.movie.data.m
 
 import androidx.annotation.DrawableRes
+import com.example.movie.utils.ListAdapterItem
+import com.example.movie.utils.ViewType
 
 data class Trend(
     val ids: Int,

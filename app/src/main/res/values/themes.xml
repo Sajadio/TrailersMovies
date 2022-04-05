@@ -44,4 +44,9 @@
         <item name="android:padding">15dp</item>
     </style>
 
+    <!-- Customize Toolbar style -->
+
+    <style name="MyThemeOverlay_Toolbar2" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <item name="icon">@color/white</item>
+    </style>
 </resources>

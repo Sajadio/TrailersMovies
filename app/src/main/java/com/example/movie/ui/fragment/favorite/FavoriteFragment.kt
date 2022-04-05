@@ -10,29 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.movie.R
 import com.example.movie.databinding.FragmentFavoriteBinding
+import com.example.movie.databinding.FragmentGenresBinding
+import com.example.movie.ui.base.BaseFragment
+import com.example.movie.utils.setAsActionBar
 
-class FavoriteFragment: Fragment() {
+class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment_favorite) {
 
-    private var _binding: FragmentFavoriteBinding? = null
-    private val binding: FragmentFavoriteBinding get() = _binding!!
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorite, container, false)
-        return _binding?.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
-        binding.toolbar.title = ""
-        binding.toolbar.subtitle = ""
-        setHasOptionsMenu(true)
-
+    override fun initial() {
+        (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar,true)
         binding.movie.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_favoriteFragment_to_moiveFragment)
         }
@@ -57,11 +42,4 @@ class FavoriteFragment: Fragment() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // for prevent memory leaks
-        _binding = null
-    }
-
 }

@@ -1,9 +1,9 @@
 package com.example.movie.data.m
 
-import com.example.movie.utils.ListAdapterItem2
+import com.example.movie.utils.ParentListAdapter
 
 data class Season(
     val season_number: Int
-):ListAdapterItem2 {
+):ParentListAdapter {
     override val ids = season_number
 }

@@ -7,9 +7,9 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movie.utils.ListAdapterItem2
+import com.example.movie.utils.ParentListAdapter
 
-abstract class BaseAdapter<BINDING : ViewDataBinding, T : ListAdapterItem2>(
+abstract class BaseAdapter<BINDING : ViewDataBinding, T : ParentListAdapter>(
     private var data: List<T>
 ) : RecyclerView.Adapter<BaseViewHolder<BINDING>>() {
     @get:LayoutRes

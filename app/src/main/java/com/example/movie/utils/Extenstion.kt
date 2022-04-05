@@ -1,6 +1,7 @@
 package com.example.movie.utils
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.Toast
@@ -22,12 +23,12 @@ fun AppCompatImageButton.favoriteItem(isFavorite: Boolean) {
 }
 
 @SuppressLint("ResourceAsColor")
-fun ChipGroup.addChipView(chipText: String, layoutInflater: LayoutInflater,layout: Int) {
+fun ChipGroup.addChipView(chipText: String, layoutInflater: LayoutInflater, layout: Int) {
     val chip = layoutInflater.inflate(layout, this, false) as Chip
     chip.text = chipText
     chip.setOnClickListener {
         chip.setBackgroundColor(R.drawable.shadow_search_btn)
-        Toast.makeText(context,"Clicked me",Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Clicked me", Toast.LENGTH_SHORT).show()
     }
     this.addView(chip)
 }
@@ -36,10 +37,15 @@ fun ImageView.loadImage(url: Int) {
     Glide.with(this).load(url).into(this)
 }
 
-fun AppCompatActivity.setAsActionBar(toolbar: Toolbar) {
+fun AppCompatActivity.setAsActionBar(toolbar: Toolbar, isBack: Boolean) {
+    toolbar.title = ""
+    toolbar.subtitle = ""
     setSupportActionBar(toolbar)
-    supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-    supportActionBar!!.setDisplayShowHomeEnabled(true)
-    toolbar.setNavigationOnClickListener { onBackPressed() }
+    if (isBack) {
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        toolbar.setNavigationOnClickListener { onBackPressed() }
+    }
+
 }
 
