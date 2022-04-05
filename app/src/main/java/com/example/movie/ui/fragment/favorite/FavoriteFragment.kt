@@ -38,7 +38,7 @@ class FavoriteFragment: Fragment() {
         }
 
         binding.tv.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_favoriteFragment_to_seriesFragment)
+            view.findNavController().navigate(R.id.action_favoriteFragment_to_tvFragment)
         }
 
     }

@@ -1,4 +1,4 @@
-package com.example.movie.ui.fragment.category
+package com.example.movie.ui.fragment.genres
 
 import android.os.Bundle
 import android.view.*
@@ -7,12 +7,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.movie.R
-import com.example.movie.databinding.FragmentCategoriesBinding
+import com.example.movie.databinding.FragmentGenresBinding
 
-class CategoriesFragment: Fragment() {
+class GenresFragment: Fragment() {
 
-    private var _binding: FragmentCategoriesBinding? = null
-    private val binding: FragmentCategoriesBinding get() = _binding!!
+    private var _binding: FragmentGenresBinding? = null
+    private val binding: FragmentGenresBinding get() = _binding!!
 
 
     override fun onCreateView(
@@ -20,7 +20,7 @@ class CategoriesFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_categories, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_genres, container, false)
         return _binding?.root
     }
 
@@ -37,7 +37,7 @@ class CategoriesFragment: Fragment() {
         }
 
         binding.tv.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_categoriesFragment_to_seriesFragment)
+            view.findNavController().navigate(R.id.action_homeFragment_to_genresFragment)
         }
 
     }

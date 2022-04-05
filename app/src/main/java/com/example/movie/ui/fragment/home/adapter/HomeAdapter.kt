@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movie.R
 import com.example.movie.data.model.*
 import com.example.movie.databinding.*
-import com.example.movie.ui.fragment.category.adapter.CategoryAdapter
+import com.example.movie.ui.fragment.genres.adapter.GenresAdapter
 import com.example.movie.utils.ListAdapterItem
 import com.example.movie.utils.ViewType
 import com.example.movie.utils.loadImage
@@ -39,8 +39,8 @@ class HomeAdapter(
         return when (viewType) {
             TREND -> TrendViewHolder(v)
             CHIPS_TYPE -> TypeViewHolder(v, layoutInflater)
-            VIEW_MORE_CATEGORY -> ViewMoreViewHolderCategory(v)
-            CATEGORY -> CategoryViewHolder(v)
+            VIEW_MORE_GENERES -> ViewMoreViewHolderGenres(v)
+            GENERES -> CategoryViewHolder(v)
             VIEW_MORE_POPULAR -> ViewMorePopularViewHolder(v)
             POPULAR -> PopularViewHolder(v)
             else -> throw Exception("UNKNOWN VIEW TYPE")
@@ -52,8 +52,8 @@ class HomeAdapter(
         when (holder) {
             is TrendViewHolder -> bindTrending(holder, position)
             is TypeViewHolder -> bindTyping(holder, position)
-            is ViewMoreViewHolderCategory -> bindViewMoreCategory(holder, position)
-            is CategoryViewHolder -> bindCategory(holder, position)
+            is ViewMoreViewHolderGenres -> bindViewMoreCategory(holder, position)
+            is CategoryViewHolder -> bindGeneres(holder, position)
             is ViewMorePopularViewHolder -> bindViewMorePopular(holder, position)
             is PopularViewHolder -> bindPopular(holder, position)
         }
@@ -102,15 +102,15 @@ class HomeAdapter(
     }
 
 
-    private fun bindViewMoreCategory(holder: HomeAdapter.ViewMoreViewHolderCategory, position: Int) {
-        holder.binding.viewMoreCategory.setOnClickListener {
+    private fun bindViewMoreCategory(holder: HomeAdapter.ViewMoreViewHolderGenres, position: Int) {
+        holder.binding.viewMoreGeneres.setOnClickListener {
             listener.category(1)
         }
     }
 
-    private fun bindCategory(holder: CategoryViewHolder, position: Int) {
-        val categoryList = data[position].item as List<Category>
-        val adapter = CategoryAdapter(categoryList, listener)
+    private fun bindGeneres(holder: CategoryViewHolder, position: Int) {
+        val categoryList = data[position].item as List<Genres>
+        val adapter = GenresAdapter(categoryList, listener)
         holder.binding.apply {
             recyclerViewCategory.adapter = adapter
             recyclerViewCategory.setHasFixedSize(true)
@@ -143,8 +143,8 @@ class HomeAdapter(
     override fun getItemViewType(position: Int) = when (data[position].type) {
         ViewType.TREND -> TREND
         ViewType.CHIPS_TYPE -> CHIPS_TYPE
-        ViewType.VIEW_MORE_CATEGORY -> VIEW_MORE_CATEGORY
-        ViewType.CATEGORY -> CATEGORY
+        ViewType.VIEW_MORE_CATEGORY -> VIEW_MORE_GENERES
+        ViewType.GENERES -> GENERES
         ViewType.VIEW_MORE_POPULAR -> VIEW_MORE_POPULAR
         ViewType.POPULAR -> POPULAR
     }
@@ -164,14 +164,14 @@ class HomeAdapter(
         val binding = LayoutChipsGroupTypeBinding.bind(itemView)
     }
 
-    inner class ViewMoreViewHolderCategory(itemView: View) :
+    inner class ViewMoreViewHolderGenres(itemView: View) :
         BaseViewHolder(itemView) {
-        val binding = LayoutViewMoreCategoryBinding.bind(itemView)
+        val binding = LayoutViewMoreGenresBinding.bind(itemView)
     }
 
     inner class CategoryViewHolder(itemView: View) :
         BaseViewHolder(itemView) {
-        val binding = LayoutRvCategoryBinding.bind(itemView)
+        val binding = LayoutRvGenresBinding.bind(itemView)
     }
 
     inner class ViewMorePopularViewHolder(itemView: View) :
@@ -188,8 +188,8 @@ class HomeAdapter(
     companion object {
         const val TREND = R.layout.layout_rv_trend_item
         const val CHIPS_TYPE = R.layout.layout_chips_group_type
-        const val VIEW_MORE_CATEGORY = R.layout.layout_view_more_category
-        const val CATEGORY = R.layout.layout_rv_category
+        const val VIEW_MORE_GENERES = R.layout.layout_view_more_genres
+        const val GENERES = R.layout.layout_rv_genres
         const val VIEW_MORE_POPULAR = R.layout.layout_view_more_popular
         const val POPULAR = R.layout.layout_item_card_popular
 

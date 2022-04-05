@@ -10,18 +10,12 @@ import com.example.movie.R
 import com.example.movie.databinding.FragmentHomeBinding
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import com.example.movie.data.model.Category
+import com.example.movie.data.model.Genres
 import com.example.movie.data.model.Trend
 import com.example.movie.data.repository.Repository
 import com.example.movie.ui.fragment.home.adapter.HomeAdapter
 import com.example.movie.ui.fragment.home.adapter.OnClickListener
 import android.widget.ArrayAdapter
-
-
-
-
-
-
 
 
 class HomeFragment : Fragment(), OnClickListener {
@@ -45,6 +39,7 @@ class HomeFragment : Fragment(), OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
         setHasOptionsMenu(true)
+        filterResult(resources.getString(R.string.movie))
 
         binding.btnSearch.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
@@ -71,11 +66,15 @@ class HomeFragment : Fragment(), OnClickListener {
         builderSingle.setAdapter(arrayAdapter) { _, which ->
             when(arrayAdapter.getItem(which)){
                 resources.getString(R.string.settings) -> {view.findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)}
-                resources.getString(R.string.movie) -> {view.findNavController().navigate(R.id.action_homeFragment_to_moiveFragment)}
-                resources.getString(R.string.series) -> {view.findNavController().navigate(R.id.action_homeFragment_to_seriesFragment)}
+                resources.getString(R.string.movie) -> {filterResult(resources.getString(R.string.movie))}
+                resources.getString(R.string.series) -> {filterResult(resources.getString(R.string.series))}
             }
         }
         builderSingle.show()
+    }
+
+    private fun filterResult(string: String) {
+        binding.titleToolbar.text = string
     }
 
 
@@ -94,7 +93,7 @@ class HomeFragment : Fragment(), OnClickListener {
         Toast.makeText(requireContext(), "categoryMove", Toast.LENGTH_SHORT).show()
     }
 
-    override fun openItem(category: Category) {
+    override fun openItem(category: Genres) {
         Toast.makeText(requireContext(), "view more category", Toast.LENGTH_SHORT).show()
     }
 

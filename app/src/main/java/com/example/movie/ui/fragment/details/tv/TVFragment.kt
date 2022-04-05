@@ -1,4 +1,4 @@
-package com.example.movie.ui.fragment.details.series
+package com.example.movie.ui.fragment.details.tv
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,16 +7,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.movie.R
-import com.example.movie.databinding.FragmentSeriesBinding
+import com.example.movie.databinding.FragmentTvBinding
 import com.example.movie.utils.favoriteItem
 import com.example.movie.utils.listChips
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.chip.Chip
 
-class SeriesFragment : Fragment() {
+class TVFragment : Fragment() {
 
-    private var _binding: FragmentSeriesBinding? = null
-    private val binding: FragmentSeriesBinding get() = _binding!!
+    private var _binding: FragmentTvBinding? = null
+    private val binding: FragmentTvBinding get() = _binding!!
 
 
     override fun onCreateView(
@@ -24,7 +24,7 @@ class SeriesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_series, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tv, container, false)
         binding.toolbar.title = ""
         binding.toolbar.subtitle = ""
         return _binding?.root

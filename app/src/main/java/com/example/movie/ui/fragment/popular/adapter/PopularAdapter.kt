@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movie.R
-import com.example.movie.data.model.Category
+import com.example.movie.data.model.Genres
 import com.example.movie.databinding.LayoutItemCardPopularBinding
 import com.example.movie.ui.fragment.home.adapter.OnClickListener
 import com.example.movie.utils.loadImage
 
 class PopularAdapter(
-    private val list: List<Category>,
+    private val list: List<Genres>,
     private val listener: OnClickListener,
 ) : RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() {
 

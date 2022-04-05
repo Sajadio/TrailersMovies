@@ -9,7 +9,7 @@
         android:name="com.example.movie.ui.fragment.home.HomeFragment"
         android:label="HomeFragment" >
         <action
-            android:id="@+id/action_homeFragment_to_categoriesFragment"
+            android:id="@+id/action_homeFragment_to_genresFragment"
             app:destination="@id/categoriesFragment" />
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
@@ -24,18 +24,18 @@
             android:id="@+id/action_homeFragment_to_moiveFragment"
             app:destination="@id/moiveFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_seriesFragment"
+            android:id="@+id/action_homeFragment_to_tvFragment"
             app:destination="@id/seriesFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.example.movie.ui.fragment.category.CategoriesFragment"
+        android:name="com.example.movie.ui.fragment.genres.GenresFragment"
         android:label="CategoriesFragment" >
         <action
             android:id="@+id/action_categoriesFragment_to_moiveFragment"
             app:destination="@id/moiveFragment" />
         <action
-            android:id="@+id/action_categoriesFragment_to_seriesFragment"
+            android:id="@+id/action_categoriesFragment_to_tvFragment"
             app:destination="@id/seriesFragment" />
     </fragment>
     <fragment
@@ -46,7 +46,7 @@
             android:id="@+id/action_favoriteFragment_to_moiveFragment"
             app:destination="@id/moiveFragment" />
         <action
-            android:id="@+id/action_favoriteFragment_to_seriesFragment"
+            android:id="@+id/action_favoriteFragment_to_tvFragment"
             app:destination="@id/seriesFragment" />
     </fragment>
     <fragment
@@ -57,7 +57,7 @@
             android:id="@+id/action_popularFragment_to_moiveFragment"
             app:destination="@id/moiveFragment" />
         <action
-            android:id="@+id/action_popularFragment_to_seriesFragment"
+            android:id="@+id/action_popularFragment_to_tvFragment"
             app:destination="@id/seriesFragment" />
     </fragment>
     <fragment
@@ -76,7 +76,7 @@
             android:id="@+id/action_searchFragment_to_moiveFragment"
             app:destination="@id/moiveFragment" />
         <action
-            android:id="@+id/action_searchFragment_to_seriesFragment"
+            android:id="@+id/action_searchFragment_to_tvFragment"
             app:destination="@id/seriesFragment" />
     </fragment>
     <fragment
@@ -85,6 +85,6 @@
         android:label="MoiveFragment" />
     <fragment
         android:id="@+id/seriesFragment"
-        android:name="com.example.movie.ui.fragment.details.series.SeriesFragment"
+        android:name="com.example.movie.ui.fragment.details.tv.TVFragment"
         android:label="SeriesFragment" />
 </navigation>

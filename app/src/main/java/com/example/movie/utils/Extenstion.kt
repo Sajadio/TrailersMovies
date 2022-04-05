@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.example.movie.R
@@ -32,5 +34,12 @@ fun ChipGroup.addChipView(chipText: String, layoutInflater: LayoutInflater,layou
 
 fun ImageView.loadImage(url: Int) {
     Glide.with(this).load(url).into(this)
+}
+
+fun AppCompatActivity.setAsActionBar(toolbar: Toolbar) {
+    setSupportActionBar(toolbar)
+    supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+    supportActionBar!!.setDisplayShowHomeEnabled(true)
+    toolbar.setNavigationOnClickListener { onBackPressed() }
 }
 

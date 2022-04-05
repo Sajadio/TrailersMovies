@@ -1,6 +1,5 @@
 package com.example.movie.data.network
 
-import android.view.View
 import com.example.movie.R
 import com.example.movie.data.model.*
 import com.example.movie.utils.ListAdapterItem
@@ -60,10 +59,10 @@ object ApiProvider {
         return items
     }
 
-    fun getCategory(): MutableList<Category> {
-        val items = mutableListOf<Category>()
+    fun getCategory(): MutableList<Genres> {
+        val items = mutableListOf<Genres>()
         items.add(
-            Category(
+            Genres(
                 ids = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
@@ -71,7 +70,7 @@ object ApiProvider {
             )
         )
         items.add(
-            Category(
+            Genres(
                 ids = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
@@ -80,7 +79,7 @@ object ApiProvider {
                 )
         )
         items.add(
-            Category(
+            Genres(
                 ids = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
@@ -89,7 +88,7 @@ object ApiProvider {
                 )
         )
         items.add(
-            Category(
+            Genres(
                 ids = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
@@ -98,7 +97,7 @@ object ApiProvider {
                 )
         )
         items.add(
-            Category(
+            Genres(
                 ids = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
@@ -107,7 +106,7 @@ object ApiProvider {
                 )
         )
         items.add(
-            Category(
+            Genres(
                 ids = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
@@ -116,7 +115,7 @@ object ApiProvider {
                 )
         )
         items.add(
-            Category(
+            Genres(
                 ids = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
@@ -125,7 +124,7 @@ object ApiProvider {
                 )
         )
         items.add(
-            Category(
+            Genres(
                 ids = 1,
                 title = "Steve",
                 rate = 3.3f,
@@ -134,7 +133,7 @@ object ApiProvider {
                 )
         )
         items.add(
-            Category(
+            Genres(
                 ids = 1,
                 title = "SbiderMan",
                 rate = 3.3f,

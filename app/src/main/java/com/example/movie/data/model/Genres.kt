@@ -1,9 +1,8 @@
 package com.example.movie.data.model
 
 import androidx.annotation.DrawableRes
-import com.example.movie.utils.ViewType
 
-data class Category(
+data class Genres(
     val ids: Int,
     val title: String,
     val type: Type,
