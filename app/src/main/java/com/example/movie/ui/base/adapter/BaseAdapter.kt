@@ -7,10 +7,10 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movie.utils.ListAdapterItem
+import com.example.movie.utils.ListAdapterItem2
 
-abstract class BaseAdapter<BINDING : ViewDataBinding, T : ListAdapterItem<Any>>(
-    var data: List<T>
+abstract class BaseAdapter<BINDING : ViewDataBinding, T : ListAdapterItem2>(
+    private var data: List<T>
 ) : RecyclerView.Adapter<BaseViewHolder<BINDING>>() {
     @get:LayoutRes
     abstract val layoutId: Int

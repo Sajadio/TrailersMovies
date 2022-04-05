@@ -9,6 +9,7 @@ import com.example.movie.R
 import com.example.movie.data.m.Genres
 import com.example.movie.databinding.LayoutItemCardGenresBinding
 import com.example.movie.ui.fragment.home.adapter.OnClickListener
+import com.example.movie.utils.loadImage
 
 class GenresAdapter(
     private var list: List<Genres>,

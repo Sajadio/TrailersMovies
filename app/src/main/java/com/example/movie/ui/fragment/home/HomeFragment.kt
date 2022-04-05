@@ -61,13 +61,13 @@ class HomeFragment : Fragment(), OnClickListener {
         val arrayAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.select_dialog_singlechoice)
         arrayAdapter.add(resources.getString(R.string.settings))
         arrayAdapter.add(resources.getString(R.string.movie))
-        arrayAdapter.add(resources.getString(R.string.series))
+        arrayAdapter.add(resources.getString(R.string.tv))
 
         builderSingle.setAdapter(arrayAdapter) { _, which ->
             when(arrayAdapter.getItem(which)){
                 resources.getString(R.string.settings) -> {view.findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)}
-                resources.getString(R.string.movie) -> {filterResult(resources.getString(R.string.movie))}
-                resources.getString(R.string.series) -> {filterResult(resources.getString(R.string.series))}
+                resources.getString(R.string.movie) -> {view.findNavController().navigate(R.id.action_homeFragment_to_moiveFragment)}
+                resources.getString(R.string.tv) -> {view.findNavController().navigate(R.id.action_homeFragment_to_tvFragment)}
             }
         }
         builderSingle.show()

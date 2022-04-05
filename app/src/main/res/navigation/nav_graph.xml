@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/tvFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -25,7 +25,7 @@
             app:destination="@id/moiveFragment" />
         <action
             android:id="@+id/action_homeFragment_to_tvFragment"
-            app:destination="@id/seriesFragment" />
+            app:destination="@id/tvFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
@@ -36,7 +36,7 @@
             app:destination="@id/moiveFragment" />
         <action
             android:id="@+id/action_categoriesFragment_to_tvFragment"
-            app:destination="@id/seriesFragment" />
+            app:destination="@id/tvFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -47,7 +47,7 @@
             app:destination="@id/moiveFragment" />
         <action
             android:id="@+id/action_favoriteFragment_to_tvFragment"
-            app:destination="@id/seriesFragment" />
+            app:destination="@id/tvFragment" />
     </fragment>
     <fragment
         android:id="@+id/popularFragment"
@@ -58,7 +58,7 @@
             app:destination="@id/moiveFragment" />
         <action
             android:id="@+id/action_popularFragment_to_tvFragment"
-            app:destination="@id/seriesFragment" />
+            app:destination="@id/tvFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -77,14 +77,22 @@
             app:destination="@id/moiveFragment" />
         <action
             android:id="@+id/action_searchFragment_to_tvFragment"
-            app:destination="@id/seriesFragment" />
+            app:destination="@id/tvFragment" />
     </fragment>
     <fragment
         android:id="@+id/moiveFragment"
         android:name="com.example.movie.ui.fragment.details.movie.MovieFragment"
         android:label="MoiveFragment" />
     <fragment
-        android:id="@+id/seriesFragment"
+        android:id="@+id/tvFragment"
         android:name="com.example.movie.ui.fragment.details.tv.TVFragment"
         android:label="SeriesFragment" />
+    <dialog
+        android:id="@+id/optionsBottomSheetFragment"
+        android:name="com.example.movie.ui.fragment.details.tv.OptionsBottomSheetFragment"
+        android:label="OptionsBottomSheetFragment" >
+        <action
+            android:id="@+id/action_optionsBottomSheetFragment_to_tvFragment"
+            app:destination="@id/tvFragment" />
+    </dialog>
 </navigation>

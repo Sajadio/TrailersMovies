@@ -18,7 +18,7 @@ object ApiProvider {
         list.add(ListAdapterItem(getTrend(), ViewType.TREND))
         list.add(ListAdapterItem(getType(), ViewType.CHIPS_TYPE))
         list.add(ListAdapterItem(R.string.viewMore, ViewType.VIEW_MORE_CATEGORY))
-        list.add(ListAdapterItem(getCategory(), ViewType.CATEGORY))
+        list.add(ListAdapterItem(getCategory(), ViewType.GENERES))
         list.add(ListAdapterItem(R.string.viewMore, ViewType.VIEW_MORE_POPULAR))
         getPopular().map { list.add(ListAdapterItem(it, ViewType.POPULAR)) }
 

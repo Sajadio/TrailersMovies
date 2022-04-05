@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movie.R
 import com.example.movie.data.m.Trend
 import com.example.movie.databinding.LayoutTrendCardItemBinding
+import com.example.movie.utils.loadImage
 
 class TrendAdapter (
     private val list: List<Trend>,

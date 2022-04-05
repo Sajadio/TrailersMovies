@@ -18,6 +18,7 @@ import com.example.movie.databinding.*
 import com.example.movie.ui.fragment.genres.adapter.GenresAdapter
 import com.example.movie.utils.ListAdapterItem
 import com.example.movie.utils.ViewType
+import com.example.movie.utils.loadImage
 import com.google.android.material.chip.Chip
 import com.opensooq.pluto.base.PlutoAdapter
 import com.opensooq.pluto.listeners.OnItemClickListener

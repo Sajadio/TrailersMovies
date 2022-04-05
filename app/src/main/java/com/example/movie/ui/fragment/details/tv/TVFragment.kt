@@ -6,18 +6,23 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.movie.R
+import com.example.movie.data.m.Season
 import com.example.movie.databinding.FragmentTvBinding
+import com.example.movie.databinding.LayoutBottomSheetBinding
+import com.example.movie.ui.base.adapter.BaseOnClickItem
+import com.example.movie.ui.fragment.details.tv.adapter.SeasonAdapter
 import com.example.movie.utils.favoriteItem
 import com.example.movie.utils.listChips
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.chip.Chip
+import kotlinx.android.synthetic.main.fragment_tv.*
+
 
 class TVFragment : Fragment() {
 
     private var _binding: FragmentTvBinding? = null
     private val binding: FragmentTvBinding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,12 +49,15 @@ class TVFragment : Fragment() {
             binding.btnNotFavorite.favoriteItem(isFavorite = false)
         }
 
+
         addChipEpisodeView(listChips)
+
         binding.btnSheet.setOnClickListener {
-            val view = layoutInflater.inflate(R.layout.layout_item_seasons, null)
-            val dialog = BottomSheetDialog(requireContext())
-            dialog.setContentView(view)
-            dialog.show()
+            (activity)?.supportFragmentManager.let {
+                OptionsBottomSheetFragment.newInstance(Bundle()).apply {
+                    it?.let { it1 -> show(it1, tag) }
+                }
+            }
         }
     }
 
@@ -57,7 +65,8 @@ class TVFragment : Fragment() {
     private fun addChipEpisodeView(chipText: MutableList<String>) {
         val chipGroup = binding.include.chipGroupEpisode
         chipText.forEach { type ->
-            val chip = layoutInflater.inflate(R.layout.layout_chips_eposidoe, chipGroup, false) as Chip
+            val chip =
+                layoutInflater.inflate(R.layout.layout_chips_eposidoe, chipGroup, false) as Chip
             chip.text = type
             chipGroup.addView(chip)
         }
@@ -74,4 +83,5 @@ class TVFragment : Fragment() {
         // for prevent memory leaks
         _binding = null
     }
+
 }

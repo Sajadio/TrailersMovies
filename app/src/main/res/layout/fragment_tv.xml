@@ -83,7 +83,7 @@
 
             <include
                 android:id="@+id/include"
-                layout="@layout/custom_layout_details_series"
+                layout="@layout/custom_layout_details_tv"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"

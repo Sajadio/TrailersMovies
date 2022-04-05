@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+
+        <TextView
+            android:id="@+id/numberSeason"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp"
+            android:textColor="@color/blackDark"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Season 1" />
+        <View
+            android:id="@+id/viewLineSeason"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gryLight"
+            app:layout_constraintEnd_toEndOf="@+id/numberSeason"
+            app:layout_constraintStart_toStartOf="@+id/numberSeason"
+            app:layout_constraintTop_toBottomOf="@+id/numberSeason" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
