@@ -10,8 +10,8 @@ import com.example.movie.R
 import com.example.movie.databinding.FragmentHomeBinding
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import com.example.movie.data.model.Genres
-import com.example.movie.data.model.Trend
+import com.example.movie.data.m.Genres
+import com.example.movie.data.m.Trend
 import com.example.movie.data.repository.Repository
 import com.example.movie.ui.fragment.home.adapter.HomeAdapter
 import com.example.movie.ui.fragment.home.adapter.OnClickListener

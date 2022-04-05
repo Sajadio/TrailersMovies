@@ -3,7 +3,7 @@ package com.example.movie.ui.fragment.home.adapter
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.example.movie.R
-import com.example.movie.data.model.Trend
+import com.example.movie.data.m.Trend
 import com.example.movie.utils.loadImage
 import com.opensooq.pluto.base.PlutoAdapter
 import com.opensooq.pluto.base.PlutoViewHolder

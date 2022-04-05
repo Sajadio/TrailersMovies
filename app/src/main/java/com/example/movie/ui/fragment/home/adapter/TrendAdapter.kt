@@ -2,14 +2,12 @@ package com.example.movie.ui.fragment.home.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movie.R
-import com.example.movie.data.model.Trend
+import com.example.movie.data.m.Trend
 import com.example.movie.databinding.LayoutTrendCardItemBinding
-import com.example.movie.utils.loadImage
 
 class TrendAdapter (
     private val list: List<Trend>,

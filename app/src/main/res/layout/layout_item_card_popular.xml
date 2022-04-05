@@ -8,7 +8,7 @@
 
         <variable
             name="category"
-            type="com.example.movie.data.model.Type" />
+            type="com.example.movie.data.m.Type" />
 
     </data>
 

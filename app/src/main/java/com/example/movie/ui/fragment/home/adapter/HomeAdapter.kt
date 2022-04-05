@@ -9,12 +9,15 @@ import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movie.R
+import com.example.movie.data.m.Genres
+import com.example.movie.data.m.Popular
+import com.example.movie.data.m.Trend
+import com.example.movie.data.m.Type
 import com.example.movie.data.model.*
 import com.example.movie.databinding.*
 import com.example.movie.ui.fragment.genres.adapter.GenresAdapter
 import com.example.movie.utils.ListAdapterItem
 import com.example.movie.utils.ViewType
-import com.example.movie.utils.loadImage
 import com.google.android.material.chip.Chip
 import com.opensooq.pluto.base.PlutoAdapter
 import com.opensooq.pluto.listeners.OnItemClickListener

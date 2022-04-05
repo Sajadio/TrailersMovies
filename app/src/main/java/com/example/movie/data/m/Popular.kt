@@ -1,8 +1,8 @@
-package com.example.movie.data.model
+package com.example.movie.data.m
 
 import androidx.annotation.DrawableRes
 
-data class Trend(
+data class Popular(
     val ids: Int,
     val title: String,
     val type: Type,
