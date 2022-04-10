@@ -9,6 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="?attr/mainColor"
         android:layout_height="match_parent">
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -39,7 +40,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Tome Hairy"
-            android:textColor="@color/blackLight"
+            android:textColor="?attr/textColor"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/imgActors"

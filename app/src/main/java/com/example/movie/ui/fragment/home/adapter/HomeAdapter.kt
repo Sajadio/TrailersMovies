@@ -1,7 +1,5 @@
 package com.example.movie.ui.fragment.home.adapter
 
-import android.annotation.SuppressLint
-import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,14 +10,11 @@ import com.example.movie.R
 import com.example.movie.data.m.Genres
 import com.example.movie.data.m.Popular
 import com.example.movie.data.m.Trend
-import com.example.movie.data.m.Type
-import com.example.movie.data.model.*
 import com.example.movie.databinding.*
-import com.example.movie.ui.fragment.genres.adapter.GenresAdapter
+import com.example.movie.ui.fragment.genres.adapter.SubGenresAdapter
 import com.example.movie.utils.ListAdapterItem
 import com.example.movie.utils.ViewType
 import com.example.movie.utils.loadImage
-import com.google.android.material.chip.Chip
 import com.opensooq.pluto.base.PlutoAdapter
 import com.opensooq.pluto.listeners.OnItemClickListener
 import com.opensooq.pluto.listeners.OnSlideChangeListener
@@ -42,9 +37,8 @@ class HomeAdapter(
 
         return when (viewType) {
             TREND -> TrendViewHolder(v)
-            CHIPS_TYPE -> TypeViewHolder(v, layoutInflater)
             VIEW_MORE_GENERES -> ViewMoreViewHolderGenres(v)
-            GENERES -> CategoryViewHolder(v)
+            GENERES -> SubGenresViewHolder(v)
             VIEW_MORE_POPULAR -> ViewMorePopularViewHolder(v)
             POPULAR -> PopularViewHolder(v)
             else -> throw Exception("UNKNOWN VIEW TYPE")
@@ -55,9 +49,8 @@ class HomeAdapter(
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         when (holder) {
             is TrendViewHolder -> bindTrending(holder, position)
-            is TypeViewHolder -> bindTyping(holder, position)
             is ViewMoreViewHolderGenres -> bindViewMoreCategory(holder, position)
-            is CategoryViewHolder -> bindGeneres(holder, position)
+            is SubGenresViewHolder -> bindGeneres(holder, position)
             is ViewMorePopularViewHolder -> bindViewMorePopular(holder, position)
             is PopularViewHolder -> bindPopular(holder, position)
         }
@@ -84,37 +77,15 @@ class HomeAdapter(
         }
     }
 
-    @SuppressLint("ResourceAsColor")
-    private fun bindTyping(holder: TypeViewHolder, position: Int) {
-        val typeList = data[position].item as Type
-        holder.binding.apply {
-            typeList.type.forEach { chipsText ->
-                val chipGroup = chipGroupTyping
-                val chip = holder.layoutInflater.inflate(
-                    R.layout.layout_chips_item_type,
-                    chipGroup,
-                    false
-                ) as Chip
-                chip.setOnClickListener {
-                    it.setBackgroundColor(Color.BLACK)
-                }
-                chip.text = chipsText
-                chipGroup.addView(chip)
-            }
-        }
-
-    }
-
-
     private fun bindViewMoreCategory(holder: HomeAdapter.ViewMoreViewHolderGenres, position: Int) {
         holder.binding.viewMoreGeneres.setOnClickListener {
-            listener.category(1)
+//            listener.category(1)
         }
     }
 
-    private fun bindGeneres(holder: CategoryViewHolder, position: Int) {
+    private fun bindGeneres(holder: SubGenresViewHolder, position: Int) {
         val categoryList = data[position].item as List<Genres>
-        val adapter = GenresAdapter(categoryList, listener)
+        val adapter = SubGenresAdapter(categoryList, listener)
         holder.binding.apply {
             recyclerViewCategory.adapter = adapter
             recyclerViewCategory.setHasFixedSize(true)
@@ -123,9 +94,9 @@ class HomeAdapter(
 
 
     private fun bindViewMorePopular(holder: HomeAdapter.ViewMorePopularViewHolder, position: Int) {
-//        holder.binding.viewpopular.setOnClickListener {
-//            listener.popularMove(data[position].item as List<Popular>)
-//        }
+        holder.binding.viewMorePopular.setOnClickListener {
+            listener.popular(1)
+        }
     }
 
     private fun bindPopular(holder: PopularViewHolder, position: Int) {
@@ -146,11 +117,11 @@ class HomeAdapter(
 
     override fun getItemViewType(position: Int) = when (data[position].type) {
         ViewType.TREND -> TREND
-        ViewType.CHIPS_TYPE -> CHIPS_TYPE
         ViewType.VIEW_MORE_CATEGORY -> VIEW_MORE_GENERES
         ViewType.GENERES -> GENERES
         ViewType.VIEW_MORE_POPULAR -> VIEW_MORE_POPULAR
         ViewType.POPULAR -> POPULAR
+        else -> throw Exception("UNKNOWN VIEW TYPE")
     }
 
     abstract class BaseViewHolder(binder: View) :
@@ -161,19 +132,12 @@ class HomeAdapter(
         val binding = LayoutRvTrendItemBinding.bind(itemView)
     }
 
-    inner class TypeViewHolder(
-        itemView: View, val layoutInflater: LayoutInflater
-    ) :
-        BaseViewHolder(itemView) {
-        val binding = LayoutChipsGroupTypeBinding.bind(itemView)
-    }
-
     inner class ViewMoreViewHolderGenres(itemView: View) :
         BaseViewHolder(itemView) {
         val binding = LayoutViewMoreGenresBinding.bind(itemView)
     }
 
-    inner class CategoryViewHolder(itemView: View) :
+    inner class SubGenresViewHolder(itemView: View) :
         BaseViewHolder(itemView) {
         val binding = LayoutRvGenresBinding.bind(itemView)
     }
@@ -186,16 +150,15 @@ class HomeAdapter(
 
     inner class PopularViewHolder(itemView: View) :
         BaseViewHolder(itemView) {
-        val binding = LayoutItemCardPopularBinding.bind(itemView)
+        val binding = LayoutItemCardCommenBinding.bind(itemView)
     }
 
     companion object {
         const val TREND = R.layout.layout_rv_trend_item
-        const val CHIPS_TYPE = R.layout.layout_chips_group_type
         const val VIEW_MORE_GENERES = R.layout.layout_view_more_genres
         const val GENERES = R.layout.layout_rv_genres
         const val VIEW_MORE_POPULAR = R.layout.layout_view_more_popular
-        const val POPULAR = R.layout.layout_item_card_popular
+        const val POPULAR = R.layout.layout_item_card_commen
 
     }
 

@@ -11,8 +11,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="8dp">
+        android:layout_marginVertical="12dp"
+        android:paddingVertical="8dp">
 
         <TextView
             android:id="@+id/titleGeneres"
@@ -21,7 +21,7 @@
             android:layout_gravity="center"
             android:gravity="center|start"
             android:text="@string/generes"
-            android:textColor="@color/blackDark"
+            android:textColor="?attr/textColor"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,9 +32,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/common_click_button"
             android:gravity="end|center"
+            android:padding="4dp"
             android:text="@string/viewMore"
-            android:textColor="@color/blackDark"
+            android:textColor="?attr/textColorHint"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

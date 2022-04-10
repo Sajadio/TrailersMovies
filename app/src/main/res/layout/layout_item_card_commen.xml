@@ -21,7 +21,7 @@
         android:checkable="true"
         android:clickable="true"
         android:focusable="true"
-        app:cardBackgroundColor="@color/gryLight"
+        app:cardBackgroundColor="?attr/secondColor"
         app:cardCornerRadius="5dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +63,7 @@
                 android:layout_marginVertical="8dp"
                 android:layout_marginStart="8dp"
                 android:gravity="start|center"
-                android:textColor="@color/blackDark"
+                android:textColor="?attr/textColor"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/posterPopular"
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
                 android:gravity="start|center"
-                android:textColor="@color/blackLight"
+                android:textColor="?attr/textColorHint"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/titleMS"
                 app:layout_constraintTop_toBottomOf="@+id/titleMS"
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
                 android:gravity="start|center"
-                android:textColor="@color/blackLight"
+                android:textColor="?attr/textColorHint"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/rating"
                 app:layout_constraintStart_toStartOf="@+id/titleMS"
@@ -131,21 +131,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/showMore"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_launcher_background" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </com.google.android.material.card.MaterialCardView>
 
 </layout>

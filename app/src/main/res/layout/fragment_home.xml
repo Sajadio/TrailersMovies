@@ -9,6 +9,7 @@
         <variable
             name="adapter"
             type="com.example.movie.ui.fragment.home.adapter.HomeAdapter" />
+
         <variable
             name="movie"
             type="com.example.movie.ui.fragment.home.vm.HomeViewModel" />
@@ -16,30 +17,28 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="?attr/mainColor">
+
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/mainColor"
             android:minHeight="?attr/actionBarSize"
-            app:contentInsetEnd="0dp"
-            app:contentInsetLeft="0dp"
-            app:contentInsetRight="0dp"
-            app:contentInsetStart="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btnMenu"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="start"
-                android:background="@drawable/shadow_menu_btn"
-                android:src="@drawable/ic_baseline_menu_24" />
+                android:padding="4dp"
+                android:background="@drawable/common_click_button"
+                android:src="@drawable/ic_round_menu_24" />
 
             <TextView
                 android:id="@+id/titleToolbar"
@@ -47,16 +46,17 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                tools:text="@string/home"
-                android:textColor="@color/blackDark"
+                android:textColor="?attr/textColor"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="@string/home" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btnSearch"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/shadow_search_btn"
                 android:outlineProvider="bounds"
                 android:src="@drawable/ic_baseline_search_24"
@@ -68,7 +68,7 @@
             android:id="@+id/viewLine"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:background="@color/gryLight"
+            android:background="?attr/secondColor"
             app:layout_constraintEnd_toEndOf="@+id/toolbar"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/toolbar"
@@ -78,69 +78,14 @@
             android:id="@+id/parent_recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:orientation="vertical"
             android:layout_marginHorizontal="8dp"
+            android:orientation="vertical"
+            android:background="?attr/mainColor"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewLine" />
-
-
-
-
-        <!--        <androidx.core.widget.NestedScrollView-->
-        <!--            android:id="@+id/nestedScrollView"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="0dp"-->
-        <!--            android:layout_marginTop="8dp"-->
-        <!--            app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/slider_view">-->
-
-
-        <!--            <RelativeLayout-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="match_parent">-->
-
-        <!--                <HorizontalScrollView-->
-        <!--                    android:id="@+id/chipGroupEposiodeScroll"-->
-        <!--                    android:layout_width="match_parent"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_alignParentStart="true"-->
-        <!--                    android:layout_alignParentTop="true"-->
-        <!--                    android:layout_alignParentEnd="true"-->
-        <!--                    android:scrollbarSize="0dp"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent">-->
-
-        <!--                    <com.google.android.material.chip.ChipGroup-->
-        <!--                        android:id="@+id/chipGroupTypeMS"-->
-        <!--                        android:layout_width="wrap_content"-->
-        <!--                        android:layout_height="wrap_content"-->
-        <!--                        android:layout_marginTop="4dp"-->
-        <!--                        app:chipSpacing="8dp"-->
-        <!--                        app:singleLine="true"-->
-        <!--                        app:singleSelection="true" />-->
-
-        <!--                </HorizontalScrollView>-->
-
-        <!--                <androidx.recyclerview.widget.RecyclerView-->
-        <!--                    android:id="@+id/recycler_view_category"-->
-        <!--                    android:layout_width="0dp"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_below="@+id/chipGroupEposiodeScroll"-->
-        <!--                    android:layout_alignParentStart="true"-->
-        <!--                    android:layout_alignParentEnd="true"-->
-        <!--                    android:orientation="horizontal"-->
-        <!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-        <!--                    tools:listitem="@layout/layout_item_card_category" />-->
-
-        <!--            </RelativeLayout>-->
-
-        <!--        </androidx.core.widget.NestedScrollView>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

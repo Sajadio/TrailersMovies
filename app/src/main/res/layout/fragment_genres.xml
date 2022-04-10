@@ -8,6 +8,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="?attr/mainColor"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -15,18 +16,12 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="16dp"
-            app:contentInsetEnd="0dp"
-            app:contentInsetLeft="0dp"
-            app:contentInsetRight="0dp"
-            app:contentInsetStart="0dp"
+            android:background="?attr/mainColor"
+            android:layout_height="?attr/actionBarSize"
             android:minHeight="?attr/actionBarSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:titleTextColor="@color/blackDark">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/titleToolbar"
@@ -34,10 +29,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="@color/blackDark"
+                android:textColor="?attr/textColor"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                tools:text="Category" />
+                android:text="@string/generes" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -45,38 +40,47 @@
             android:id="@+id/viewLine"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:background="@color/gryLight"
+            android:background="?attr/secondColor"
             app:layout_constraintEnd_toEndOf="@+id/toolbar"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/toolbar"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-        <LinearLayout
+        <HorizontalScrollView
+            android:id="@+id/chipGroupTypingScroll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:scrollbarSize="0dp"
+            android:background="?attr/mainColor"
+            android:layout_marginHorizontal="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/viewLine"
+            app:layout_constraintStart_toStartOf="@+id/viewLine"
             app:layout_constraintTop_toBottomOf="@+id/viewLine">
 
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/movie"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupGenres"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Movie" />
+                app:chipSpacing="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:singleLine="true"
+                app:singleSelection="true" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="TV" />
+        </HorizontalScrollView>
 
-        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcGeneres"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:background="?attr/mainColor"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/chipGroupTypingScroll"
+            app:layout_constraintStart_toStartOf="@+id/chipGroupTypingScroll"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroupTypingScroll"
+            tools:listitem="@layout/layout_item_card_commen" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <item
         android:id="@+id/search"
         android:icon="@drawable/ic_baseline_search_dark_24"
@@ -14,6 +15,18 @@
         android:icon="@drawable/ic_twotone_delete_outline_24"
         android:title="@string/delete"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/setting"
+        android:title="@string/settings" />
+
+    <item
+        android:id="@+id/movie"
+        android:title="@string/movie" />
+
+    <item
+        android:id="@+id/tv"
+        android:title="@string/tv" />
 
 
 </menu>

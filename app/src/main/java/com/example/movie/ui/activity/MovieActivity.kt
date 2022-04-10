@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import com.example.movie.R
 import com.example.movie.databinding.ActivityMovieBinding
-import java.lang.NullPointerException
 
 class MovieActivity : AppCompatActivity() {
 
@@ -15,7 +14,7 @@ class MovieActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = DataBindingUtil.setContentView(this,R.layout.activity_movie)
+        _binding = DataBindingUtil.setContentView(this, R.layout.activity_movie)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController

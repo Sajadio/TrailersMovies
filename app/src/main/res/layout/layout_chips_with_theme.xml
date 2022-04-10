@@ -12,4 +12,6 @@
     android:textSize="14sp"
     android:textStyle="bold"
     app:chipCornerRadius="5dp"
+    android:textColor="?attr/textColorHint"
+    app:chipBackgroundColor="?attr/secondColor"
     tools:text="Action" />

@@ -10,6 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/mainColor"
         android:padding="8dp">
 
 
@@ -18,9 +19,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingTop="8dp"
-            android:paddingBottom="4dp"
-            android:textColor="@color/blackDark"
+            android:background="@drawable/common_click_button"
+            android:paddingVertical="8dp"
+            android:textColor="?attr/textColorHint"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +32,7 @@
             android:id="@+id/viewLineSeason"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:background="@color/gryLight"
+            android:background="?attr/viewColor"
             app:layout_constraintEnd_toEndOf="@+id/numberSeason"
             app:layout_constraintStart_toStartOf="@+id/numberSeason"
             app:layout_constraintTop_toBottomOf="@+id/numberSeason" />

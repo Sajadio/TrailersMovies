@@ -5,5 +5,6 @@ import com.example.movie.data.network.ApiProvider
 object Repository {
 
     fun getAllItems() = ApiProvider.getAllItems()
-    fun getSize() = ApiProvider.getCategory()
+    fun getCategory() = ApiProvider.getCategory()
+    fun getType() = ApiProvider.getType()
 }

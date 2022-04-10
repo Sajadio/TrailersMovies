@@ -34,7 +34,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.top_app_bar, menu)
+
         menu.findItem(R.id.delete).isVisible = false
+        menu.findItem(R.id.setting).isVisible = false
+        menu.findItem(R.id.movie).isVisible = false
+        menu.findItem(R.id.tv).isVisible = false
+
         val search = menu.findItem(R.id.search)
         var searchView = search?.actionView as? androidx.appcompat.widget.SearchView
         searchView?.queryHint = "Search here.."

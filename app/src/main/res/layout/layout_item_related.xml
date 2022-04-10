@@ -9,12 +9,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="?attr/mainColor"
         android:layout_height="match_parent">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/movieTVImg"
-            android:layout_width="124dp"
-            android:layout_height="124dp"
+            android:layout_width="132dp"
+            android:layout_height="132dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
@@ -23,8 +24,8 @@
 
         <ImageView
             android:id="@+id/coverMovieTVImg"
-            android:layout_width="124dp"
-            android:layout_height="124dp"
+            android:layout_width="132dp"
+            android:layout_height="132dp"
             android:background="#74000000"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@+id/movieTVImg"
@@ -55,6 +56,7 @@
             android:text="Tome Hairy"
             android:textColor="@color/whiteLight"
             android:textSize="14sp"
+            android:layout_marginBottom="8dp"
             android:layout_marginStart="4dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/rating"

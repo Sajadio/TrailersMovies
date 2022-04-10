@@ -26,4 +26,12 @@
     <string name="decline">Cancel</string>
     <string name="accept">Ok</string>
     <string name="tv">TV</string>
+    <string name="all">All</string>
+    <string name="language">Language</string>
+    <string name="theme">Theme</string>
+    <string name="english">English</string>
+    <string name="arabic">Arabic</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="systemDefault">System default</string>
 </resources>

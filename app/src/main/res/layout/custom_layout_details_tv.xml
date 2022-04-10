@@ -15,11 +15,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbarSize="0dp"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:background="?attr/mainColor"
+            android:layout_height="wrap_content">
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -27,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Suits Season"
-                android:textColor="@color/blackDark"
+                android:textColor="?attr/textColor"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +78,7 @@
                 android:gravity="center"
                 android:padding="8dp"
                 android:text="2h 46m"
-                android:textColor="@color/blackLight"
+                android:textColor="?attr/textColorHint"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/chipGroup"
                 app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
@@ -91,7 +93,7 @@
                 android:gravity="center"
                 android:padding="8dp"
                 android:text="4.5 "
-                android:textColor="@color/blackLight"
+                android:textColor="?attr/textColorHint"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_time"
                 app:layout_constraintStart_toEndOf="@+id/tv_time"
@@ -106,7 +108,7 @@
                 android:gravity="center"
                 android:padding="8dp"
                 android:text="2020"
-                android:textColor="@color/blackLight"
+                android:textColor="?attr/textColorHint"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_time"
                 app:layout_constraintStart_toEndOf="@+id/rate"
@@ -121,7 +123,7 @@
                 android:gravity="start|center"
                 android:maxLines="4"
                 android:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here "
-                android:textColor="@color/blackLight"
+                android:textColor="?attr/textColorHint"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/btnShare"
                 app:layout_constraintStart_toStartOf="@+id/tv_time"
@@ -133,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/season"
-                android:textColor="@color/blackDark"
+                android:textColor="?attr/textColor"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/description"
@@ -165,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="@string/actors"
-                android:textColor="@color/blackDark"
+                android:textColor="?attr/textColor"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/chipGroupEposiodeScroll"
@@ -190,7 +192,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="@string/related"
-                android:textColor="@color/blackDark"
+                android:textColor="?attr/textColor"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/description"
@@ -202,6 +204,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal"
+                android:background="?attr/mainColor"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/titleActors"

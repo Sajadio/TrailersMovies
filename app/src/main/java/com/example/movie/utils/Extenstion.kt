@@ -1,18 +1,25 @@
 package com.example.movie.utils
 
 import android.annotation.SuppressLint
-import android.graphics.Color
+import android.content.res.Configuration
 import android.view.LayoutInflater
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import com.bumptech.glide.Glide
 import com.example.movie.R
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import java.util.*
 
 fun AppCompatImageButton.favoriteItem(isFavorite: Boolean) {
     this.isVisible = isFavorite
@@ -46,6 +53,52 @@ fun AppCompatActivity.setAsActionBar(toolbar: Toolbar, isBack: Boolean) {
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         toolbar.setNavigationOnClickListener { onBackPressed() }
     }
-
 }
 
+@SuppressLint("ResourceAsColor")
+fun ChipGroup.addChipWithTheme(
+    chipText: List<String>,
+    layoutInflater: LayoutInflater,
+    layout: Int
+) {
+    chipText.forEach { type ->
+        val chip = layoutInflater.inflate(layout, this, false) as Chip
+        chip.text = type
+        this.addView(chip)
+    }
+}
+
+var isExpandLang = true
+fun View.expandLang() {
+    if (isExpandLang) {
+        this.startCustomAnimation(R.anim.fade_in, 500L)
+        this.isVisible = isExpandLang
+        isExpandLang = false
+    } else {
+        this.isVisible = isExpandLang
+        isExpandLang = true
+    }
+}
+
+var isExpandTheme = true
+fun View.expandTheme() {
+    if (isExpandTheme) {
+        this.startCustomAnimation(R.anim.fade_in, 500L)
+        this.isVisible = isExpandTheme
+        isExpandTheme = false
+    } else {
+        this.isVisible = isExpandTheme
+        isExpandTheme = true
+    }
+}
+
+fun View.startCustomAnimation(anim: Int, duration: Long) {
+    val setAnim: Animation = AnimationUtils.loadAnimation(this.context, anim)
+    setAnim.duration = duration
+    this.startAnimation(setAnim)
+}
+
+fun View.endCustomAnimation(anim: Int) {
+    val setAnim: Animation = AnimationUtils.loadAnimation(this.context, anim)
+    this.startAnimation(setAnim)
+}

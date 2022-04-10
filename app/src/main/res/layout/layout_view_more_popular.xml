@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="8dp"
+        android:paddingVertical="8dp">
 
         <TextView
             android:id="@+id/titlePopular"
@@ -21,9 +22,9 @@
             android:layout_gravity="center"
             android:gravity="center|start"
             android:text="@string/popular"
-            android:textColor="@color/blackDark"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:textColor="?attr/textColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,9 +35,11 @@
             android:layout_gravity="center"
             android:gravity="end|center"
             android:text="@string/viewMore"
-            android:textColor="@color/blackDark"
+            android:padding="4dp"
+            android:background="@drawable/common_click_button"
+            android:textColor="?attr/textColorHint"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/titlePopular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/titlePopular" />
 

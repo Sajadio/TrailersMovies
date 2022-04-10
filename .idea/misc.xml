@@ -3,26 +3,40 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable-v24/botton_background_color.xml" value="0.3880208333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable-v24/button_background_color.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3880208333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/background_bottom_sheet.xml" value="0.2712820512820513" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/background_gray.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/bg_chip_state_list.xml" value="0.382051282051282" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/commen_click_button.xml" value="0.382051282051282" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/common_shadow.xml" value="0.382051282051282" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.382051282051282" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24_white.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_favorite_border_24_white.xml" value="0.3880208333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_filter_list_24.xml" value="0.382051282051282" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_history_24.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" value="0.3880208333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_language_24.xml" value="0.3472222222222222" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_login_24.xml" value="0.3880208333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_search-dark_24.xml" value="0.382051282051282" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.382051282051282" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_search_dark_24.xml" value="0.382051282051282" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.36203703703703705" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_outline_dark_mode_24.xml" value="0.382051282051282" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_outline_movie_filter_24.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_outline_remove_red_eye_24.xml" value="0.382051282051282" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_outline_settings_24.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_outline_share_24.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_round_keyboard_arrow_right_24.xml" value="0.3880208333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_round_live_tv_24.xml" value="0.3880208333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_round_menu_24.xml" value="0.382051282051282" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_sharp_arrow_back_ios_24.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_twotone_delete_outline_24.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/ic_twotone_favorite_24.xml" value="0.3880208333333333" />
@@ -30,6 +44,7 @@
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/layout_view_more_category.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/shadow_menu_btn.xml" value="0.382051282051282" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/shadow_search_btn.xml" value="0.382051282051282" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/drawable/toolbar_dropshadow.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/activity_main.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/activity_movie.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/custom_layout_details_movie.xml" value="0.36574074074074076" />
@@ -38,8 +53,9 @@
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/custom_toolbar.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_blank.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_categories.xml" value="0.371875" />
-        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_favorite.xml" value="0.5" />
-        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_home.xml" value="0.35" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_favorite.xml" value="0.2361111111111111" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_genres.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_home.xml" value="0.34629629629629627" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_movie.xml" value="0.33" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_popular.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/fragment_populer.xml" value="0.371875" />
@@ -50,27 +66,38 @@
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/home_fragment.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_bootom_sheet_season.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_bottom_sheet.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_bottom_sheet_home.xml" value="0.34629629629629627" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_bottom_sheet_season.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_bottom_sheet_tv.xml" value="0.34629629629629627" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_card_item.xml" value="0.371875" />
-        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_chips.xml" value="0.75" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_chips.xml" value="0.34629629629629627" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_chips_category.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_chips_eposidoe.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_chips_generce.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_chips_genres.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_chips_group_category.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_chips_group_type.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_chips_item_type.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_chips_seasons.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_chips_with_theme.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_custom_indicator.xml" value="0.371875" />
-        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_custom_settings.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_custom_settings.xml" value="0.2525354969574036" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_home_item.xml" value="0.371875" />
-        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_item_actors.xml" value="0.9" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_item_actors.xml" value="0.38516992790937177" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_item_bottom_sheet_home.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_item_bottom_sheet_tv.xml" value="0.34629629629629627" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_item_card_category.xml" value="0.36615384615384616" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_item_card_commen.xml" value="0.34629629629629627" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_item_card_genres.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_item_card_popular.xml" value="0.371875" />
-        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_item_related.xml" value="0.5909774436090226" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_item_related.xml" value="0.34814814814814815" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_item_rv_seasons.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_item_season.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_item_season_card.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_item_seasons.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_line_view.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_rv_category.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_rv_genres.xml" value="0.34629629629629627" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_rv_popular.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_rv_trend_item.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_rv_type.xml" value="0.371875" />
@@ -78,6 +105,8 @@
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_title.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_trend_card_item.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_trend_item.xml" value="0.3351851851851852" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_view_line.xml" value="0.259375" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_view_more.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_view_more_category.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_view_more_category_card.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/layout/layout_view_more_genres.xml" value="0.371875" />
@@ -85,11 +114,9 @@
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/menu/bottom_bar.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/menu/top_app_bar.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/menu/top_tool_bar.xml" value="0.371875" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/xml/slide_up.xml" value="0.371875" />
       </map>
     </option>
-  </component>
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/layout_item_rv_seasons.xml" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

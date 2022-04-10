@@ -5,7 +5,6 @@ import com.example.movie.data.m.Genres
 import com.example.movie.data.m.Popular
 import com.example.movie.data.m.Trend
 import com.example.movie.data.m.Type
-import com.example.movie.data.model.*
 import com.example.movie.utils.ListAdapterItem
 import com.example.movie.utils.ViewType
 
@@ -16,7 +15,6 @@ object ApiProvider {
 
         val list = mutableListOf<ListAdapterItem<Any>>()
         list.add(ListAdapterItem(getTrend(), ViewType.TREND))
-        list.add(ListAdapterItem(getType(), ViewType.CHIPS_TYPE))
         list.add(ListAdapterItem(R.string.viewMore, ViewType.VIEW_MORE_CATEGORY))
         list.add(ListAdapterItem(getCategory(), ViewType.GENERES))
         list.add(ListAdapterItem(R.string.viewMore, ViewType.VIEW_MORE_POPULAR))
@@ -67,7 +65,7 @@ object ApiProvider {
         val items = mutableListOf<Genres>()
         items.add(
             Genres(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel,
@@ -75,7 +73,7 @@ object ApiProvider {
         )
         items.add(
             Genres(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel,
@@ -84,7 +82,7 @@ object ApiProvider {
         )
         items.add(
             Genres(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel,
@@ -93,7 +91,7 @@ object ApiProvider {
         )
         items.add(
             Genres(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel,
@@ -102,7 +100,7 @@ object ApiProvider {
         )
         items.add(
             Genres(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel,
@@ -111,7 +109,7 @@ object ApiProvider {
         )
         items.add(
             Genres(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel,
@@ -120,7 +118,7 @@ object ApiProvider {
         )
         items.add(
             Genres(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel,
@@ -129,7 +127,7 @@ object ApiProvider {
         )
         items.add(
             Genres(
-                ids = 1,
+                id = 1,
                 title = "Steve",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.img,
@@ -138,7 +136,7 @@ object ApiProvider {
         )
         items.add(
             Genres(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel,
@@ -152,7 +150,7 @@ object ApiProvider {
         val items = mutableListOf<Popular>()
         items.add(
             Popular(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel
@@ -160,7 +158,7 @@ object ApiProvider {
         )
         items.add(
             Popular(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel
@@ -168,7 +166,7 @@ object ApiProvider {
         )
         items.add(
             Popular(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel
@@ -176,7 +174,7 @@ object ApiProvider {
         )
         items.add(
             Popular(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel
@@ -184,7 +182,7 @@ object ApiProvider {
         )
         items.add(
             Popular(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel
@@ -192,7 +190,7 @@ object ApiProvider {
         )
         items.add(
             Popular(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel
@@ -200,7 +198,7 @@ object ApiProvider {
         )
         items.add(
             Popular(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel
@@ -208,7 +206,7 @@ object ApiProvider {
         )
         items.add(
             Popular(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel
@@ -216,7 +214,7 @@ object ApiProvider {
         )
         items.add(
             Popular(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.img
@@ -225,7 +223,7 @@ object ApiProvider {
         return items
     }
 
-    private fun getType(): Type {
+    fun getType(): Type {
 
         val listType = mutableListOf<String>()
         listType.add("Action")

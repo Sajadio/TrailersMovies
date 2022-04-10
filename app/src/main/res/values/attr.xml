@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="all">
+        <attr name="mainColor" format="color"/>
+        <attr name="secondColor" format="color"/>
+        <attr name="viewColor" format="color"/>
+        <attr name="buttonBackground" format="color"/>
+        <attr name="textColor" format="color"/>
+        <attr name="textColorHint" format="color"/>
+        <attr name="colorIcons" format="color"/>
+        <attr name="customColorToolbar" format="color"/>
+    </declare-styleable>
+
+</resources>

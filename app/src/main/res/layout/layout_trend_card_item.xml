@@ -10,6 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="?attr/secondColor"
         android:layout_height="match_parent">
 
 
@@ -20,6 +21,7 @@
             android:clickable="true"
             android:focusable="true"
             app:cardCornerRadius="5dp"
+            android:background="?attr/secondColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -33,16 +35,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/img" />
-
-            <ImageView
-                android:id="@+id/coverPoster"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="#74000000"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
         </com.google.android.material.card.MaterialCardView>
 

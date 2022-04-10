@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Movie" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">@color/redLight</item>
         <item name="colorPrimaryVariant">@color/blackDark</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -14,6 +14,18 @@
 
         <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
+        <item name="android:windowContentTransitions">true</item>
+
+        <!-- custom colors-->
+        <item name="mainColor">@color/white</item>
+        <item name="secondColor">@color/gryLight</item>
+        <item name="viewColor">@color/gryLight</item>
+        <item name="textColor">@color/blackDark</item>
+        <item name="textColorHint">@color/blackLight</item>
+        <item name="colorIcons">@color/blackLight</item>
+        <item name="customColorToolbar">#00000000</item>
+
+        <item name="android:windowAnimationStyle">@style/windowAnimationTransition</item>
     </style>
 
     <!-- Customize Chips style -->
@@ -45,8 +57,14 @@
     </style>
 
     <!-- Customize Toolbar style -->
-
-    <style name="MyThemeOverlay_Toolbar2" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+    <style name="MyThemeOverlay_Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
         <item name="icon">@color/white</item>
     </style>
+
+    <!--  This for smooth rest Fragment when switch between dark\light theme-->
+    <style name="windowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
 </resources>

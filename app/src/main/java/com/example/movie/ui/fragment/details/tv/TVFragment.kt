@@ -4,12 +4,12 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import com.example.movie.R
+import com.example.movie.data.repository.Repository
 import com.example.movie.databinding.FragmentTvBinding
 import com.example.movie.ui.base.BaseFragment
-import com.example.movie.utils.favoriteItem
-import com.example.movie.utils.listChips
-import com.example.movie.utils.setAsActionBar
+import com.example.movie.utils.*
 import com.google.android.material.chip.Chip
 
 
@@ -28,26 +28,39 @@ class TVFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
         }
 
 
-        addChipEpisodeView(listChips)
+        for (i in 0 until listChips.size) {
+            binding.include.chipGroup.addChipView(
+                listChips[i],
+                layoutInflater,
+                R.layout.layout_chips
+            )
+        }
+
+
+        binding.include.chipGroupEpisode.addChipWithTheme(
+            chipText = Repository.getType().type,
+            layoutInflater = layoutInflater,
+            R.layout.layout_chips_with_theme
+        )
+
+//        binding.btnSheet.setOnClickListener {
+//            (activity)?.supportFragmentManager.let {
+//                OptionsBottomSheetFragment.newInstance(Bundle()).apply {
+//                    it?.let { it1 -> show(it1, tag) }
+//                }
+//            }
+//        }
 
         binding.btnSheet.setOnClickListener {
-            (activity)?.supportFragmentManager.let {
-                OptionsBottomSheetFragment.newInstance(Bundle()).apply {
-                    it?.let { it1 -> show(it1, tag) }
-                }
-            }
+            findNavController().navigate(R.id.action_tvFragment_to_optionsBottomSheetFragment)
         }
+
     }
 
-    @SuppressLint("ResourceAsColor")
-    private fun addChipEpisodeView(chipText: MutableList<String>) {
-        val chipGroup = binding.include.chipGroupEpisode
-        chipText.forEach { type ->
-            val chip =
-                layoutInflater.inflate(R.layout.layout_chips_eposidoe, chipGroup, false) as Chip
-            chip.text = type
-            chipGroup.addView(chip)
-        }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        binding.toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
 }

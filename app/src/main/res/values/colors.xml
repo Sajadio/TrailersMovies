@@ -5,19 +5,18 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+    <color name="black">#202020</color>
     <color name="white">#FFFFFFFF</color>
 
     <!--    Custom color -->
-
-    <color name="blackDark">#3D3D3D</color>
-    <color name="blackLight">#4B4B4B</color>
+    <color name="blackDark">#191919</color>
+    <color name="blackLight">#202020</color>
     <color name="whiteLight">#BFFFFFFF</color>
     <color name="redLight">#C0392B</color>
     <color name="redDoubleLight">#1AC0392B</color>
     <color name="redDark">#A84339</color>
     <color name="gryLight">#80DCDDE1</color>
-    <color name="gry">#FFFFFF</color>
+    <color name="gry">#4A4A4A</color>
     <color name="gryDark">#DCDDE1</color>
     <color name="yellow">#E7A827</color>
     <color name="transparent">@android:color/transparent</color>
