@@ -14,16 +14,20 @@ class SliderAdapter(
     onItemClickListener: OnItemClickListener<Trend>
 ) : PlutoAdapter<Trend, SliderAdapter.ViewHolder>(items, onItemClickListener) {
 
+
     override fun getViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         parent, R.layout.layout_trend_card_item
     )
 
-    class ViewHolder(parent: ViewGroup, itemLayoutId: Int) :
+     class ViewHolder(parent: ViewGroup, itemLayoutId: Int) :
         PlutoViewHolder<Trend>(parent, itemLayoutId) {
+
+
 
         override fun set(item: Trend, position: Int) {
             val img = getView<ImageView>(R.id.poster)
             img.loadImage(item.posterId)
         }
     }
+
 }

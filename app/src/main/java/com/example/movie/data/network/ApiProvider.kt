@@ -5,20 +5,19 @@ import com.example.movie.data.m.Genres
 import com.example.movie.data.m.Popular
 import com.example.movie.data.m.Trend
 import com.example.movie.data.m.Type
-import com.example.movie.utils.ListAdapterItem
-import com.example.movie.utils.ViewType
+import com.example.movie.utils.ListHomeAdapterItem
+import com.example.movie.utils.ViewTypeHome
 
 object ApiProvider {
 
+    fun getAllItems(): MutableList<ListHomeAdapterItem<Any>> {
 
-    fun getAllItems(): MutableList<ListAdapterItem<Any>> {
-
-        val list = mutableListOf<ListAdapterItem<Any>>()
-        list.add(ListAdapterItem(getTrend(), ViewType.TREND))
-        list.add(ListAdapterItem(R.string.viewMore, ViewType.VIEW_MORE_CATEGORY))
-        list.add(ListAdapterItem(getCategory(), ViewType.GENERES))
-        list.add(ListAdapterItem(R.string.viewMore, ViewType.VIEW_MORE_POPULAR))
-        getPopular().map { list.add(ListAdapterItem(it, ViewType.POPULAR)) }
+        val list = mutableListOf<ListHomeAdapterItem<Any>>()
+        list.add(ListHomeAdapterItem(getTrend(), ViewTypeHome.TREND))
+        list.add(ListHomeAdapterItem(R.string.viewMore, ViewTypeHome.VIEW_MORE_CATEGORY))
+        list.add(ListHomeAdapterItem(getCategory(), ViewTypeHome.GENERES))
+        list.add(ListHomeAdapterItem(R.string.viewMore, ViewTypeHome.VIEW_MORE_POPULAR))
+        getPopular().map { list.add(ListHomeAdapterItem(it, ViewTypeHome.POPULAR)) }
 
         return list
     }
@@ -27,7 +26,7 @@ object ApiProvider {
         val items = mutableListOf<Trend>()
         items.add(
             Trend(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel
@@ -35,7 +34,7 @@ object ApiProvider {
         )
         items.add(
             Trend(
-                ids = 1,
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel
@@ -43,7 +42,15 @@ object ApiProvider {
         )
         items.add(
             Trend(
-                ids = 1,
+                id = 1,
+                title = "SbiderMan",
+                rate = 3.3f,
+                type = getType(), posterId = R.drawable.img
+            )
+        )
+        items.add(
+            Trend(
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel
@@ -51,10 +58,26 @@ object ApiProvider {
         )
         items.add(
             Trend(
-                ids = 1,
+                id = 1,
+                title = "SbiderMan",
+                rate = 3.3f,
+                type = getType(), posterId = R.drawable.img
+            )
+        )
+        items.add(
+            Trend(
+                id = 1,
                 title = "SbiderMan",
                 rate = 3.3f,
                 type = getType(), posterId = R.drawable.ic_captain_marvel
+            )
+        )
+        items.add(
+            Trend(
+                id = 1,
+                title = "SbiderMan",
+                rate = 3.3f,
+                type = getType(), posterId = R.drawable.img
             )
         )
 

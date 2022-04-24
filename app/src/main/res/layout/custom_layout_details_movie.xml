@@ -9,23 +9,22 @@
     </data>
 
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbarSize="0dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:scrollbarSize="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:background="?attr/mainColor"
             android:layout_height="wrap_content">
 
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/titleMovie"
+                android:id="@+id/titleSeries"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ensiption"
+                android:text="Suits Season"
                 android:textColor="?attr/textColor"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -39,9 +38,9 @@
                 android:layout_gravity="end"
                 android:background="#00000000"
                 android:src="@drawable/ic_baseline_share_24"
-                app:layout_constraintBottom_toBottomOf="@+id/titleMovie"
+                app:layout_constraintBottom_toBottomOf="@+id/titleSeries"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/titleMovie" />
+                app:layout_constraintTop_toTopOf="@+id/titleSeries" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/companyLogo"
@@ -54,31 +53,35 @@
                 app:layout_constraintTop_toTopOf="@+id/btnShare"
                 app:layout_constraintVertical_bias="0.333" />
 
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroup"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/generes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="start|center"
+                android:maxLines="4"
                 android:layout_marginTop="16dp"
-                android:scrollbars="horizontal"
+                android:textColor="?attr/textColorHint"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/btnShare"
-                app:layout_constraintStart_toStartOf="@+id/titleMovie"
-                app:layout_constraintTop_toBottomOf="@+id/titleMovie" />
+                app:layout_constraintStart_toStartOf="@+id/titleSeries"
+                app:layout_constraintTop_toBottomOf="@+id/titleSeries"
+                tools:text="Action, Drama, Crime" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/background_gray"
                 android:gravity="center"
                 android:padding="8dp"
                 android:text="2h 46m"
                 android:textColor="?attr/textColorHint"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/chipGroup"
-                app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+                app:layout_constraintStart_toStartOf="@+id/generes"
+                app:layout_constraintTop_toBottomOf="@+id/generes" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/rate"
@@ -111,6 +114,7 @@
                 app:layout_constraintStart_toEndOf="@+id/rate"
                 app:layout_constraintTop_toTopOf="@+id/tv_time" />
 
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
@@ -124,7 +128,7 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/btnShare"
                 app:layout_constraintStart_toStartOf="@+id/tv_time"
-                app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+                app:layout_constraintTop_toBottomOf="@+id/date" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/titleActors"
@@ -142,7 +146,7 @@
                 android:id="@+id/rv_actors"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -155,7 +159,7 @@
                 android:id="@+id/titleRelated"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/related"
                 android:textColor="?attr/textColor"
                 android:textSize="20sp"
@@ -167,7 +171,7 @@
                 android:id="@+id/rv_related"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -176,6 +180,6 @@
                 tools:listitem="@layout/layout_item_related" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </layout>

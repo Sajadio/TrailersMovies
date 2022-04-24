@@ -1,7 +1,7 @@
 package com.example.movie.utils
 
 import android.annotation.SuppressLint
-import android.content.res.Configuration
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.Animation
@@ -12,14 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import com.bumptech.glide.Glide
 import com.example.movie.R
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import java.util.*
+import com.google.android.material.snackbar.Snackbar
+
 
 fun AppCompatImageButton.favoriteItem(isFavorite: Boolean) {
     this.isVisible = isFavorite
@@ -59,7 +57,7 @@ fun AppCompatActivity.setAsActionBar(toolbar: Toolbar, isBack: Boolean) {
 fun ChipGroup.addChipWithTheme(
     chipText: List<String>,
     layoutInflater: LayoutInflater,
-    layout: Int
+    layout: Int,
 ) {
     chipText.forEach { type ->
         val chip = layoutInflater.inflate(layout, this, false) as Chip
@@ -68,7 +66,7 @@ fun ChipGroup.addChipWithTheme(
     }
 }
 
-var isExpandLang = true
+private var isExpandLang = true
 fun View.expandLang() {
     if (isExpandLang) {
         this.startCustomAnimation(R.anim.fade_in, 500L)
@@ -80,7 +78,7 @@ fun View.expandLang() {
     }
 }
 
-var isExpandTheme = true
+private var isExpandTheme = true
 fun View.expandTheme() {
     if (isExpandTheme) {
         this.startCustomAnimation(R.anim.fade_in, 500L)
@@ -102,3 +100,24 @@ fun View.endCustomAnimation(anim: Int) {
     val setAnim: Animation = AnimationUtils.loadAnimation(this.context, anim)
     this.startAnimation(setAnim)
 }
+
+private var stateActive = false
+fun View.setSnackbar(state:Int){
+    if (stateActive) {
+        Snackbar.make(this, resources.getString(state), Snackbar.LENGTH_LONG)
+            .setBackgroundTint(resources.getColor(R.color.green)).show()
+        stateActive = false
+    }
+
+    when(state){
+        R.string.noConnection -> {
+            Snackbar.make(this, resources.getString(state), Snackbar.LENGTH_LONG).show()
+            stateActive = true
+        }
+        R.string.notActive -> {
+            Snackbar.make(this,resources.getString(state), Snackbar.LENGTH_LONG).setBackgroundTint(resources.getColor(R.color.redLight)).show()
+            stateActive = true
+        }
+    }
+}
+

@@ -3,21 +3,23 @@
     <style name="Theme.Movie" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/redLight</item>
-        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimaryVariant">@color/blackDark</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
+
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <item name="windowActionBarOverlay">true</item>
+
 
         <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="android:windowContentTransitions">true</item>
 
-
+        <!-- custom colors-->
         <item name="mainColor">@color/blackDark</item>
         <item name="secondColor">@color/blackLight</item>
         <item name="viewColor">#353535</item>

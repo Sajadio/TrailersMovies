@@ -6,13 +6,6 @@
 
     <data>
 
-        <variable
-            name="adapter"
-            type="com.example.movie.ui.fragment.home.adapter.HomeAdapter" />
-
-        <variable
-            name="movie"
-            type="com.example.movie.ui.fragment.home.vm.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,8 +29,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="start"
-                android:padding="4dp"
                 android:background="@drawable/common_click_button"
+                android:padding="4dp"
                 android:src="@drawable/ic_round_menu_24" />
 
             <TextView
@@ -64,6 +57,7 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+
         <View
             android:id="@+id/viewLine"
             android:layout_width="0dp"
@@ -79,8 +73,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginHorizontal="8dp"
-            android:orientation="vertical"
             android:background="?attr/mainColor"
+            android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

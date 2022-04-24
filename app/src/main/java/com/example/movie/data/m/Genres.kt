@@ -1,9 +1,7 @@
 package com.example.movie.data.m
 
 import androidx.annotation.DrawableRes
-import com.example.movie.utils.ListAdapterItem
 import com.example.movie.utils.ParentListAdapter
-import com.example.movie.utils.ViewType
 
 data class Genres(
     val id: Int,

@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toolbar
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -41,4 +39,5 @@ abstract class BaseFragment<DB : ViewDataBinding>(@LayoutRes private val layoutI
         // for prevent memory leaks
         _binding = null
     }
+
 }

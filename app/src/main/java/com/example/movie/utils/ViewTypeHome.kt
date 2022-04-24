@@ -1,8 +1,7 @@
 package com.example.movie.utils
 
-enum class ViewType {
+enum class ViewTypeHome {
     TREND,
-    CHIPS_TYPE,
     VIEW_MORE_CATEGORY,
     GENERES,
     VIEW_MORE_POPULAR,

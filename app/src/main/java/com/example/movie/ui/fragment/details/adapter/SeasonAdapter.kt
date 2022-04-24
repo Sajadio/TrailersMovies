@@ -1,4 +1,4 @@
-package com.example.movie.ui.fragment.details.tv.adapter
+package com.example.movie.ui.fragment.details.adapter
 
 import android.annotation.SuppressLint
 import com.example.movie.R

@@ -1,4 +1,5 @@
 package com.example.movie.utils
+
 val listChips = mutableListOf(
     "Action",
     "Drama",

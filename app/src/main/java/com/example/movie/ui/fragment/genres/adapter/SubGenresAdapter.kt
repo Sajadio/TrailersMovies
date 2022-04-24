@@ -36,6 +36,9 @@ class SubGenresAdapter(
                 type.text = "${it}, "
             }
             rating.rating = category.rate
+            cardGeneres.setOnClickListener {
+//                transformationLayout.startTransform()
+            }
         }
     }
 

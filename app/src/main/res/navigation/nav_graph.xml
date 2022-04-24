@@ -31,12 +31,24 @@
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_homeFragment_to_moiveFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/moiveFragment" />
         <action
             android:id="@+id/action_homeFragment_to_tvFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/tvFragment" />
         <action
             android:id="@+id/action_homeFragment_to_bottomSheetHome"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/bottomSheetHome" />
     </fragment>
     <fragment
@@ -45,9 +57,17 @@
         android:label="CategoriesFragment">
         <action
             android:id="@+id/action_categoriesFragment_to_moiveFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/moiveFragment" />
         <action
             android:id="@+id/action_categoriesFragment_to_tvFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/tvFragment" />
     </fragment>
     <fragment
@@ -56,9 +76,17 @@
         android:label="FavoriteFragment">
         <action
             android:id="@+id/action_favoriteFragment_to_moiveFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/moiveFragment" />
         <action
             android:id="@+id/action_favoriteFragment_to_tvFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/tvFragment" />
     </fragment>
     <fragment
@@ -67,6 +95,10 @@
         android:label="PopularFragment">
         <action
             android:id="@+id/action_popularFragment_to_moiveFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/moiveFragment" />
         <action
             android:id="@+id/action_popularFragment_to_tvFragment"
@@ -93,9 +125,17 @@
         android:label="SearchFragment">
         <action
             android:id="@+id/action_searchFragment_to_moiveFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/moiveFragment" />
         <action
             android:id="@+id/action_searchFragment_to_tvFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/tvFragment" />
     </fragment>
     <fragment
@@ -108,6 +148,10 @@
         android:label="SeriesFragment">
         <action
             android:id="@+id/action_tvFragment_to_optionsBottomSheetFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/optionsBottomSheetFragment" />
     </fragment>
     <dialog
@@ -116,6 +160,10 @@
         android:label="OptionsBottomSheetFragment">
         <action
             android:id="@+id/action_optionsBottomSheetFragment_to_tvFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/tvFragment" />
     </dialog>
     <dialog
@@ -131,9 +179,17 @@
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_bottomSheetHome_to_moiveFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/moiveFragment" />
         <action
             android:id="@+id/action_bottomSheetHome_to_tvFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/tvFragment" />
     </dialog>
 

@@ -34,4 +34,7 @@
     <string name="light">Light</string>
     <string name="dark">Dark</string>
     <string name="systemDefault">System default</string>
+    <string name="connected">Connected</string>
+    <string name="noConnection">No internet connection</string>
+    <string name="notActive">Sorry, something wrong!</string>
 </resources>

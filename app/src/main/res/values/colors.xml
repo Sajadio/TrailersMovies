@@ -19,6 +19,7 @@
     <color name="gry">#4A4A4A</color>
     <color name="gryDark">#DCDDE1</color>
     <color name="yellow">#E7A827</color>
+    <color name="green">#2FCE36</color>
     <color name="transparent">@android:color/transparent</color>
 
 

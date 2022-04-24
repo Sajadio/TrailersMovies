@@ -8,44 +8,46 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:background="?attr/mainColor"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:padding="4dp"
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgActors"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img" />
+            app:layout_constraintTop_toTopOf="parent">
 
 
-        <ImageView
-            android:id="@+id/coverActorImg"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="#74000000"
-            app:layout_constraintBottom_toBottomOf="@+id/imgActors"
-            app:layout_constraintEnd_toEndOf="@+id/imgActors"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imgActors"
-            tools:ignore="VectorDrawableCompat" />
+            <ImageView
+                android:id="@+id/actorsPoster"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/img" />
+        </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/actorName"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="4dp"
             android:text="Tome Hairy"
             android:textColor="?attr/textColor"
             android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/imgActors"
-            app:layout_constraintStart_toStartOf="@+id/imgActors"
-            app:layout_constraintTop_toBottomOf="@+id/imgActors" />
-
+            app:layout_constraintEnd_toEndOf="@+id/materialCardView"
+            app:layout_constraintStart_toStartOf="@+id/materialCardView"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

@@ -2,6 +2,7 @@ package com.example.movie.ui.fragment.details.movie
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -9,8 +10,11 @@ import com.example.movie.databinding.FragmentMovieBinding
 import androidx.appcompat.app.AppCompatActivity
 import androidx.transition.TransitionInflater
 import com.example.movie.R
+import com.example.movie.data.repository.Repository
 import com.example.movie.databinding.FragmentFavoriteBinding
 import com.example.movie.ui.base.BaseFragment
+import com.example.movie.ui.fragment.details.adapter.ActorsAdapter
+import com.example.movie.ui.fragment.details.adapter.RelatedAdapter
 import com.example.movie.utils.addChipView
 import com.example.movie.utils.favoriteItem
 import com.example.movie.utils.listChips
@@ -22,11 +26,10 @@ import com.google.android.material.chip.Chip
 class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie) {
 
     override fun initial() {
-        (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar,true)
+        (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
 
-//        val animation = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
-//        sharedElementEnterTransition = animation
-//        sharedElementReturnTransition = animation
+        binding.include.rvRelated.adapter = RelatedAdapter(Repository.getCategory())
+        binding.include.rvActors.adapter = ActorsAdapter(Repository.getCategory())
 
         binding.btnFavorite.setOnClickListener {
             binding.btnFavorite.favoriteItem(isFavorite = false)
@@ -37,13 +40,11 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
             binding.btnNotFavorite.favoriteItem(isFavorite = false)
         }
 
-        for (i in 0 until listChips.size) {
-            binding.include.chipGroup.addChipView(
-                listChips[i],
-                layoutInflater,
-                R.layout.layout_chips
-            )
+        var generes = ""
+        listChips.forEach {
+            binding.include.generes.text = "$generes •"
         }
+
 
     }
 

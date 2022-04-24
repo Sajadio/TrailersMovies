@@ -1,21 +1,43 @@
 package com.example.movie.utils
 
-//@BindingAdapter("setAdapter")
-//fun setAdapter(
-//    recyclerView: RecyclerView,
-//    adapter: BaseAdapter<ViewDataBinding, ListAdapterItem<Any>>?
-//) {
-//    adapter?.let {
-//        recyclerView.adapter = it
-//    }
-//}
-//
-//@Suppress("UNCHECKED_CAST")
-//@BindingAdapter("submitList")
-//fun submitList(recyclerView: RecyclerView, list: List<ListAdapterItem<Any>>?) {
-//    val adapter = recyclerView.adapter as BaseAdapter<ViewDataBinding, ListAdapterItem<Any>>?
+import androidx.databinding.BindingAdapter
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
+import com.example.movie.ui.base.adapter.BaseAdapter
+import com.example.movie.ui.base.nestedrv.HomeAdapter
+import com.example.movie.ui.fragment.home.adapter.TrendAdapter
+import com.yarolegovich.discretescrollview.DiscreteScrollView
+import com.yarolegovich.discretescrollview.transform.ScaleTransformer
+
+@BindingAdapter("setAdapter")
+fun setHomeAdapter(
+    recyclerView: RecyclerView,
+    adapter: HomeAdapter?
+) {
+    adapter?.let {
+        recyclerView.adapter = it
+        recyclerView.setHasFixedSize(true)
+    }
+}
+
+@Suppress("UNCHECKED_CAST")
+@BindingAdapter("submitList")
+fun submitHomeList(recyclerView: RecyclerView, list: List<ListHomeAdapterItem<Any>>?) {
+    val adapter = recyclerView.adapter as HomeAdapter
 //    adapter?.updateData(list ?: listOf())
-//}
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 //@BindingAdapter(value = ["app:setPosterCategory"])
 //fun ImageView.setImage(url: Int?) {

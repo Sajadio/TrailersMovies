@@ -8,7 +8,7 @@ import com.example.movie.databinding.LayoutBottomSheetTvBinding
 import com.example.movie.databinding.LayoutItemBottomSheetTvBinding
 import com.example.movie.ui.base.BaseBottomSheet
 import com.example.movie.ui.base.adapter.BaseOnClickItem
-import com.example.movie.ui.fragment.details.tv.adapter.SeasonAdapter
+import com.example.movie.ui.fragment.details.adapter.SeasonAdapter
 
 class BottomSheetTV :
     BaseBottomSheet<LayoutItemBottomSheetTvBinding>(layoutId = R.layout.layout_item_bottom_sheet_tv),

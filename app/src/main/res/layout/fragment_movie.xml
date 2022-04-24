@@ -26,17 +26,6 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="VectorDrawableCompat" />
 
-        <ImageView
-            android:id="@+id/coverFavoriteImage"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="#74000000"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="VectorDrawableCompat" />
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
