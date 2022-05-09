@@ -4,7 +4,7 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.movie.R
-import com.example.movie.data.repository.Repository
+import com.example.movie.domain.repository.MDBRepo
 import com.example.movie.databinding.FragmentTvBinding
 import com.example.movie.ui.base.BaseFragment
 import com.example.movie.ui.fragment.details.adapter.ActorsAdapter
@@ -18,8 +18,8 @@ class TVFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
         (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar,true)
 
 
-        binding.include.rvRelated.adapter = RelatedAdapter(Repository.getCategory())
-        binding.include.rvActors.adapter = ActorsAdapter(Repository.getCategory())
+//        binding.include.rvRelated.adapter = RelatedAdapter(MDBRepo.getCategory())
+//        binding.include.rvActors.adapter = ActorsAdapter(MDBRepo.getCategory())
 
         binding.btnFavorite.setOnClickListener {
             binding.btnFavorite.favoriteItem(isFavorite = false)
@@ -36,11 +36,11 @@ class TVFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
             binding.include.generes.text = "$generes •"
         }
 
-        binding.include.chipGroupEpisode.addChipWithTheme(
-            chipText = Repository.getType().type,
-            layoutInflater = layoutInflater,
-            R.layout.layout_chips_with_theme
-        )
+//        binding.include.chipGroupEpisode.addChipWithTheme(
+//            chipText = MDBRepo.getType().type,
+//            layoutInflater = layoutInflater,
+//            R.layout.layout_chips_with_theme
+//        )
 
         binding.btnSheet.setOnClickListener {
             findNavController().navigate(R.id.action_tvFragment_to_optionsBottomSheetFragment)

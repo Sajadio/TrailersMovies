@@ -118,6 +118,12 @@
         <action
             android:id="@+id/action_settingsFragment_self"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_singing"
+            app:destination="@id/singing" />
+        <action
+            android:id="@+id/action_settingsFragment_to_login2"
+            app:destination="@id/login2" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -160,10 +166,6 @@
         android:label="OptionsBottomSheetFragment">
         <action
             android:id="@+id/action_optionsBottomSheetFragment_to_tvFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/tvFragment" />
     </dialog>
     <dialog
@@ -192,5 +194,24 @@
             app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/tvFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/login2"
+        android:name="com.example.movie.ui.fragment.regsretion.Login"
+        android:label="Login" >
+        <action
+            android:id="@+id/action_login2_to_singing"
+            app:destination="@id/singing" />
+        <action
+            android:id="@+id/action_login2_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/singing"
+        android:name="com.example.movie.ui.fragment.regsretion.Singing"
+        android:label="Singing" >
+        <action
+            android:id="@+id/action_singing_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 
 </navigation>

@@ -1,4 +1,7 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="webClint_id" tools:ignore="MissingTranslation">655001977455-5hj5n40odo9g17v4bhu5lt3tbgrcj715.apps.googleusercontent.com</string>
+
     <string name="app_name">Movie</string>
     <string name="favorite">Favorite</string>
     <string name="page_title">Page Title</string>
@@ -37,4 +40,10 @@
     <string name="connected">Connected</string>
     <string name="noConnection">No internet connection</string>
     <string name="notActive">Sorry, something wrong!</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="singin">Singin</string>
+    <string name="email">Email</string>
+    <string name="confirm_password">Confirm password</string>
 </resources>

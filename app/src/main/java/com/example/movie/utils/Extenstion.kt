@@ -1,6 +1,8 @@
 package com.example.movie.utils
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -119,5 +121,15 @@ fun View.setSnackbar(state:Int){
             stateActive = true
         }
     }
+}
+
+@SuppressLint("CommitPrefEdits")
+fun Context.setThemes(theme:Int):Int{
+    val pref = this.getSharedPreferences(Constant.PREFERENCE_NAME, Context.MODE_PRIVATE)
+    val editor = pref.edit()
+    editor.putInt(Constant.THEME_APP,theme)
+    editor.apply()
+
+    return pref.getInt(Constant.THEME_APP, 0)
 }
 

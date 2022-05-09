@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.movie.R
 import com.example.movie.data.m.Genres
-import com.example.movie.data.repository.Repository
+import com.example.movie.domain.repository.MDBRepo
 import com.example.movie.databinding.FragmentPopularBinding
 import com.example.movie.ui.base.BaseFragment
 import com.example.movie.ui.base.adapter.BaseOnClickItem
@@ -23,10 +23,10 @@ class PopularFragment : BaseFragment<FragmentPopularBinding>(R.layout.fragment_p
     override fun initial() {
         (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
 
-        val adapter = PopularAdapter(Repository.getCategory(),this)
-        binding.rcPopular.adapter = adapter
+//        val adapter = PopularAdapter(MDBRepo.getCategory(),this)
+//        binding.rcPopular.adapter = adapter
 
-        binding.rcPopular.adapter = FavoriteAdapter(Repository.getCategory())
+//        binding.rcPopular.adapter = FavoriteAdapter(MDBRepo.getCategory())
         if (binding.tabLayout.getTabAt(0)?.isSelected == true) {
             Log.d("sajjadio", "nnnnnnnn")
 

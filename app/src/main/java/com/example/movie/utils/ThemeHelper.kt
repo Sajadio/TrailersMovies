@@ -5,16 +5,13 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.example.movie.R
 
 object ThemeHelper {
-    private const val LIGHT_MODE = R.string.light
-    private const val DARK_MODE = R.string.dark
-
     fun applyTheme(theme: Int?) {
 
         return when (theme) {
-            LIGHT_MODE -> {
+            R.string.light -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
-            DARK_MODE -> {
+            R.string.dark -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }
             else -> {

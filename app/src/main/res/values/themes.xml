@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application appSettings. -->
     <style name="Theme.Movie" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/redLight</item>
@@ -14,7 +14,7 @@
         <item name="windowActionBarOverlay">true</item>
 
 
-        <!-- Customize your theme here. -->
+        <!-- Customize your appSettings here. -->
         <item name="windowActionBar">false</item>
         <item name="android:windowContentTransitions">true</item>
 
@@ -63,7 +63,7 @@
         <item name="icon">@color/white</item>
     </style>
 
-    <!--  This for smooth rest Fragment when switch between dark\light theme-->
+    <!--  This for smooth rest Fragment when switch between dark\light appSettings-->
     <style name="windowAnimationTransition">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>

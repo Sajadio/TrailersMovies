@@ -8,13 +8,13 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 
 abstract class BaseFragment<DB : ViewDataBinding>(@LayoutRes private val layoutId: Int) :
     Fragment() {
 
     private var _binding: DB? = null
     val binding: DB get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater,

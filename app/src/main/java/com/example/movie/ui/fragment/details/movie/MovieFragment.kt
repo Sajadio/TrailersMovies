@@ -1,26 +1,16 @@
 package com.example.movie.ui.fragment.details.movie
 
-import android.annotation.SuppressLint
-import android.os.Bundle
-import android.util.Log
 import android.view.*
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import com.example.movie.databinding.FragmentMovieBinding
 import androidx.appcompat.app.AppCompatActivity
-import androidx.transition.TransitionInflater
 import com.example.movie.R
-import com.example.movie.data.repository.Repository
-import com.example.movie.databinding.FragmentFavoriteBinding
+import com.example.movie.domain.repository.MDBRepo
 import com.example.movie.ui.base.BaseFragment
 import com.example.movie.ui.fragment.details.adapter.ActorsAdapter
 import com.example.movie.ui.fragment.details.adapter.RelatedAdapter
-import com.example.movie.utils.addChipView
 import com.example.movie.utils.favoriteItem
 import com.example.movie.utils.listChips
 import com.example.movie.utils.setAsActionBar
-
-import com.google.android.material.chip.Chip
 
 
 class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie) {
@@ -28,8 +18,8 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
     override fun initial() {
         (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
 
-        binding.include.rvRelated.adapter = RelatedAdapter(Repository.getCategory())
-        binding.include.rvActors.adapter = ActorsAdapter(Repository.getCategory())
+//        binding.include.rvRelated.adapter = RelatedAdapter(MDBRepo.getCategory())
+//        binding.include.rvActors.adapter = ActorsAdapter(MDBRepo.getCategory())
 
         binding.btnFavorite.setOnClickListener {
             binding.btnFavorite.favoriteItem(isFavorite = false)

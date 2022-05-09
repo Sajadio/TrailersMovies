@@ -1,5 +1,7 @@
 package com.example.movie.ui.fragment.settings
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -7,11 +9,20 @@ import com.example.movie.R
 import com.example.movie.databinding.FragmentSettingsBinding
 import com.example.movie.ui.base.BaseFragment
 import com.example.movie.utils.*
-import com.example.movie.utils.ThemeHelper.applyTheme
 
 class SettingsFragment : BaseFragment<FragmentSettingsBinding>(R.layout.fragment_settings) {
 
+    private lateinit var sharedPref: MovieSharedPreferences
+    private lateinit var registration: Registration
+
     override fun initial() {
+
+        registration = Registration(requireContext())
+
+
+        sharedPref = MovieSharedPreferences((activity as AppCompatActivity).getSharedPreferences(
+            Constant.PREFERENCE_NAME,
+            Context.MODE_PRIVATE))
         (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
 
         binding.containerFavorite.setOnClickListener { view ->
@@ -19,19 +30,25 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(R.layout.fragment
         }
         setAnimation()
 
-
         binding.containerAppTheme.setOnClickListener {
             setExpandTheme()
         }
 
         binding.systemDefault.setOnClickListener {
-            applyTheme(R.string.systemDefault)
+            sharedPref.updateThemeUI(resources.getString(R.string.systemDefault),
+                R.string.systemDefault)
+            ThemeHelper.applyTheme(sharedPref.getThemeUI(resources.getString(R.string.systemDefault)))
         }
         binding.light.setOnClickListener {
-            applyTheme(R.string.light)
+            sharedPref.updateThemeUI(resources.getString(R.string.light), R.string.light)
+            ThemeHelper.applyTheme(sharedPref.getThemeUI(resources.getString(R.string.light)))
         }
         binding.dark.setOnClickListener {
-            applyTheme(R.string.dark)
+            sharedPref.updateThemeUI(resources.getString(R.string.dark), R.string.dark)
+            ThemeHelper.applyTheme(sharedPref.getThemeUI(resources.getString(R.string.dark)))
+        }
+        binding.containerLogout.setOnClickListener{
+            registration.logout()
         }
     }
 

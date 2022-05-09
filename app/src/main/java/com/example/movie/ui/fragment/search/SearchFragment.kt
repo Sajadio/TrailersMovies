@@ -20,17 +20,29 @@ import androidx.core.view.MenuItemCompat
 import androidx.core.content.ContextCompat.getSystemService
 import com.example.movie.databinding.FragmentPopularBinding
 import com.example.movie.ui.base.BaseFragment
+import com.example.movie.ui.fragment.home.HomeFragment
+import com.example.movie.ui.fragment.search.adapter.SearchAdapter
+import com.example.movie.ui.fragment.search.vm.SearchViewModel
+import com.example.movie.ui.vm.MDBViewModel
 import com.example.movie.utils.setAsActionBar
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search),
     androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
+    @Inject
+    lateinit var vm: SearchViewModel
 
-    override fun initial() {
-        (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar,true)
+    override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
     }
 
+    override fun initial() {
+        (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.top_app_bar, menu)
@@ -53,8 +65,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
     override fun onQueryTextSubmit(query: String?) = false
 
-    override fun onQueryTextChange(newText: String?): Boolean {
-        Log.d("sajjadio", "onQueryTextChange: $newText")
+    override fun onQueryTextChange(query: String?): Boolean {
+        query?.let { vm.getMovieSearch(it) }
+        vm.getMoviesSearch.observe(this) {
+            val adapter = SearchAdapter(it.results)
+            binding.rcSearch.adapter = adapter
+        }
         return true
     }
 
