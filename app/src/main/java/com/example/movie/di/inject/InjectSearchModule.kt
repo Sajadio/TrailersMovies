@@ -1,7 +1,6 @@
 package com.example.movie.di.inject
 
 import com.example.movie.di.module.ProvideViewModel
-import com.example.movie.ui.fragment.home.HomeFragment
 import com.example.movie.ui.fragment.search.SearchFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

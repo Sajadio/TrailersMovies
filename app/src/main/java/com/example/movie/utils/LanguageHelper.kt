@@ -1,6 +1,5 @@
 package com.example.movie.utils
 
-import android.content.Context
 import android.content.res.Configuration
 import android.view.ContextThemeWrapper
 import java.util.*

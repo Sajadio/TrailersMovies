@@ -9,7 +9,6 @@ import com.example.movie.R
 import com.example.movie.databinding.ActivityMovieBinding
 import com.example.movie.ui.vm.MDBViewModel
 import com.example.movie.utils.*
-import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
 class MovieActivity : AppCompatActivity() {

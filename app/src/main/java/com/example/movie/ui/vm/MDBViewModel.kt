@@ -1,15 +1,12 @@
 package com.example.movie.ui.vm
 
 import androidx.lifecycle.*
-import androidx.paging.cachedIn
 import com.example.movie.data.repository.MDBRepo
 import com.example.movie.utils.ListHomeAdapterItem
 import com.example.movie.utils.NetworkStatus
 import com.example.movie.utils.ParentListAdapter
 import com.example.movie.utils.ViewTypeHome
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.cache
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject

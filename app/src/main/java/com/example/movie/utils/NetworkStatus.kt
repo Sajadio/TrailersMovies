@@ -1,7 +1,6 @@
 package com.example.movie.utils
 
 import okhttp3.ResponseBody
-import retrofit2.Response
 
 sealed class NetworkStatus<out T> {
 

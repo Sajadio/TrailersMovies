@@ -1,17 +1,12 @@
 package com.example.movie.utils
 
-import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.ProgressBar
-import android.widget.RatingBar
-import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 import com.example.movie.ui.base.adapter.BaseAdapter
 import com.example.movie.ui.base.nestedrv.HomeAdapter
 

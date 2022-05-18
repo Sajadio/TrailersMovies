@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.navigation.fragment.findNavController
-import com.example.movie.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 abstract class BaseBottomSheet<DB : ViewDataBinding>(@LayoutRes private val layoutId: Int): BottomSheetDialogFragment() {

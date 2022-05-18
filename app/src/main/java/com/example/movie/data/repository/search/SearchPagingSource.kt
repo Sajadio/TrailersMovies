@@ -5,7 +5,6 @@ import androidx.paging.PagingState
 import com.example.movie.data.model.search.Result
 import com.example.movie.data.network.ApiService
 import com.example.movie.utils.Constant
-import retrofit2.HttpException
 
 class SearchPagingSource(
     private val api: ApiService,

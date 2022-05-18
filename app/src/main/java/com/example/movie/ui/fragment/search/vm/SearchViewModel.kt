@@ -1,6 +1,5 @@
 package com.example.movie.ui.fragment.search.vm
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +9,6 @@ import androidx.paging.cachedIn
 import com.example.movie.data.model.search.Result
 import com.example.movie.data.repository.search.SearchRepo
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton

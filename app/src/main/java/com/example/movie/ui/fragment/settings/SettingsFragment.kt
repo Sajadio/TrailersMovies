@@ -1,7 +1,6 @@
 package com.example.movie.ui.fragment.settings
 
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController

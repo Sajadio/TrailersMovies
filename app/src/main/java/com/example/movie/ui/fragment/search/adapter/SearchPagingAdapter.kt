@@ -9,9 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movie.R
 import com.example.movie.data.model.search.Result
 import com.example.movie.databinding.LayoutSearchBinding
-import com.example.movie.utils.Constant
 import com.example.movie.utils.loadImage
-import com.example.movie.utils.loadImagetesting
 import java.util.*
 
 class SearchPagingAdapter :

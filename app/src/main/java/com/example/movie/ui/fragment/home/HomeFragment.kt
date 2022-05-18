@@ -1,7 +1,6 @@
 package com.example.movie.ui.fragment.home
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
 import com.example.movie.R
 import com.example.movie.databinding.FragmentHomeBinding

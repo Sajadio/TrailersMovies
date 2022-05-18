@@ -1,13 +1,10 @@
 package com.example.movie
 
-import android.app.Activity
 import android.app.Application
 import androidx.fragment.app.Fragment
 import com.example.movie.di.component.AppComponent
 import com.example.movie.di.component.DaggerAppComponent
-import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 

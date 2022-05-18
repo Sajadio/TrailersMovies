@@ -13,10 +13,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".App"
+        android:name="com.example.movie.App"
         android:theme="@style/Theme.Movie">
         <activity
-            android:name=".ui.activity.MovieActivity"
+            android:name="com.example.movie.ui.activity.MovieActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

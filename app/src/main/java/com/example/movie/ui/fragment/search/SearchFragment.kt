@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.movie.R
 import com.example.movie.databinding.FragmentSearchBinding
 import android.content.Context
-import android.util.Log
 
 import android.view.MenuInflater
 import androidx.core.view.isVisible
