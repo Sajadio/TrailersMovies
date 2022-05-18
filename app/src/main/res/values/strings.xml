@@ -7,10 +7,12 @@
     <string name="page_title">Page Title</string>
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="Search">search</string>
     <string name="search">Search</string>
+    <string name="search_box">Search here…</string>
     <string name="popular">Popular</string>
-    <string name="movie">Movies</string>
+    <string name="movie">Movie</string>
+    <string name="series">Series</string>
+    <string name="movies">Movies</string>
     <string name="settings">Settings</string>
     <string name="delete">Delete</string>
     <string name="home">Home</string>
@@ -46,4 +48,5 @@
     <string name="singin">Singin</string>
     <string name="email">Email</string>
     <string name="confirm_password">Confirm password</string>
+    <string name="no_result">No Result!</string>
 </resources>

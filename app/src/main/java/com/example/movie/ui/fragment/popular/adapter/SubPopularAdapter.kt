@@ -6,13 +6,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movie.R
-import com.example.movie.data.m.Genres
+import com.example.movie.data.model.trend.Trending
 import com.example.movie.databinding.LayoutItemCardCommenBinding
 import com.example.movie.ui.fragment.home.adapter.OnClickListener
-import com.example.movie.utils.loadImage
 
 class SubPopularAdapter(
-    private val list: List<Genres>,
+    private val list: List<Trending>,
     private val listener: OnClickListener,
 ) : RecyclerView.Adapter<SubPopularAdapter.PopularViewHolder>() {
 
@@ -33,13 +32,13 @@ class SubPopularAdapter(
 //            if (position == list.size - 1)
 //                showMore.visibility = View.VISIBLE
 
-            posterPopular.loadImage(popular.posterId)
-            titleMS.text = popular.title
-            popular.type.type.forEach {
-                type.text = "${it}, "
-            }
-            rating.rating = popular.rate
-            date.text = "2022"
+//            posterPopular.loadImagetesting(popular.posterId)
+//            titleMS.text = popular.title
+//            popular.type.type.forEach {
+//                type.text = "${it}, "
+//            }
+//            rating.rating = popular.rate
+//            date.text = "2022"
 
         }
     }

@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="trend"
+            type="com.example.movie.data.model.trend.Trending" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:dsv_orientation="horizontal"
+            app:submitList="@{trend.results}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

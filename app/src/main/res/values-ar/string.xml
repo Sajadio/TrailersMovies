@@ -4,10 +4,12 @@
     <string name="page_title">عنوان الصفحة</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">مرحبا جزء فارغ</string>
-    <string name="Search">بحث</string>
     <string name="search">بحث</string>
+    <string name="search_box">أبحث هنا…</string>
     <string name="popular">الشائع</string>
-    <string name="movie">أفلام</string>
+    <string name="movie">فلم</string>
+    <string name="series">مسلسل</string>
+    <string name="movies">أفلام</string>
     <string name="settings">إعدادات</string>
     <string name="delete">حذف</string>
     <string name="home">الرئيسية</string>

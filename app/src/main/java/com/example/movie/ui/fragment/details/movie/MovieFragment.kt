@@ -4,10 +4,7 @@ import android.view.*
 import com.example.movie.databinding.FragmentMovieBinding
 import androidx.appcompat.app.AppCompatActivity
 import com.example.movie.R
-import com.example.movie.domain.repository.MDBRepo
 import com.example.movie.ui.base.BaseFragment
-import com.example.movie.ui.fragment.details.adapter.ActorsAdapter
-import com.example.movie.ui.fragment.details.adapter.RelatedAdapter
 import com.example.movie.utils.favoriteItem
 import com.example.movie.utils.listChips
 import com.example.movie.utils.setAsActionBar

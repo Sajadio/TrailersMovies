@@ -1,9 +1,9 @@
 package com.example.movie.di.module
 
 import androidx.lifecycle.ViewModel
-import com.example.movie.domain.repository.MDBRepo
+import com.example.movie.data.repository.MDBRepo
 import com.example.movie.di.annotate.ViewModelKey
-import com.example.movie.domain.repository.SearchRepo
+import com.example.movie.data.repository.search.SearchRepo
 import com.example.movie.ui.fragment.search.vm.SearchViewModel
 import com.example.movie.ui.vm.MDBViewModel
 import dagger.Module

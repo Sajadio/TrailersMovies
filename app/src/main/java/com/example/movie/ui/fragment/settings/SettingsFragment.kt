@@ -13,12 +13,8 @@ import com.example.movie.utils.*
 class SettingsFragment : BaseFragment<FragmentSettingsBinding>(R.layout.fragment_settings) {
 
     private lateinit var sharedPref: MovieSharedPreferences
-    private lateinit var registration: Registration
 
     override fun initial() {
-
-        registration = Registration(requireContext())
-
 
         sharedPref = MovieSharedPreferences((activity as AppCompatActivity).getSharedPreferences(
             Constant.PREFERENCE_NAME,
@@ -47,9 +43,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(R.layout.fragment
             sharedPref.updateThemeUI(resources.getString(R.string.dark), R.string.dark)
             ThemeHelper.applyTheme(sharedPref.getThemeUI(resources.getString(R.string.dark)))
         }
-        binding.containerLogout.setOnClickListener{
-            registration.logout()
-        }
+
     }
 
 

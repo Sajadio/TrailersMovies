@@ -4,11 +4,8 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.movie.R
-import com.example.movie.domain.repository.MDBRepo
 import com.example.movie.databinding.FragmentTvBinding
 import com.example.movie.ui.base.BaseFragment
-import com.example.movie.ui.fragment.details.adapter.ActorsAdapter
-import com.example.movie.ui.fragment.details.adapter.RelatedAdapter
 import com.example.movie.utils.*
 
 

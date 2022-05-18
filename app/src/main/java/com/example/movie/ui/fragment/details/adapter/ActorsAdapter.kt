@@ -1,23 +1,18 @@
 package com.example.movie.ui.fragment.details.adapter
 
 import com.example.movie.R
-import com.example.movie.data.m.Genres
-import com.example.movie.data.m.Season
-import com.example.movie.databinding.CustomLayoutDetailsTvBinding
+import com.example.movie.data.model.trend.Trending
 import com.example.movie.databinding.LayoutItemActorsBinding
-import com.example.movie.databinding.LayoutItemRelatedBinding
 import com.example.movie.ui.base.adapter.BaseAdapter
-import com.example.movie.utils.ParentListAdapter
-import com.example.movie.utils.loadImage
 
-class ActorsAdapter(data: List<Genres>) : BaseAdapter<LayoutItemActorsBinding, Genres>(data) {
+class ActorsAdapter(data: List<Trending>) : BaseAdapter<LayoutItemActorsBinding, Trending>(data) {
 
     override val layoutId = R.layout.layout_item_actors
 
-    override fun bind(binding: LayoutItemActorsBinding, item: Genres) {
+    override fun bind(binding: LayoutItemActorsBinding, item: Trending) {
         binding.apply {
-            actorsPoster.loadImage(item.posterId)
-            title.text = item.title
+//            actorsPoster.loadImagetesting(item.posterId)
+//            title.text = item.title
         }
     }
 

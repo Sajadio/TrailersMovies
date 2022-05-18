@@ -1,6 +1,7 @@
 package com.example.movie.ui.base.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
@@ -10,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movie.utils.ParentListAdapter
 
 abstract class BaseAdapter<BINDING : ViewDataBinding, T : ParentListAdapter>(
-    private var data: List<T>
+    private var data: List<T>,
 ) : RecyclerView.Adapter<BaseViewHolder<BINDING>>() {
     @get:LayoutRes
     abstract val layoutId: Int
@@ -23,7 +24,7 @@ abstract class BaseAdapter<BINDING : ViewDataBinding, T : ParentListAdapter>(
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder <BINDING>{
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<BINDING> {
         val binder = DataBindingUtil.inflate<BINDING>(
             LayoutInflater.from(parent.context),
             layoutId,

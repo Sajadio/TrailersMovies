@@ -1,18 +1,24 @@
 package com.example.movie.utils
 
+import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.RatingBar
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import com.example.movie.ui.base.adapter.BaseAdapter
 import com.example.movie.ui.base.nestedrv.HomeAdapter
-import com.example.movie.ui.fragment.home.adapter.TrendAdapter
-import com.yarolegovich.discretescrollview.DiscreteScrollView
-import com.yarolegovich.discretescrollview.transform.ScaleTransformer
 
-@BindingAdapter("setAdapter")
-fun setHomeAdapter(
+@BindingAdapter("app:setAdapter")
+fun setAdapter(
     recyclerView: RecyclerView,
-    adapter: HomeAdapter?
+    adapter: HomeAdapter?,
 ) {
     adapter?.let {
         recyclerView.adapter = it
@@ -20,39 +26,44 @@ fun setHomeAdapter(
     }
 }
 
+
 @Suppress("UNCHECKED_CAST")
-@BindingAdapter("submitList")
-fun submitHomeList(recyclerView: RecyclerView, list: List<ListHomeAdapterItem<Any>>?) {
-    val adapter = recyclerView.adapter as HomeAdapter
-//    adapter?.updateData(list ?: listOf())
+@BindingAdapter("app:submitList")
+fun submitList(recyclerView: RecyclerView, list: List<ParentListAdapter>?) {
+    val adapter = recyclerView.adapter as BaseAdapter<ViewDataBinding, ParentListAdapter>
+    list?.let {
+        adapter.updateData(it)
+    }
 }
 
 
+@BindingAdapter("app:manageState")
+fun <T> manageState(progressBar: ProgressBar, state: NetworkStatus<T>?) {
+    when (state) {
+        is NetworkStatus.Loading -> progressBar.visibility = VISIBLE
+        is NetworkStatus.Success -> progressBar.visibility = INVISIBLE
+        is NetworkStatus.Error -> progressBar.visibility = INVISIBLE
+    }
+}
 
 
+@BindingAdapter(value = ["app:setImage"])
+fun ImageView.setImage(url: String?) {
+    url?.let { this.loadImage(it) }
+}
 
-
-
-
-
-
-
-
-
-//@BindingAdapter(value = ["app:setPosterCategory"])
-//fun ImageView.setImage(url: Int?) {
-//    url?.let { this.loadImage(it) }
-//}
 //
-//@BindingAdapter(value = ["app:setTitleMS"])
+//@BindingAdapter(value = ["app:setText"])
 //fun TextView.setText(text: String?) {
 //    this.text = text
 //}
-//
-//@BindingAdapter(value = ["app:rating"])
-//fun RatingBar.setRate(rating: Float?) {
-//    rating?.let { this.rating = it }
+
+
+//@BindingAdapter(value = ["app:setRate"])
+//fun RatingBar.setRate(rating: Double?) {
+//    rating?.let { this.rating = it.toFloat() }
 //}
+
 //
 //@BindingAdapter(value = ["app:chips"])
 //fun ChipGroup.setChips(chipText: List<String>?) {
@@ -67,12 +78,8 @@ fun submitHomeList(recyclerView: RecyclerView, list: List<ListHomeAdapterItem<An
 //    progressBar.visibility = if (state) View.VISIBLE else View.GONE
 //}
 //
-//@BindingAdapter("setImage")
-//fun setImage(imageView: ShapeableImageView, image: Int) {
-//    Glide.with(imageView.context)
-//        .load(image)
-//        .into(imageView)
-//}
+
+
 //
 //@BindingAdapter("setFavouriteCondition")
 //fun setFavouriteCondition(imageView: ShapeableImageView, isFavourite: Boolean) {

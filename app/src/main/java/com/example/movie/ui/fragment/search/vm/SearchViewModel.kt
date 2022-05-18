@@ -1,37 +1,31 @@
 package com.example.movie.ui.fragment.search.vm
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movie.domain.model.movie.search.Search
-import com.example.movie.domain.repository.SearchRepo
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.example.movie.data.model.search.Result
+import com.example.movie.data.repository.search.SearchRepo
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import okhttp3.ResponseBody
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class SearchViewModel @Inject constructor(private val searchRepo: SearchRepo) : ViewModel() {
 
-    private val _getMoviesSearch: MutableLiveData<Search> = MutableLiveData()
-    val getMoviesSearch: LiveData<Search> = _getMoviesSearch
+    private val _getMoviesSearch: MutableLiveData<PagingData<Result>> = MutableLiveData()
+    val getMoviesSearch: LiveData<PagingData<Result>> = _getMoviesSearch
 
-    private val _getErrorSearch: MutableLiveData<ResponseBody> = MutableLiveData()
-    val getErrorSearch: LiveData<ResponseBody> = _getErrorSearch
-
-
-    fun getMovieSearch(query:String) {
-        viewModelScope.launch {
-            val response = searchRepo.getMoviesSearch(query = query)
-            if (response.isSuccessful)
-                _getMoviesSearch.postValue(response.body())
-            else
-                _getErrorSearch.postValue(response.errorBody())
-
+    fun getSearch(query: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            searchRepo.getMultiSearch(query = query).cachedIn(viewModelScope).collect {
+                _getMoviesSearch.postValue(it)
+            }
         }
     }
-
-
 }

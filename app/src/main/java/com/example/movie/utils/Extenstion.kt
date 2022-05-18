@@ -40,8 +40,12 @@ fun ChipGroup.addChipView(chipText: String, layoutInflater: LayoutInflater, layo
     this.addView(chip)
 }
 
-fun ImageView.loadImage(url: Int) {
+fun ImageView.loadImagetesting(url: Int) {
     Glide.with(this).load(url).into(this)
+}
+
+fun ImageView.loadImage(url: String) {
+    Glide.with(this).load(Constant.IMAGE_PATH + url).into(this)
 }
 
 fun AppCompatActivity.setAsActionBar(toolbar: Toolbar, isBack: Boolean) {
@@ -104,30 +108,31 @@ fun View.endCustomAnimation(anim: Int) {
 }
 
 private var stateActive = false
-fun View.setSnackbar(state:Int){
+fun View.setSnackbar(state: Int) {
     if (stateActive) {
         Snackbar.make(this, resources.getString(state), Snackbar.LENGTH_LONG)
             .setBackgroundTint(resources.getColor(R.color.green)).show()
         stateActive = false
     }
 
-    when(state){
+    when (state) {
         R.string.noConnection -> {
             Snackbar.make(this, resources.getString(state), Snackbar.LENGTH_LONG).show()
             stateActive = true
         }
         R.string.notActive -> {
-            Snackbar.make(this,resources.getString(state), Snackbar.LENGTH_LONG).setBackgroundTint(resources.getColor(R.color.redLight)).show()
+            Snackbar.make(this, resources.getString(state), Snackbar.LENGTH_LONG)
+                .setBackgroundTint(resources.getColor(R.color.redLight)).show()
             stateActive = true
         }
     }
 }
 
 @SuppressLint("CommitPrefEdits")
-fun Context.setThemes(theme:Int):Int{
+fun Context.setThemes(theme: Int): Int {
     val pref = this.getSharedPreferences(Constant.PREFERENCE_NAME, Context.MODE_PRIVATE)
     val editor = pref.edit()
-    editor.putInt(Constant.THEME_APP,theme)
+    editor.putInt(Constant.THEME_APP, theme)
     editor.apply()
 
     return pref.getInt(Constant.THEME_APP, 0)

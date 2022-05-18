@@ -5,18 +5,15 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.movie.R
-import com.example.movie.data.m.Genres
-import com.example.movie.domain.repository.MDBRepo
+import com.example.movie.data.model.trend.Trending
 import com.example.movie.databinding.FragmentPopularBinding
 import com.example.movie.ui.base.BaseFragment
 import com.example.movie.ui.base.adapter.BaseOnClickItem
-import com.example.movie.ui.fragment.favorite.adapter.FavoriteAdapter
-import com.example.movie.ui.fragment.popular.adapter.PopularAdapter
 import com.example.movie.utils.setAsActionBar
 import com.google.android.material.tabs.TabLayout
 
 class PopularFragment : BaseFragment<FragmentPopularBinding>(R.layout.fragment_popular),
-    TabLayout.OnTabSelectedListener ,BaseOnClickItem<Genres> {
+    TabLayout.OnTabSelectedListener ,BaseOnClickItem<Trending> {
 
 
     @SuppressLint("ResourceAsColor")
@@ -57,7 +54,7 @@ class PopularFragment : BaseFragment<FragmentPopularBinding>(R.layout.fragment_p
         // TODO("Not yet implemented")
     }
 
-    override fun clickedItem(item: Genres) {
+    override fun clickedItem(item: Trending) {
        findNavController().navigate(R.id.action_popularFragment_to_tvFragment)
     }
 

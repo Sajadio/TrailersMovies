@@ -1,31 +1,26 @@
 package com.example.movie.ui.fragment.search
 
-import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import com.example.movie.R
 import com.example.movie.databinding.FragmentSearchBinding
-import android.app.SearchManager
 import android.content.Context
+import android.util.Log
 
 import android.view.MenuInflater
-import androidx.core.content.ContextCompat
-import androidx.core.view.MenuItemCompat
+import androidx.core.view.isVisible
 
-import androidx.core.content.ContextCompat.getSystemService
-import com.example.movie.databinding.FragmentPopularBinding
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import com.example.movie.ui.base.BaseFragment
-import com.example.movie.ui.fragment.home.HomeFragment
-import com.example.movie.ui.fragment.search.adapter.SearchAdapter
+import com.example.movie.ui.fragment.search.adapter.PagingLoadStateAdapter
+import com.example.movie.ui.fragment.search.adapter.SearchPagingAdapter
 import com.example.movie.ui.fragment.search.vm.SearchViewModel
-import com.example.movie.ui.vm.MDBViewModel
 import com.example.movie.utils.setAsActionBar
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -34,6 +29,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
     @Inject
     lateinit var vm: SearchViewModel
+    lateinit var adapter: SearchPagingAdapter
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -42,6 +38,38 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
     override fun initial() {
         (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
+        initialAdapter()
+    }
+
+    private fun initialAdapter() {
+        adapter = SearchPagingAdapter()
+        binding.rcSearch.adapter = adapter.withLoadStateHeaderAndFooter(
+            header = PagingLoadStateAdapter { adapter.retry() },
+            footer = PagingLoadStateAdapter { adapter.retry() }
+        )
+
+        vm.getMoviesSearch.observe(this) {
+            lifecycleScope.launch(Dispatchers.Main) {
+                adapter.submitData(it)
+                binding.rcSearch.hasFixedSize()
+            }
+        }
+
+        adapter.addLoadStateListener { loadState ->
+            val isEmptyList = loadState.refresh is LoadState.NotLoading && adapter.itemCount == 0
+            showEmptyList(isEmptyList)
+
+            // Only show the list if refresh succeeds
+            binding.rcSearch.isVisible = loadState.source.refresh is LoadState.NotLoading
+            // Show loading spinner during initial load or refresh
+            (loadState.source.refresh is LoadState.Loading).also {
+                binding.progressBar.isVisible = it
+            }
+        }
+    }
+
+    private fun showEmptyList(emptyList: Boolean) {
+        binding.rcSearch.isVisible = !emptyList
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -53,8 +81,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         menu.findItem(R.id.tv).isVisible = false
 
         val search = menu.findItem(R.id.search)
-        var searchView = search?.actionView as? androidx.appcompat.widget.SearchView
-        searchView?.queryHint = "Search here.."
+        val searchView = search?.actionView as? androidx.appcompat.widget.SearchView
+        searchView?.queryHint = resources.getString(R.string.search)
         searchView?.setOnQueryTextListener(this)
         searchView?.maxWidth = Integer.MAX_VALUE
 
@@ -66,12 +94,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     override fun onQueryTextSubmit(query: String?) = false
 
     override fun onQueryTextChange(query: String?): Boolean {
-        query?.let { vm.getMovieSearch(it) }
-        vm.getMoviesSearch.observe(this) {
-            val adapter = SearchAdapter(it.results)
-            binding.rcSearch.adapter = adapter
+        lifecycleScope.launch(Dispatchers.Main) {
+            query?.let {
+                if (it.length >= 3) {
+                    delay(1000L)
+                    vm.getSearch(it)
+                }
+            }
         }
         return true
     }
-
 }

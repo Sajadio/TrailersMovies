@@ -6,6 +6,10 @@
 
     <data>
 
+        <variable
+            name="trend"
+            type="com.example.movie.data.model.trend.Result" />
+
     </data>
 
 
@@ -31,10 +35,12 @@
                 android:layout_width="200dp"
                 android:layout_height="250dp"
                 android:scaleType="centerCrop"
+                app:setImage="@{trend.poster_path}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/img" />
+                tools:src="@drawable/img"
+                android:contentDescription="@string/app_name" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

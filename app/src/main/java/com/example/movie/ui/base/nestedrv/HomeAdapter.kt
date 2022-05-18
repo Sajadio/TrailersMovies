@@ -1,43 +1,30 @@
 package com.example.movie.ui.base.nestedrv
 
 import android.annotation.SuppressLint
-import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movie.R
-import com.example.movie.data.m.Genres
-import com.example.movie.data.m.Popular
-import com.example.movie.data.m.Trend
+import com.example.movie.data.model.trend.Trending
 import com.example.movie.databinding.*
-import com.example.movie.ui.fragment.genres.adapter.SubGenresAdapter
 import com.example.movie.ui.fragment.home.adapter.OnClickListener
-import com.example.movie.ui.fragment.home.adapter.SliderAdapter
 import com.example.movie.ui.fragment.home.adapter.TrendAdapter
 import com.example.movie.utils.ListHomeAdapterItem
 import com.example.movie.utils.ViewTypeHome
-import com.example.movie.utils.loadImage
-import com.opensooq.pluto.base.PlutoAdapter
-import com.opensooq.pluto.listeners.OnItemClickListener
-import com.opensooq.pluto.listeners.OnSlideChangeListener
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer
 
 class HomeAdapter(
-    private var data : List<ListHomeAdapterItem<Any>>,
-    private val listener: OnClickListener
+    private var data: List<ListHomeAdapterItem<Any>>,
+    private val listener: OnClickListener,
 ) : RecyclerView.Adapter<HomeAdapter.BaseViewHolder>() {
 
 
-//
-//    @SuppressLint("NotifyDataSetChanged")
-//    fun updateData(list: List<ListHomeAdapterItem<Any>>) {
-//        this.data
-//        data.addAll(list)
-//        notifyDataSetChanged()
-//    }
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(list: List<ListHomeAdapterItem<Any?>>) {
+        this.data
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -66,9 +53,9 @@ class HomeAdapter(
 
 
     private fun bindTrending(holder: TrendViewHolder, position: Int) {
-        val trendList = data[position].item as List<Trend>
-        val adapter = TrendAdapter(trendList)
+        val adapter = TrendAdapter(emptyList())
         holder.binding.apply {
+            trend = data[position].item as Trending
             rvTrend.adapter = adapter
             rvTrend.setItemTransformer(
                 ScaleTransformer.Builder()
@@ -86,12 +73,12 @@ class HomeAdapter(
     }
 
     private fun bindGeneres(holder: SubGenresViewHolder, position: Int) {
-        val categoryList = data[position].item as List<Genres>
-        val adapter = SubGenresAdapter(categoryList, listener)
-        holder.binding.apply {
-            recyclerViewCategory.adapter = adapter
-            recyclerViewCategory.setHasFixedSize(true)
-        }
+//        val categoryList = data[position].item as List<Genres>
+//        val adapter = SubGenresAdapter(categoryList, listener)
+//        holder.binding.apply {
+//            recyclerViewCategory.adapter = adapter
+//            recyclerViewCategory.setHasFixedSize(true)
+//        }
     }
 
 
@@ -102,16 +89,7 @@ class HomeAdapter(
     }
 
     private fun bindPopular(holder: PopularViewHolder, position: Int) {
-        val popular = data[position].item as Popular
-        holder.binding.apply {
-            posterPopular.loadImage(popular.posterId)
-            titleMS.text = popular.title
-            popular.type.type.forEach {
-                type.text = "${it}, "
-            }
-            rating.rating = popular.rate
-            date.text = "2022"
-        }
+
     }
 
 
@@ -119,10 +97,12 @@ class HomeAdapter(
 
     override fun getItemViewType(position: Int) = when (data[position].typeHome) {
         ViewTypeHome.TREND -> TREND
-        ViewTypeHome.VIEW_MORE_CATEGORY -> VIEW_MORE_GENERES
-        ViewTypeHome.GENERES -> GENERES
         ViewTypeHome.VIEW_MORE_POPULAR -> VIEW_MORE_POPULAR
         ViewTypeHome.POPULAR -> POPULAR
+        ViewTypeHome.VIEW_MORE_TOP_RATED -> POPULAR
+        ViewTypeHome.RATED -> POPULAR
+        ViewTypeHome.VIEW_MORE_UPCOMING -> POPULAR
+        ViewTypeHome.UPCOMING -> POPULAR
     }
 
     abstract class BaseViewHolder(binder: View) :

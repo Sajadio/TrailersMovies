@@ -1,13 +1,12 @@
 package com.example.movie.ui.fragment.home.adapter
 
 import android.widget.ImageView
-import com.example.movie.data.m.Genres
-import com.example.movie.data.m.Trend
+import com.example.movie.data.model.trend.Trending
 
 interface OnClickListener {
-    fun trendItem(trend: Trend)
+    fun trendItem(trend: Trending)
     fun category(category: ImageView)
-    fun openItem(category: Genres)
+    fun openItem(category: Trending)
     fun popular(popular:Int)
 
 }
