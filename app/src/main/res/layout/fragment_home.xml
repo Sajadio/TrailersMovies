@@ -8,11 +8,11 @@
 
         <variable
             name="viewModel"
-            type="com.example.movie.ui.vm.MDBViewModel" />
+            type="com.example.trailers.ui.vm.MDBViewModel" />
 
         <variable
             name="adapter"
-            type="com.example.movie.ui.base.nestedrv.HomeAdapter" />
+            type="com.example.trailers.ui.base.nestedrv.HomeAdapter" />
 
     </data>
 

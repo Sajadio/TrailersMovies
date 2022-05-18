@@ -8,7 +8,7 @@
 
         <variable
             name="trend"
-            type="com.example.movie.data.model.trend.Result" />
+            type="com.example.trailers.data.model.trend.Result" />
 
     </data>
 

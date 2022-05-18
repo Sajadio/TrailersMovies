@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.movie.ui.fragment.home.HomeFragment"
+        android:name="com.example.trailers.ui.fragment.home.HomeFragment"
         android:label="HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_genresFragment"
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.example.movie.ui.fragment.genres.GenresFragment"
+        android:name="com.example.trailers.ui.fragment.genres.GenresFragment"
         android:label="CategoriesFragment">
         <action
             android:id="@+id/action_categoriesFragment_to_moiveFragment"
@@ -72,7 +72,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.example.movie.ui.fragment.favorite.FavoriteFragment"
+        android:name="com.example.trailers.ui.fragment.favorite.FavoriteFragment"
         android:label="FavoriteFragment">
         <action
             android:id="@+id/action_favoriteFragment_to_moiveFragment"
@@ -91,7 +91,7 @@
     </fragment>
     <fragment
         android:id="@+id/popularFragment"
-        android:name="com.example.movie.ui.fragment.popular.PopularFragment"
+        android:name="com.example.trailers.ui.fragment.popular.PopularFragment"
         android:label="PopularFragment">
         <action
             android:id="@+id/action_popularFragment_to_moiveFragment"
@@ -106,7 +106,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.movie.ui.fragment.settings.SettingsFragment"
+        android:name="com.example.trailers.ui.fragment.settings.SettingsFragment"
         android:label="SettingsFragment">
         <action
             android:id="@+id/action_settingsFragment_to_favoriteFragment"
@@ -127,7 +127,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.movie.ui.fragment.search.SearchFragment"
+        android:name="com.example.trailers.ui.fragment.search.SearchFragment"
         android:label="SearchFragment">
         <action
             android:id="@+id/action_searchFragment_to_moiveFragment"
@@ -146,11 +146,11 @@
     </fragment>
     <fragment
         android:id="@+id/moiveFragment"
-        android:name="com.example.movie.ui.fragment.details.movie.MovieFragment"
+        android:name="com.example.trailers.ui.fragment.details.movie.MovieFragment"
         android:label="MoiveFragment" />
     <fragment
         android:id="@+id/tvFragment"
-        android:name="com.example.movie.ui.fragment.details.tv.TVFragment"
+        android:name="com.example.trailers.ui.fragment.details.tv.TVFragment"
         android:label="SeriesFragment">
         <action
             android:id="@+id/action_tvFragment_to_optionsBottomSheetFragment"
@@ -162,7 +162,7 @@
     </fragment>
     <dialog
         android:id="@+id/optionsBottomSheetFragment"
-        android:name="com.example.movie.ui.fragment.details.tv.BottomSheetTV"
+        android:name="com.example.trailers.ui.fragment.details.tv.BottomSheetTV"
         android:label="OptionsBottomSheetFragment">
         <action
             android:id="@+id/action_optionsBottomSheetFragment_to_tvFragment"
@@ -170,7 +170,7 @@
     </dialog>
     <dialog
         android:id="@+id/bottomSheetHome"
-        android:name="com.example.movie.ui.fragment.home.BottomSheetHome"
+        android:name="com.example.trailers.ui.fragment.home.BottomSheetHome"
         android:label="BottomSheetHome">
         <action
             android:id="@+id/action_bottomSheetHome_to_settingsFragment"
@@ -196,7 +196,7 @@
     </dialog>
     <fragment
         android:id="@+id/login2"
-        android:name="com.example.movie.ui.fragment.regsretion.Login"
+        android:name="com.example.trailers.ui.fragment.regsretion.Login"
         android:label="Login" >
         <action
             android:id="@+id/action_login2_to_singing"
@@ -207,7 +207,7 @@
     </fragment>
     <fragment
         android:id="@+id/singing"
-        android:name="com.example.movie.ui.fragment.regsretion.Singing"
+        android:name="com.example.trailers.ui.fragment.regsretion.Singing"
         android:label="Singing" >
         <action
             android:id="@+id/action_singing_to_homeFragment"
