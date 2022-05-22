@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import com.example.trailers.R
 import com.example.trailers.databinding.ActivityMovieBinding
-import com.example.trailers.ui.vm.MDBViewModel
+import com.example.trailers.ui.fragment.home.vm.HomeViewModel
 import com.example.trailers.utils.NetworkHelper
 import com.example.trailers.utils.setSnackbar
 import javax.inject.Inject
@@ -15,7 +15,7 @@ import javax.inject.Inject
 class MovieActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var vm: MDBViewModel
+    lateinit var vm: HomeViewModel
     private var _binding: ActivityMovieBinding? = null
     private val binding: ActivityMovieBinding get() = _binding!!
 

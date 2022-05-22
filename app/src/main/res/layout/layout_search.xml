@@ -37,7 +37,7 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/img" />
+                tools:srcCompat="@drawable/img" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -78,13 +78,13 @@
             android:layout_height="wrap_content"
             android:gravity="start|center"
             android:textColor="@color/redLight"
-            android:layout_marginTop="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_16"
             app:layout_constraintStart_toStartOf="@+id/title"
             app:layout_constraintTop_toBottomOf="@+id/media_type"
             tools:text="2022-01-02" />
 
         <TextView
-            android:id="@+id/type"
+            android:id="@+id/genres"
             style="@style/Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,13 +97,29 @@
             app:layout_constraintTop_toBottomOf="@+id/date"
             tools:text="Action, Adventure" />
 
+        <TextView
+            android:id="@+id/textVoteCount"
+            style="@style/Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/size_8"
+            android:textColor="?attr/textColorHint"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="(10.6 k)" />
+
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/type"
-            app:layout_constraintTop_toBottomOf="@+id/type">
+            android:gravity="center"
+            android:layout_marginTop="@dimen/size_8"
+            app:layout_constraintStart_toStartOf="@+id/genres"
+            app:layout_constraintTop_toBottomOf="@+id/genres">
 
             <include
                 android:id="@+id/ratingBar"

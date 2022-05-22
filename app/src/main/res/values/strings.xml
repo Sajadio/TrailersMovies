@@ -25,7 +25,7 @@
     <string name="actors">Actors</string>
     <string name="related">Related</string>
     <string name="season">Season 1</string>
-    <string name="viewMore">View More</string>
+    <string name="seeAll">See All</string>
     <string name="generes">Generes</string>
     <string name="testing">for dialog</string>
     <string name="decline">Cancel</string>
@@ -49,4 +49,6 @@
     <string name="email">Email</string>
     <string name="confirm_password">Confirm password</string>
     <string name="no_result">No Result!</string>
+    <string name="rate">Top Rated</string>
+    <string name="upComing">Upcoming</string>
 </resources>

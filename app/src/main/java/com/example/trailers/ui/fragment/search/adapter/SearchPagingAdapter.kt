@@ -1,18 +1,25 @@
 package com.example.trailers.ui.fragment.search.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trailers.R
+import com.example.trailers.data.model.genre.Genre
 import com.example.trailers.data.model.search.Result
 import com.example.trailers.databinding.LayoutSearchBinding
+import com.example.trailers.utils.Constant.genresMovie
 import com.example.trailers.utils.loadImage
 
-class SearchPagingAdapter :
+class SearchPagingAdapter(private var list: List<Genre>) :
     PagingDataAdapter<Result, SearchPagingAdapter.SearchViewHolder>(CharacterComparator) {
+
+    fun setGenres(genre: List<Genre>) {
+        list = genre
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         SearchViewHolder(
@@ -41,6 +48,7 @@ class SearchPagingAdapter :
                     title.text = item.original_title
                     mediaType.text = itemView.resources.getString(R.string.movie)
                     date.text = item.release_date
+
                 } else if (item.media_type == "tv") {
                     title.text = item.original_name
                     mediaType.text = itemView.resources.getString(R.string.series)

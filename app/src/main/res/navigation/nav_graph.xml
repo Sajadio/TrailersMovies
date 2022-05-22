@@ -91,7 +91,7 @@
     </fragment>
     <fragment
         android:id="@+id/popularFragment"
-        android:name="com.example.trailers.ui.fragment.popular.PopularFragment"
+        android:name="com.example.trailers.ui.fragment.rated.RatedFragment"
         android:label="PopularFragment">
         <action
             android:id="@+id/action_popularFragment_to_moiveFragment"

@@ -1,6 +1,9 @@
 package com.example.trailers.data.network
 
+import com.example.trailers.data.model.movie.id.Genre
 import com.example.trailers.data.model.movie.popular.PopularMovie
+import com.example.trailers.data.model.movie.rate.TopRatedMovie
+import com.example.trailers.data.model.movie.upcoming.UPComingMovie
 import com.example.trailers.data.model.search.Search
 import com.example.trailers.data.model.tv.popular.PopularTV
 import com.example.trailers.data.model.trend.Trending
@@ -18,6 +21,18 @@ interface ApiService {
         @Query("page") page: Int = 1,
     ): PopularMovie
 
+    @GET("movie/top_rated?")
+    suspend fun getMovieTopRated(
+        @Query("api_key") key: String = Constant.API_KEY,
+        @Query("page") page: Int = 1,
+    ): TopRatedMovie
+
+    @GET("movie/upcoming?")
+    suspend fun getUpComingMovie(
+        @Query("api_key") key: String = Constant.API_KEY,
+        @Query("page") page: Int = 1,
+    ): UPComingMovie
+
     @GET("movie/{id}/videos?")
     suspend fun getMovieTrailer(
         @Path("id") id: Int,
@@ -31,10 +46,10 @@ interface ApiService {
     ): Response<Any>
 
 
-    @GET("/genre/movie/list")
+    @GET("genre/movie/list")
     suspend fun getMovieGenres(
-        @Query("api_key") key: String,
-    )
+        @Query("api_key") key: String = Constant.API_KEY
+    ): Genre
 
     /*----------------------------------TV-----------------------------------------*/
 
@@ -71,7 +86,7 @@ interface ApiService {
         @Query("api_key") key: String,
     )
 
-    @GET("/genre/movie/list")
+    @GET("/genre/tv/list")
     suspend fun getTVGenres(
         @Query("api_key") key: String,
     )

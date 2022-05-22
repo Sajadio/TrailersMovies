@@ -1,5 +1,7 @@
 package com.example.trailers.data.model.movie.popular
 
+import com.example.trailers.utils.ParentListAdapter
+
 data class Result(
     val adult: Boolean?,
     val backdrop_path: String?,
@@ -15,4 +17,4 @@ data class Result(
     val video: Boolean?,
     val vote_average: Double?,
     val vote_count: Int?
-)
+): ParentListAdapter

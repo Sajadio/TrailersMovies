@@ -1,30 +1,20 @@
 package com.example.trailers.ui.fragment.popular.adapter
 
 import com.example.trailers.R
-import com.example.trailers.data.model.trend.Trending
-import com.example.trailers.databinding.LayoutItemCardCommenBinding
+import com.example.trailers.data.loacal.popular.PopularResultEntity
+import com.example.trailers.databinding.LayoutItemCardPopualrBinding
 import com.example.trailers.ui.base.adapter.BaseAdapter
-import com.example.trailers.ui.base.adapter.BaseOnClickItem
 
 class PopularAdapter(
-    list: MutableList<Trending>,
-    private val listener: BaseOnClickItem<Trending>
-): BaseAdapter<LayoutItemCardCommenBinding, Trending>(list) {
+    list: List<PopularResultEntity>,
+) : BaseAdapter<LayoutItemCardPopualrBinding, PopularResultEntity>(list) {
 
-    override val layoutId = R.layout.layout_item_card_commen
+    override val layoutId = R.layout.layout_item_card_popualr
 
-    override fun bind(binding: LayoutItemCardCommenBinding, item: Trending) {
+    override fun bind(binding: LayoutItemCardPopualrBinding, item: PopularResultEntity) {
         binding.apply {
-//            posterPopular.loadImagetesting(item.posterId)
-//            titleMS.text = item.title
-//            item.type.type.forEach {
-//                type.text = "${it}, "
-//            }
-//            rating.rating = item.rate
-//            date.text = "2022"
-//            popularCard.setOnClickListener {
-//                listener.clickedItem(item)
-//            }
+            popular = item
+
         }
     }
 }

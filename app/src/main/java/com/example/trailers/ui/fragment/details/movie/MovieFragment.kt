@@ -15,8 +15,8 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
     override fun initial() {
         (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
 
-//        binding.include.rvRelated.adapter = RelatedAdapter(MDBRepo.getCategory())
-//        binding.include.rvActors.adapter = ActorsAdapter(MDBRepo.getCategory())
+//        binding.include.rvRelated.adapter = RelatedAdapter(HomeRepo.getCategory())
+//        binding.include.rvActors.adapter = ActorsAdapter(HomeRepo.getCategory())
 
         binding.btnFavorite.setOnClickListener {
             binding.btnFavorite.favoriteItem(isFavorite = false)

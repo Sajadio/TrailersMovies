@@ -20,10 +20,10 @@ class PopularFragment : BaseFragment<FragmentPopularBinding>(R.layout.fragment_p
     override fun initial() {
         (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
 
-//        val adapter = PopularAdapter(MDBRepo.getCategory(),this)
+//        val adapter = PopularAdapter(HomeRepo.getCategory(),this)
 //        binding.rcPopular.adapter = adapter
 
-//        binding.rcPopular.adapter = FavoriteAdapter(MDBRepo.getCategory())
+//        binding.rcPopular.adapter = FavoriteAdapter(HomeRepo.getCategory())
         if (binding.tabLayout.getTabAt(0)?.isSelected == true) {
             Log.d("sajjadio", "nnnnnnnn")
 

@@ -8,7 +8,7 @@
 
         <variable
             name="trend"
-            type="com.example.trailers.data.model.trend.Result" />
+            type="com.example.trailers.data.loacal.trend.TrendResultEntity" />
 
     </data>
 
@@ -35,7 +35,7 @@
                 android:layout_width="200dp"
                 android:layout_height="250dp"
                 android:scaleType="centerCrop"
-                app:setImage="@{trend.poster_path}"
+                app:setImage="@{trend.poster}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

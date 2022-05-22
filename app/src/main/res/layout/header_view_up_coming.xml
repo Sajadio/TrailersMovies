@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/mainColor"
+        android:padding="@dimen/size_8">
+
+        <TextView
+            android:id="@+id/Upcoming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center|start"
+            android:text="@string/upComing"
+            style="@style/Headline5"
+            android:textColor="?attr/textColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/seeAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/common_click_button"
+            android:gravity="end|center"
+            android:padding="4dp"
+            android:text="@string/seeAll"
+            android:textColor="@color/redLight"
+            style="@style/Caption"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/Upcoming"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/Upcoming" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

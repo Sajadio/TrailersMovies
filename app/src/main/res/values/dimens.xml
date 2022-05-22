@@ -22,6 +22,7 @@
     <dimen name="page_horizontal_padding">@dimen/size_20</dimen>
     <dimen name="poster_width">100dp</dimen>
     <dimen name="poster_height">140dp</dimen>
-    <dimen name="showcase_height">290dp</dimen>
+    <dimen name="showcase_width">160dp</dimen>
+    <dimen name="showcase_height">200dp</dimen>
 
 </resources>

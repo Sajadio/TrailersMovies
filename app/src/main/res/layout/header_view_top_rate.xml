@@ -11,37 +11,36 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="8dp"
-        android:paddingVertical="8dp">
+        android:background="?attr/mainColor"
+        android:padding="@dimen/size_8">
 
         <TextView
-            android:id="@+id/titlePopular"
+            android:id="@+id/rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center|start"
-            android:text="@string/popular"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:text="@string/rate"
+            style="@style/Headline5"
             android:textColor="?attr/textColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/viewMorePopular"
+            android:id="@+id/seeAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="end|center"
-            android:text="@string/viewMore"
-            android:padding="4dp"
             android:background="@drawable/common_click_button"
-            android:textColor="?attr/textColorHint"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/titlePopular"
+            android:gravity="end|center"
+            android:padding="4dp"
+            android:text="@string/seeAll"
+            android:textColor="@color/redLight"
+            style="@style/Caption"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/rate"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/titlePopular" />
+            app:layout_constraintTop_toTopOf="@+id/rate" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -95,7 +95,7 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/background_gray"
-                android:drawableEnd="@drawable/ic_baseline_star_24"
+                android:drawableEnd="@drawable/ic_baseline_star_12"
                 android:gravity="center"
                 android:padding="8dp"
                 android:text="4.5 "

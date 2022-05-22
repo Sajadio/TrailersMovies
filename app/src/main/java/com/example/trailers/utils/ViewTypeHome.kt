@@ -2,10 +2,10 @@ package com.example.trailers.utils
 
 enum class ViewTypeHome {
     TREND,
-    VIEW_MORE_POPULAR,
+    HEADER_VIEW_POPULAR,
     POPULAR,
-    VIEW_MORE_TOP_RATED,
+    HEADER_VIEW_TOP_RATED,
     RATED,
-    VIEW_MORE_UPCOMING,
+    HEADER_VIEW_UPCOMING,
     UPCOMING,
 }

@@ -17,8 +17,8 @@ class TVFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
         (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar,true)
 
 
-//        binding.include.rvRelated.adapter = RelatedAdapter(MDBRepo.getCategory())
-//        binding.include.rvActors.adapter = ActorsAdapter(MDBRepo.getCategory())
+//        binding.include.rvRelated.adapter = RelatedAdapter(HomeRepo.getCategory())
+//        binding.include.rvActors.adapter = ActorsAdapter(HomeRepo.getCategory())
 
         binding.btnFavorite.setOnClickListener {
             binding.btnFavorite.favoriteItem(isFavorite = false)
@@ -36,7 +36,7 @@ class TVFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
         }
 
 //        binding.include.chipGroupEpisode.addChipWithTheme(
-//            chipText = MDBRepo.getType().type,
+//            chipText = HomeRepo.getType().type,
 //            layoutInflater = layoutInflater,
 //            R.layout.layout_chips_with_theme
 //        )

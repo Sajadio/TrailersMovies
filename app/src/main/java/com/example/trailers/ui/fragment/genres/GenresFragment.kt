@@ -18,10 +18,10 @@ class GenresFragment : BaseFragment<FragmentGenresBinding>(R.layout.fragment_gen
         binding.titleToolbar.text = "Generes"
         (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
 
-//        binding.rcGeneres.adapter = GenresAdapter(MDBRepo.getCategory(),this)
+//        binding.rcGeneres.adapter = GenresAdapter(HomeRepo.getCategory(),this)
 //
 //        binding.chipGroupGenres.addChipWithTheme(
-//            chipText = MDBRepo.getType().type,
+//            chipText = HomeRepo.getType().type,
 //            layoutInflater = layoutInflater,
 //            R.layout.layout_chips_with_theme
 //        )

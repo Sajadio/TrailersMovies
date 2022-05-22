@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.trailers.data.model.search.Result
 import com.example.trailers.data.network.ApiService
+import com.example.trailers.utils.SafeApiCall
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -12,7 +13,7 @@ import javax.inject.Singleton
 @Singleton
 class SearchRepo @Inject constructor(
     private val api: ApiService,
-) {
+) : SafeApiCall {
 
     fun getMultiSearch(query: String): Flow<PagingData<Result>> =
         Pager(config = PagingConfig(pageSize = 20, prefetchDistance = 2),

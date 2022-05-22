@@ -13,7 +13,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
     override fun initial() {
         (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
 
-//        binding.rcFavorite.adapter = FavoriteAdapter(MDBRepo.getCategory())
+//        binding.rcFavorite.adapter = FavoriteAdapter(HomeRepo.getCategory())
 
     }
 

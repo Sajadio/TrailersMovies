@@ -16,4 +16,32 @@ object Constant {
     const val BROADCAST_STRING_FOR_ACTION = "checkInternet"
     const val ONLINE_STATUS = "online_status"
     const val INITIAL_PAGE = 1
+
+
+    fun genresMovie(): HashMap<Int, String> {
+        val genre = hashMapOf<Int, String>()
+        genre[28] = "Action"
+        genre[12] = "Adventure"
+        genre[16] = "Animation"
+        genre[35] = "Comedy"
+        genre[80] = "Crime"
+        genre[99] = "Documentary"
+        genre[18] = "Drama"
+        genre[10751] = "Family"
+        genre[14] = "Fantasy"
+        genre[36] = "History"
+        genre[27] = "Horror"
+        genre[10402] = "Music"
+        genre[9648] = "Mystery"
+        genre[10749] = "Romance"
+        genre[878] = "Fiction"
+        genre[10770] = "Movie"
+        genre[53] = "Thriller"
+        genre[10752] = "War"
+        genre[37] = "Western"
+
+        return genre
+
+    }
+
 }

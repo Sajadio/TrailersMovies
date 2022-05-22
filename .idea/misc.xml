@@ -124,17 +124,22 @@
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/xml/preferences.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/The-Movie-DB/app/src/main/res/xml/slide_up.xml" value="0.371875" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/drawable/ic_baseline_refresh_24.xml" value="0.1605" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.222" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/activity_movie.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/custom_layout_details_movie.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/custom_layout_details_tv.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/fragment_favorite.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/fragment_genres.xml" value="0.23645833333333333" />
-        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/fragment_home.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/fragment_home.xml" value="0.176" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/fragment_movie.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/fragment_popular.xml" value="0.23645833333333333" />
-        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/fragment_search.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/fragment_search.xml" value="0.264" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/fragment_settings.xml" value="0.12291666666666666" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/fragment_tv.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/header_view_more_popular.xml" value="0.14722222222222223" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/header_view_popular.xml" value="0.264" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/header_view_top_rate.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/header_view_up_coming.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_bottom_sheet_home.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_bottom_sheet_tv.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_chips.xml" value="0.23645833333333333" />
@@ -144,16 +149,21 @@
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_item_bottom_sheet_tv.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_item_card_commen.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_item_card_genres.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_item_card_popualr.xml" value="0.4" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_item_card_rated.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_item_card_upcoming.xml" value="0.264" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_item_related.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_load_state.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_rv_genres.xml" value="0.23645833333333333" />
-        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_rv_popular.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_rv_popular.xml" value="0.2" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_rv_rated.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_rv_trend_item.xml" value="0.23645833333333333" />
-        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_search.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_rv_upcoming.xml" value="0.12685185185185185" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_search.xml" value="0.4" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_trend_card_item.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_view_more_genres.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/layout_view_more_popular.xml" value="0.23645833333333333" />
-        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/view_rating_bar.xml" value="0.72" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/Trailers-MDB/app/src/main/res/layout/view_rating_bar.xml" value="0.20205920205920205" />
       </map>
     </option>
   </component>

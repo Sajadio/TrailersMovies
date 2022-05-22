@@ -42,8 +42,13 @@ fun ImageView.loadImagetesting(url: Int) {
     Glide.with(this).load(url).into(this)
 }
 
+@SuppressLint("UseCompatLoadingForDrawables")
 fun ImageView.loadImage(url: String) {
-    Glide.with(this).load(Constant.IMAGE_PATH + url).into(this)
+    Glide.with(this)
+        .load(Constant.IMAGE_PATH + url)
+        .error(this.resources.getDrawable(R.drawable.ic_baseline_refresh_24))
+        .placeholder(this.resources.getDrawable(R.drawable.ic_launcher_background))
+        .into(this)
 }
 
 fun AppCompatActivity.setAsActionBar(toolbar: Toolbar, isBack: Boolean) {

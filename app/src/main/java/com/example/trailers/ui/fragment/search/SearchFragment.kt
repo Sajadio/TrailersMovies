@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.trailers.R
 import com.example.trailers.databinding.FragmentSearchBinding
 import android.content.Context
+import android.util.Log
 
 import android.view.MenuInflater
 import androidx.core.view.isVisible
@@ -37,11 +38,16 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
     override fun initial() {
         (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
+
         initialAdapter()
     }
 
     private fun initialAdapter() {
-        adapter = SearchPagingAdapter()
+        adapter = SearchPagingAdapter(emptyList())
+
+        vm.genres.observe(this) {
+            it?.let { adapter.setGenres(it) }
+        }
         binding.rcSearch.adapter = adapter.withLoadStateHeaderAndFooter(
             header = PagingLoadStateAdapter { adapter.retry() },
             footer = PagingLoadStateAdapter { adapter.retry() }

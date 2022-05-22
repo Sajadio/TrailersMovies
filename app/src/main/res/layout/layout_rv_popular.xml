@@ -5,26 +5,30 @@
 
     <data>
 
+<!--        <variable-->
+<!--            name="popular"-->
+<!--            type="com.example.trailers.data.loacal.popular.Re" />-->
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="?attr/mainColor"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="?attr/mainColor">
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewPopular"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="?attr/mainColor"
+            android:background="?attr/secondColor"
+            android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:listitem="@layout/layout_item_card_commen"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/layout_item_card_popualr" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

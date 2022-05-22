@@ -3,7 +3,7 @@ package com.example.trailers.di.inject
 import androidx.lifecycle.ViewModelProvider
 import com.example.trailers.di.annotate.ViewModelKey
 import com.example.trailers.ui.fragment.home.HomeFragment
-import com.example.trailers.ui.vm.MDBViewModel
+import com.example.trailers.ui.fragment.home.vm.HomeViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
@@ -14,12 +14,12 @@ import dagger.multibindings.IntoMap
 @Module
 class InjectViewModel {
 
-    // Associate this provider method with MDBViewModel type in a generated map
+    // Associate this provider method with HomeViewModel type in a generated map
     @Provides
     @IntoMap
-    @ViewModelKey(MDBViewModel::class)
+    @ViewModelKey(HomeViewModel::class)
     fun provideMDBViewModel(
         factory: ViewModelProvider.Factory,
         target: HomeFragment,
-    ) = ViewModelProvider(target, factory)[MDBViewModel::class.java]
+    ) = ViewModelProvider(target, factory)[HomeViewModel::class.java]
 }

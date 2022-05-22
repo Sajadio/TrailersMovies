@@ -1,19 +1,23 @@
 package com.example.trailers.utils
 
+import android.annotation.SuppressLint
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.trailers.data.model.genre.Genre
 import com.example.trailers.ui.base.adapter.BaseAdapter
-import com.example.trailers.ui.base.nestedrv.HomeAdapter
+import com.example.trailers.ui.fragment.home.adapter.ParentAdapter
 
 @BindingAdapter("app:setAdapter")
 fun setAdapter(
     recyclerView: RecyclerView,
-    adapter: HomeAdapter?,
+    adapter: ParentAdapter?,
 ) {
     adapter?.let {
         recyclerView.adapter = it
@@ -32,12 +36,27 @@ fun submitList(recyclerView: RecyclerView, list: List<ParentListAdapter>?) {
 }
 
 
-@BindingAdapter("app:manageState")
-fun <T> manageState(progressBar: ProgressBar, state: NetworkStatus<T>?) {
+@BindingAdapter("app:loading")
+fun <T> loading(progressBar: ProgressBar, state: NetworkStatus<T>?) {
     when (state) {
         is NetworkStatus.Loading -> progressBar.visibility = VISIBLE
         is NetworkStatus.Success -> progressBar.visibility = INVISIBLE
         is NetworkStatus.Error -> progressBar.visibility = INVISIBLE
+        else -> {
+            progressBar.visibility = INVISIBLE
+        }
+    }
+}
+
+@BindingAdapter("app:manageState")
+fun <T> SwipeRefreshLayout.manageState(state: NetworkStatus<T>?) {
+    when (state) {
+        is NetworkStatus.Loading -> this.isRefreshing = true
+        is NetworkStatus.Success -> this.isRefreshing = false
+        is NetworkStatus.Error -> this.isRefreshing = false
+        else -> {
+            this.isRefreshing = false
+        }
     }
 }
 
@@ -47,17 +66,33 @@ fun ImageView.setImage(url: String?) {
     url?.let { this.loadImage(it) }
 }
 
-//
-//@BindingAdapter(value = ["app:setText"])
-//fun TextView.setText(text: String?) {
-//    this.text = text
-//}
+
+@BindingAdapter(value = ["app:setText"])
+fun TextView.setText(text: String?) {
+    this.text = text
+}
+
+@BindingAdapter(value = ["app:setGenres"])
+fun TextView.setGenres(genre: List<Genre>?) {
+    this.text = genre?.first()?.name
+}
+
+@SuppressLint("SetTextI18n")
+@BindingAdapter(value = ["app:vote_count"])
+fun TextView.voteCount(text: Int?) {
+    this.text = "(${text?.format()})"
+}
+
+@BindingAdapter(value = ["app:setDate"])
+fun TextView.setDate(text: String?) {
+    this.text = text?.substring(0, 4)
+}
 
 
-//@BindingAdapter(value = ["app:setRate"])
-//fun RatingBar.setRate(rating: Double?) {
-//    rating?.let { this.rating = it.toFloat() }
-//}
+@BindingAdapter(value = ["app:setRate"])
+fun TextView.setRate(rating: Double?) {
+    rating?.let { this.text = it.toString() }
+}
 
 //
 //@BindingAdapter(value = ["app:chips"])
