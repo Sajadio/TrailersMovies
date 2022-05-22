@@ -32,14 +32,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btnMenu"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="start"
-                android:background="@drawable/common_click_button"
-                android:padding="4dp"
-                android:src="@drawable/ic_round_menu_24" />
 
             <TextView
                 android:id="@+id/titleToolbar"
@@ -50,7 +42,7 @@
                 android:gravity="center"
                 android:textColor="?attr/textColor"
                 android:textStyle="bold"
-                tools:text="@string/home" />
+                android:text="@string/home" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btnSearch"

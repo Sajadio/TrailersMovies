@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.trailers.App
 import com.example.trailers.di.module.AppModule
 import com.example.trailers.di.inject.InjectHomeModule
+import com.example.trailers.di.inject.InjectMovieDetailsModule
 import com.example.trailers.di.inject.InjectSearchModule
 import com.example.trailers.di.module.LocalModule
 import com.example.trailers.di.module.NetworkModule
@@ -18,6 +19,7 @@ import javax.inject.Singleton
 @Component(modules = [
     InjectHomeModule::class,
     InjectSearchModule::class,
+    InjectMovieDetailsModule::class,
     AppModule::class,
     AndroidSupportInjectionModule::class,
     NetworkModule::class,

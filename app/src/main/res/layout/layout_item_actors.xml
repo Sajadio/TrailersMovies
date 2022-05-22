@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+<variable
+    name="actor"
+    type="com.example.trailers.data.model.movie.actors.Cast" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,10 +32,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
+                app:setImage="@{actor.profile_path}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/img" />
+                tools:srcCompat="@drawable/img" />
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -42,9 +45,12 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="4dp"
-            android:text="Tome Hairy"
+            app:setText="@{actor.original_name}"
+            tools:text="Tome Hairy"
             android:textColor="?attr/textColor"
-            android:textSize="14sp"
+            style="@style/Caption"
+            android:maxLines="1"
+            android:ellipsize="end"
             app:layout_constraintEnd_toEndOf="@+id/materialCardView"
             app:layout_constraintStart_toStartOf="@+id/materialCardView"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView" />

@@ -19,8 +19,8 @@
     <string name="app_settings">إعدادات التطبيقات</string>
     <string name="logout">تسجيل خروج</string>
     <string name="not_favorite">ليست مفضلة</string>
-    <string name="actors">ممثلين</string>
-    <string name="related">متعلق ب</string>
+    <string name="actors">الممثلين</string>
+    <string name="similar">مشابة</string>
     <string name="season">الموسم 1</string>
     <string name="seeAll">عرض المزيد</string>
     <string name="generes">النوع</string>

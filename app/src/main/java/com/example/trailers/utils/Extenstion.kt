@@ -129,6 +129,7 @@ fun View.setSnackbar(state: Int) {
             stateActive = true
         }
     }
+
 }
 
 @SuppressLint("CommitPrefEdits")

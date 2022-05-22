@@ -1,11 +1,13 @@
 package com.example.trailers.utils
 
 import android.annotation.SuppressLint
+import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
@@ -37,27 +39,8 @@ fun submitList(recyclerView: RecyclerView, list: List<ParentListAdapter>?) {
 
 
 @BindingAdapter("app:loading")
-fun <T> loading(progressBar: ProgressBar, state: NetworkStatus<T>?) {
-    when (state) {
-        is NetworkStatus.Loading -> progressBar.visibility = VISIBLE
-        is NetworkStatus.Success -> progressBar.visibility = INVISIBLE
-        is NetworkStatus.Error -> progressBar.visibility = INVISIBLE
-        else -> {
-            progressBar.visibility = INVISIBLE
-        }
-    }
-}
-
-@BindingAdapter("app:manageState")
-fun <T> SwipeRefreshLayout.manageState(state: NetworkStatus<T>?) {
-    when (state) {
-        is NetworkStatus.Loading -> this.isRefreshing = true
-        is NetworkStatus.Success -> this.isRefreshing = false
-        is NetworkStatus.Error -> this.isRefreshing = false
-        else -> {
-            this.isRefreshing = false
-        }
-    }
+fun <T> View.loading(state: NetworkStatus<T>?) {
+    this.isVisible = state == NetworkStatus.Loading
 }
 
 
@@ -72,20 +55,21 @@ fun TextView.setText(text: String?) {
     this.text = text
 }
 
-@BindingAdapter(value = ["app:setGenres"])
-fun TextView.setGenres(genre: List<Genre>?) {
-    this.text = genre?.first()?.name
-}
 
 @SuppressLint("SetTextI18n")
 @BindingAdapter(value = ["app:vote_count"])
 fun TextView.voteCount(text: Int?) {
-    this.text = "(${text?.format()})"
+    this.text = text?.format()
 }
 
 @BindingAdapter(value = ["app:setDate"])
 fun TextView.setDate(text: String?) {
     this.text = text?.substring(0, 4)
+}
+
+@BindingAdapter(value = ["app:setTime"])
+fun TextView.setTime(text: Int?) {
+    this.text = text?.formatHourMinutes()
 }
 
 

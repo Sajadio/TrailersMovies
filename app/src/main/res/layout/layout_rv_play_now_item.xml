@@ -5,10 +5,6 @@
 
     <data>
 
-        <variable
-            name="trend"
-            type="com.example.trailers.data.loacal.trend.TrendEntity" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +21,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/layout_trend_card_item" />
+            tools:listitem="@layout/layout_play_now_card_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

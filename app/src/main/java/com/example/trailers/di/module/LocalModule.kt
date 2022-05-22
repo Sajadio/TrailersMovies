@@ -4,9 +4,9 @@ import androidx.room.Room
 import com.example.trailers.App
 import com.example.trailers.data.loacal.TrailersDatabase
 import com.example.trailers.data.loacal.coming.ComingDao
+import com.example.trailers.data.loacal.playnow.PlayNowDao
 import com.example.trailers.data.loacal.popular.PopularDao
 import com.example.trailers.data.loacal.rated.RatedDao
-import com.example.trailers.data.loacal.trend.TrendDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -32,12 +32,6 @@ class LocalModule {
 
     @Singleton
     @Provides
-    fun providesProductTrendDao(trailersDatabase: TrailersDatabase): TrendDao {
-        return trailersDatabase.getTrendDao()
-    }
-
-    @Singleton
-    @Provides
     fun providesProductRatedDao(trailersDatabase: TrailersDatabase): RatedDao {
         return trailersDatabase.getRatedDao()
     }
@@ -46,6 +40,12 @@ class LocalModule {
     @Provides
     fun providesProductComingDao(trailersDatabase: TrailersDatabase): ComingDao {
         return trailersDatabase.getComingDao()
+    }
+
+    @Singleton
+    @Provides
+    fun providesPlayNowDaoDao(trailersDatabase: TrailersDatabase): PlayNowDao {
+        return trailersDatabase.getPlayNowDao()
     }
 
 }

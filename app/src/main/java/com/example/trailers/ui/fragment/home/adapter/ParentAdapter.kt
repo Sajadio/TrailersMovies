@@ -5,14 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trailers.R
 import com.example.trailers.data.loacal.coming.ComingResultEntity
+import com.example.trailers.data.loacal.playnow.PlayNowResultEntity
 import com.example.trailers.data.loacal.popular.PopularResultEntity
 import com.example.trailers.data.loacal.rated.RatedResultEntity
-import com.example.trailers.data.loacal.trend.TrendResultEntity
 import com.example.trailers.databinding.*
-import com.example.trailers.ui.fragment.coming.adapter.UpcomingAdapter
-import com.example.trailers.ui.fragment.popular.adapter.PopularAdapter
 import com.example.trailers.ui.fragment.home.adapter.holder.*
-import com.example.trailers.ui.fragment.rated.adapter.RatedAdapter
 import com.example.trailers.utils.MultiViewTypeItem
 import com.example.trailers.utils.ViewTypeHome
 
@@ -24,8 +21,8 @@ class ParentAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParentViewHolder {
 
         return when (viewType) {
-            TREND -> TrendViewHolder(
-                LayoutRvTrendItemBinding.inflate(
+            PLAYNOW -> PlayNowViewHolder(
+                LayoutRvPlayNowItemBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
@@ -81,7 +78,7 @@ class ParentAdapter(
     @Suppress("UNCHECKED_CAST")
     override fun onBindViewHolder(holder: ParentViewHolder, position: Int) {
         when (holder) {
-            is TrendViewHolder -> holder.setData(data[position].item as List<TrendResultEntity>)
+            is PlayNowViewHolder -> holder.setData(listener,data[position].item as List<PlayNowResultEntity>)
             is HeaderViewPopularHolder -> bindHeaderViewPopular(holder, position)
             is PopularViewHolder -> holder.setData(data[position].item as List<PopularResultEntity>)
             is HeaderViewRatedHolder -> bindHeaderViewRated(holder, position)
@@ -116,7 +113,7 @@ class ParentAdapter(
     override fun getItemCount() = data.size
 
     override fun getItemViewType(position: Int) = when (data[position].typeHome) {
-        ViewTypeHome.TREND.ordinal -> TREND
+        ViewTypeHome.PLAY_NOW.ordinal -> PLAYNOW
         ViewTypeHome.HEADER_VIEW_POPULAR.ordinal -> HEADER_VIEW_POPULAR
         ViewTypeHome.POPULAR.ordinal -> POPULAR
         ViewTypeHome.HEADER_VIEW_TOP_RATED.ordinal -> HEADER_VIEW_TOP_RATED
@@ -129,7 +126,7 @@ class ParentAdapter(
     }
 
     companion object {
-        const val TREND = R.layout.layout_rv_trend_item
+        const val PLAYNOW = R.layout.layout_rv_play_now_item
         const val HEADER_VIEW_POPULAR = R.layout.header_view_popular
         const val POPULAR = R.layout.layout_rv_popular
         const val HEADER_VIEW_TOP_RATED = R.layout.header_view_top_rate

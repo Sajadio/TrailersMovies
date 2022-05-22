@@ -1,39 +1,45 @@
 package com.example.trailers.ui.fragment.home.vm
 
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.example.trailers.data.loacal.playnow.PlayNowResultEntity
 import com.example.trailers.data.repository.HomeRepo
 import com.example.trailers.utils.MultiViewTypeItem
+import com.example.trailers.utils.NetworkStatus
 import com.example.trailers.utils.ViewTypeHome
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class HomeViewModel @Inject constructor(private val homeRepo: HomeRepo) : ViewModel() {
 
     private val _responseData: MutableLiveData<List<MultiViewTypeItem<Any>>> =
         MutableLiveData()
     val responseData: LiveData<List<MultiViewTypeItem<Any>>> = _responseData
 
+    val requestStatus: LiveData<NetworkStatus<Any?>> =
+        homeRepo.getMoviePlayNow().asLiveData()
+
+    val connection: MutableLiveData<Int> = MutableLiveData(0)
+    val checkConnection: LiveData<Int> = connection
+
     private val multiViewType = mutableListOf<MultiViewTypeItem<Any>>()
 
     init {
         _responseData.postValue(multiViewType)
-        getTrend()
+        getPlayNow()
         getPopular()
         getTopRated()
         getUpComing()
     }
 
 
-    private fun getTrend() {
+    private fun getPlayNow() {
         viewModelScope.launch {
-            homeRepo.getTrending().collect { state ->
+            homeRepo.getMoviePlayNow().collect { state ->
                 state.data()?.let {
-                    multiViewType.add(MultiViewTypeItem(it, ViewTypeHome.TREND.ordinal))
+                    multiViewType.add(MultiViewTypeItem(it, ViewTypeHome.PLAY_NOW.ordinal))
                     multiViewType.add(MultiViewTypeItem("",
                         ViewTypeHome.HEADER_VIEW_POPULAR.ordinal))
                 }

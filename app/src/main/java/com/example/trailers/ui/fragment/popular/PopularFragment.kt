@@ -55,7 +55,7 @@ class PopularFragment : BaseFragment<FragmentPopularBinding>(R.layout.fragment_p
     }
 
     override fun clickedItem(item: Trending) {
-       findNavController().navigate(R.id.action_popularFragment_to_tvFragment)
+        // TODO("Not yet implemented")
     }
 
 }

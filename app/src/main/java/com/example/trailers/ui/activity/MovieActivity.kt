@@ -14,8 +14,6 @@ import javax.inject.Inject
 
 class MovieActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var vm: HomeViewModel
     private var _binding: ActivityMovieBinding? = null
     private val binding: ActivityMovieBinding get() = _binding!!
 
@@ -23,9 +21,6 @@ class MovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_movie)
         supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        NetworkHelper(context = this).observe(this) { state ->
-            binding.root.setSnackbar(state)
-        }
     }
 
     override fun onDestroy() {

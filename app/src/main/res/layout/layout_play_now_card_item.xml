@@ -7,13 +7,22 @@
     <data>
 
         <variable
-            name="trend"
-            type="com.example.trailers.data.loacal.trend.TrendResultEntity" />
+            name="playNow"
+            type="com.example.trailers.data.loacal.playnow.PlayNowResultEntity" />
+        
+        <variable
+            name="onClickItem"
+            type="com.example.trailers.ui.fragment.home.adapter.OnClickListener" />
+
+        <variable
+            name="viewModel"
+            type="com.example.trailers.ui.fragment.movie.vm.MovieViewModel" />
 
     </data>
 
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/root"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checkable="true"
@@ -35,7 +44,7 @@
                 android:layout_width="200dp"
                 android:layout_height="250dp"
                 android:scaleType="centerCrop"
-                app:setImage="@{trend.poster}"
+                app:setImage="@{playNow.poster}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

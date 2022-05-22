@@ -15,7 +15,7 @@ class SliderAdapter(
 
 
     override fun getViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-        parent, R.layout.layout_trend_card_item
+        parent, R.layout.layout_play_now_card_item
     )
 
      class ViewHolder(parent: ViewGroup, itemLayoutId: Int) :

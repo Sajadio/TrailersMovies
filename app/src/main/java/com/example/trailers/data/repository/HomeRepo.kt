@@ -3,15 +3,13 @@ package com.example.trailers.data.repository
 import android.util.Log
 import androidx.room.withTransaction
 import com.example.trailers.data.loacal.TrailersDatabase
-import com.example.trailers.data.mapper.ComingMapper
-import com.example.trailers.data.mapper.PopularMapper
-import com.example.trailers.data.mapper.RatedMapper
-import com.example.trailers.data.mapper.TrendMapper
+import com.example.trailers.data.mapper.*
 import com.example.trailers.data.network.ApiService
 import com.example.trailers.utils.SafeApiCall
 import com.example.trailers.utils.networkBoundResource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
@@ -24,12 +22,6 @@ class HomeRepo @Inject constructor(
     private val api: ApiService,
     private val db: TrailersDatabase,
 ) : SafeApiCall {
-
-//    fun getTrending() = safeApiCall {
-//        TrendMapper().mapFrom(
-//            api.getTrending()
-//        )
-//    }.flowOn(Dispatchers.IO)
 
 //    fun getMoviePopular() = safeApiCall {
 //        PopularMapper().mapFrom(
@@ -49,24 +41,6 @@ class HomeRepo @Inject constructor(
 //        )
 //    }.flowOn(Dispatchers.IO)
 
-    fun getTrending() = networkBoundResource(
-        query = {
-            db.getTrendDao().fetchData().distinctUntilChanged()
-        },
-        fetch = {
-            TrendMapper().mapFrom(
-                api.getTrending()
-            )
-        },
-        saveFetchResult = {
-            db.withTransaction {
-                it?.let {
-                    db.getTrendDao().deleteAllItem()
-                    db.getTrendDao().insert(it)
-                }
-            }
-        }
-    )
 
     fun getMoviePopular() = networkBoundResource(
         query = {
@@ -120,6 +94,25 @@ class HomeRepo @Inject constructor(
                 it?.let {
                     db.getComingDao().deleteAllItem()
                     db.getComingDao().insert(it)
+                }
+            }
+        }
+    )
+
+    fun getMoviePlayNow() = networkBoundResource(
+        query = {
+            db.getPlayNowDao().fetchData().distinctUntilChanged()
+        },
+        fetch = {
+            PlayNowMapper().mapFrom(
+                api.getMoviePlayNow()
+            )
+        },
+        saveFetchResult = {
+            db.withTransaction {
+                it?.let {
+                    db.getPlayNowDao().deleteAllItem()
+                    db.getPlayNowDao().insert(it)
                 }
             }
         }

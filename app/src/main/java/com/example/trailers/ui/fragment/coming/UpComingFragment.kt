@@ -1,4 +1,4 @@
-package com.example.trailers.ui.fragment.popular
+package com.example.trailers.ui.fragment.coming
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -55,7 +55,7 @@ class UpComingFragment : BaseFragment<FragmentPopularBinding>(R.layout.fragment_
     }
 
     override fun clickedItem(item: Trending) {
-       findNavController().navigate(R.id.action_popularFragment_to_tvFragment)
+        // TODO("Not yet implemented")
     }
 
 }

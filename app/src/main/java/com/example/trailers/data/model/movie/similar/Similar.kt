@@ -1,6 +1,6 @@
-package com.example.trailers.data.model.tv.popular
+package com.example.trailers.data.model.movie.similar
 
-data class PopularTV(
+data class Similar(
     val page: Int?,
     val results: List<Result>?,
     val total_pages: Int?,
