@@ -1,15 +1,16 @@
 package com.example.trailers.data.network
 
+import com.example.trailers.data.model.movie.common.Common
 import com.example.trailers.data.model.movie.actors.Actors
-import com.example.trailers.data.model.movie.id.Genre
-import com.example.trailers.data.model.movie.id.MovieID
-import com.example.trailers.data.model.movie.playnow.MoviePlayNow
-import com.example.trailers.data.model.movie.popular.PopularMovie
-import com.example.trailers.data.model.movie.rate.TopRatedMovie
+import com.example.trailers.data.model.genre.Genre
+import com.example.trailers.data.model.movie.genremovie.Movie
+import com.example.trailers.data.model.movie.id.IDMovie
+import com.example.trailers.data.model.movie.search.SearchMovie
 import com.example.trailers.data.model.movie.similar.Similar
-import com.example.trailers.data.model.movie.upcoming.UPComingMovie
-import com.example.trailers.data.model.search.Search
+import com.example.trailers.data.model.movie.trend.TrendMovie
+import com.example.trailers.data.model.movie.video.VideoMovie
 import com.example.trailers.utils.Constant
+import com.example.trailers.utils.language
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -17,64 +18,85 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("movie/now_playing?")
-    suspend fun getMoviePlayNow(
+    @GET("discover/movie")
+    suspend fun getGenreList(
+        @Query("api_key") apiKey: String = Constant.API_KEY,
+        @Query("with_genres") genreId: String?,
+        @Query("page") page: Int,
+        @Query("language") language: String = language(),
+    ): Movie
+
+    @GET("trending/all/day?")
+    suspend fun getTrending(
         @Query("api_key") key: String = Constant.API_KEY,
-        @Query("page") page: Int = 1,
-    ): MoviePlayNow
+        @Query("language") language: String = language(),
+    ): Response<TrendMovie>
 
     @GET("movie/popular?")
-    suspend fun getMoviePopular(
+    suspend fun getPopularMovie(
         @Query("api_key") key: String = Constant.API_KEY,
         @Query("page") page: Int = 1,
-    ): PopularMovie
+        @Query("language") language: String = language(),
+    ): Response<Common>
+
 
     @GET("movie/top_rated?")
-    suspend fun getMovieTopRated(
+    suspend fun getTopRatedMovie(
         @Query("api_key") key: String = Constant.API_KEY,
         @Query("page") page: Int = 1,
-    ): TopRatedMovie
+        @Query("language") language: String = language(),
+    ): Response<Common>
 
     @GET("movie/upcoming?")
     suspend fun getUpComingMovie(
         @Query("api_key") key: String = Constant.API_KEY,
         @Query("page") page: Int = 1,
-    ): UPComingMovie
+        @Query("language") language: String = language(),
+    ): Response<Common>
 
     @GET("movie/{id}/videos?")
     suspend fun getMovieTrailer(
-        @Path("id") id: Int,
-        @Query("api_key") key: String,
-    ): Response<Any>
+        @Path("id") id: Int?,
+        @Query("api_key") key: String = Constant.API_KEY,
+        @Query("language") language: String = language(),
+    ): Response<VideoMovie>
 
     @GET("movie/{id}?")
     suspend fun getMoviesDetails(
         @Path("id") page: Int?,
-        @Query("api_key") key: String = Constant.API_KEY
-    ): MovieID
+        @Query("api_key") key: String = Constant.API_KEY,
+        @Query("language") language: String = language(),
+    ): Response<IDMovie>
 
     @GET("movie/{id}/credits?")
     suspend fun getActors(
         @Path("id") page: Int?,
-        @Query("api_key") key: String = Constant.API_KEY
-    ): Actors
+        @Query("api_key") key: String = Constant.API_KEY,
+        @Query("language") language: String = language(),
+    ): Response<Actors>
 
     @GET("movie/{id}/similar?")
     suspend fun getSimilar(
-        @Path("id") page: Int?,
-        @Query("api_key") key: String = Constant.API_KEY
-    ): Similar
+        @Path("id") id: Int?,
+        @Query("api_key") key: String = Constant.API_KEY,
+        @Query("page") page: Int?,
+        @Query("language") language: String = language(),
+    ): Response<Similar>
 
 
     @GET("genre/movie/list")
-    suspend fun getMovieGenres(
-        @Query("api_key") key: String = Constant.API_KEY
-    ): Genre
+    suspend fun getGenresMovie(
+        @Query("api_key") key: String = Constant.API_KEY,
+        @Query("language") language: String = language(),
+    ): Response<Genre>
 
-    @GET("search/multi?")
-    suspend fun getMultiSearch(
+    @GET("search/movie?")
+    suspend fun getSearchMovie(
         @Query("api_key") key: String = Constant.API_KEY,
         @Query("query") query: String,
         @Query("page") page: Int,
-    ): Search
+        @Query("language") language: String = language(),
+    ): SearchMovie
+
+
 }

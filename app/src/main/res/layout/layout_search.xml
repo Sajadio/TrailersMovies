@@ -6,6 +6,9 @@
 
     <data>
 
+        <variable
+            name="search"
+            type="com.example.trailers.data.model.movie.search.Result" />
 
     </data>
 
@@ -37,6 +40,7 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:setImage="@{search.poster_path}"
                 tools:srcCompat="@drawable/img" />
 
         </com.google.android.material.card.MaterialCardView>
@@ -47,40 +51,28 @@
             style="@style/Body2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
             android:ellipsize="end"
             android:gravity="start|center"
             android:maxLines="1"
-            android:layout_marginStart="@dimen/size_8"
             android:textColor="?attr/textColor"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/cardView"
             app:layout_constraintTop_toTopOf="@+id/cardView"
+            app:setText="@{search.original_title}"
             tools:text="Star Wars: IV" />
-
-        <TextView
-            android:id="@+id/media_type"
-            style="@style/Caption"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:layout_marginTop="@dimen/size_8"
-            android:gravity="start|center"
-            android:maxLines="1"
-            android:textColor="?attr/textColorHint"
-            app:layout_constraintStart_toStartOf="@+id/title"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            tools:text="Movie" />
 
         <TextView
             android:id="@+id/date"
             style="@style/Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_16"
             android:gravity="start|center"
             android:textColor="@color/redLight"
-            android:layout_marginTop="@dimen/size_16"
             app:layout_constraintStart_toStartOf="@+id/title"
-            app:layout_constraintTop_toBottomOf="@+id/media_type"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:setDate="@{search.release_date}"
             tools:text="2022-01-02" />
 
         <TextView
@@ -102,13 +94,14 @@
             style="@style/Caption"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:gravity="center"
             android:layout_marginStart="@dimen/size_8"
+            android:gravity="center"
             android:textColor="?attr/textColorHint"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
             app:layout_constraintStart_toEndOf="@+id/linearLayout"
             app:layout_constraintTop_toTopOf="@+id/linearLayout"
             app:layout_constraintVertical_bias="0.0"
+            app:vote_count="@{search.vote_count}"
             tools:text="(10.6 k)" />
 
 
@@ -116,14 +109,36 @@
             android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="@dimen/size_8"
+            android:gravity="center"
             app:layout_constraintStart_toStartOf="@+id/genres"
             app:layout_constraintTop_toBottomOf="@+id/genres">
 
-            <include
-                android:id="@+id/ratingBar"
-                layout="@layout/view_rating_bar" />
+            <androidx.appcompat.widget.AppCompatRatingBar
+                android:id="@+id/rating"
+                style="@style/CustomRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:setRate="@{search.vote_average}" />
+
+            <TextView
+                android:id="@+id/textRating"
+                style="@style/Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/size_4"
+                android:gravity="center"
+                android:textColor="?attr/textColorHint"
+                app:layout_constraintBottom_toBottomOf="@+id/rating"
+                app:layout_constraintStart_toEndOf="@+id/rating"
+                app:layout_constraintTop_toTopOf="@+id/rating"
+                app:setTextRate="@{search.vote_average}"
+                tools:text="3.5" />
 
         </LinearLayout>
 

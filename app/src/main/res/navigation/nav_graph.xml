@@ -10,14 +10,7 @@
         android:label="HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_genresFragment"
-            app:destination="@id/categoriesFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_homeFragment_to_popularFragment"
-            app:destination="@id/popularFragment"
+            app:destination="@id/genresFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -36,14 +29,25 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_commonFragment"
+            app:destination="@id/commonFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+            <argument
+                android:name="id"
+                app:argType="integer" />
 
+        </action>
     </fragment>
     <fragment
-        android:id="@+id/categoriesFragment"
+        android:id="@+id/genresFragment"
         android:name="com.example.trailers.ui.fragment.genres.GenresFragment"
         android:label="CategoriesFragment">
         <action
-            android:id="@+id/action_categoriesFragment_to_moiveFragment"
+            android:id="@+id/action_genresFragment_to_moiveFragment"
             app:destination="@id/moiveFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
@@ -56,18 +60,6 @@
         android:label="FavoriteFragment">
         <action
             android:id="@+id/action_favoriteFragment_to_moiveFragment"
-            app:destination="@id/moiveFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
-    <fragment
-        android:id="@+id/popularFragment"
-        android:name="com.example.trailers.ui.fragment.rated.RatedFragment"
-        android:label="PopularFragment">
-        <action
-            android:id="@+id/action_popularFragment_to_moiveFragment"
             app:destination="@id/moiveFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
@@ -105,13 +97,62 @@
     <fragment
         android:id="@+id/moiveFragment"
         android:name="com.example.trailers.ui.fragment.movie.MovieFragment"
-        android:label="MoiveFragment" >
+        android:label="MoiveFragment">
 
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_moiveFragment_to_similarFragment"
+            app:destination="@id/similarFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_moiveFragment_to_videoPlayActivity"
+            app:destination="@id/videoPlayActivity"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+    <fragment
+        android:id="@+id/similarFragment"
+        android:name="com.example.trailers.ui.fragment.movie.SimilarFragment"
+        android:label="SimilarFragment">
+        <action
+            android:id="@+id/action_similarFragment_to_moiveFragment"
+            app:destination="@id/moiveFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <activity
+        android:id="@+id/videoPlayActivity"
+        android:name="com.example.trailers.ui.fragment.movie.VideoPlayActivity"
+        android:label="VideoPlayActivity">
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </activity>
+    <fragment
+        android:id="@+id/commonFragment"
+        android:name="com.example.trailers.ui.fragment.common.CommonFragment"
+        android:label="PopularFragment">
+        <action
+            android:id="@+id/action_commonFragment_to_moiveFragment"
+            app:destination="@id/moiveFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
 
+        <argument
+            android:name="id"
+            app:argType="integer" />
 
+    </fragment>
 
 </navigation>

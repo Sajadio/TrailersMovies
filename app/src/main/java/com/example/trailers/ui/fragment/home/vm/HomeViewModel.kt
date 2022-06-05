@@ -2,88 +2,112 @@ package com.example.trailers.ui.fragment.home.vm
 
 
 import androidx.lifecycle.*
-import com.example.trailers.data.loacal.playnow.PlayNowResultEntity
-import com.example.trailers.data.repository.HomeRepo
-import com.example.trailers.utils.MultiViewTypeItem
-import com.example.trailers.utils.NetworkStatus
-import com.example.trailers.utils.ViewTypeHome
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.example.trailers.R
+import com.example.trailers.data.model.genre.Genre
+import com.example.trailers.data.model.movie.common.CommonResult
+import com.example.trailers.data.model.movie.genremovie.MovieResult
+import com.example.trailers.data.repository.home.HomeRepo
+import com.example.trailers.data.repository.common.CommonRepo
+import com.example.trailers.utils.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class HomeViewModel @Inject constructor(private val homeRepo: HomeRepo) : ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val homeRepo: HomeRepo,
+    private val commonRepo: CommonRepo,
+) : ViewModel() {
 
-    private val _responseData: MutableLiveData<List<MultiViewTypeItem<Any>>> =
+    private val _responseData: MutableLiveData<List<MultiViewTypeItem<NetworkStatus<Any>>>> =
         MutableLiveData()
-    val responseData: LiveData<List<MultiViewTypeItem<Any>>> = _responseData
+    val responseData: LiveData<List<MultiViewTypeItem<NetworkStatus<Any>>>> = _responseData
 
-    val requestStatus: LiveData<NetworkStatus<Any?>> =
-        homeRepo.getMoviePlayNow().asLiveData()
-
-    val connection: MutableLiveData<Int> = MutableLiveData(0)
-    val checkConnection: LiveData<Int> = connection
-
-    private val multiViewType = mutableListOf<MultiViewTypeItem<Any>>()
-
-    init {
-        _responseData.postValue(multiViewType)
-        getPlayNow()
-        getPopular()
-        getTopRated()
-        getUpComing()
-    }
+    lateinit var getGenresMovie: LiveData<NetworkStatus<Genre?>>
 
 
-    private fun getPlayNow() {
-        viewModelScope.launch {
-            homeRepo.getMoviePlayNow().collect { state ->
-                state.data()?.let {
-                    multiViewType.add(MultiViewTypeItem(it, ViewTypeHome.PLAY_NOW.ordinal))
-                    multiViewType.add(MultiViewTypeItem("",
-                        ViewTypeHome.HEADER_VIEW_POPULAR.ordinal))
-                }
+    private val multiViewType = mutableSetOf<MultiViewTypeItem<NetworkStatus<Any>>>()
+
+
+    // Paging
+    lateinit var responseCommonPagingData: LiveData<PagingData<CommonResult>>
+    lateinit var getGenresOfMovie: LiveData<PagingData<MovieResult>>
+
+    fun checkConnection(isConnection: Int): Boolean {
+        if (isConnection == R.string.connected) {
+            viewModelScope.launch {
+
+                getGenresMovie = commonRepo.getGenresMovie().flowOn(Dispatchers.Main).asLiveData()
+
+                val playNow = async(Dispatchers.IO) { getTrend() }
+                val popular = async(Dispatchers.IO) { getPopular() }
+                val rated = async(Dispatchers.IO) { getTopRated() }
+                val coming = async(Dispatchers.IO) { getUpComing() }
+
+                if (playNow.await() == popular.await() && rated.await() == coming.await())
+                    withContext(Dispatchers.Main) {
+                        _responseData.postValue(multiViewType.toList().sortedBy { it.viewType })
+                    }
             }
+            return false
+        } else {
+            return true
         }
     }
 
+    fun getGenresOfMovie(genreId: String) {
+        getGenresOfMovie =
+            commonRepo.getGenreList(genreId = genreId).cachedIn(viewModelScope)
+                .flowOn(Dispatchers.Main).asLiveData()
+    }
 
-    private fun getPopular() {
-        viewModelScope.launch {
-            homeRepo.getMoviePopular().collect { state ->
-                state.data()?.let {
+    fun checkDestination(id: Int) {
+        when (id) {
+            Constant.POPULAR -> responseCommonPagingData =
+                commonRepo.getPopularMoviePaging().cachedIn(viewModelScope).flowOn(Dispatchers.Main)
+                    .asLiveData()
+            Constant.TOP_RATED -> responseCommonPagingData =
+                commonRepo.getTopRatedMoviePaging().cachedIn(viewModelScope)
+                    .flowOn(Dispatchers.Main).asLiveData()
+            Constant.UP_COMING -> responseCommonPagingData =
+                commonRepo.getUpComingMoviePaging().cachedIn(viewModelScope)
+                    .flowOn(Dispatchers.Main).asLiveData()
+        }
 
-                    multiViewType.add(MultiViewTypeItem(it, ViewTypeHome.POPULAR.ordinal))
-                }
-            }
+    }
+
+    private suspend fun getTrend() {
+        homeRepo.getTrendMovie().collect { state ->
+            multiViewType.add(MultiViewTypeItem(state, ViewType.TRENDING.ordinal))
         }
     }
 
-
-    private fun getTopRated() {
-        viewModelScope.launch {
-            homeRepo.getMovieTopRated().collect { state ->
-                state.data()?.let {
-                    multiViewType.add(MultiViewTypeItem("",
-                        ViewTypeHome.HEADER_VIEW_TOP_RATED.ordinal))
-                    multiViewType.add(MultiViewTypeItem(it, ViewTypeHome.RATED.ordinal))
-                }
-            }
+    private suspend fun getPopular() {
+        homeRepo.getMoviePopular().collect { state ->
+            multiViewType.add(MultiViewTypeItem(null, ViewType.HEADER_VIEW_POPULAR.ordinal))
+            multiViewType.add(MultiViewTypeItem(state, ViewType.POPULAR.ordinal))
         }
     }
 
-    private fun getUpComing() {
-        viewModelScope.launch {
-            homeRepo.getUpComingMovie().collect { state ->
-                state.data()?.let {
-                    multiViewType.add(MultiViewTypeItem("",
-                        ViewTypeHome.HEADER_VIEW_UPCOMING.ordinal))
-                    multiViewType.add(MultiViewTypeItem(it, ViewTypeHome.UPCOMING.ordinal))
-                }
-            }
+    private suspend fun getTopRated() {
+        homeRepo.getMovieTopRated().collect { state ->
+            multiViewType.add(MultiViewTypeItem(null, ViewType.HEADER_VIEW_TOP_RATED.ordinal))
+            multiViewType.add(MultiViewTypeItem(state, ViewType.RATED.ordinal))
         }
     }
 
+    private suspend fun getUpComing() {
+        homeRepo.getUpComingMovie().collect { state ->
+            multiViewType.add(MultiViewTypeItem(null, ViewType.HEADER_VIEW_UPCOMING.ordinal))
+            multiViewType.add(MultiViewTypeItem(state, ViewType.UPCOMING.ordinal))
+        }
+    }
 
 }
 

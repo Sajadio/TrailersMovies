@@ -3,7 +3,7 @@ package com.example.trailers.data.repository.search
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.example.trailers.data.model.search.Result
+import com.example.trailers.data.model.movie.search.Result
 import com.example.trailers.data.network.ApiService
 import com.example.trailers.utils.SafeApiCall
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +15,7 @@ class SearchRepo @Inject constructor(
     private val api: ApiService,
 ) : SafeApiCall {
 
-    fun getMultiSearch(query: String): Flow<PagingData<Result>> =
+    fun getMovieSearch(query: String): Flow<PagingData<Result>> =
         Pager(config = PagingConfig(pageSize = 20, prefetchDistance = 2),
             pagingSourceFactory = { SearchPagingSource(api = api, query = query) }
         ).flow

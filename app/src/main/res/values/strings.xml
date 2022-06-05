@@ -5,7 +5,7 @@
     <string name="app_name">Trailers</string>
     <string name="favorite">Favorite</string>
     <string name="page_title">Page Title</string>
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search">Search</string>
     <string name="search_box">Search here…</string>
@@ -26,7 +26,7 @@
     <string name="similar">Similar</string>
     <string name="season">Season 1</string>
     <string name="seeAll">See All</string>
-    <string name="generes">Generes</string>
+    <string name="categories">Generes</string>
     <string name="testing">for dialog</string>
     <string name="decline">Cancel</string>
     <string name="accept">Ok</string>
@@ -49,6 +49,12 @@
     <string name="email">Email</string>
     <string name="confirm_password">Confirm password</string>
     <string name="no_result">No Result!</string>
-    <string name="rate">Top Rated</string>
+    <string name="rated">Top Rated</string>
     <string name="upComing">Upcoming</string>
+    <string name="genres">Genres</string>
+    <string name="seeMorePopular">See more  popular movies</string>
+    <string name="seeMoreTopRated">See more top rated movies</string>
+    <string name="seeMoreTopComing">See more up coming movies</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="trending">Trending</string>
 </resources>

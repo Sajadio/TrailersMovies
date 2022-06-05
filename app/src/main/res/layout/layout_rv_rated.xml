@@ -5,9 +5,6 @@
 
     <data>
 
-        <variable
-            name="rated"
-            type="com.example.trailers.data.model.movie.rate.TopRatedMovie" />
 
     </data>
 
@@ -16,10 +13,9 @@
         android:layout_height="wrap_content"
         android:background="?attr/mainColor">
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewRated"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/secondColor"
             android:orientation="horizontal"

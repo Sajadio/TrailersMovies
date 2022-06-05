@@ -2,6 +2,7 @@ package com.example.trailers.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.Animation
@@ -17,15 +18,11 @@ import com.example.trailers.R
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.snackbar.Snackbar
+import retrofit2.http.Query
+import java.util.*
 
 
-fun AppCompatImageButton.favoriteItem(isFavorite: Boolean) {
-    this.isVisible = isFavorite
-    if (isFavorite)
-        Toast.makeText(context, "Saved item", Toast.LENGTH_LONG).show()
-    else
-        Toast.makeText(context, "Deleted item", Toast.LENGTH_LONG).show()
-}
+fun language() = if (Locale.getDefault().displayLanguage == "English") "en" else "ar"
 
 @SuppressLint("ResourceAsColor")
 fun ChipGroup.addChipView(chipText: String, layoutInflater: LayoutInflater, layout: Int) {
@@ -46,8 +43,7 @@ fun ImageView.loadImagetesting(url: Int) {
 fun ImageView.loadImage(url: String) {
     Glide.with(this)
         .load(Constant.IMAGE_PATH + url)
-        .error(this.resources.getDrawable(R.drawable.ic_baseline_refresh_24))
-        .placeholder(this.resources.getDrawable(R.drawable.ic_launcher_background))
+        .placeholder(this.resources.getDrawable(R.drawable.ic_outline_movie_24))
         .into(this)
 }
 

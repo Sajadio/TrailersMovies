@@ -6,21 +6,24 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trailers.utils.ParentListAdapter
 
 abstract class BaseAdapter<BINDING : ViewDataBinding, T : ParentListAdapter>(
-    private var data: List<T>,
-) : RecyclerView.Adapter<BaseViewHolder<BINDING>>() {
+    private val list: List<ParentListAdapter>,
+) :
+    RecyclerView.Adapter<BaseViewHolder<BINDING>>() {
     @get:LayoutRes
     abstract val layoutId: Int
 
-    abstract fun bind(binding: BINDING, item: T)
+    abstract fun bind(binding: BINDING, item1: Int, item: T)
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateData(list: List<T>) {
-        this.data = list
-        notifyDataSetChanged()
+    private val differ = AsyncListDiffer(this, DifferCallbacks)
+
+    init {
+        differ.submitList(list)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<BINDING> {
@@ -34,10 +37,25 @@ abstract class BaseAdapter<BINDING : ViewDataBinding, T : ParentListAdapter>(
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder<BINDING>, position: Int) {
-        bind(holder.binder, data[position])
+            bind(holder.binder,holder.layoutPosition, differ.currentList[position] as T)
     }
 
-    override fun getItemCount(): Int = data.size
+    override fun getItemCount(): Int = differ.currentList.size - 10
+
+    object DifferCallbacks : DiffUtil.ItemCallback<ParentListAdapter>() {
+        override fun areItemsTheSame(
+            oldItem: ParentListAdapter,
+            newItem: ParentListAdapter,
+        ) =
+            oldItem == newItem
+
+        @SuppressLint("DiffUtilEquals")
+        override fun areContentsTheSame(
+            oldItem: ParentListAdapter,
+            newItem: ParentListAdapter,
+        ) =
+            oldItem == newItem
+    }
 
 }
 

@@ -2,11 +2,8 @@ package com.example.trailers.di.component
 
 import android.content.Context
 import com.example.trailers.App
+import com.example.trailers.di.inject.*
 import com.example.trailers.di.module.AppModule
-import com.example.trailers.di.inject.InjectHomeModule
-import com.example.trailers.di.inject.InjectMovieDetailsModule
-import com.example.trailers.di.inject.InjectSearchModule
-import com.example.trailers.di.module.LocalModule
 import com.example.trailers.di.module.NetworkModule
 import com.example.trailers.di.module.ProvideViewModel
 import dagger.BindsInstance
@@ -17,13 +14,16 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [
+    InjectActivityModule::class,
     InjectHomeModule::class,
     InjectSearchModule::class,
+    InjectCommonModule::class,
+    InjectGenreModule::class,
     InjectMovieDetailsModule::class,
+    InjectSimilarModule::class,
     AppModule::class,
     AndroidSupportInjectionModule::class,
     NetworkModule::class,
-    LocalModule::class,
     ProvideViewModel::class])
 interface AppComponent {
 
@@ -31,6 +31,7 @@ interface AppComponent {
 
     @Component.Builder
     interface Builder {
+
         @BindsInstance
         fun application(@Named("my_application")app: App): Builder
 

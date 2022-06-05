@@ -5,9 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="popular"
-            type="com.example.trailers.data.loacal.popular.PopularResultEntity" />
+            type="com.example.trailers.data.model.movie.common.CommonResult" />
     </data>
 
 
@@ -33,11 +34,11 @@
                 android:layout_height="200dp"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
-                app:setImage="@{popular.poster}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/img"  />
+                app:setImage="@{popular.poster_path}"
+                tools:srcCompat="@drawable/img" />
 
 
             <TextView
@@ -46,15 +47,15 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/size_4"
-                android:ellipsize="end"
                 android:layout_marginTop="@dimen/size_8"
+                android:ellipsize="end"
                 android:gravity="start|center"
-                app:setText="@{popular.title}"
                 android:maxLines="1"
                 android:textColor="?attr/textColor"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/poster"
+                app:setText="@{popular.original_title}"
                 tools:text="Star Wars: IV" />
 
             <TextView
@@ -62,12 +63,12 @@
                 style="@style/Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:setDate="@{popular.date}"
                 android:layout_marginTop="@dimen/size_8"
                 android:gravity="start|center"
                 android:textColor="?attr/textColorHint"
                 app:layout_constraintStart_toStartOf="@+id/title"
                 app:layout_constraintTop_toBottomOf="@+id/title"
+                app:setDate="@{popular.release_date}"
                 tools:text="2014" />
 
             <TextView
@@ -91,15 +92,15 @@
                 style="@style/Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="@dimen/size_4"
                 android:drawablePadding="2dp"
                 android:gravity="center"
-                app:setRate="@{popular.average}"
                 android:paddingBottom="@dimen/size_8"
                 android:textColor="?attr/textColorHint"
                 app:drawableStartCompat="@drawable/ic_baseline_star_12"
                 app:layout_constraintStart_toStartOf="@+id/date"
                 app:layout_constraintTop_toBottomOf="@+id/date"
+                app:setTextRate="@{popular.vote_average}"
                 tools:text="9.2" />
 
             <TextView
@@ -107,14 +108,53 @@
                 style="@style/Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginStart="@dimen/size_4"
+                android:layout_marginStart="@dimen/size_12"
+                android:drawablePadding="@dimen/size_4"
+                android:gravity="center"
+                android:paddingBottom="@dimen/size_8"
                 android:textColor="?attr/textColorHint"
+                app:drawableStartCompat="@drawable/ic_outline_remove_red_eye_12"
                 app:layout_constraintBottom_toBottomOf="@+id/textRating"
                 app:layout_constraintStart_toEndOf="@+id/textRating"
                 app:layout_constraintTop_toTopOf="@+id/textRating"
                 app:layout_constraintVertical_bias="0.0"
-                app:vote_count="@{popular.view}"
-                tools:text="(10.6 k)" />
+                app:vote_count="@{popular.vote_count}"
+                tools:text="10.6 k" />
+
+            <LinearLayout
+                android:id="@+id/seeMore"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="?attr/mainColor"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/arrow_right"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    style="@style/Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center"
+                    android:text="@string/seeMorePopular"
+                    android:textColor="?attr/textColorHint"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/poster" />
+            </LinearLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

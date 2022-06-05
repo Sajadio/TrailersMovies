@@ -2,7 +2,7 @@ package com.example.trailers.data.repository.search
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.trailers.data.model.search.Result
+import com.example.trailers.data.model.movie.search.Result
 import com.example.trailers.data.network.ApiService
 import com.example.trailers.utils.Constant
 
@@ -21,7 +21,7 @@ class SearchPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Result> {
         val pageNumber = params.key ?: Constant.INITIAL_PAGE
         return try {
-            val response = api.getMultiSearch(query = query, page = pageNumber)
+            val response = api.getSearchMovie(query = query, page = pageNumber)
             val data = response.results
             LoadResult.Page(
                 data = data ?: emptyList(),

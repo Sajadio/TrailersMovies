@@ -5,7 +5,14 @@ import com.example.trailers.R
 object Constant {
     const val BASE_URL = "https://api.themoviedb.org/3/"
     const val IMAGE_PATH = "https://image.tmdb.org/t/p/w500/"
+    const val YOUTUBE_BASE = "https://www.youtube.com/watch?v="
+    const val YOUTUBE_KEY = "AIzaSyC6YnlwPt9XHT6EY22WYbVcX9JD5osQ3_I"
     const val API_KEY = "24ada3556f9c3697c024bc6ba0f1ab99"
+
+    const val POPULAR = R.string.popular
+    const val TOP_RATED: Int = R.string.rated
+    const val UP_COMING = R.string.upComing
+
     const val ENGLISH = "en"
     const val ARABIC = "ar"
     const val LIGHT = R.string.light
@@ -16,6 +23,8 @@ object Constant {
     const val BROADCAST_STRING_FOR_ACTION = "checkInternet"
     const val ONLINE_STATUS = "online_status"
     const val INITIAL_PAGE = 1
+    const val DEFAULT_PAGE_INDEX = 1
+    const val DEFAULT_PAGE_SIZE = 20
 
 
     fun genresMovie(): HashMap<Int, String> {
@@ -35,7 +44,7 @@ object Constant {
         genre[9648] = "Mystery"
         genre[10749] = "Romance"
         genre[878] = "Fiction"
-        genre[10770] = "Movie"
+        genre[10770] = "MovieResult"
         genre[53] = "Thriller"
         genre[10752] = "War"
         genre[37] = "Western"

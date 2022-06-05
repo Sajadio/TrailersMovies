@@ -14,19 +14,6 @@
         android:id="@+id/delete"
         android:icon="@drawable/ic_twotone_delete_outline_24"
         android:title="@string/delete"
-        app:showAsAction="always" />
-
-    <item
-        android:id="@+id/setting"
-        android:title="@string/settings" />
-
-    <item
-        android:id="@+id/movie"
-        android:title="@string/movie" />
-
-    <item
-        android:id="@+id/tv"
-        android:title="@string/tv" />
-
+        app:showAsAction="ifRoom" />
 
 </menu>

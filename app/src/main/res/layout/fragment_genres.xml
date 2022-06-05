@@ -5,19 +5,24 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.trailers.ui.fragment.home.vm.HomeViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="?attr/mainColor"
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:background="?attr/secondColor"
+        app:layoutDescription="@xml/fragment_popular_xml_constraintlayout_scene">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:background="?attr/mainColor"
             android:layout_height="?attr/actionBarSize"
+            android:background="?attr/mainColor"
             android:minHeight="?attr/actionBarSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +37,7 @@
                 android:textColor="?attr/textColor"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="@string/generes" />
+                tools:text="Genres" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -40,48 +45,58 @@
             android:id="@+id/viewLine"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:background="?attr/secondColor"
+            android:textColor="?attr/secondColor"
             app:layout_constraintEnd_toEndOf="@+id/toolbar"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/toolbar"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-        <HorizontalScrollView
-            android:id="@+id/chipGroupTypingScroll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbarSize="0dp"
-            android:background="?attr/mainColor"
-            android:layout_marginHorizontal="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/viewLine"
-            app:layout_constraintStart_toStartOf="@+id/viewLine"
-            app:layout_constraintTop_toBottomOf="@+id/viewLine">
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroupGenres"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:chipSpacing="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:singleLine="true"
-                app:singleSelection="true" />
-
-        </HorizontalScrollView>
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcGeneres"
+            android:id="@+id/rcChip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/mainColor"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewLine"
+            tools:listitem="@layout/layout_chips_item" />
+
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swiperefreshlayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:orientation="vertical"
-            android:background="?attr/mainColor"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/chipGroupTypingScroll"
-            app:layout_constraintStart_toStartOf="@+id/chipGroupTypingScroll"
-            app:layout_constraintTop_toBottomOf="@+id/chipGroupTypingScroll"
-            tools:listitem="@layout/layout_item_card_commen" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rcChip">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcGenres"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/secondColor"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/layout_item_card_popular_paging" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewLine"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+

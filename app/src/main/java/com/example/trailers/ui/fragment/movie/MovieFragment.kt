@@ -1,19 +1,21 @@
 package com.example.trailers.ui.fragment.movie
 
 import android.content.Context
-import android.util.Log
+import android.os.Bundle
 import android.view.*
 import com.example.trailers.databinding.FragmentMovieBinding
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.trailers.R
+import com.example.trailers.ui.activity.MovieActivity
 import com.example.trailers.ui.base.BaseFragment
 import com.example.trailers.ui.fragment.movie.adapter.ActorsAdapter
-import com.example.trailers.ui.fragment.movie.adapter.RelatedAdapter
+import com.example.trailers.ui.fragment.movie.adapter.SimilarAdapter
 import com.example.trailers.ui.fragment.movie.vm.MovieViewModel
-import com.example.trailers.utils.favoriteItem
-import com.example.trailers.utils.listChips
 import com.example.trailers.utils.setAsActionBar
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -23,6 +25,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
     @Inject
     lateinit var vm: MovieViewModel
     private val args: MovieFragmentArgs by navArgs()
+    lateinit var navBar: BottomNavigationView
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -31,6 +34,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
 
     override fun initial() {
         (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
+        navBar = (activity as MovieActivity?)!!.binding.navigation
 
         binding.apply {
             viewModel = vm
@@ -38,19 +42,44 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
             lifecycleOwner = this@MovieFragment
         }
 
-        setGenres()
-
-        vm.getID(args.id)
-        binding.include.rvRelated.adapter = RelatedAdapter(emptyList())
-        binding.include.rvActors.adapter = ActorsAdapter(emptyList())
-
-        binding.btnFavorite.setOnClickListener {
-            binding.btnFavorite.favoriteItem(isFavorite = false)
-            binding.btnNotFavorite.favoriteItem(isFavorite = true)
+        binding.include.seeAll.setOnClickListener {
+            findNavController().navigate(R.id.action_moiveFragment_to_similarFragment)
         }
-        binding.btnNotFavorite.setOnClickListener {
-            binding.btnFavorite.favoriteItem(isFavorite = true)
-            binding.btnNotFavorite.favoriteItem(isFavorite = false)
+        binding.playVideo.setOnClickListener {
+            setPlayVideo()
+        }
+
+        setGenres()
+        initialAdapter()
+    }
+
+    private fun setPlayVideo() {
+        vm.playVideo.observe(this) {
+            val bundle = Bundle()
+            it.data()?.results?.map {
+                bundle.putString("url", it.key)
+            }
+            findNavController()
+                .navigate(R.id.action_moiveFragment_to_videoPlayActivity,
+                    bundle,
+                    null,
+                    null)
+
+        }
+    }
+
+
+    private fun initialAdapter() {
+        vm.getID(args.id)
+        vm.actors.observe(this) {
+            it.data()?.cast?.let {
+                binding.include.rvActors.adapter = ActorsAdapter(it)
+            }
+        }
+        vm.similar.observe(this) {
+            it.data()?.results?.let {
+                binding.include.rvRelated.adapter = SimilarAdapter(it)
+            }
         }
     }
 
@@ -74,6 +103,16 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         binding.toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        navBar.isVisible = false
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        navBar.isVisible = true
     }
 
 }

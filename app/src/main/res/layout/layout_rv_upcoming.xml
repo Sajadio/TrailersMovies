@@ -5,29 +5,22 @@
 
     <data>
 
-        <variable
-            name="upcoming"
-            type="com.example.trailers.data.model.movie.upcoming.UPComingMovie" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/mainColor">
-
+        android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rc_coming"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="?attr/secondColor"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/layout_item_card_upoming" />
+            tools:listitem="@layout/layout_item_card_upcoming" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

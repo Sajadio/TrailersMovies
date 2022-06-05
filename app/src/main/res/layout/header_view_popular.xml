@@ -15,7 +15,7 @@
         android:padding="@dimen/size_8">
 
         <TextView
-            android:id="@+id/popular"
+            android:id="@+id/textHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -26,23 +26,6 @@
             android:textColor="?attr/textColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/seeAll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="end|center"
-            android:text="@string/seeAll"
-            android:padding="4dp"
-            android:background="@drawable/common_click_button"
-            android:textColor="@color/redLight"
-            android:textStyle="bold"
-            style="@style/Caption"
-            app:layout_constraintBottom_toBottomOf="@+id/popular"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/popular" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -14,16 +14,17 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="?attr/mainColor"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="?attr/mainColor">
 
 
         <ImageView
             android:id="@+id/favoriteImage"
             android:layout_width="match_parent"
             android:layout_height="300dp"
+            android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"
-            android:transitionName="image_big"
+            android:src="@drawable/img"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,40 +36,20 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:minHeight="?attr/actionBarSize"
             android:background="?attr/customColorToolbar"
+            android:minHeight="?attr/actionBarSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btnNotFavorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:background="#00000000"
-                android:layout_marginHorizontal="8dp"
-                android:src="@drawable/ic_baseline_favorite_border_24_white"
-                android:visibility="gone" />
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btnFavorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:background="#00000000"
-                android:layout_marginHorizontal="8dp"
-                android:src="@drawable/ic_baseline_favorite_24" />
 
         </androidx.appcompat.widget.Toolbar>
 
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btnPlayVideo"
+            android:id="@+id/playVideo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="#00000000"
             android:src="@drawable/ic_youtube"
             app:layout_constraintBottom_toBottomOf="@+id/favoriteImage"
             app:layout_constraintEnd_toEndOf="@+id/favoriteImage"
@@ -95,8 +76,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:loading="@{viewModel.responseData}" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -107,8 +87,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:loading="@{viewModel.responseData}" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

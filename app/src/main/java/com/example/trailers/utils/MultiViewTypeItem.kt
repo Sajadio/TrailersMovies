@@ -2,5 +2,5 @@ package com.example.trailers.utils
 
 data class MultiViewTypeItem<T>(
     val item: T?,
-    val typeHome: Int,
+    val viewType: Int,
 )

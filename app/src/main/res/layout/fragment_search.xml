@@ -33,18 +33,25 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rc_search"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swiperefreshlayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="?attr/secondColor"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewLine"
-            tools:listitem="@layout/layout_search" />
+            app:layout_constraintTop_toBottomOf="@+id/viewLine">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_search"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="?attr/secondColor"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/layout_search" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <androidx.core.widget.ContentLoadingProgressBar
             android:id="@+id/progress_bar"

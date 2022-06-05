@@ -47,262 +47,59 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 
-        <LinearLayout
-            android:id="@+id/containerAccount"
-            android:layout_width="0dp"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titleTheme"
+            style="@style/Headline5"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/secondColor"
+            android:layout_gravity="start|center"
             android:gravity="start|center"
-            android:orientation="horizontal"
-            android:padding="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/viewLine"
-            app:layout_constraintStart_toStartOf="@+id/viewLine"
-            app:layout_constraintTop_toTopOf="@+id/viewLine">
-
-            <ImageView
-                android:id="@+id/imgUser"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_gravity="center|start"
-                android:src="@drawable/ic_launcher_background"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|start"
-                android:layout_marginStart="8dp"
-                android:gravity="start|center"
-                android:text="Sajjadio23\nsajad20862@ggmail.com"
-                android:textColor="?attr/textColorHint"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/imgUser"
-                app:layout_constraintTop_toTopOf="@+id/imgUser" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/containerHistory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="start|center"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/theme"
+            android:textColor="?attr/textColor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/containerAccount">
+            app:layout_constraintTop_toBottomOf="@+id/viewLine" />
 
-            <ImageView
-                android:id="@+id/iconHistory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|center"
-                android:src="@drawable/ic_baseline_history_24" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/titleHistory"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|center"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:gravity="start|center"
-                android:text="@string/history"
-                android:textColor="?attr/textColor"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/iconHistory"
-                app:layout_constraintStart_toEndOf="@+id/iconHistory"
-                app:layout_constraintTop_toTopOf="@+id/iconHistory" />
-
-            <ImageView
-                android:id="@+id/moveHistory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center"
-                android:src="@drawable/ic_round_keyboard_arrow_right_24" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/containerFavorite"
+        <RadioGroup
+            android:id="@+id/radioGroupTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="start|center"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/containerHistory"
-            app:layout_constraintTop_toBottomOf="@+id/containerHistory">
+            android:layout_gravity="start|center"
+            android:layout_marginStart="32dp"
+            android:gravity="start"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/iconFavorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|center"
-                android:src="@drawable/ic_twotone_favorite_24" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/titleFavorite"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|center"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:gravity="start|center"
-                android:text="@string/favorite"
-                android:textColor="?attr/textColor"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/moveFavorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center"
-                android:src="@drawable/ic_round_keyboard_arrow_right_24" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/containerAppTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="start|center_vertical"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/containerFavorite"
-            app:layout_constraintStart_toStartOf="@+id/containerFavorite"
-            app:layout_constraintTop_toBottomOf="@+id/containerFavorite">
-
-            <ImageView
-                android:id="@+id/iconTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|center"
-                android:src="@drawable/ic_outline_dark_mode_24" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/titleTheme"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|center"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:gravity="start|center"
-                android:textColor="?attr/textColor"
-                android:maxLines="1"
-                android:text="@string/theme"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/showMoreTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center"
-                android:src="@drawable/ic_baseline_keyboard_arrow_down_24" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/containerAppThemeExpand"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="start|center"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@+id/containerAppTheme"
-            app:layout_constraintStart_toStartOf="@+id/containerAppTheme"
-            app:layout_constraintTop_toBottomOf="@+id/containerAppTheme">
-
-            <RadioGroup
-                android:id="@+id/radioGroupTheme"
+            <RadioButton
+                android:id="@+id/systemDefault"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|center"
-                android:layout_marginStart="32dp"
-                android:gravity="start"
-                android:orientation="vertical">
-
-                <RadioButton
-                    android:id="@+id/systemDefault"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start|center"
-                    android:gravity="start|center"
-                    android:text="@string/systemDefault"
-                    android:textColor="?attr/textColor"
-                    android:textSize="14sp" />
-
-                <RadioButton
-                    android:id="@+id/light"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start|center"
-                    android:gravity="start|center"
-                    android:text="@string/light"
-                    android:textColor="?attr/textColor"
-                    android:textSize="14sp" />
-
-                <RadioButton
-                    android:id="@+id/dark"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start|center"
-                    android:gravity="start|center"
-                    android:text="@string/dark"
-                    android:textColor="?attr/textColor"
-                    android:textSize="14sp" />
-
-            </RadioGroup>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/containerLogout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="start|center_vertical"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/containerAppTheme"
-            app:layout_constraintTop_toBottomOf="@+id/containerAppThemeExpand">
-
-            <ImageView
-                android:id="@+id/iconLogOut"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|center"
-                android:src="@drawable/ic_baseline_login_24" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/titleLogOut"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|center"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:gravity="start"
-                android:text="@string/logout"
+                android:gravity="start|center"
+                android:text="@string/systemDefault"
                 android:textColor="?attr/textColor"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
-            <ImageView
-                android:id="@+id/moveLogOut"
-                android:layout_width="wrap_content"
+            <RadioButton
+                android:id="@+id/light"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|center"
-                android:src="@drawable/ic_round_keyboard_arrow_right_24" />
+                android:layout_gravity="start|center"
+                android:gravity="start|center"
+                android:text="@string/light"
+                android:textColor="?attr/textColor"
+                android:textSize="14sp" />
 
-        </LinearLayout>
+            <RadioButton
+                android:id="@+id/dark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:gravity="start|center"
+                android:text="@string/dark"
+                android:textColor="?attr/textColor"
+                android:textSize="14sp" />
+
+        </RadioGroup>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

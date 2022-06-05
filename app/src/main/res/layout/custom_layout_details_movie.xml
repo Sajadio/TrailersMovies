@@ -46,19 +46,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/titleSeries" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/companyLogo"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/ic_youtube"
-                app:layout_constraintBottom_toBottomOf="@+id/btnShare"
-                app:layout_constraintEnd_toStartOf="@+id/btnShare"
-                app:layout_constraintTop_toTopOf="@+id/btnShare"
-                app:layout_constraintVertical_bias="0.333" />
-
             <TextView
                 android:id="@+id/generes"
+                style="@style/Body2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -66,7 +56,6 @@
                 android:gravity="start|center"
                 android:maxLines="4"
                 android:textColor="?attr/textColorHint"
-                style="@style/Body2"
                 app:layout_constraintEnd_toEndOf="@+id/btnShare"
                 app:layout_constraintStart_toStartOf="@+id/titleSeries"
                 app:layout_constraintTop_toBottomOf="@+id/titleSeries"
@@ -75,14 +64,16 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_time"
+                style="@style/Caption"
+                android:drawablePadding="@dimen/size_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:drawableEnd="@drawable/ic_baseline_access_time_24"
                 android:background="@drawable/background_gray"
                 android:gravity="center"
                 android:padding="8dp"
                 android:textColor="?attr/textColorHint"
-                style="@style/Caption"
                 app:layout_constraintStart_toStartOf="@+id/generes"
                 app:layout_constraintTop_toBottomOf="@+id/generes"
                 app:setTime="@{viewModel.responseData.data().runtime}"
@@ -90,6 +81,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/rate"
+                style="@style/Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
@@ -99,15 +91,15 @@
                 android:gravity="center"
                 android:padding="8dp"
                 android:textColor="?attr/textColorHint"
-                style="@style/Caption"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_time"
                 app:layout_constraintStart_toEndOf="@+id/tv_time"
                 app:layout_constraintTop_toTopOf="@+id/tv_time"
-                app:setRate="@{viewModel.responseData.data().vote_average}"
+                app:setTextRate="@{viewModel.responseData.data().vote_average}"
                 tools:text="4.5 " />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/date"
+                style="@style/Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
@@ -115,7 +107,6 @@
                 android:gravity="center"
                 android:padding="8dp"
                 android:textColor="?attr/textColorHint"
-                style="@style/Caption"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_time"
                 app:layout_constraintStart_toEndOf="@+id/rate"
                 app:layout_constraintTop_toTopOf="@+id/tv_time"
@@ -125,6 +116,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/description"
+                style="@style/Body2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -132,7 +124,6 @@
                 android:gravity="start|center"
                 android:maxLines="4"
                 android:textColor="?attr/textColorHint"
-                style="@style/Body2"
                 app:layout_constraintEnd_toEndOf="@+id/btnShare"
                 app:layout_constraintStart_toStartOf="@+id/tv_time"
                 app:layout_constraintTop_toBottomOf="@+id/date"
@@ -141,12 +132,12 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/titleActors"
+                style="@style/Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/actors"
                 android:textColor="?attr/textColor"
-                style="@style/Headline6"
                 app:layout_constraintStart_toStartOf="@+id/description"
                 app:layout_constraintTop_toBottomOf="@+id/description" />
 
@@ -160,20 +151,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/titleActors"
                 app:layout_constraintTop_toBottomOf="@+id/titleActors"
-                app:submitList="@{viewModel.actors.data().cast}"
                 tools:listitem="@layout/layout_item_actors" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/titleRelated"
+                style="@style/Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/similar"
                 android:textColor="?attr/textColor"
-                style="@style/Headline6"
                 app:layout_constraintStart_toStartOf="@+id/description"
                 app:layout_constraintTop_toBottomOf="@+id/rv_actors" />
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_related"
@@ -186,8 +177,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/titleActors"
                 app:layout_constraintTop_toBottomOf="@+id/titleRelated"
-                app:submitList="@{viewModel.similar.data().results}"
-                tools:listitem="@layout/layout_item_related" />
+                tools:listitem="@layout/layout_item_similar" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/seeAll"
+                style="@style/Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/seeAll"
+                android:textColor="@color/redLight"
+                app:layout_constraintBottom_toBottomOf="@+id/titleRelated"
+                app:layout_constraintEnd_toEndOf="@+id/rv_actors"
+                app:layout_constraintTop_toTopOf="@+id/titleRelated" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

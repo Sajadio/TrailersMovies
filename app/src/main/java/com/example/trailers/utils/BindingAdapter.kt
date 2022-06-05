@@ -1,54 +1,85 @@
 package com.example.trailers.utils
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.trailers.data.model.genre.Genre
+import com.example.trailers.R
 import com.example.trailers.ui.base.adapter.BaseAdapter
-import com.example.trailers.ui.fragment.home.adapter.ParentAdapter
+import com.example.trailers.ui.fragment.home.adapter.MultiTypeViewAdapter
 
-@BindingAdapter("app:setAdapter")
-fun setAdapter(
-    recyclerView: RecyclerView,
-    adapter: ParentAdapter?,
-) {
-    adapter?.let {
-        recyclerView.adapter = it
-        recyclerView.setHasFixedSize(true)
-    }
-}
+//@BindingAdapter("setAdapter")
+//fun setAdapter(
+//    recyclerView: RecyclerView,
+//    adapter: BaseAdapter<ViewDataBinding, ParentListAdapter>?,
+//) {
+//    adapter?.let {
+//        recyclerView.adapter = it
+//    }
+//}
+//
+//
+//@Suppress("UNCHECKED_CAST")
+//@BindingAdapter("submitList")
+//fun submitList(recyclerView: RecyclerView, list: List<ParentListAdapter>?) {
+//    val adapter = recyclerView.adapter as BaseAdapter<ViewDataBinding, ParentListAdapter>?
+//    list?.let {
+//        adapter?.update(list)
+//    }
+//}
 
-
-@Suppress("UNCHECKED_CAST")
-@BindingAdapter("app:submitList")
-fun submitList(recyclerView: RecyclerView, list: List<ParentListAdapter>?) {
-    val adapter = recyclerView.adapter as BaseAdapter<ViewDataBinding, ParentListAdapter>
-    list?.let {
-        adapter.updateData(it)
-    }
-}
-
+//@Suppress("UNCHECKED_CAST")
+//@BindingAdapter("app:submitList")
+//fun submitList(recyclerView: RecyclerView, list: List<ParentListAdapter>?) {
+//    val adapter = recyclerView.adapter as BaseAdapter<ViewDataBinding, ParentListAdapter>
+//    list?.let {
+//        adapter.differ.submitList(it)
+//    }
+//}
 
 @BindingAdapter("app:loading")
-fun <T> View.loading(state: NetworkStatus<T>?) {
-    this.isVisible = state == NetworkStatus.Loading
+fun ProgressBar.loading(state: List<MultiViewTypeItem<NetworkStatus<Any>>>?) {
+    state?.map {
+        this.isVisible = (it.item is NetworkStatus.Loading)
+    }
 }
 
+@BindingAdapter("app:stateManage")
+fun RecyclerView.stateManage(state: List<MultiViewTypeItem<NetworkStatus<Any>>>?) {
+    state?.map {
+        this.isVisible = (it.item !is NetworkStatus.Error)
+    }
+}
+
+
+@BindingAdapter("app:mError")
+fun TextView.mError(state: List<MultiViewTypeItem<NetworkStatus<Any>>>?) {
+    state?.map {
+        if (it.item is NetworkStatus.Error) {
+            this.isVisible = true
+            when {
+                it.item.isNetworkError -> Log.d("sajjadio",
+                    "checkConnection: ${this.resources.getString(R.string.noConnection)}")
+                it.item.errorCode is Int -> Log.d("sajjadio", "mError: ${it.item.errorCode.toString()}")
+                else -> Log.d("sajjadio", "mError: ${it.item.errorBody?.source()?.buffer.toString()}")
+            }
+        }
+    }
+}
 
 @BindingAdapter(value = ["app:setImage"])
 fun ImageView.setImage(url: String?) {
     url?.let { this.loadImage(it) }
 }
-
 
 @BindingAdapter(value = ["app:setText"])
 fun TextView.setText(text: String?) {
@@ -64,7 +95,9 @@ fun TextView.voteCount(text: Int?) {
 
 @BindingAdapter(value = ["app:setDate"])
 fun TextView.setDate(text: String?) {
-    this.text = text?.substring(0, 4)
+    text?.let {
+        this.text = it
+    }
 }
 
 @BindingAdapter(value = ["app:setTime"])
@@ -73,9 +106,18 @@ fun TextView.setTime(text: Int?) {
 }
 
 
+@BindingAdapter(value = ["app:setTextRate"])
+fun TextView.setTextRate(rating: Double?) {
+    rating?.let {
+        this.text = it.div(2.0f).toString()
+    }
+}
+
 @BindingAdapter(value = ["app:setRate"])
-fun TextView.setRate(rating: Double?) {
-    rating?.let { this.text = it.toString() }
+fun RatingBar.setRate(rating: Double?) {
+    rating?.let {
+        this.rating = it.div(2.0f).toFloat()
+    }
 }
 
 //
@@ -87,20 +129,11 @@ fun TextView.setRate(rating: Double?) {
 //    this.addView(chip)
 //}
 
-//@BindingAdapter("manageState")
-//fun manageState(progressBar: ProgressBar, state: Boolean) {
-//    progressBar.visibility = if (state) View.VISIBLE else View.GONE
-//}
-//
 
-
-//
-//@BindingAdapter("setFavouriteCondition")
-//fun setFavouriteCondition(imageView: ShapeableImageView, isFavourite: Boolean) {
-//    if (isFavourite) {
-//        imageView.setImageResource(R.drawable.ic_favorite)
-//    } else {
-//        imageView.setImageResource(R.drawable.ic_favorite_border)
-//    }
-//
-//}
+@BindingAdapter(value = ["app:manageState"])
+fun <T> View.manageState(state: NetworkStatus<T>?) {
+    if (state is NetworkStatus.Error)
+        this.visibility = VISIBLE
+    else
+        this.visibility = INVISIBLE
+}
