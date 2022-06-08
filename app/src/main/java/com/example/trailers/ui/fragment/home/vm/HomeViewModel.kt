@@ -39,6 +39,10 @@ class HomeViewModel @Inject constructor(
     lateinit var responseCommonPagingData: LiveData<PagingData<CommonResult>>
     lateinit var getGenresOfMovie: LiveData<PagingData<MovieResult>>
 
+    init {
+        checkConnection(R.string.connected)
+    }
+
     fun checkConnection(isConnection: Int): Boolean {
         if (isConnection == R.string.connected) {
             viewModelScope.launch {

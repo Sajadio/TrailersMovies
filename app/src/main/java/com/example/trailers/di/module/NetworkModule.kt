@@ -45,9 +45,9 @@ class NetworkModule {
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         val okHttpBuilder = OkHttpClient.Builder()
-        okHttpBuilder.readTimeout(15, TimeUnit.SECONDS)
-        okHttpBuilder.connectTimeout(15, TimeUnit.SECONDS)
-        okHttpBuilder.writeTimeout(15, TimeUnit.SECONDS)
+        okHttpBuilder.readTimeout(60, TimeUnit.SECONDS)
+        okHttpBuilder.connectTimeout(60, TimeUnit.SECONDS)
+        okHttpBuilder.writeTimeout(60, TimeUnit.SECONDS)
         return okHttpBuilder.build()
     }
 

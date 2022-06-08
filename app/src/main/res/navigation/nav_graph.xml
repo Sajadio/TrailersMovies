@@ -41,6 +41,9 @@
                 app:argType="integer" />
 
         </action>
+        <action
+            android:id="@+id/action_homeFragment_to_bottomSheet"
+            app:destination="@id/bottomSheet" />
     </fragment>
     <fragment
         android:id="@+id/genresFragment"
@@ -53,33 +56,6 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
-    <fragment
-        android:id="@+id/favoriteFragment"
-        android:name="com.example.trailers.ui.fragment.favorite.FavoriteFragment"
-        android:label="FavoriteFragment">
-        <action
-            android:id="@+id/action_favoriteFragment_to_moiveFragment"
-            app:destination="@id/moiveFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.trailers.ui.fragment.settings.SettingsFragment"
-        android:label="SettingsFragment">
-        <action
-            android:id="@+id/action_settingsFragment_to_favoriteFragment"
-            app:destination="@id/favoriteFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_settingsFragment_self"
-            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -154,5 +130,13 @@
             app:argType="integer" />
 
     </fragment>
+    <dialog
+        android:id="@+id/bottomSheet"
+        android:name="com.example.trailers.ui.fragment.home.BottomSheetFragment"
+        android:label="BottomSheet" >
+        <action
+            android:id="@+id/action_bottomSheet_to_genresFragment"
+            app:destination="@id/genresFragment" />
+    </dialog>
 
 </navigation>

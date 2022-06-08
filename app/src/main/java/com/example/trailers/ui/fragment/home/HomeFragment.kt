@@ -3,6 +3,7 @@ package com.example.trailers.ui.fragment.home
 import android.content.Context
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.trailers.R
@@ -32,7 +33,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
     override fun initial() {
         binding.apply {
             viewModel = vm
-            lifecycleOwner = this@HomeFragment
         }
 
         initialAdapter()
@@ -43,6 +43,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
 
         binding.btnSearch.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+        }
+        binding.btnMenu.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.action_homeFragment_to_bottomSheet)
         }
     }
 

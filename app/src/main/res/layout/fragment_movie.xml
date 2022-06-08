@@ -9,6 +9,9 @@
             name="viewModel"
             type="com.example.trailers.ui.fragment.movie.vm.MovieViewModel" />
 
+        <variable
+            name="imageSize"
+            type="com.example.trailers.utils.Constant" />
     </data>
 
 
@@ -24,7 +27,8 @@
             android:layout_height="300dp"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"
-            android:src="@drawable/img"
+            tools:src="@drawable/ic_launcher_background"
+            app:imageSize="@{imageSize.IMAGE_Size_500}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

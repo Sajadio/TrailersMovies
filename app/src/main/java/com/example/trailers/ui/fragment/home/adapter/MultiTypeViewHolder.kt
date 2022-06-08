@@ -1,10 +1,8 @@
 package com.example.trailers.ui.fragment.home.adapter
 
-import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.example.trailers.data.model.movie.common.Common
-import com.example.trailers.data.model.movie.common.CommonResult
 import com.example.trailers.data.model.movie.trend.TrendMovie
 import com.example.trailers.databinding.*
 import com.example.trailers.ui.fragment.common.adapter.PopularAdapter
@@ -17,13 +15,13 @@ sealed class MultiTypeViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder
 
 class TrendHolder(val binding: LayoutRvTrendItemBinding) : MultiTypeViewHolder(binding) {
     fun setData(listener: OnClickListener, response: TrendMovie) {
-        response.results?.let { data ->
-            val adapter = TrendAdapter(data, listener)
+        response.results?.let {
+            val adapter = TrendAdapter(it, listener)
             binding.apply {
                 rvTrend.adapter = adapter
                 rvTrend.setItemTransformer(
                     ScaleTransformer.Builder()
-                        .setMaxScale(1.0f)
+                        .setMaxScale(1.1f)
                         .setMinScale(0.8f)
                         .build()
                 )
@@ -73,4 +71,5 @@ class UPComingHolder(private val binding: LayoutRvUpcomingBinding) :
 
 class HeaderViewPopularHolder(val binding: HeaderViewPopularBinding) : MultiTypeViewHolder(binding)
 class HeaderViewRatedHolder(val binding: HeaderViewTopRateBinding) : MultiTypeViewHolder(binding)
-class HeaderViewUpComingHolder(val binding: HeaderViewUpComingBinding) : MultiTypeViewHolder(binding)
+class HeaderViewUpComingHolder(val binding: HeaderViewUpComingBinding) :
+    MultiTypeViewHolder(binding)

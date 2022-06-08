@@ -7,7 +7,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trailers.data.model.movie.common.CommonResult
-import com.example.trailers.databinding.LayoutItemCardPopularPagingBinding
+import com.example.trailers.databinding.LayoutItemCardCommonPagingBinding
 import com.example.trailers.ui.fragment.home.adapter.OnClickListener
 
 class CommonPagingAdapter : PagingDataAdapter<CommonResult, CommonPagingAdapter.CommonHolder>(CharacterComparator) {
@@ -19,7 +19,7 @@ class CommonPagingAdapter : PagingDataAdapter<CommonResult, CommonPagingAdapter.
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         CommonHolder(
-            LayoutItemCardPopularPagingBinding.inflate(
+            LayoutItemCardCommonPagingBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
         )
@@ -29,7 +29,7 @@ class CommonPagingAdapter : PagingDataAdapter<CommonResult, CommonPagingAdapter.
     }
 
 
-    inner class CommonHolder(private val binding: LayoutItemCardPopularPagingBinding) :
+    inner class CommonHolder(private val binding: LayoutItemCardCommonPagingBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(item: CommonResult) = apply {

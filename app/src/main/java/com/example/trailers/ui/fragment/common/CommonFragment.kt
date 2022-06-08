@@ -12,13 +12,11 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.trailers.R
 import com.example.trailers.databinding.FragmentCommonBinding
-import com.example.trailers.ui.activity.MovieActivity
 import com.example.trailers.ui.base.BaseFragment
 import com.example.trailers.ui.fragment.common.adapter.CommonPagingAdapter
 import com.example.trailers.ui.fragment.home.vm.HomeViewModel
 import com.example.trailers.ui.fragment.search.adapter.PagingLoadStateAdapter
 import com.example.trailers.utils.setAsActionBar
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,7 +27,6 @@ class CommonFragment : BaseFragment<FragmentCommonBinding>(R.layout.fragment_com
     @Inject
     lateinit var vm: HomeViewModel
     private lateinit var adapter: CommonPagingAdapter
-    private lateinit var navBar: BottomNavigationView
     private val args: CommonFragmentArgs by navArgs()
 
     override fun onAttach(context: Context) {
@@ -41,7 +38,6 @@ class CommonFragment : BaseFragment<FragmentCommonBinding>(R.layout.fragment_com
     @SuppressLint("ResourceAsColor", "NotifyDataSetChanged")
     override fun initial() {
         (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
-        navBar = (activity as MovieActivity?)!!.binding.navigation
         binding.swiperefreshlayout.setOnRefreshListener {
             adapter.refresh()
             binding.swiperefreshlayout.isRefreshing = false
@@ -59,7 +55,7 @@ class CommonFragment : BaseFragment<FragmentCommonBinding>(R.layout.fragment_com
     private fun initialAdapter() {
         adapter = CommonPagingAdapter()
         binding.rcPopular.layoutManager = GridLayoutManager(context, 2)
-        vm.responseCommonPagingData.observe(viewLifecycleOwner) {
+        vm.responseCommonPagingData.observe(this) {
             lifecycleScope.launch {
                 adapter.submitData(it)
             }
@@ -89,15 +85,6 @@ class CommonFragment : BaseFragment<FragmentCommonBinding>(R.layout.fragment_com
         binding.rcPopular.isVisible = !emptyList
     }
 
-    override fun onResume() {
-        super.onResume()
-        navBar.isVisible = false
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        navBar.isVisible = true
-    }
 
     fun clickItem(id: Int?) {
         val bundle = Bundle()

@@ -10,15 +10,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.example.trailers.R
 import com.example.trailers.databinding.FragmentSimilarBinding
-import com.example.trailers.ui.activity.MovieActivity
 import com.example.trailers.ui.base.BaseFragment
 import com.example.trailers.ui.fragment.home.adapter.OnClickListener
 import com.example.trailers.ui.fragment.movie.adapter.SimilarPagingAdapter
 import com.example.trailers.ui.fragment.movie.vm.MovieViewModel
 import com.example.trailers.ui.fragment.search.adapter.PagingLoadStateAdapter
-import com.example.trailers.ui.fragment.search.adapter.SearchPagingAdapter
 import com.example.trailers.utils.setAsActionBar
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,8 +26,6 @@ class SimilarFragment : BaseFragment<FragmentSimilarBinding>(R.layout.fragment_s
     @Inject
     lateinit var vm: MovieViewModel
     lateinit var adapter: SimilarPagingAdapter
-    lateinit var navBar: BottomNavigationView
-
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -39,7 +34,6 @@ class SimilarFragment : BaseFragment<FragmentSimilarBinding>(R.layout.fragment_s
 
     override fun initial() {
         (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
-        navBar = (activity as MovieActivity?)!!.binding.navigation
         initialAdapter()
 
 
@@ -80,16 +74,6 @@ class SimilarFragment : BaseFragment<FragmentSimilarBinding>(R.layout.fragment_s
 
     private fun showEmptyList(emptyList: Boolean) {
         binding.rcSimilar.isVisible = !emptyList
-    }
-
-    override fun onResume() {
-        super.onResume()
-        navBar.isVisible = false
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        navBar.isVisible = true
     }
 
     override fun clickItem(id: Int?, navigation: Int?) {

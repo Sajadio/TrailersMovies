@@ -8,6 +8,10 @@
         <variable
             name="similar"
             type="com.example.trailers.data.model.movie.similar.Result" />
+
+        <variable
+            name="imageSize"
+            type="com.example.trailers.utils.Constant" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -37,6 +41,8 @@
                 android:layout_height="132dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
+                app:imageSize="@{imageSize.IMAGE_Size_200}"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:setImage="@{similar.poster_path}"

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/size_8">
+
+
+
+        <ImageView
+            android:id="@+id/genresIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_16"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_outline_movie_24"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/genres"
+            style="@style/Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:gravity="center"
+            android:textStyle="normal"
+            android:text="@string/genres"
+            android:textColor="?attr/textColorHint"
+            app:layout_constraintBottom_toBottomOf="@+id/genresIcon"
+            app:layout_constraintStart_toEndOf="@+id/genresIcon"
+            app:layout_constraintTop_toTopOf="@+id/genresIcon" />
+
+        <ImageView
+            android:id="@+id/themeIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_16"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_outline_dark_mode_24"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="@dimen/size_20"
+            app:layout_constraintTop_toBottomOf="@+id/genres" />
+
+        <TextView
+            android:id="@+id/theme"
+            style="@style/Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:gravity="center"
+            android:textStyle="normal"
+            android:textColor="?attr/textColorHint"
+            android:text="@string/theme"
+            app:layout_constraintBottom_toBottomOf="@+id/themeIcon"
+            app:layout_constraintStart_toEndOf="@+id/themeIcon"
+            app:layout_constraintTop_toTopOf="@+id/themeIcon" />
+
+
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/size_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/theme" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -8,6 +8,10 @@
         <variable
             name="actor"
             type="com.example.trailers.data.model.movie.actors.Cast" />
+
+        <variable
+            name="imageSize"
+            type="com.example.trailers.utils.Constant" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
+                app:imageSize="@{imageSize.IMAGE_Size_100}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

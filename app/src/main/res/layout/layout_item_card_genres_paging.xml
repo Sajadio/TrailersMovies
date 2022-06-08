@@ -9,6 +9,10 @@
         <variable
             name="genre"
             type="com.example.trailers.data.model.movie.genremovie.MovieResult" />
+
+        <variable
+            name="imageSize"
+            type="com.example.trailers.utils.Constant" />
     </data>
 
 
@@ -34,6 +38,7 @@
                 android:layout_height="220dp"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
+                app:imageSize="@{imageSize.IMAGE_Size_500}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

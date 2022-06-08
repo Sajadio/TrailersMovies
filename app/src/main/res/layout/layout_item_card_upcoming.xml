@@ -10,12 +10,15 @@
             name="upcoming"
             type="com.example.trailers.data.model.movie.common.CommonResult" />
 
+        <variable
+            name="imageSize"
+            type="com.example.trailers.utils.Constant" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
-        android:layout_width="@dimen/showcase_height"
-        android:layout_height="@dimen/showcase_height"
+        android:layout_width="@dimen/showcase_width2"
+        android:layout_height="@dimen/showcase_height2"
         android:layout_margin="@dimen/size_4"
         app:cardCornerRadius="@dimen/corner"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,6 +39,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
+                app:imageSize="@{imageSize.IMAGE_Size_300}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -77,8 +81,8 @@
                 style="@style/Body2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawablePadding="2dp"
                 android:layout_marginTop="@dimen/size_8"
+                android:drawablePadding="2dp"
                 android:gravity="center_horizontal"
                 android:textColor="@color/whiteLight"
                 app:drawableStartCompat="@drawable/ic_baseline_star_18"
@@ -93,8 +97,8 @@
                 android:layout_height="0dp"
                 android:background="?attr/mainColor"
                 android:gravity="center"
-                android:visibility="invisible"
                 android:orientation="vertical"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

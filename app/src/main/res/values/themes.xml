@@ -23,7 +23,7 @@
         <item name="secondColor">@color/gryLight</item>
         <item name="viewColor">@color/gryLight</item>
         <item name="textColor">@color/blackDark</item>
-        <item name="textColorHint">@color/blackLight</item>
+        <item name="textColorHint">@color/gry</item>
         <item name="colorIcons">@color/blackLight</item>
         <item name="customColorToolbar">#00000000</item>
 
@@ -69,6 +69,11 @@
     <style name="windowAnimationTransition">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <!--    splash screen-->
+    <style name="Splash" parent="Theme.Movie">
+        <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
     <!-- New design -->

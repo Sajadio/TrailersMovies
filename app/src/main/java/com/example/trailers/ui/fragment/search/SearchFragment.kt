@@ -3,29 +3,23 @@ package com.example.trailers.ui.fragment.search
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.paging.PagingData
 import com.example.trailers.R
 import com.example.trailers.databinding.FragmentSearchBinding
-import com.example.trailers.ui.activity.MovieActivity
 import com.example.trailers.ui.base.BaseFragment
 import com.example.trailers.ui.fragment.home.adapter.OnClickListener
 import com.example.trailers.ui.fragment.search.adapter.PagingLoadStateAdapter
 import com.example.trailers.ui.fragment.search.adapter.SearchPagingAdapter
 import com.example.trailers.ui.fragment.search.vm.SearchViewModel
 import com.example.trailers.utils.setAsActionBar
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -37,7 +31,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     @Inject
     lateinit var vm: SearchViewModel
     lateinit var adapter: SearchPagingAdapter
-    lateinit var navBar: BottomNavigationView
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -47,7 +40,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     @SuppressLint("ClickableViewAccessibility")
     override fun initial() {
         (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
-        navBar = (activity as MovieActivity?)!!.binding.navigation
 
         binding.rcSearch.setOnTouchListener { _, _ ->
             hidePartialKeyboard()
@@ -124,16 +116,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
             }
         }
         return true
-    }
-
-    override fun onResume() {
-        super.onResume()
-        navBar.isVisible = false
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        navBar.isVisible = true
     }
 
     override fun clickItem(id: Int?, navigation: Int?) {

@@ -3,48 +3,42 @@ package com.example.trailers.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
 import com.example.trailers.R
 import com.example.trailers.databinding.ActivityMovieBinding
-import com.example.trailers.ui.fragment.home.vm.HomeViewModel
+import com.example.trailers.ui.fragment.home.vm.StorageViewModel
 import com.example.trailers.utils.NetworkHelper
+import com.example.trailers.utils.ThemeHelper
 import com.example.trailers.utils.setSnackbar
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
-class MovieActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var vm: HomeViewModel
-
+    lateinit var vm: StorageViewModel
     private var _binding: ActivityMovieBinding? = null
     val binding: ActivityMovieBinding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
+        observeUiPreferences()
         super.onCreate(savedInstanceState)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_movie)
+
         binding.apply {
-            NetworkHelper(context = this@MovieActivity).observe(this@MovieActivity) { state ->
+            NetworkHelper(context = this@HomeActivity).observe(this@HomeActivity) { state ->
                 root.setSnackbar(state)
-                connection.isVisible = vm.checkConnection(state)
             }
         }
+
     }
 
-    override fun onResume() {
-        super.onResume()
-        binding.navigation.setupWithNavController(findNavController(R.id.nav_host_fragment))
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        findNavController(R.id.nav_host_fragment).navigateUp()
-        return true
+    private fun observeUiPreferences() {
+        vm.selectedTheme.observe(this) { uiMode ->
+            ThemeHelper.applyTheme(uiMode)
+        }
     }
 
     override fun onDestroy() {

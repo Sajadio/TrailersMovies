@@ -9,6 +9,10 @@
         <variable
             name="rated"
             type="com.example.trailers.data.model.movie.common.CommonResult" />
+
+        <variable
+            name="imageSize"
+            type="com.example.trailers.utils.Constant" />
     </data>
 
 
@@ -34,6 +38,7 @@
                 android:layout_height="200dp"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
+                app:imageSize="@{imageSize.IMAGE_Size_500}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -127,8 +132,8 @@
                 android:layout_height="0dp"
                 android:background="?attr/mainColor"
                 android:gravity="center"
-                android:visibility="invisible"
                 android:orientation="vertical"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

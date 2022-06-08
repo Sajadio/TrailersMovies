@@ -57,4 +57,6 @@
     <string name="seeMoreTopComing">See more up coming movies</string>
     <string name="now_playing">Now Playing</string>
     <string name="trending">Trending</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
 </resources>

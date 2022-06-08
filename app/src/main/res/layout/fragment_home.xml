@@ -19,8 +19,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:background="?attr/mainColor"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="?attr/mainColor">
 
 
             <androidx.appcompat.widget.Toolbar
@@ -32,6 +32,14 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnMenu"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="start"
+                    android:background="@drawable/shadow_menu_btn"
+                    android:src="@drawable/ic_round_menu_24" />
 
 
                 <TextView
@@ -74,14 +82,14 @@
                 android:id="@+id/parent_recyclerView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:orientation="vertical"
                 android:background="?attr/secondColor"
-                app:stateManage="@{viewModel.responseData}"
+                android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewLine" />
+                app:layout_constraintTop_toBottomOf="@+id/viewLine"
+                app:stateManage="@{viewModel.responseData}" />
 
             <TextView
                 android:id="@+id/refresh"

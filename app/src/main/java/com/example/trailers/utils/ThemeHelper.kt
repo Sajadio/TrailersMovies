@@ -2,16 +2,15 @@ package com.example.trailers.utils
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
-import com.example.trailers.R
 
 object ThemeHelper {
-    fun applyTheme(theme: Int?) {
+    fun applyTheme(uiMode: String) {
 
-        return when (theme) {
-            R.string.light -> {
+        return when (uiMode) {
+            Constant.LIGHT -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
-            R.string.dark -> {
+            Constant.DARK -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }
             else -> {

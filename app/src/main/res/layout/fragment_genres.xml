@@ -80,7 +80,7 @@
                 android:background="?attr/secondColor"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
-                tools:listitem="@layout/layout_item_card_popular_paging" />
+                tools:listitem="@layout/layout_item_card_common_paging" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

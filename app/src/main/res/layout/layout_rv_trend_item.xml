@@ -12,10 +12,8 @@
         android:layout_height="wrap_content"
         android:background="?attr/mainColor">
 
-
         <com.yarolegovich.discretescrollview.DiscreteScrollView
             android:id="@+id/rv_trend"
-            style="@style/Headline5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:dsv_orientation="horizontal"

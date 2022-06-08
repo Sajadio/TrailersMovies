@@ -10,6 +10,9 @@
             name="similar"
             type="com.example.trailers.data.model.movie.similar.Result" />
 
+        <variable
+            name="imageSize"
+            type="com.example.trailers.utils.Constant" />
     </data>
 
 
@@ -37,6 +40,7 @@
                 android:layout_height="@dimen/showcase_height"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
+                app:imageSize="@{imageSize.IMAGE_Size_500}"
                 app:layout_constraintDimensionRatio="9:16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,9 +52,9 @@
                 android:id="@+id/cover"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/showcase_height"
-                android:scaleType="centerCrop"
                 android:background="#59000000"
                 android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="@+id/poster"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

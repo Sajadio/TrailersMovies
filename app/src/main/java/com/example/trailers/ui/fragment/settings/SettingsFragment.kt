@@ -15,23 +15,12 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(R.layout.fragment
     override fun initial() {
         (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
 
-
-        binding.systemDefault.setOnClickListener {
-            ThemeHelper.applyTheme(R.string.systemDefault)
-        }
-        binding.light.setOnClickListener {
-            ThemeHelper.applyTheme(R.string.light)
-        }
-        binding.dark.setOnClickListener {
-            ThemeHelper.applyTheme(R.string.dark)
-        }
-
     }
 
 
-    private fun refresh() {
-        findNavController().navigate(R.id.action_settingsFragment_self)
-        findNavController().popBackStack()
-    }
+//    private fun refresh() {
+//        findNavController().navigate(R.id.action_settingsFragment_self)
+//        findNavController().popBackStack()
+//    }
 
 }

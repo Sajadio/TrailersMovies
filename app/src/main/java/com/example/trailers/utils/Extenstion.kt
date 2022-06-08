@@ -2,7 +2,6 @@ package com.example.trailers.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.Animation
@@ -10,7 +9,6 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
@@ -18,7 +16,6 @@ import com.example.trailers.R
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.snackbar.Snackbar
-import retrofit2.http.Query
 import java.util.*
 
 
@@ -35,15 +32,12 @@ fun ChipGroup.addChipView(chipText: String, layoutInflater: LayoutInflater, layo
     this.addView(chip)
 }
 
-fun ImageView.loadImagetesting(url: Int) {
-    Glide.with(this).load(url).into(this)
-}
-
 @SuppressLint("UseCompatLoadingForDrawables")
-fun ImageView.loadImage(url: String) {
+fun ImageView.loadImage(url: String, imageSize: String?) {
     Glide.with(this)
-        .load(Constant.IMAGE_PATH + url)
-        .placeholder(this.resources.getDrawable(R.drawable.ic_outline_movie_24))
+        .load(Constant.IMAGE_PATH + imageSize + url)
+        .placeholder(this.resources.getDrawable(R.drawable.loading))
+        .error(this.resources.getDrawable(R.drawable.error))
         .into(this)
 }
 

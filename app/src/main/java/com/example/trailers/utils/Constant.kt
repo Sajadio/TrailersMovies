@@ -3,8 +3,21 @@ package com.example.trailers.utils
 import com.example.trailers.R
 
 object Constant {
+    const val STORAGE_NAME = "data_Storage"
+
     const val BASE_URL = "https://api.themoviedb.org/3/"
-    const val IMAGE_PATH = "https://image.tmdb.org/t/p/w500/"
+    const val IMAGE_PATH = "https://image.tmdb.org/t/p/"
+
+    const val IMAGE_Size_45 = "w45/"
+    const val IMAGE_Size_100 = "w100/"
+    const val IMAGE_Size_200 = "w200/"
+    const val IMAGE_Size_300 = "w300/"
+    const val IMAGE_Size_400 = "w400/"
+    const val IMAGE_Size_500 = "w500/"
+    const val IMAGE_Size_780 = "w780/"
+    const val IMAGE_Size_H632 = "h632/"
+
+    const val IMAGE_Size_ORIGINAL = "original/"
     const val YOUTUBE_BASE = "https://www.youtube.com/watch?v="
     const val YOUTUBE_KEY = "AIzaSyC6YnlwPt9XHT6EY22WYbVcX9JD5osQ3_I"
     const val API_KEY = "24ada3556f9c3697c024bc6ba0f1ab99"
@@ -13,16 +26,18 @@ object Constant {
     const val TOP_RATED: Int = R.string.rated
     const val UP_COMING = R.string.upComing
 
+    const val SYSTEM_DEFAULT = "systemDefault"
+    const val LIGHT = "light"
+    const val DARK = "dark"
+
+    const val PREFERENCE_NAME = "my_preference"
+    const val THEME_APP = "selectTheme"
+    const val INITIAL_PAGE = 1
+
     const val ENGLISH = "en"
     const val ARABIC = "ar"
-    const val LIGHT = R.string.light
-    const val DARK = R.string.dark
-    const val SYSTEM_DEFAULT = R.string.systemDefault
-    const val PREFERENCE_NAME = "my_preference"
-    const val THEME_APP = "Theme"
     const val BROADCAST_STRING_FOR_ACTION = "checkInternet"
     const val ONLINE_STATUS = "online_status"
-    const val INITIAL_PAGE = 1
     const val DEFAULT_PAGE_INDEX = 1
     const val DEFAULT_PAGE_SIZE = 20
 

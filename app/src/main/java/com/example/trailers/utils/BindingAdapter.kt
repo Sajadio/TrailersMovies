@@ -11,11 +11,8 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trailers.R
-import com.example.trailers.ui.base.adapter.BaseAdapter
-import com.example.trailers.ui.fragment.home.adapter.MultiTypeViewAdapter
 
 //@BindingAdapter("setAdapter")
 //fun setAdapter(
@@ -76,9 +73,9 @@ fun TextView.mError(state: List<MultiViewTypeItem<NetworkStatus<Any>>>?) {
     }
 }
 
-@BindingAdapter(value = ["app:setImage"])
-fun ImageView.setImage(url: String?) {
-    url?.let { this.loadImage(it) }
+@BindingAdapter(value = ["app:setImage","app:imageSize"])
+fun ImageView.setImage(url: String?,imageSize:String?) {
+    url?.let { this.loadImage(it,imageSize) }
 }
 
 @BindingAdapter(value = ["app:setText"])

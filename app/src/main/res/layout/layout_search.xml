@@ -10,6 +10,9 @@
             name="search"
             type="com.example.trailers.data.model.movie.search.Result" />
 
+        <variable
+            name="imageSize"
+            type="com.example.trailers.utils.Constant" />
     </data>
 
 
@@ -38,6 +41,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
+                app:imageSize="@{imageSize.IMAGE_Size_200}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:setImage="@{search.poster_path}"
