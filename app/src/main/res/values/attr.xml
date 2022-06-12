@@ -11,6 +11,8 @@
         <attr name="textColorHint" format="color"/>
         <attr name="colorIcons" format="color"/>
         <attr name="customColorToolbar" format="color"/>
+        <attr name="expandedTitleColor" format="color"/>
+        <attr name="collapsedTitleColor" format="color"/>
     </declare-styleable>
 
 </resources>

@@ -5,6 +5,7 @@ import com.example.trailers.di.module.ProvideViewModel
 import com.example.trailers.ui.fragment.common.CommonFragment
 import com.example.trailers.ui.fragment.genres.GenresFragment
 import com.example.trailers.ui.fragment.home.HomeFragment
+import com.example.trailers.ui.fragment.movie.ActorsFragment
 import com.example.trailers.ui.fragment.movie.MovieFragment
 import com.example.trailers.ui.fragment.movie.SimilarFragment
 import com.example.trailers.ui.fragment.search.SearchFragment
@@ -39,5 +40,10 @@ abstract class InjectFragmentModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = [InjectViewModel::class])
     abstract fun bindGenres(): GenresFragment
+
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [InjectViewModel::class])
+    abstract fun bindActors(): ActorsFragment
 
 }

@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import androidx.paging.map
 import com.example.trailers.R
 import com.example.trailers.databinding.FragmentSearchBinding
 import com.example.trailers.ui.base.BaseFragment
@@ -26,7 +27,7 @@ import javax.inject.Inject
 
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search),
-    androidx.appcompat.widget.SearchView.OnQueryTextListener, OnClickListener {
+    androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
     @Inject
     lateinit var vm: SearchViewModel
@@ -44,9 +45,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         binding.rcSearch.setOnTouchListener { _, _ ->
             hidePartialKeyboard()
         }
-
-        adapter = SearchPagingAdapter(this)
-
         initialAdapter()
 
         binding.swiperefreshlayout.setOnRefreshListener {
@@ -56,6 +54,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     }
 
     private fun initialAdapter() {
+
+        adapter = SearchPagingAdapter()
+        adapter.onItemClickListener {
+            it?.let { id ->
+                movieTo(id)
+            }
+        }
+
         binding.rcSearch.adapter = adapter.withLoadStateHeaderAndFooter(
             header = PagingLoadStateAdapter { adapter.retry() },
             footer = PagingLoadStateAdapter { adapter.retry() }
@@ -64,7 +70,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         vm.getMoviesSearch.observe(this) {
             lifecycleScope.launch(Dispatchers.Main) {
                 adapter.submitData(it)
-                binding.rcSearch.hasFixedSize() }
+                binding.rcSearch.hasFixedSize()
+            }
         }
 
         adapter.addLoadStateListener { loadState ->
@@ -82,7 +89,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
     private fun hidePartialKeyboard(): Boolean {
         val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-      return  imm.hideSoftInputFromWindow(view?.windowToken, 0)
+        return imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
     private fun showEmptyList(emptyList: Boolean) {
@@ -118,11 +125,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         return true
     }
 
-    override fun clickItem(id: Int?, navigation: Int?) {
-        val bundle = Bundle()
-        id?.let {
-            bundle.putInt("id", it)
-        }
-        findNavController().navigate(R.id.action_searchFragment_to_moiveFragment, bundle)
+    private fun movieTo(id: Int) {
+        val action = SearchFragmentDirections.actionSearchFragmentToMoiveFragment(id)
+        findNavController().navigate(action)
     }
 }

@@ -9,8 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/mainColor">
+        android:layout_height="wrap_content">
 
         <com.yarolegovich.discretescrollview.DiscreteScrollView
             android:id="@+id/rv_trend"

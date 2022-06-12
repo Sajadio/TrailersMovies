@@ -19,8 +19,9 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/showcase_height2"
         android:layout_margin="@dimen/size_8"
+        android:background="?attr/mainColor"
         app:cardCornerRadius="@dimen/corner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,51 +30,33 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/search_root"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/size_8"
-            android:background="?attr/mainColor">
+            android:layout_height="match_parent">
 
 
             <ImageView
                 android:id="@+id/poster"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/showcase_height"
+                android:layout_height="match_parent"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
-                app:imageSize="@{imageSize.IMAGE_Size_500}"
+                app:imageSize="@{imageSize.IMAGE_Size_ORIGINAL}"
                 app:layout_constraintDimensionRatio="9:16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:setImage="@{similar.poster_path}"
-                tools:srcCompat="@drawable/img" />
+                tools:srcCompat="@drawable/ic_launcher_background" />
 
-            <ImageView
+
+            <View
                 android:id="@+id/cover"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/showcase_height"
-                android:background="#59000000"
-                android:contentDescription="@string/app_name"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="@+id/poster"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_shadow"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/showing"
-                style="@style/Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_8"
-                android:drawableStart="@drawable/ic_outline_remove_red_eye_24"
-                android:gravity="center"
-                android:textColor="@color/white"
-                app:layout_constraintStart_toStartOf="@+id/title"
-                app:layout_constraintTop_toTopOf="@+id/cover"
-                app:vote_count="@{similar.vote_count}"
-                tools:text=" 4K" />
-
 
             <TextView
                 android:id="@+id/title"
@@ -83,63 +66,73 @@
                 android:layout_margin="@dimen/size_8"
                 android:ellipsize="end"
                 android:gravity="start|center"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/poster"
+                app:layout_constraintBottom_toTopOf="@+id/overview"
                 app:layout_constraintStart_toStartOf="parent"
                 app:setText="@{similar.original_title}"
                 tools:text="Star Wars: IV" />
+
+            <TextView
+                android:id="@+id/overview"
+                style="@style/Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginEnd="@dimen/size_8"
+                android:layout_marginBottom="@dimen/size_16"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:maxLines="2"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/rate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/title"
+                app:setText="@{similar.overview}"
+                tools:text="A man with a low IQ has accomplished great things in his life and been present during significant historic events—in each case, far exceeding what anyone imagined he could do. But despite all he has achieved, his one true love eludes him." />
 
             <TextView
                 android:id="@+id/date"
                 style="@style/Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/size_8"
+                android:layout_margin="@dimen/size_8"
                 android:gravity="start|center"
                 android:textColor="@color/redLight"
-                app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/linearLayout"
                 app:setText="@{similar.release_date}"
                 tools:text="2022-01-02" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rate"
+                style="@style/Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_8"
+                android:drawableEnd="@drawable/ic_baseline_star_18"
+                android:drawablePadding="2dp"
                 android:gravity="center"
-                app:layout_constraintStart_toStartOf="@+id/title"
-                app:layout_constraintTop_toBottomOf="@+id/poster">
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/date"
+                app:layout_constraintStart_toStartOf="@+id/overview"
+                app:setTextRate="@{similar.vote_average}"
+                tools:text="4.5 " />
 
-                <androidx.appcompat.widget.AppCompatRatingBar
-                    android:id="@+id/rating"
-                    style="@style/CustomRatingBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:setRate="@{similar.vote_average}" />
-
-                <TextView
-                    android:id="@+id/textRating"
-                    style="@style/Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/size_4"
-                    android:gravity="center"
-                    android:textColor="?attr/textColorHint"
-                    app:layout_constraintBottom_toBottomOf="@+id/rating"
-                    app:layout_constraintStart_toEndOf="@+id/rating"
-                    app:layout_constraintTop_toTopOf="@+id/rating"
-                    app:setTextRate="@{similar.vote_average}"
-                    tools:text="3.5" />
-
-            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/showing"
+                style="@style/Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_4"
+                android:drawableStart="@drawable/ic_outline_remove_red_eye_24"
+                android:gravity="center"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/rate"
+                app:layout_constraintStart_toEndOf="@+id/rate"
+                app:layout_constraintTop_toTopOf="@+id/rate"
+                app:vote_count="@{similar.vote_count}"
+                tools:text=" 4K" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
+import kotlinx.android.synthetic.main.layout_item_similar.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -20,8 +21,8 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-            startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
-            finish()
+        startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
+        finish()
     }
 
     private fun hideSystemUI(view: View) {
@@ -33,8 +34,4 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        finish()
-    }
 }

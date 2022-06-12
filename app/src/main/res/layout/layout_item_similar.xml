@@ -16,14 +16,13 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/root"
-        android:layout_width="132dp"
-        android:layout_height="132dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="24dp"
+        android:layout_width="@dimen/showcase_width2"
+        android:layout_height="@dimen/showcase_height2"
+        android:layout_margin="@dimen/size_4"
         android:checkable="true"
         android:clickable="true"
         android:focusable="true"
-        app:cardBackgroundColor="?attr/secondColor"
+        app:cardBackgroundColor="?attr/mainColor"
         app:cardCornerRadius="5dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,45 +31,43 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/mainColor">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/posterItem"
-                android:layout_width="132dp"
-                android:layout_height="132dp"
-                android:adjustViewBounds="true"
+            <ImageView
+                android:id="@+id/poster"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
                 app:imageSize="@{imageSize.IMAGE_Size_200}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:setImage="@{similar.poster_path}"
-                tools:srcCompat="@drawable/img" />
+                tools:srcCompat="@drawable/ic_launcher_background" />
 
-            <ImageView
-                android:id="@+id/coverPosterItem"
-                android:layout_width="132dp"
-                android:layout_height="132dp"
-                android:background="#40000000"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="@+id/posterItem"
-                app:layout_constraintEnd_toEndOf="@+id/posterItem"
-                app:layout_constraintStart_toStartOf="@+id/posterItem"
-                app:layout_constraintTop_toTopOf="@+id/posterItem"
-                tools:ignore="VectorDrawableCompat" />
+            <View
+                android:id="@+id/cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_shadow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/showing"
                 style="@style/Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/size_8"
                 android:drawableStart="@drawable/ic_outline_remove_red_eye_24"
                 android:gravity="center"
                 android:textColor="@color/white"
-                app:layout_constraintStart_toStartOf="@+id/coverPosterItem"
-                app:layout_constraintTop_toTopOf="@+id/coverPosterItem"
+                app:layout_constraintBottom_toBottomOf="@+id/rating"
+                app:layout_constraintStart_toEndOf="@+id/rating"
+                app:layout_constraintTop_toTopOf="@+id/rating"
                 app:vote_count="@{similar.vote_count}"
                 tools:text=" 4K" />
 
@@ -80,29 +77,30 @@
                 style="@style/Body2"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginBottom="8dp"
+                android:layout_margin="@dimen/size_8"
                 android:ellipsize="end"
                 android:gravity="start|center"
                 android:maxLines="1"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/rating"
-                app:layout_constraintStart_toStartOf="@+id/coverPosterItem"
+                app:layout_constraintStart_toStartOf="@+id/poster"
                 app:setText="@{similar.original_title}"
                 tools:text="Tome Hairy" />
 
-            <RatingBar
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/rating"
-                style="@style/CustomRatingBar"
+                style="@style/Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:layout_marginStart="4dp"
-                android:isIndicator="false"
-                android:numStars="5"
-                android:rating="3.5"
-                app:layout_constraintBottom_toBottomOf="@+id/coverPosterItem"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:drawableEnd="@drawable/ic_baseline_star_18"
+                android:drawablePadding="2dp"
+                android:layout_margin="@dimen/size_8"
+                android:gravity="center"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/cover"
+                app:layout_constraintStart_toStartOf="parent"
+                app:setTextRate="@{similar.vote_average}"
+                tools:text="4.5 " />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

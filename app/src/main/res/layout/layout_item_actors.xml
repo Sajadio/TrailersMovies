@@ -25,6 +25,7 @@
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:layout_margin="@dimen/size_4"
             android:scaleType="centerCrop"
             app:cardCornerRadius="50dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,13 +37,14 @@
                 android:id="@+id/actorsPoster"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
-                app:imageSize="@{imageSize.IMAGE_Size_100}"
+                app:imageSize="@{imageSize.IMAGE_Size_200}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:setImage="@{actor.profile_path}"
-                tools:srcCompat="@drawable/img" />
+                tools:srcCompat="@drawable/ic_launcher_background" />
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.AppCompatTextView

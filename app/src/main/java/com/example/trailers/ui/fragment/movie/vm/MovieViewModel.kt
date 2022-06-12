@@ -54,6 +54,8 @@ class MovieViewModel @Inject constructor(private val repo: MovieRepo) : ViewMode
         }
     }
 
+    suspend fun getMovieOfActor(person_id: Int?) = repo.getMovieOfActor(person_id).asLiveData()
+
     private fun getSimilar(id: Int) {
         allSimilar = repo.getAllSimilar(id).asLiveData().cachedIn(viewModelScope)
         viewModelScope.launch {

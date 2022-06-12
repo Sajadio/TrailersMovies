@@ -13,186 +13,159 @@
     </data>
 
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:scrollbarSize="0dp">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/titleSeries"
-                style="@style/Body1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="?attr/textColor"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:setText="@{viewModel.responseData.data().original_title}"
-                tools:text="Suits Season" />
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btnShare"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:background="#00000000"
-                android:src="@drawable/ic_baseline_share_24"
-                app:layout_constraintBottom_toBottomOf="@+id/titleSeries"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/titleSeries" />
-
-            <TextView
-                android:id="@+id/generes"
-                style="@style/Body2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:ellipsize="end"
-                android:gravity="start|center"
-                android:maxLines="4"
-                android:textColor="?attr/textColorHint"
-                app:layout_constraintEnd_toEndOf="@+id/btnShare"
-                app:layout_constraintStart_toStartOf="@+id/titleSeries"
-                app:layout_constraintTop_toBottomOf="@+id/titleSeries"
-                tools:text="Action, Drama, Crime" />
+        <TextView
+            android:id="@+id/generes"
+            style="@style/Body2"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_16"
+            android:ellipsize="end"
+            android:padding="@dimen/size_8"
+            android:background="@drawable/background_gray"
+            android:gravity="start|center"
+            android:maxLines="1"
+            android:textColor="?attr/textColorHint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Action | Drama | Crime" />
 
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_time"
-                style="@style/Caption"
-                android:drawablePadding="@dimen/size_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:drawableEnd="@drawable/ic_baseline_access_time_24"
-                android:background="@drawable/background_gray"
-                android:gravity="center"
-                android:padding="8dp"
-                android:textColor="?attr/textColorHint"
-                app:layout_constraintStart_toStartOf="@+id/generes"
-                app:layout_constraintTop_toBottomOf="@+id/generes"
-                app:setTime="@{viewModel.responseData.data().runtime}"
-                tools:text="2h 46m" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_time"
+            style="@style/Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_16"
+            android:background="@drawable/background_gray"
+            android:drawableEnd="@drawable/ic_baseline_access_time_24"
+            android:drawablePadding="@dimen/size_4"
+            android:gravity="center"
+            android:padding="@dimen/size_8"
+            android:textColor="?attr/textColorHint"
+            app:layout_constraintStart_toStartOf="@+id/generes"
+            app:layout_constraintTop_toBottomOf="@+id/generes"
+            app:setTime="@{viewModel.responseData.data().runtime}"
+            tools:text="2h 46m" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/rate"
-                style="@style/Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/background_gray"
-                android:drawableEnd="@drawable/ic_baseline_star_18"
-                android:drawablePadding="@dimen/size_4"
-                android:gravity="center"
-                android:padding="8dp"
-                android:textColor="?attr/textColorHint"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_time"
-                app:layout_constraintStart_toEndOf="@+id/tv_time"
-                app:layout_constraintTop_toTopOf="@+id/tv_time"
-                app:setTextRate="@{viewModel.responseData.data().vote_average}"
-                tools:text="4.5 " />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/rate"
+            style="@style/Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/size_8"
+            android:background="@drawable/background_gray"
+            android:drawableEnd="@drawable/ic_baseline_star_18"
+            android:drawablePadding="@dimen/size_4"
+            android:gravity="center"
+            android:padding="@dimen/size_8"
+            android:textColor="?attr/textColorHint"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_time"
+            app:layout_constraintStart_toEndOf="@+id/tv_time"
+            app:layout_constraintTop_toTopOf="@+id/tv_time"
+            app:setTextRate="@{viewModel.responseData.data().vote_average}"
+            tools:text="4.5 " />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/date"
-                style="@style/Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/background_gray"
-                android:gravity="center"
-                android:padding="8dp"
-                android:textColor="?attr/textColorHint"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_time"
-                app:layout_constraintStart_toEndOf="@+id/rate"
-                app:layout_constraintTop_toTopOf="@+id/tv_time"
-                app:setDate="@{viewModel.responseData.data().release_date}"
-                tools:text="2020" />
-
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/description"
-                style="@style/Body2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:ellipsize="end"
-                android:gravity="start|center"
-                android:maxLines="4"
-                android:textColor="?attr/textColorHint"
-                app:layout_constraintEnd_toEndOf="@+id/btnShare"
-                app:layout_constraintStart_toStartOf="@+id/tv_time"
-                app:layout_constraintTop_toBottomOf="@+id/date"
-                app:setText="@{viewModel.responseData.data().overview}"
-                tools:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here " />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/titleActors"
-                style="@style/Headline6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/actors"
-                android:textColor="?attr/textColor"
-                app:layout_constraintStart_toStartOf="@+id/description"
-                app:layout_constraintTop_toBottomOf="@+id/description" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_actors"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/titleActors"
-                app:layout_constraintTop_toBottomOf="@+id/titleActors"
-                tools:listitem="@layout/layout_item_actors" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/date"
+            style="@style/Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/size_8"
+            android:background="@drawable/background_gray"
+            android:gravity="center"
+            android:padding="@dimen/size_8"
+            android:textColor="?attr/textColorHint"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_time"
+            app:layout_constraintStart_toEndOf="@+id/rate"
+            app:layout_constraintTop_toTopOf="@+id/tv_time"
+            app:setDate="@{viewModel.responseData.data().release_date}"
+            tools:text="2020" />
 
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/titleRelated"
-                style="@style/Headline6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/similar"
-                android:textColor="?attr/textColor"
-                app:layout_constraintStart_toStartOf="@+id/description"
-                app:layout_constraintTop_toBottomOf="@+id/rv_actors" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/description"
+            style="@style/Body2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="start|center"
+            android:textColor="?attr/textColorHint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/generes"
+            app:layout_constraintTop_toBottomOf="@+id/date"
+            app:setText="@{viewModel.responseData.data().overview}"
+            tools:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here " />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titleActors"
+            style="@style/Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/actors"
+            android:textColor="?attr/textColor"
+            app:layout_constraintStart_toStartOf="@+id/description"
+            app:layout_constraintTop_toBottomOf="@+id/description" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_actors"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleActors"
+            tools:listitem="@layout/layout_item_actors" />
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_related"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/titleActors"
-                app:layout_constraintTop_toBottomOf="@+id/titleRelated"
-                tools:listitem="@layout/layout_item_similar" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/seeAll"
-                style="@style/Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/seeAll"
-                android:textColor="@color/redLight"
-                app:layout_constraintBottom_toBottomOf="@+id/titleRelated"
-                app:layout_constraintEnd_toEndOf="@+id/rv_actors"
-                app:layout_constraintTop_toTopOf="@+id/titleRelated" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titleSimilar"
+            style="@style/Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/similar"
+            android:textColor="?attr/textColor"
+            app:layout_constraintStart_toStartOf="@+id/description"
+            app:layout_constraintTop_toBottomOf="@+id/rv_actors" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_similar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="?attr/secondColor"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleSimilar"
+            tools:listitem="@layout/layout_item_similar" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/seeAll"
+            style="@style/Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/size_8"
+            android:text="@string/seeAll"
+            android:textColor="@color/redLight"
+            app:layout_constraintBottom_toBottomOf="@+id/titleSimilar"
+            app:layout_constraintEnd_toEndOf="@+id/rv_actors"
+            app:layout_constraintTop_toTopOf="@+id/titleSimilar" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

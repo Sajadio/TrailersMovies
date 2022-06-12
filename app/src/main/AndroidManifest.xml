@@ -23,6 +23,7 @@
         <activity
             android:theme="@style/Splash"
             android:name="com.example.trailers.ui.activity.SplashActivity"
+            android:noHistory="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -14,7 +14,6 @@ class SimilarAdapter(
     override fun bind(binding: LayoutItemSimilarBinding, item1: Int, item: Result) {
         binding.apply {
             similar = item
-            rating.rating = item.vote_average?.div(2.0f)?.toFloat() ?: 0.0f
         }
     }
 

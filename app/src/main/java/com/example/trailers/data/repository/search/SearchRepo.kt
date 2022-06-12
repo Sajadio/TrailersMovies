@@ -19,5 +19,4 @@ class SearchRepo @Inject constructor(
         Pager(config = PagingConfig(pageSize = 20, prefetchDistance = 2),
             pagingSourceFactory = { SearchPagingSource(api = api, query = query) }
         ).flow
-
 }

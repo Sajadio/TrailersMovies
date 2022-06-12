@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/size_4"
         android:checkable="true"
+        app:cardBackgroundColor="?attr/mainColor"
         android:clickable="true"
         android:focusable="true"
         app:cardCornerRadius="5dp"
@@ -47,6 +48,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:setImage="@{trend.poster_path}"
-            tools:src="@drawable/img" />
+            tools:src="@drawable/ic_launcher_background" />
     </com.google.android.material.card.MaterialCardView>
 </layout>

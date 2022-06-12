@@ -26,6 +26,7 @@
     <dimen name="showcase_height">200dp</dimen>
 
     <dimen name="showcase_width2">200dp</dimen>
+        <dimen name="showcase_width3">180dp</dimen>
     <dimen name="showcase_height2">300dp</dimen>
 
 </resources>

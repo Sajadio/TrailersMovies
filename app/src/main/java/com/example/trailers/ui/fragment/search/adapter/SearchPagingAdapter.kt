@@ -10,9 +10,8 @@ import com.example.trailers.data.model.movie.search.Result
 import com.example.trailers.databinding.LayoutSearchBinding
 import com.example.trailers.ui.fragment.home.adapter.OnClickListener
 
-class SearchPagingAdapter(
-    private val listener: OnClickListener,
-    ) : PagingDataAdapter<Result, SearchPagingAdapter.SearchViewHolder>(CharacterComparator) {
+class SearchPagingAdapter :
+    PagingDataAdapter<Result, SearchPagingAdapter.SearchViewHolder>(CharacterComparator) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -26,6 +25,10 @@ class SearchPagingAdapter(
         getItem(position)?.let { holder.bind(it) }
     }
 
+    private var onItemClickListener: ((Int?) -> Unit)? = null
+    fun onItemClickListener(listener: (Int?) -> Unit) {
+        onItemClickListener = listener
+    }
 
     inner class SearchViewHolder(private val binding: LayoutSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -34,9 +37,10 @@ class SearchPagingAdapter(
             binding.apply {
                 search = item
                 root.setOnClickListener {
-                    listener.clickItem(item.id)
+                    onItemClickListener?.let { (it(item.id)) }
                 }
             }
+
         }
     }
 

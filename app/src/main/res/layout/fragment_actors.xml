@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,22 +28,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                tools:text="common"
                 android:textColor="?attr/textColor"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                style="@style/Headline5"
+                tools:text="jason" />
 
         </androidx.appcompat.widget.Toolbar>
-
-        <View
-            android:id="@+id/viewLine"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:textColor="?attr/secondColor"
-            app:layout_constraintEnd_toEndOf="@+id/toolbar"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/toolbar"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swiperefreshlayout"
@@ -51,16 +41,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewLine">
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcPopular"
+                android:id="@+id/rv_actors"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?attr/secondColor"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                tools:listitem="@layout/layout_item_card_common_paging" />
+                app:spanCount="3"
+                tools:listitem="@layout/layout_item_card_actors_movie" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -70,7 +60,7 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

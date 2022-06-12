@@ -92,6 +92,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_moiveFragment_to_actorsFragment"
+            app:destination="@id/actorsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/similarFragment"
@@ -133,10 +140,25 @@
     <dialog
         android:id="@+id/bottomSheet"
         android:name="com.example.trailers.ui.fragment.home.BottomSheetFragment"
-        android:label="BottomSheet" >
+        android:label="BottomSheet">
         <action
             android:id="@+id/action_bottomSheet_to_genresFragment"
             app:destination="@id/genresFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/actorsFragment"
+        android:name="com.example.trailers.ui.fragment.movie.ActorsFragment"
+        android:label="ActorsFragment">
+        <argument
+            android:name="info"
+            app:argType="com.example.trailers.data.model.movie.actors.Cast" />
+        <action
+            android:id="@+id/action_actorsFragment_to_moiveFragment"
+            app:destination="@id/moiveFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 
 </navigation>

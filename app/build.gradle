@@ -118,6 +118,4 @@ dependencies {
     // alternatively - without Android dependencies for tests
     testImplementation "androidx.paging:paging-common-ktx:3.1.1"
 
-    //    lottie
-    implementation 'com.airbnb.android:lottie:4.2.2'
 }

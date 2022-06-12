@@ -19,6 +19,7 @@ class MovieRepo @Inject constructor(
     suspend fun getActors(id: Int?) = safeApiCall(api.getActors(id))
     suspend fun getSimilar(id: Int?) = safeApiCall(api.getSimilar(id, page = 1))
     suspend fun getMovieTrailer(id: Int?) = safeApiCall(api.getMovieTrailer(id = id))
+    suspend fun getMovieOfActor(person_id: Int?) = safeApiCall(api.getMovieOfActor(person_id = person_id))
 
     fun getAllSimilar(id: Int): Flow<PagingData<Result>> =
         Pager(config = PagingConfig(pageSize = 20, prefetchDistance = 2),

@@ -3,6 +3,7 @@ package com.example.trailers.data.network
 import com.example.trailers.data.model.movie.common.Common
 import com.example.trailers.data.model.movie.actors.Actors
 import com.example.trailers.data.model.genre.Genre
+import com.example.trailers.data.model.movie.actorsmovie.ActorsMovie
 import com.example.trailers.data.model.movie.genremovie.Movie
 import com.example.trailers.data.model.movie.id.IDMovie
 import com.example.trailers.data.model.movie.search.SearchMovie
@@ -97,6 +98,14 @@ interface ApiService {
         @Query("page") page: Int,
         @Query("language") language: String = language(),
     ): SearchMovie
+
+
+    @GET("person/{person_id}/movie_credits?")
+    suspend fun getMovieOfActor(
+        @Path("person_id") person_id: Int?,
+        @Query("api_key") key: String = Constant.API_KEY,
+        @Query("language") language: String = language(),
+    ): Response<ActorsMovie>
 
 
 }

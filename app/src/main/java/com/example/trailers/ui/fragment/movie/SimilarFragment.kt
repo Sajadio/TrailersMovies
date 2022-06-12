@@ -48,7 +48,7 @@ class SimilarFragment : BaseFragment<FragmentSimilarBinding>(R.layout.fragment_s
     @SuppressLint("NotifyDataSetChanged")
     private fun initialAdapter() {
         adapter = SimilarPagingAdapter(this)
-        vm.allSimilar.observe(this@SimilarFragment) {
+        vm.allSimilar.observe(this) {
             lifecycleScope.launch(Dispatchers.Main) {
                 adapter.submitData(it)
                 binding.rcSimilar.adapter = adapter

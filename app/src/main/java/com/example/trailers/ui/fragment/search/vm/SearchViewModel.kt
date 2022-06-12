@@ -1,14 +1,14 @@
 package com.example.trailers.ui.fragment.search.vm
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.example.trailers.data.model.genre.Genre
 import com.example.trailers.data.model.movie.search.Result
 import com.example.trailers.data.repository.search.SearchRepo
+import com.example.trailers.utils.NetworkStatus
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton

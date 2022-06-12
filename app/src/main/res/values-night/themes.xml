@@ -27,6 +27,8 @@
         <item name="textColorHint">@color/whiteLight</item>
         <item name="colorIcons">@color/white</item>
         <item name="customColorToolbar">#00000000</item>
+        <item name="expandedTitleColor">@color/white</item>
+        <item name="collapsedTitleColor">@color/white</item>
 
         <item name="android:windowAnimationStyle">@style/windowAnimationTransition</item>
     </style>
