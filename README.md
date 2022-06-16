@@ -1,6 +1,5 @@
 ## Trailers 
-The purpose of this project is learn how can use the features and libraries in real project
-
+The purpose of this project is to learn how to use features and libraries in a real project.
 
 # Screens
 
