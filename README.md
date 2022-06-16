@@ -13,7 +13,7 @@ The purpose of this project is to learn how to use features and libraries in a r
 <img src="/img/Screenshot8.png" vspace="5" align= "left" height="400" width="200" >
 <img src="/img/Screenshot9.png" vspace="5" align= "left" height="400" width="200" > -->
 
---- | --- | ---
+--- | --- | --- |
 | ![1](/img/Screenshot1.png?raw=true) | ![2](/img/Screenshot2.png?raw=true) | [3](/img/Screenshot3.png?raw=true) |
 
 
