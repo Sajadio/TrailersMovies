@@ -3,15 +3,20 @@ The purpose of this project is learn how can use the features and libraries in r
 
 
 # Screens
-<img src="/img/Screenshot1.png" vspace="5" align= "left" height="400" width="200">
-<img src="/img/Screenshot2.png" vspace="5" align= "left"  height="400" width="200" >
-<img src="/img/Screenshot3.png" vspace="5" height="400" width="200" >
-<img src="/img/Screenshot4.png" vspace="5" align= "left" height="400" width="200" >
-<img src="/img/Screenshot5.png" align= "5" vspace="5" height="400" width="200" >
-<img src="/img/Screenshot6.png" vspace="5" height="400" width="200" >
-<img src="/img/Screenshot7.png" vspace="5" height="400" width="200" >
-<img src="/img/Screenshot8.png" vspace="5" height="400" width="200" >
-<img src="/img/Screenshot9.png" vspace="5" height="400" width="200" >
+
+--- | --- | --- | --- | --- | ---  
+[](img/Screenshot1.png) | [](img/Screenshot2.png) | [](img/Screenshot3.png) |
+
+<br />
+
+--- | --- | --- | --- | --- | ---  
+[](img/Screenshot4.png) | [](img/Screenshot5.png) | [](img/Screenshot6.png) |
+
+<br />
+
+--- | --- | --- | --- | --- | --- 
+
+[](img/Screenshot7.png) | [](img/Screenshot8.png) | [](img/Screenshot9.png) |
 
 
 ## Features and Library that we used:
@@ -33,7 +38,7 @@ The purpose of this project is learn how can use the features and libraries in r
 Trailers is powered by the tmdb.
 
 
-## Built-With
+## Built-With 🛠
 - Android Studio
 - Programming Language: Kotlin
 
