@@ -4,22 +4,23 @@ The purpose of this project is learn how can use the features and libraries in r
 
 # Screens
 
---- | --- | --- | --- | --- | ---  
+--- | --- | --- |
 [](img/Screenshot1.png) | [](img/Screenshot2.png) | [](img/Screenshot3.png) |
 
 <br />
 
---- | --- | --- | --- | --- | ---  
+--- | --- | --- | 
 [](img/Screenshot4.png) | [](img/Screenshot5.png) | [](img/Screenshot6.png) |
 
 <br />
 
---- | --- | --- | --- | --- | --- 
+--- | --- | --- |
 
 [](img/Screenshot7.png) | [](img/Screenshot8.png) | [](img/Screenshot9.png) |
 
+<br />
 
-## Features and Library that we used:
+## Features and Libraries that  used to build app 🛠:
 - <a href="https://developer.android.com/kotlin/coroutines">Coroutines.</a>
 - <a href="https://developer.android.com/kotlin/flow">Kotlin Flow.</a>
 - <a href="https://developer.android.com/topic/libraries/architecture/viewmodel">MVVM.</a>
@@ -36,12 +37,6 @@ The purpose of this project is learn how can use the features and libraries in r
 
 ## APIs
 Trailers is powered by the tmdb.
-
-
-## Built-With 🛠
-- Android Studio
-- Programming Language: Kotlin
-
 
 ## Prerequisites
 Generate your own API Keys from  the following : 
