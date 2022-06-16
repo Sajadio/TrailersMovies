@@ -4,7 +4,6 @@ The purpose of this project is learn how can use the features and libraries in r
 
 # Screens
 
-Home | Movies Details | Movies List |
 --- | --- | --- |
 [](img/Screenshot1.png) | [](img/Screenshot2.png) | [](img/Screenshot3.png) |
 
