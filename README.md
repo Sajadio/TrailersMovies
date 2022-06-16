@@ -4,21 +4,10 @@ The purpose of this project is learn how can use the features and libraries in r
 
 # Screens
 
---- | --- | --- |
-[](img/Screenshot1.png) | [](img/Screenshot2.png) | [](img/Screenshot3.png) |
+<img src="/img/Screenshot1.png" vspace="5" align= "left" height="400" width="200">
+<img src="/img/Screenshot2.png" vspace="5" align= "left"  height="400" width="200" >
+<img src="/img/Screenshot3.png" vspace="5" align= "left" height="400" width="200" >
 
-<br />
-
---- | --- | --- | 
-[](img/Screenshot4.png) | [](img/Screenshot5.png) | [](img/Screenshot6.png) |
-
-<br />
-
---- | --- | --- |
-
-[](img/Screenshot7.png) | [](img/Screenshot8.png) | [](img/Screenshot9.png) |
-
-<br />
 
 ## Features and Libraries that  used to build app 🛠:
 - <a href="https://developer.android.com/kotlin/coroutines">Coroutines.</a>
