@@ -14,7 +14,7 @@ The purpose of this project is to learn how to use features and libraries in a r
 <img src="/img/Screenshot9.png" vspace="5" align= "left" height="400" width="200" > -->
 
 |:-:|:-:|:-:|
-| [](/img/Screenshot1.png?raw=true) | [](/img/Screenshot2.png?raw=true) | [](/img/Screenshot3.png?raw=true) |
+| ![](/img/Screenshot1.png?raw=true) | [](/img/Screenshot2.png?raw=true) | [](/img/Screenshot3.png?raw=true) |
 
 
 ## Features and Libraries that  used to build app 🛠:
