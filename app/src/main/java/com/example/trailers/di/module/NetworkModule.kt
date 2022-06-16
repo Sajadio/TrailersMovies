@@ -1,23 +1,29 @@
 package com.example.trailers.di.module
 
-import android.util.Log
+import com.example.trailers.App
 import com.example.trailers.data.network.ApiService
 import com.example.trailers.utils.Constant
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
-import okhttp3.Dns
+import okhttp3.Cache
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.net.SocketTimeoutException
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
 class NetworkModule {
+
+    @Provides
+    @Singleton
+    fun provideHttpCache(@Named("my_application") app: App): Cache {
+        val cacheSize = 10 * 1024 * 1024
+        return Cache(app.cacheDir, cacheSize.toLong())
+    }
 
     @Provides
     @Singleton

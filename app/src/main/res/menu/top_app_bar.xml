@@ -10,10 +10,4 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/delete"
-        android:icon="@drawable/ic_twotone_delete_outline_24"
-        android:title="@string/delete"
-        app:showAsAction="ifRoom" />
-
 </menu>

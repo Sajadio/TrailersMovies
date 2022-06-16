@@ -16,8 +16,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/root"
-        android:layout_width="@dimen/showcase_width2"
-        android:layout_height="@dimen/showcase_height2"
+        android:layout_width="@dimen/showcase_width3"
+        android:layout_height="@dimen/showcase_height3"
         android:layout_margin="@dimen/size_4"
         android:checkable="true"
         android:clickable="true"

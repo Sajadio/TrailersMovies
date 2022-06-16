@@ -26,14 +26,15 @@
         <TextView
             android:id="@+id/genres"
             style="@style/Body1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
-            android:gravity="center"
-            android:textStyle="normal"
+            android:gravity="start"
             android:text="@string/genres"
             android:textColor="?attr/textColorHint"
+            android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="@+id/genresIcon"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/genresIcon"
             app:layout_constraintTop_toTopOf="@+id/genresIcon" />
 
@@ -51,14 +52,15 @@
         <TextView
             android:id="@+id/theme"
             style="@style/Body1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
-            android:gravity="center"
-            android:textStyle="normal"
+            android:gravity="start"
+            android:text="@string/mode"
             android:textColor="?attr/textColorHint"
-            android:text="@string/theme"
+            android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="@+id/themeIcon"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/themeIcon"
             app:layout_constraintTop_toTopOf="@+id/themeIcon" />
 

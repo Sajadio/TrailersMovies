@@ -8,6 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.example.trailers.ui.activity.HomeActivity
 
 abstract class BaseFragment<DB : ViewDataBinding>(@LayoutRes private val layoutId: Int) :
     Fragment() {
@@ -18,23 +19,16 @@ abstract class BaseFragment<DB : ViewDataBinding>(@LayoutRes private val layoutI
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         _binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         setHasOptionsMenu(true)
-        initial()
+        binding.lifecycleOwner = viewLifecycleOwner
         return _binding?.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding.lifecycleOwner = this.viewLifecycleOwner
-    }
-
-    abstract fun initial()
-
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         // for prevent memory leaks
         _binding = null
     }

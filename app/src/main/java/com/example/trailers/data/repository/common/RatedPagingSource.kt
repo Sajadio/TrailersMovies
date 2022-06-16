@@ -18,13 +18,13 @@ class RatedPagingSource(
     }
 
         override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CommonResult> {
-        val pageNumber = params.key ?: Constant.INITIAL_PAGE
+        val pageNumber = params.key ?: Constant.DEFAULT_PAGE_INDEX
         return try {
             val response = api.getTopRatedMovie(page = pageNumber)
             val data = if (response.isSuccessful) response.body()?.results else null
             LoadResult.Page(
                 data = data ?: emptyList(),
-                prevKey = if (pageNumber == Constant.INITIAL_PAGE) null else pageNumber.minus(1),
+                prevKey = if (pageNumber == Constant.DEFAULT_PAGE_INDEX) null else pageNumber.minus(1),
                 nextKey = if (data?.isEmpty() == true) null else pageNumber.plus(1)
             )
         } catch (e: Exception) {

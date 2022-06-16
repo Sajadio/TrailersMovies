@@ -2,46 +2,26 @@ package com.example.trailers.utils
 
 import android.annotation.SuppressLint
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
+import android.view.Window
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trailers.R
-
-//@BindingAdapter("setAdapter")
-//fun setAdapter(
-//    recyclerView: RecyclerView,
-//    adapter: BaseAdapter<ViewDataBinding, ParentListAdapter>?,
-//) {
-//    adapter?.let {
-//        recyclerView.adapter = it
-//    }
-//}
-//
-//
-//@Suppress("UNCHECKED_CAST")
-//@BindingAdapter("submitList")
-//fun submitList(recyclerView: RecyclerView, list: List<ParentListAdapter>?) {
-//    val adapter = recyclerView.adapter as BaseAdapter<ViewDataBinding, ParentListAdapter>?
-//    list?.let {
-//        adapter?.update(list)
-//    }
-//}
-
-//@Suppress("UNCHECKED_CAST")
-//@BindingAdapter("app:submitList")
-//fun submitList(recyclerView: RecyclerView, list: List<ParentListAdapter>?) {
-//    val adapter = recyclerView.adapter as BaseAdapter<ViewDataBinding, ParentListAdapter>
-//    list?.let {
-//        adapter.differ.submitList(it)
-//    }
-//}
+import com.example.trailers.data.model.genre.Genre
+import com.example.trailers.data.model.genre.Genres
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 
 @BindingAdapter("app:loading")
 fun ProgressBar.loading(state: List<MultiViewTypeItem<NetworkStatus<Any>>>?) {
@@ -64,18 +44,18 @@ fun TextView.mError(state: List<MultiViewTypeItem<NetworkStatus<Any>>>?) {
         if (it.item is NetworkStatus.Error) {
             this.isVisible = true
             when {
-                it.item.isNetworkError -> Log.d("sajjadio",
-                    "checkConnection: ${this.resources.getString(R.string.noConnection)}")
-                it.item.errorCode is Int -> Log.d("sajjadio", "mError: ${it.item.errorCode.toString()}")
-                else -> Log.d("sajjadio", "mError: ${it.item.errorBody?.source()?.buffer.toString()}")
+                it.item.isNetworkError -> this.resources.getString(R.string.noConnection)
+                it.item.errorCode is Int -> Log.d("sajjadio", "mError: ${it.item.errorCode}")
+                else -> Log.d("sajjadio",
+                    "mError: ${it.item.errorBody?.source()?.buffer.toString()}")
             }
         }
     }
 }
 
-@BindingAdapter(value = ["app:setImage","app:imageSize"])
-fun ImageView.setImage(url: String?,imageSize:String?) {
-    url?.let { this.loadImage(it,imageSize) }
+@BindingAdapter(value = ["app:setImage", "app:imageSize"])
+fun ImageView.setImage(url: String?, imageSize: String?) {
+    url?.let { this.loadImage(it, imageSize) }
 }
 
 @BindingAdapter(value = ["app:setText"])
@@ -117,15 +97,6 @@ fun RatingBar.setRate(rating: Double?) {
     }
 }
 
-//
-//@BindingAdapter(value = ["app:chips"])
-//fun ChipGroup.setChips(chipText: List<String>?) {
-//
-//    val chip = LayoutInflater.from(context).inflate(R.layout.layout_chips, this, false) as Chip
-//    chipText?.forEach { chip.text = it }
-//    this.addView(chip)
-//}
-
 
 @BindingAdapter(value = ["app:manageState"])
 fun <T> View.manageState(state: NetworkStatus<T>?) {
@@ -134,3 +105,4 @@ fun <T> View.manageState(state: NetworkStatus<T>?) {
     else
         this.visibility = INVISIBLE
 }
+

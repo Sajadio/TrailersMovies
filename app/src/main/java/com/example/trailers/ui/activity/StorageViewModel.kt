@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class MovieViewModel : ViewModel() {
+class StorageViewModel : ViewModel() {
 
     private val _getThemeLiveData : MutableLiveData<Int> = MutableLiveData()
     val getThemeLiveData : LiveData<Int> =_getThemeLiveData

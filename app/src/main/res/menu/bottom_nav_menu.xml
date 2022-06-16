@@ -7,13 +7,13 @@
         android:title="@string/home" />
 
     <item
+        android:id="@+id/searchFragment"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/search" />
+
+    <item
         android:id="@+id/genresFragment"
         android:icon="@drawable/ic_outline_movie_24"
         android:title="@string/categories" />
-
-    <item
-        android:id="@+id/settingsFragment"
-        android:icon="@drawable/ic_outline_settings_24"
-        android:title="@string/settings" />
 
 </menu>

@@ -49,5 +49,4 @@ class CommonPagingAdapter : PagingDataAdapter<CommonResult, CommonPagingAdapter.
         override fun areContentsTheSame(oldItem: CommonResult, newItem: CommonResult) =
             oldItem == newItem
     }
-
 }

@@ -86,13 +86,6 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
         <action
-            android:id="@+id/action_moiveFragment_to_videoPlayActivity"
-            app:destination="@id/videoPlayActivity"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
             android:id="@+id/action_moiveFragment_to_actorsFragment"
             app:destination="@id/actorsFragment"
             app:enterAnim="@anim/slide_in_right"
@@ -112,14 +105,6 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <activity
-        android:id="@+id/videoPlayActivity"
-        android:name="com.example.trailers.ui.fragment.movie.VideoPlayActivity"
-        android:label="VideoPlayActivity">
-        <argument
-            android:name="url"
-            app:argType="string" />
-    </activity>
     <fragment
         android:id="@+id/commonFragment"
         android:name="com.example.trailers.ui.fragment.common.CommonFragment"

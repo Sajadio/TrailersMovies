@@ -1,4 +1,4 @@
-package com.example.trailers.di.module
+package com.example.trailers.di.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -8,7 +8,7 @@ import javax.inject.Provider
 import javax.inject.Singleton
 
 @Module
-class AppModule {
+class FactoryModule {
 
     /* Singleton factory that searches generated map for specific provider and
         uses it to get a ViewModel instance */

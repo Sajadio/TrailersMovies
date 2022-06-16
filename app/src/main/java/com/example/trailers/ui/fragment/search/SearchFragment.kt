@@ -10,14 +10,14 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.paging.map
 import com.example.trailers.R
 import com.example.trailers.databinding.FragmentSearchBinding
 import com.example.trailers.ui.base.BaseFragment
-import com.example.trailers.ui.fragment.home.adapter.OnClickListener
 import com.example.trailers.ui.fragment.search.adapter.PagingLoadStateAdapter
 import com.example.trailers.ui.fragment.search.adapter.SearchPagingAdapter
 import com.example.trailers.ui.fragment.search.vm.SearchViewModel
+import com.example.trailers.utils.movieToDestination
+
 import com.example.trailers.utils.setAsActionBar
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.Dispatchers
@@ -39,8 +39,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    override fun initial() {
-        (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar,
+            true,
+            resources.getString(R.string.search))
 
         binding.rcSearch.setOnTouchListener { _, _ ->
             hidePartialKeyboard()
@@ -58,7 +61,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         adapter = SearchPagingAdapter()
         adapter.onItemClickListener {
             it?.let { id ->
-                movieTo(id)
+                val action = SearchFragmentDirections.actionSearchFragmentToMoiveFragment(id)
+                action.movieToDestination(view)
             }
         }
 
@@ -67,10 +71,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
             footer = PagingLoadStateAdapter { adapter.retry() }
         )
 
-        vm.getMoviesSearch.observe(this) {
-            lifecycleScope.launch(Dispatchers.Main) {
-                adapter.submitData(it)
-                binding.rcSearch.hasFixedSize()
+        vm.getMoviesSearch.observe(viewLifecycleOwner) {
+            lifecycleScope.launch {
+                it?.let {
+                    adapter.submitData(it)
+                    binding.rcSearch.hasFixedSize()
+                }
             }
         }
 
@@ -84,6 +90,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
             (loadState.source.refresh is LoadState.Loading).also {
                 binding.progressBar.isVisible = it
             }
+
         }
     }
 
@@ -98,11 +105,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.top_app_bar, menu)
-        menu.findItem(R.id.delete).isVisible = false
 
         val search = menu.findItem(R.id.search)
         val searchView = search?.actionView as? androidx.appcompat.widget.SearchView
-        searchView?.queryHint = resources.getString(R.string.search)
+        searchView?.queryHint = resources.getString(R.string.search_box)
         searchView?.setOnQueryTextListener(this)
         searchView?.maxWidth = Integer.MAX_VALUE
 
@@ -125,8 +131,4 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         return true
     }
 
-    private fun movieTo(id: Int) {
-        val action = SearchFragmentDirections.actionSearchFragmentToMoiveFragment(id)
-        findNavController().navigate(action)
-    }
 }

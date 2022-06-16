@@ -1,13 +1,8 @@
 package com.example.trailers.utils
 
 
-import com.example.trailers.data.model.movie.common.CommonResult
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
-import okhttp3.Connection
 import retrofit2.HttpException
 import retrofit2.Response
 
@@ -40,6 +35,6 @@ interface SafeApiCall {
                         emit(NetworkStatus.Error(true, null, null))
                 }
             }
-        }.flowOn(Dispatchers.IO)
+        }
     }
 }

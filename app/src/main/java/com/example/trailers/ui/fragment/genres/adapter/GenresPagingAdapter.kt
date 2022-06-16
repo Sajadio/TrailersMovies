@@ -10,9 +10,12 @@ import com.example.trailers.data.model.movie.genremovie.MovieResult
 import com.example.trailers.databinding.LayoutItemCardGenresPagingBinding
 import com.example.trailers.ui.fragment.home.adapter.OnClickListener
 
-class GenresPagingAdapter(
-    private val listener: OnClickListener,
-) : PagingDataAdapter<MovieResult, GenresPagingAdapter.GenresHolder>(CharacterComparator) {
+class GenresPagingAdapter: PagingDataAdapter<MovieResult, GenresPagingAdapter.GenresHolder>(CharacterComparator) {
+
+    private var onItemClickListener: ((Int?) -> Unit)? = null
+    fun onItemClickListener(listener: (Int?) -> Unit) {
+        onItemClickListener = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         GenresHolder(
@@ -33,7 +36,7 @@ class GenresPagingAdapter(
             binding.apply {
                 genre = item
                 root.setOnClickListener {
-                    listener.clickItem(item.id,)
+                    onItemClickListener?.let { it(item.id) }
                 }
             }
         }

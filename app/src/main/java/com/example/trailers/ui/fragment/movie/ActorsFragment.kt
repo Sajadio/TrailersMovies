@@ -16,9 +16,11 @@ import com.example.trailers.ui.base.BaseFragment
 import com.example.trailers.ui.fragment.movie.adapter.ActorsMovieAdapter
 import com.example.trailers.ui.fragment.movie.vm.MovieViewModel
 import com.example.trailers.utils.NetworkStatus
+import com.example.trailers.utils.movieToDestination
 import com.example.trailers.utils.setAsActionBar
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.coroutines.launch
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 
@@ -33,40 +35,44 @@ class ActorsFragment : BaseFragment<FragmentActorsBinding>(R.layout.fragment_act
         super.onAttach(context)
     }
 
-    override fun initial() {
-        (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            titleToolbar.text = args.info.original_name
+
+            activity?.setAsActionBar(
+                toolbar = toolbar,
+                isBack = true,
+                title = args.info.original_name.toString())
+
             swiperefreshlayout.setOnRefreshListener {
                 initialAdapter()
                 swiperefreshlayout.isRefreshing = false
             }
-            initialAdapter()
-
         }
 
+        initialAdapter()
     }
 
     private fun initialAdapter() {
-        lifecycleScope.launch {
-            vm.getMovieOfActor(args.info.id).observe(this@ActorsFragment) {
+        vm.getMovieOfActor(args.info.id)
+        vm.actorsOfMovie.observe(viewLifecycleOwner) {
                 stateManagement(it)
                 it.data()?.cast?.let { cast ->
                     val adapter = ActorsMovieAdapter(cast)
+
                     binding.rvActors.layoutManager = GridLayoutManager(context, 3)
                     binding.rvActors.adapter = adapter
+                    binding.rvActors.hasFixedSize()
+
                     adapter.onItemClickListener { id ->
-                        val bundle = Bundle()
                         id?.let {
-                            bundle.putInt("id", it)
-                            findNavController()
-                                .navigate(
-                                    R.id.action_actorsFragment_to_moiveFragment,
-                                    bundle)
+                            val action =
+                                ActorsFragmentDirections.actionActorsFragmentToMoiveFragment(
+                                    id)
+                            action.movieToDestination(view)
                         }
                     }
                 }
-            }
         }
     }
 

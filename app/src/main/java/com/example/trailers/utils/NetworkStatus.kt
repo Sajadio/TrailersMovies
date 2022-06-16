@@ -1,6 +1,5 @@
 package com.example.trailers.utils
 
-import okhttp3.Connection
 import okhttp3.ResponseBody
 
 sealed class NetworkStatus<out T> {

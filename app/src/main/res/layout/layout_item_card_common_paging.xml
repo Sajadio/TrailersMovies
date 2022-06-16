@@ -31,9 +31,20 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/app_name"
+                app:layout_constraintBottom_toBottomOf="@+id/poster"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+               android:background="@drawable/popcorn1" />
+
+            <ImageView
                 android:id="@+id/poster"
-                android:layout_width="@dimen/showcase_width2"
-                android:layout_height="220dp"
+                android:layout_width="@dimen/showcase_width3"
+                android:layout_height="@dimen/showcase_height3"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
                 app:imageSize="@{imageSize.IMAGE_Size_500}"
@@ -43,23 +54,24 @@
                 app:setImage="@{common.poster_path}"
                 tools:srcCompat="@drawable/ic_launcher_background" />
 
-
             <TextView
                 android:id="@+id/title"
                 style="@style/Subtitle2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/size_4"
-                android:layout_marginTop="@dimen/size_8"
+                android:layout_margin="@dimen/size_8"
                 android:ellipsize="end"
                 android:gravity="start|center"
                 android:maxLines="1"
                 android:textColor="?attr/textColor"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/poster"
                 app:setText="@{common.original_title}"
                 tools:text="Star Wars: IV" />
+
+
 
             <TextView
                 android:id="@+id/date"

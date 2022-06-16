@@ -13,7 +13,6 @@ import com.example.trailers.ui.fragment.home.adapter.OnClickListener
 class SearchPagingAdapter :
     PagingDataAdapter<Result, SearchPagingAdapter.SearchViewHolder>(CharacterComparator) {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         SearchViewHolder(
             LayoutSearchBinding.inflate(

@@ -3,10 +3,9 @@ package com.example.trailers.di.component
 import android.content.Context
 import com.example.trailers.App
 import com.example.trailers.di.inject.*
-import com.example.trailers.di.module.AppModule
+import com.example.trailers.di.factory.FactoryModule
 import com.example.trailers.di.module.NetworkModule
-import com.example.trailers.di.module.ProvideViewModel
-import com.example.trailers.ui.fragment.home.BottomSheetFragment
+import com.example.trailers.di.module.ViewModelProvide
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
@@ -15,12 +14,19 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [
-    InjectStorageModule::class,
-    InjectFragmentModule::class,
-    AppModule::class,
+    InjectHomeActivity::class,
+    InjectHomeFragment::class,
+    InjectCommonFragment::class,
+    InjectSimilarFragment::class,
+    InjectSearchFragment::class,
+    InjectActorsFragment::class,
+    InjectMovieDetailsFragment::class,
+    InjectBottomSheet::class,
+    InjectGenresFragment::class,
+    FactoryModule::class,
     NetworkModule::class,
     AndroidSupportInjectionModule::class,
-    ProvideViewModel::class])
+    ViewModelProvide::class])
 interface AppComponent {
 
     fun inject(app: App)

@@ -20,13 +20,15 @@
     <dimen name="corner">@dimen/size_8</dimen>
     <dimen name="corner_small">@dimen/size_4</dimen>
     <dimen name="page_horizontal_padding">@dimen/size_20</dimen>
-    <dimen name="poster_width">100dp</dimen>
-    <dimen name="poster_height">140dp</dimen>
-    <dimen name="showcase_width">160dp</dimen>
-    <dimen name="showcase_height">200dp</dimen>
 
-    <dimen name="showcase_width2">200dp</dimen>
-        <dimen name="showcase_width3">180dp</dimen>
-    <dimen name="showcase_height2">300dp</dimen>
+    <dimen name="poster_width">100dp</dimen>
+    <dimen name="showcase_width1">160dp</dimen>
+    <dimen name="showcase_width2">180dp</dimen>
+    <dimen name="showcase_width3">200dp</dimen>
+
+    <dimen name="poster_height">140dp</dimen>
+    <dimen name="showcase_height1">200dp</dimen>
+    <dimen name="showcase_height2">250dp</dimen>
+    <dimen name="showcase_height3">300dp</dimen>
 
 </resources>

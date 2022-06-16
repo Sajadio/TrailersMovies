@@ -1,22 +1,28 @@
 package com.example.trailers.ui.fragment.home
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.trailers.R
 import com.example.trailers.databinding.FragmentHomeBinding
 import com.example.trailers.ui.base.BaseFragment
 import com.example.trailers.ui.fragment.home.adapter.MultiTypeViewAdapter
 import com.example.trailers.ui.fragment.home.adapter.OnClickListener
 import com.example.trailers.ui.fragment.home.vm.HomeViewModel
-import com.example.trailers.utils.NetworkHelper
-import com.example.trailers.utils.NetworkStatus
-import com.example.trailers.utils.setSnackbar
+import com.example.trailers.utils.*
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.invoke
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
+
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), OnClickListener {
 
@@ -30,48 +36,61 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
         super.onAttach(context)
     }
 
-    override fun initial() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         binding.apply {
             viewModel = vm
-        }
+            lifecycleOwner = viewLifecycleOwner
 
+        }
+        checkConnection()
         initialAdapter()
-        binding.swiperefreshlayout.setOnRefreshListener {
-            initialAdapter()
-            binding.swiperefreshlayout.isRefreshing = false
-        }
+        refresh()
+        onClickListener()
+    }
 
+    private fun onClickListener() {
         binding.btnSearch.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+            val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment()
+            action.movieToDestination(view)
         }
         binding.btnMenu.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_homeFragment_to_bottomSheet)
+            val action = HomeFragmentDirections.actionHomeFragmentToBottomSheet()
+            action.movieToDestination(view)
+        }
+    }
+
+    private fun refresh() {
+        binding.swiperefreshlayout.setOnRefreshListener {
+            initialAdapter()
+            checkConnection()
+            binding.swiperefreshlayout.isRefreshing = false
+        }
+    }
+
+    private fun checkConnection() {
+        NetworkHelper(context = requireContext()).observe(viewLifecycleOwner) { state ->
+            vm.checkConnection(state.isConnection())
         }
     }
 
     private fun initialAdapter() {
-        adapter = MultiTypeViewAdapter(this@HomeFragment)
-        vm.responseData.observe(this) { response ->
+        vm.responseData.observe(viewLifecycleOwner) { response ->
+            adapter = MultiTypeViewAdapter(this@HomeFragment)
             adapter.differ.submitList(response)
             binding.parentRecyclerView.adapter = adapter
         }
-
     }
 
-
-    override fun clickItem(id: Int?, navigation: Int?) {
-        navigation?.let {
-            destination(navigation)
+    override fun clickItem(id: Int?, destination: Int?) {
+        destination?.let {
+            val action = HomeFragmentDirections.actionHomeFragmentToCommonFragment(destination)
+            action.movieToDestination(view)
         }
-        val bundle = Bundle()
         id?.let {
-            bundle.putInt("id", it)
-            findNavController().navigate(R.id.action_homeFragment_to_moiveFragment, bundle)
+            val action = HomeFragmentDirections.actionHomeFragmentToMoiveFragment(id)
+            action.movieToDestination(view)
         }
-    }
-
-    private fun destination(navigation: Int) {
-        val action = HomeFragmentDirections.actionHomeFragmentToCommonFragment(navigation)
-        findNavController().navigate(action)
     }
 }

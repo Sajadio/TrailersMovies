@@ -1,50 +1,51 @@
 package com.example.trailers.utils
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
+import android.view.Window
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
+import androidx.navigation.NavDirections
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.trailers.R
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.snackbar.Snackbar
+import okhttp3.Connection
+import okhttp3.Response
+import java.lang.Exception
 import java.util.*
 
 
 fun language() = if (Locale.getDefault().displayLanguage == "English") "en" else "ar"
 
-@SuppressLint("ResourceAsColor")
-fun ChipGroup.addChipView(chipText: String, layoutInflater: LayoutInflater, layout: Int) {
-    val chip = layoutInflater.inflate(layout, this, false) as Chip
-    chip.text = chipText
-    chip.setOnClickListener {
-        chip.setBackgroundColor(R.drawable.shadow_search_btn)
-        Toast.makeText(context, "Clicked me", Toast.LENGTH_SHORT).show()
-    }
-    this.addView(chip)
-}
 
 @SuppressLint("UseCompatLoadingForDrawables")
 fun ImageView.loadImage(url: String, imageSize: String?) {
-    Glide.with(this)
+    imageSize?.let {
+        Glide.with(this)
         .load(Constant.IMAGE_PATH + imageSize + url)
-        .placeholder(this.resources.getDrawable(R.drawable.loading))
-        .error(this.resources.getDrawable(R.drawable.error))
+        .error(R.drawable.error)
         .into(this)
+    }
 }
 
-fun AppCompatActivity.setAsActionBar(toolbar: Toolbar, isBack: Boolean) {
-    toolbar.title = ""
-    toolbar.subtitle = ""
-    setSupportActionBar(toolbar)
+fun Activity.setAsActionBar(toolbar: Toolbar, isBack: Boolean = true, title: String? = null) {
+    (this as AppCompatActivity).setSupportActionBar(toolbar)
+    toolbar.title = title
     if (isBack) {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
@@ -52,53 +53,6 @@ fun AppCompatActivity.setAsActionBar(toolbar: Toolbar, isBack: Boolean) {
     }
 }
 
-@SuppressLint("ResourceAsColor")
-fun ChipGroup.addChipWithTheme(
-    chipText: List<String>,
-    layoutInflater: LayoutInflater,
-    layout: Int,
-) {
-    chipText.forEach { type ->
-        val chip = layoutInflater.inflate(layout, this, false) as Chip
-        chip.text = type
-        this.addView(chip)
-    }
-}
-
-private var isExpandLang = true
-fun View.expandLang() {
-    if (isExpandLang) {
-        this.startCustomAnimation(R.anim.fade_in, 500L)
-        this.isVisible = isExpandLang
-        isExpandLang = false
-    } else {
-        this.isVisible = isExpandLang
-        isExpandLang = true
-    }
-}
-
-private var isExpandTheme = true
-fun View.expandTheme() {
-    if (isExpandTheme) {
-        this.startCustomAnimation(R.anim.fade_in, 500L)
-        this.isVisible = isExpandTheme
-        isExpandTheme = false
-    } else {
-        this.isVisible = isExpandTheme
-        isExpandTheme = true
-    }
-}
-
-fun View.startCustomAnimation(anim: Int, duration: Long) {
-    val setAnim: Animation = AnimationUtils.loadAnimation(this.context, anim)
-    setAnim.duration = duration
-    this.startAnimation(setAnim)
-}
-
-fun View.endCustomAnimation(anim: Int) {
-    val setAnim: Animation = AnimationUtils.loadAnimation(this.context, anim)
-    this.startAnimation(setAnim)
-}
 
 private var stateActive = false
 fun View.setSnackbar(state: Int) {
@@ -131,4 +85,29 @@ fun Context.setThemes(theme: Int): Int {
 
     return pref.getInt(Constant.THEME_APP, 0)
 }
+
+fun View.visibility(isVisible: Boolean?) {
+    this.isVisible = isVisible != true
+}
+
+fun Int.isConnection() = when (this) {
+    R.string.connected -> true
+    R.string.noConnection -> false
+    else -> false
+}
+
+fun Window.hideSystemUI(view: View) {
+    WindowCompat.setDecorFitsSystemWindows(this, false)
+    WindowInsetsControllerCompat(this, view).let { controller ->
+        controller.hide(WindowInsetsCompat.Type.systemBars())
+        controller.systemBarsBehavior =
+            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+    }
+}
+
+fun NavDirections.movieToDestination(view: View?) {
+    view?.findNavController()?.navigate(this)
+}
+
+
 

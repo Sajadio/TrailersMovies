@@ -2,31 +2,29 @@ package com.example.trailers.ui.fragment.genres
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.trailers.R
 import com.example.trailers.databinding.FragmentGenresBinding
 import com.example.trailers.ui.base.BaseFragment
+import com.example.trailers.ui.fragment.common.CommonFragmentDirections
 import com.example.trailers.ui.fragment.genres.adapter.ChipsAdapter
 import com.example.trailers.ui.fragment.genres.adapter.GenresPagingAdapter
-import com.example.trailers.ui.fragment.home.adapter.OnClickListener
-import com.example.trailers.ui.fragment.home.vm.HomeViewModel
+import com.example.trailers.ui.fragment.genres.vm.GenresViewModel
 import com.example.trailers.ui.fragment.search.adapter.PagingLoadStateAdapter
-import com.example.trailers.utils.setAsActionBar
+import com.example.trailers.utils.*
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class GenresFragment : BaseFragment<FragmentGenresBinding>(R.layout.fragment_genres),
-    OnClickListener {
+class GenresFragment : BaseFragment<FragmentGenresBinding>(R.layout.fragment_genres) {
 
     @Inject
-    lateinit var vm: HomeViewModel
+    lateinit var vm: GenresViewModel
     private lateinit var adapter: GenresPagingAdapter
     private lateinit var adapterChips: ChipsAdapter
 
@@ -35,27 +33,41 @@ class GenresFragment : BaseFragment<FragmentGenresBinding>(R.layout.fragment_gen
         super.onAttach(context)
     }
 
-    override fun initial() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            titleToolbar.text = resources.getString(R.string.genres)
-            (activity as AppCompatActivity?)?.setAsActionBar(toolbar, true)
-            swiperefreshlayout.setOnRefreshListener {
-                initialAdapter()
-                swiperefreshlayout.isRefreshing = false
-            }
+
+            activity?.setAsActionBar(toolbar = toolbar,
+                isBack = true,
+                title = resources.getString(R.string.genres))
+
+            checkConnection()
+            refresh()
             initialChipsAdapter()
         }
     }
 
-    private fun initialChipsAdapter() {
-        adapterChips = ChipsAdapter()
-        vm.getGenresMovie.observe(this) { response ->
-            response.data()?.let { data ->
-                adapterChips.differ.submitList(data.genres)
-                binding.rcChip.adapter = adapterChips
-            }
+    private fun checkConnection() {
+        NetworkHelper(context = requireContext()).observe(viewLifecycleOwner) { state ->
+            vm.checkConnection(state.isConnection())
         }
-        adapterChips.onItemClickListener { onClickItem(it) }
+    }
+
+    private fun refresh() {
+        binding.swiperefreshlayout.setOnRefreshListener {
+            checkConnection()
+            initialAdapter()
+            binding.swiperefreshlayout.isRefreshing = false
+        }
+    }
+
+    private fun initialChipsAdapter() {
+        vm.getGenresMovie.observe(viewLifecycleOwner) { data ->
+            adapterChips = ChipsAdapter(data = data)
+            binding.rcChip.adapter = adapterChips
+            adapterChips.onItemClickListener { onClickItem(it) }
+        }
+        binding.rcChip.hasFixedSize()
     }
 
     private fun onClickItem(genreId: String?) {
@@ -66,25 +78,36 @@ class GenresFragment : BaseFragment<FragmentGenresBinding>(R.layout.fragment_gen
     }
 
     private fun initialAdapter() {
-        adapter = GenresPagingAdapter(this)
+        adapter = GenresPagingAdapter()
         binding.rcGenres.layoutManager = GridLayoutManager(context, 2)
         vm.getGenresOfMovie.observe(viewLifecycleOwner) { data ->
             lifecycleScope.launch {
                 adapter.submitData(data)
             }
         }
+
+        adapter.onItemClickListener { id ->
+            id?.let {
+                val action = GenresFragmentDirections.actionGenresFragmentToMoiveFragment(id)
+                action.movieToDestination(view)
+            }
+        }
+
         binding.rcGenres.hasFixedSize()
+        loadStateAdapter()
+    }
+
+    private fun loadStateAdapter() {
         binding.rcGenres.adapter = adapter.withLoadStateHeaderAndFooter(
             header = PagingLoadStateAdapter { adapter.retry() },
             footer = PagingLoadStateAdapter { adapter.retry() }
         )
+
         adapter.addLoadStateListener { loadState ->
             val isEmptyList = loadState.refresh is LoadState.NotLoading && adapter.itemCount == 0
-            showEmptyList(isEmptyList)
+            showEmptyList(!isEmptyList)
 
-            // Only show the list if refresh succeeds
             binding.rcGenres.isVisible = loadState.source.refresh is LoadState.NotLoading
-            // Show loading spinner during initial load or refresh
             (loadState.source.refresh is LoadState.Loading).also {
                 binding.progressBar.isVisible = it
             }
@@ -92,15 +115,7 @@ class GenresFragment : BaseFragment<FragmentGenresBinding>(R.layout.fragment_gen
     }
 
     private fun showEmptyList(emptyList: Boolean) {
-        binding.rcGenres.isVisible = !emptyList
-    }
-
-    override fun clickItem(id: Int?, navigation: Int?) {
-        val bundle = Bundle()
-        id?.let {
-            bundle.putInt("id", it)
-            findNavController().navigate(R.id.action_genresFragment_to_moiveFragment, bundle)
-        }
+        binding.rcGenres.isVisible = emptyList
     }
 
 }

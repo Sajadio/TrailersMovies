@@ -1,5 +1,6 @@
 package com.example.trailers.ui.fragment.movie.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -9,11 +10,13 @@ import com.example.trailers.data.model.movie.similar.Result
 import com.example.trailers.databinding.LayoutCardSimilarBinding
 import com.example.trailers.ui.fragment.home.adapter.OnClickListener
 
-class SimilarPagingAdapter(
-    private val listener: OnClickListener,
-) :
+class SimilarPagingAdapter :
     PagingDataAdapter<Result, SimilarPagingAdapter.SimilarHolder>(CharacterComparator) {
 
+    private var onItemClickListener: ((Int?) -> Unit)? = null
+    fun onItemClickListener(listener: (Int?) -> Unit) {
+        onItemClickListener = listener
+    }
 
     inner class SimilarHolder(val binding: LayoutCardSimilarBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -33,7 +36,7 @@ class SimilarPagingAdapter(
         holder.binding.apply {
             similar = item
             root.setOnClickListener {
-                listener.clickItem(item?.id)
+                onItemClickListener?.let { it(item?.id) }
             }
 
         }

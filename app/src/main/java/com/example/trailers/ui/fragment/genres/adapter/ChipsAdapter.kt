@@ -22,7 +22,9 @@ import com.example.trailers.ui.fragment.home.adapter.OnClickListener
 import com.example.trailers.utils.ParentListAdapter
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
-class ChipsAdapter: RecyclerView.Adapter<ChipsAdapter.ChipsHolder>() {
+class ChipsAdapter(
+    private val data:List<Genres>
+): RecyclerView.Adapter<ChipsAdapter.ChipsHolder>() {
 
     val differ = AsyncListDiffer(this, DifferCallbacks)
     private var selectedPosition: Int = 0
@@ -46,7 +48,7 @@ class ChipsAdapter: RecyclerView.Adapter<ChipsAdapter.ChipsHolder>() {
         holder: ChipsHolder,
         @SuppressLint("RecyclerView") position: Int,
     ) {
-        val item = differ.currentList[position]
+        val item = data[position]
         holder.binding.apply {
             textChip.text = item.name
 
@@ -74,10 +76,9 @@ class ChipsAdapter: RecyclerView.Adapter<ChipsAdapter.ChipsHolder>() {
         this.setTextColor(Color.parseColor(textColor))
     }
 
-    override fun getItemCount() = differ.currentList.size
+    override fun getItemCount() = data.size
 
-    inner class ChipsHolder(val binding: LayoutChipsItemBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    inner class ChipsHolder(val binding: LayoutChipsItemBinding) : RecyclerView.ViewHolder(binding.root)
 
 
     object DifferCallbacks : DiffUtil.ItemCallback<Genres>() {

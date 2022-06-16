@@ -22,60 +22,48 @@
             android:layout_height="match_parent"
             android:background="?attr/secondColor">
 
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar_layout"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="wrap_content"
                 android:background="?attr/mainColor"
-                android:minHeight="?attr/actionBarSize"
+                android:fitsSystemWindows="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/btnMenu"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="start"
-                    android:background="@drawable/shadow_menu_btn"
-                    android:src="@drawable/ic_round_menu_24" />
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/mainColor"
+                    app:title="@string/home"
+                    android:minHeight="?attr/actionBarSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btnSearch"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/shadow_menu_btn"
+                        android:src="@drawable/ic_baseline_search_24" />
 
-                <TextView
-                    android:id="@+id/titleToolbar"
-                    style="@style/Headline5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/home"
-                    android:textColor="?attr/textColor"
-                    android:textStyle="bold" />
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btnMenu"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="@dimen/size_8"
+                        android:background="@drawable/shadow_menu_btn"
+                        android:src="@drawable/ic_round_menu_24" />
 
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/btnSearch"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/shadow_search_btn"
-                    android:outlineProvider="bounds"
-                    android:src="@drawable/ic_baseline_search_24"
-                    android:translationZ="16dp" />
+                </com.google.android.material.appbar.MaterialToolbar>
 
-            </androidx.appcompat.widget.Toolbar>
-
-
-            <View
-                android:id="@+id/viewLine"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="?attr/secondColor"
-                app:layout_constraintEnd_toEndOf="@+id/toolbar"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/toolbar"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            </com.google.android.material.appbar.AppBarLayout>
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -88,21 +76,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewLine"
+                app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"
                 app:stateManage="@{viewModel.responseData}" />
-
-            <TextView
-                android:id="@+id/refresh"
-                style="@style/Body2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/app_name"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:mError="@{viewModel.responseData}" />
 
             <ProgressBar
                 android:id="@+id/progress_bar"
@@ -112,7 +87,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewLine"
+                app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"
                 app:loading="@{viewModel.responseData}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

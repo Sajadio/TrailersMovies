@@ -11,14 +11,6 @@
             type="com.example.trailers.data.model.movie.trend.TrendResult" />
 
         <variable
-            name="onClickItem"
-            type="com.example.trailers.ui.fragment.home.adapter.OnClickListener" />
-
-        <variable
-            name="viewModel"
-            type="com.example.trailers.ui.fragment.movie.vm.MovieViewModel" />
-
-        <variable
             name="imageSize"
             type="com.example.trailers.utils.Constant" />
     </data>
@@ -28,26 +20,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/size_4"
-        android:checkable="true"
         app:cardBackgroundColor="?attr/mainColor"
-        android:clickable="true"
-        android:focusable="true"
         app:cardCornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/app_name"
+            app:layout_constraintBottom_toBottomOf="@+id/poster"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/popcorn1" />
+
+        <ImageView
             android:id="@+id/poster"
-            android:layout_width="@dimen/showcase_height2"
+            android:layout_width="@dimen/showcase_height3"
             android:layout_height="400dp"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"
             app:imageSize="@{imageSize.IMAGE_Size_ORIGINAL}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:setImage="@{trend.poster_path}"
             tools:src="@drawable/ic_launcher_background" />
+
     </com.google.android.material.card.MaterialCardView>
 </layout>

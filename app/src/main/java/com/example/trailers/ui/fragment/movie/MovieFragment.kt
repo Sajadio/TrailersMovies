@@ -1,23 +1,27 @@
 package com.example.trailers.ui.fragment.movie
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.*
-import com.example.trailers.databinding.FragmentMovieBinding
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.navigation.Navigation
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.trailers.R
 import com.example.trailers.data.model.movie.actors.Cast
+import com.example.trailers.databinding.FragmentMovieBinding
 import com.example.trailers.ui.base.BaseFragment
 import com.example.trailers.ui.fragment.movie.adapter.ActorsAdapter
 import com.example.trailers.ui.fragment.movie.adapter.SimilarAdapter
 import com.example.trailers.ui.fragment.movie.vm.MovieViewModel
-import com.example.trailers.utils.NetworkStatus
-import com.example.trailers.utils.setAsActionBar
+import com.example.trailers.utils.*
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -33,46 +37,54 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
         super.onAttach(context)
     }
 
-    override fun initial() {
-        (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar, true)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
             viewModel = vm
             include.viewModel = vm
-            lifecycleOwner = this@MovieFragment
-        }
+            binding.lifecycleOwner = viewLifecycleOwner
 
-        binding.include.seeAll.setOnClickListener {
-            findNavController().navigate(R.id.action_moiveFragment_to_similarFragment)
-        }
-        binding.playVideo.setOnClickListener {
-            setPlayVideo()
-        }
 
-        stateManagement()
-        setGenres()
-        initialAdapter()
+            activity?.setAsActionBar(
+                toolbar = toolbar,
+                isBack = true)
+
+            binding.include.seeAll.setOnClickListener {
+                findNavController().navigate(R.id.action_moiveFragment_to_similarFragment)
+            }
+            binding.playVideo.setOnClickListener {
+                setPlayVideo()
+            }
+
+            checkConnection()
+        }
+    }
+
+    private fun checkConnection() {
+        NetworkHelper(context = requireContext()).observe(viewLifecycleOwner) { state ->
+            binding.connection.visibility(state.isConnection())
+            if (state.isConnection()) {
+                stateManagement()
+                setGenres()
+                initialAdapter()
+            }
+        }
     }
 
     private fun setPlayVideo() {
-        vm.playVideo.observe(this) {
-            val bundle = Bundle()
-            it.data()?.results?.map {
-                bundle.putString("url", it.key)
+        vm.playVideo.observe(viewLifecycleOwner) {
+            it?.data()?.results?.map {
+                startActivity(Intent(Intent.ACTION_VIEW,
+                    Uri.parse(Constant.YOUTUBE_BASE + it.key)))
             }
-            findNavController()
-                .navigate(R.id.action_moiveFragment_to_videoPlayActivity,
-                    bundle,
-                    null,
-                    null)
-
         }
     }
 
 
     private fun initialAdapter() {
         vm.getID(args.id)
-        vm.actors.observe(this) {
+        vm.actors.observe(viewLifecycleOwner) {
             it.data()?.cast?.let { data ->
                 actorsAdapter = ActorsAdapter(data)
                 binding.include.rvActors.adapter = actorsAdapter
@@ -80,25 +92,27 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                     getMovieOfActor(data)
                 }
             }
+            setUpSimilarData()
         }
+    }
 
-        vm.similar.observe(this) {
-            it.data()?.results?.let {
+    private fun setUpSimilarData() {
+        vm.similar.observe(viewLifecycleOwner) {
+            it?.data()?.results?.let {
                 binding.include.rcSimilar.adapter = SimilarAdapter(it)
             }
         }
-
     }
+
 
     private fun getMovieOfActor(cast: Cast) {
         val action = MovieFragmentDirections.actionMoiveFragmentToActorsFragment(cast)
-        findNavController().navigate(action)
-
+        action.movieToDestination(view)
     }
 
     private fun setGenres() {
-        vm.responseData.observe(this) {
-            val genres = it.data()?.genres
+        vm.responseData.observe(viewLifecycleOwner) {
+            val genres = it?.data()?.genres
             var genre = ""
             if (genres != null) {
                 for (i in genres) {
@@ -107,17 +121,14 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                     else
                         i.name
                 }
+                binding.include.generes.text = genre
             }
-            binding.include.generes.text = genre
-
         }
     }
 
     private fun stateManagement() {
-        vm.responseData.observe(this) { state ->
+        vm.responseData.observe(viewLifecycleOwner) { state ->
             binding.progressBar.isVisible = (state is NetworkStatus.Loading)
         }
     }
-
-
 }

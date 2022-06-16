@@ -17,21 +17,20 @@
         android:theme="@style/Theme.Movie"
         android:usesCleartextTraffic="true">
         <activity
+            android:screenOrientation="fullSensor"
             android:name="com.example.trailers.ui.activity.HomeActivity"
             android:exported="true" />
 
         <activity
-            android:theme="@style/Splash"
             android:name="com.example.trailers.ui.activity.SplashActivity"
+            android:exported="true"
             android:noHistory="true"
-            android:exported="true">
+            android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ui.fragment.movie.VideoPlayActivity" />
 
     </application>
 
