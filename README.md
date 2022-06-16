@@ -7,7 +7,7 @@ The purpose of this project is to learn how to use features and libraries in a r
 <img src="/img/Screenshot2.png" vspace="5" align= "left"  height="400" width="200">
 <img src="/img/Screenshot3.png" vspace="5" height="400" width="200" >
 
-<img src="/img/Screenshot4.png" vspace="5" height="400" width="200" >
+<img src="/img/Screenshot4.png" vspace="5" align= "left" height="400" width="200" >
 <img src="/img/Screenshot5.png" vspace="5" align= "left" height="400" width="200">
 <img src="/img/Screenshot6.png" vspace="5" height="400" width="200">
 
