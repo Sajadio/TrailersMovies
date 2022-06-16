@@ -27,6 +27,7 @@ The purpose of this project is to learn how to use features and libraries like (
 - <a href="https://developer.android.com/guide/navigation/navigation-getting-started">Navigation Components.</a>
 - <a href="https://developer.android.com/topic/architecture">Repository Pattern.</a>
 - <a href="https://developer.android.com/topic/libraries/data-binding">Data-Binding.</a>
+- - <a href="https://developer.android.com/topic/libraries/architecture/datastore">Data Store.</a>
 - <a href="https://github.com/bumptech/glide">Glid.</a>
 
 
