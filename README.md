@@ -15,7 +15,7 @@ The purpose of this project is to learn how to use features and libraries in a r
 
 Home | Movies Details | Movies List  
 --- | --- | --- | --- | --- | ---  |
-[](/img/Screenshot1.png?raw=true) | [](/img/Screenshot2.png?raw=true) | [](/img/Screenshot3.png?raw=true) 
+[first](/img/Screenshot1.png?raw=true) | [2](/img/Screenshot2.png?raw=true) | [](/img/Screenshot3.png?raw=true) 
 
 
 ## Features and Libraries that  used to build app 🛠:
