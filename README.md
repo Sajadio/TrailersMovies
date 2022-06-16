@@ -8,6 +8,20 @@ The purpose of this project is learn how can use the features and libraries in r
 <img src="/img/Screenshot2.png" vspace="5" align= "left"  height="400" width="200" >
 <img src="/img/Screenshot3.png" vspace="5" align= "left" height="400" width="200" >
 
+<br>
+
+<img src="/img/Screenshot4.png" vspace="5" align= "left" height="400" width="200">
+<img src="/img/Screenshot5.png" vspace="5" align= "left"  height="400" width="200" >
+<img src="/img/Screenshot6.png" vspace="5" align= "left" height="400" width="200" >
+
+<br>
+
+<img src="/img/Screenshot7.png" vspace="5" align= "left" height="400" width="200">
+<img src="/img/Screenshot8.png" vspace="5" align= "left"  height="400" width="200" >
+<img src="/img/Screenshot9.png" vspace="5" align= "left" height="400" width="200" >
+
+<br>
+
 
 ## Features and Libraries that  used to build app 🛠:
 - <a href="https://developer.android.com/kotlin/coroutines">Coroutines.</a>
