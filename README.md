@@ -1,18 +1,8 @@
 # Trailers-MDB
 
-
-![Image](/img/banner_github.png)
-
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Filmy-blue.svg?style=flat)](https://android-arsenal.com/details/1/4110)
-[![License](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](https://github.com/salRoid/Filmy/blob/master/LICENCE)
-
-Open sourced awesome material designed movie app.
-
-<img src="http://www.salroid.me/android/filmy_launcher.png" height="128" width="128" >
-
 # Screens
 <img src="/img/screenshot1.png" vspace="5" align= "left" height="500" width="260">
-<img src="/img/screenshot2.png" vspace="5" align= "left"  height="500" width="260" >
+<img src="/img/Screenshot2.png" vspace="5" align= "left"  height="500" width="260" >
 <img src="/img/screenshot3.png" vspace="5" height="500" width="260" >
 <img src="/img/screenshot4.png" vspace="5" align= "left" height="500" width="260" >
 <img src="/img/screenshot5.png" align= "left" vspace="5" height="500" width="260" >
