@@ -32,13 +32,10 @@ The purpose of this project is learn how can use the features and libraries in r
 ## APIs
 Trailers is powered by the tmdb.
 
+
 ## Built-With
 - Android Studio
 - Programming Language: Kotlin
-
-## Architecture
-
-![Test Image 4](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
 
 
 ## Prerequisites
