@@ -1,5 +1,3 @@
-# Trailers-MDB
-
 # Screens
 <img src="/img/Screenshot1.png" vspace="5" align= "left" height="500" width="260">
 <img src="/img/Screenshot2.png" vspace="5" align= "left"  height="500" width="260" >
@@ -12,26 +10,8 @@
 <img src="/img/Screenshot9.png" vspace="5" height="500" width="260" >
 
 # APIs
-Filmy is powered by the tmdb.
+Trailers is powered by the tmdb.
 
-# Implementations
-Contains various advanced api implementations that make it high quality app.
-
-<ul>
-<li>Unit Testing</li>
-<li>SQLite Database</li>
-<li>Content Providers</li>
-<li>Cursor Loaders</li>
-<li>Job Schedulers</li>
-<li>View Binding - ButterKnife</li>
-<li>Volley - for networking</li>
-<li>Glide - for images</li>
-<li>Accessbility Features</li>
-<li>Localised Content</li>
-<li>Animations</li>
-<li>App Widgets</li>
-<li>Custom Views - BreathingProgress, CustomToast</li>
-</ul>
 
 ## Prerequisites
 Generate your own API Keys from  the following : 
