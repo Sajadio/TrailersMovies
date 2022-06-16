@@ -1,38 +1,40 @@
 ## Trailers 
 The purpose of this project is learn how can use the features and libraries in real project
 
+
+# Screens
+<img src="/img/Screenshot1.png" vspace="5" align= "left" height="400" width="200">
+<img src="/img/Screenshot2.png" vspace="5" align= "left"  height="400" width="200" >
+<img src="/img/Screenshot3.png" vspace="5" height="400" width="200" >
+<img src="/img/Screenshot4.png" vspace="5" align= "left" height="400" width="200" >
+<img src="/img/Screenshot5.png" align= "5" vspace="5" height="400" width="200" >
+<img src="/img/Screenshot6.png" vspace="5" height="400" width="200" >
+<img src="/img/Screenshot7.png" vspace="5" height="400" width="200" >
+<img src="/img/Screenshot8.png" vspace="5" height="400" width="200" >
+<img src="/img/Screenshot9.png" vspace="5" height="400" width="200" >
+
+
 ## Features and Library that we used:
-- Coroutines
-- Kotlin Flow
-- MVVM
-- Extension Functions
-- Dagger2
-- Retrofit
-- Room
-- Paging 3
-- Navigation Components
-- Repository Pattern
-- Coroutines Flow
-- DataBinding 
-- Glid
-- 
+- <a href="https://developer.android.com/kotlin/coroutines">Coroutines.</a>
+- <a href="https://developer.android.com/kotlin/flow">Kotlin Flow.</a>
+- <a href="https://developer.android.com/topic/libraries/architecture/viewmodel">MVVM.</a>
+- <a href="https://developer.android.com/topic/libraries/architecture/livedata">LiveData.</a>
+- <a href="https://github.com/codepath/android_guides/wiki/Dependency-Injection-with-Dagger-2">Dagger 2.</a>
+- <a href="https://github.com/square/retrofit">Retrofit.</a>
+- <a href="https://developer.android.com/training/data-storage/room">Room.</a>
+- <a href="https://developer.android.com/topic/libraries/architecture/paging/v3-migration">Paging 3.</a>
+- <a href="https://developer.android.com/guide/navigation/navigation-getting-started">Navigation Components.</a>
+- <a href="https://developer.android.com/topic/architecture">Repository Pattern.</a>
+- <a href="https://developer.android.com/topic/libraries/data-binding">Data-Binding.</a>
+- <a href="https://github.com/bumptech/glide">Glid.</a>
+
+
 ## APIs
 Trailers is powered by the tmdb.
 
 ## Built-With
 - Android Studio
 - Programming Language: Kotlin
-
-# Screens
-<img src="/img/Screenshot1.png" vspace="5" align= "left" height="400" width="260">
-<img src="/img/Screenshot2.png" vspace="5" align= "left"  height="400" width="260" >
-<img src="/img/Screenshot3.png" vspace="5" height="400" width="260" >
-<img src="/img/Screenshot4.png" vspace="5" align= "left" height="400" width="260" >
-<img src="/img/Screenshot5.png" align= "5" vspace="5" height="400" width="260" >
-<img src="/img/Screenshot6.png" vspace="5" height="400" width="260" >
-<img src="/img/Screenshot7.png" vspace="5" height="400" width="260" >
-<img src="/img/Screenshot8.png" vspace="5" height="400" width="260" >
-<img src="/img/Screenshot9.png" vspace="5" height="400" width="260" >
 
 ## Architecture
 
