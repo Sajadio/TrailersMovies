@@ -3,7 +3,10 @@ package com.example.trailers.utils
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.opengl.Visibility
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
@@ -37,9 +40,8 @@ fun language() = if (Locale.getDefault().displayLanguage == "English") "en" else
 fun ImageView.loadImage(url: String, imageSize: String?) {
     imageSize?.let {
         Glide.with(this)
-        .load(Constant.IMAGE_PATH + imageSize + url)
-        .error(R.drawable.error)
-        .into(this)
+            .load(Constant.IMAGE_PATH + imageSize + url)
+            .into(this)
     }
 }
 
@@ -107,6 +109,28 @@ fun Window.hideSystemUI(view: View) {
 
 fun NavDirections.movieToDestination(view: View?) {
     view?.findNavController()?.navigate(this)
+}
+
+@SuppressLint("ServiceCast", "ObsoleteSdkInt")
+fun isNetworkAvailable(context: Context): Boolean {
+    val connectivityManager =
+        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        val nw = connectivityManager.activeNetwork ?: return false
+        val actNw = connectivityManager.getNetworkCapabilities(nw) ?: return false
+        return when {
+            actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            //for other device how are able to connect with Ethernet
+            actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+            //for check internet over Bluetooth
+            actNw.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
+            else -> false
+        }
+    } else {
+        val nwInfo = connectivityManager.activeNetworkInfo ?: return false
+        return nwInfo.isConnected
+    }
 }
 
 

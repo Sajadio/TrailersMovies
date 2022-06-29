@@ -9,11 +9,19 @@ class SimilarAdapter(
     data: List<Result>,
 ) : BaseAdapter<LayoutItemSimilarBinding, Result>(data) {
 
+    private var onItemClickListener: ((Int?) -> Unit)? = null
+    fun onItemClickListener(listener: (Int?) -> Unit) {
+        onItemClickListener = listener
+    }
+
     override val layoutId = R.layout.layout_item_similar
 
     override fun bind(binding: LayoutItemSimilarBinding, item1: Int, item: Result) {
         binding.apply {
             similar = item
+            root.setOnClickListener {
+                onItemClickListener?.invoke(item.id)
+            }
         }
     }
 

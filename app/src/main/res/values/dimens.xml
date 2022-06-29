@@ -30,5 +30,13 @@
     <dimen name="showcase_height1">200dp</dimen>
     <dimen name="showcase_height2">250dp</dimen>
     <dimen name="showcase_height3">300dp</dimen>
+    <dimen name="showcase_height4">380dp</dimen>
+
+    <dimen name="trend_fragment_height">450dp</dimen>
+    <dimen name="common_fragment_height">400dp</dimen>
+    <dimen name="upcoming_fragment_height">350dp</dimen>
+
+
+    <dimen name="margin_vertical_scroll_view">55dp</dimen>
 
 </resources>

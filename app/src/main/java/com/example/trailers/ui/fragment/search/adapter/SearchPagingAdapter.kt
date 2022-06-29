@@ -38,6 +38,7 @@ class SearchPagingAdapter :
                 root.setOnClickListener {
                     onItemClickListener?.let { (it(item.id)) }
                 }
+                executePendingBindings()
             }
 
         }

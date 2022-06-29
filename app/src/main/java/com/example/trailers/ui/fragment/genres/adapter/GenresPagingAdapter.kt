@@ -38,6 +38,7 @@ class GenresPagingAdapter: PagingDataAdapter<MovieResult, GenresPagingAdapter.Ge
                 root.setOnClickListener {
                     onItemClickListener?.let { it(item.id) }
                 }
+                executePendingBindings()
             }
         }
     }

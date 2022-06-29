@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
             android:gravity="start"
-            android:text="@string/genres"
+            android:text="@string/category"
             android:textColor="?attr/textColorHint"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="@+id/genresIcon"

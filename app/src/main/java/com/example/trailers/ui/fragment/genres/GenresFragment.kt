@@ -1,55 +1,46 @@
 package com.example.trailers.ui.fragment.genres
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.trailers.R
 import com.example.trailers.databinding.FragmentGenresBinding
 import com.example.trailers.ui.base.BaseFragment
-import com.example.trailers.ui.fragment.common.CommonFragmentDirections
-import com.example.trailers.ui.fragment.genres.adapter.ChipsAdapter
 import com.example.trailers.ui.fragment.genres.adapter.GenresPagingAdapter
-import com.example.trailers.ui.fragment.genres.vm.GenresViewModel
+import com.example.trailers.ui.fragment.genres.viewModel.GenresViewModel
 import com.example.trailers.ui.fragment.search.adapter.PagingLoadStateAdapter
 import com.example.trailers.utils.*
-import dagger.android.support.AndroidSupportInjection
-import kotlinx.coroutines.Dispatchers
+import com.google.android.material.tabs.TabLayout
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_genres.*
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
+
+@AndroidEntryPoint
 class GenresFragment : BaseFragment<FragmentGenresBinding>(R.layout.fragment_genres) {
 
-    @Inject
-    lateinit var vm: GenresViewModel
-    private lateinit var adapter: GenresPagingAdapter
-    private lateinit var adapterChips: ChipsAdapter
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
+    private val viewModel: GenresViewModel by viewModels()
+
+    private lateinit var adapter: GenresPagingAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.apply {
-
-            activity?.setAsActionBar(toolbar = toolbar,
-                isBack = true,
-                title = resources.getString(R.string.genres))
-
-            checkConnection()
-            refresh()
-            initialChipsAdapter()
-        }
+        initialAdapter()
+        checkConnection()
+        refresh()
+        setUpTabLayout()
     }
+
 
     private fun checkConnection() {
         NetworkHelper(context = requireContext()).observe(viewLifecycleOwner) { state ->
-            vm.checkConnection(state.isConnection())
+
         }
     }
 
@@ -61,26 +52,40 @@ class GenresFragment : BaseFragment<FragmentGenresBinding>(R.layout.fragment_gen
         }
     }
 
-    private fun initialChipsAdapter() {
-        vm.getGenresMovie.observe(viewLifecycleOwner) { data ->
-            adapterChips = ChipsAdapter(data = data)
-            binding.rcChip.adapter = adapterChips
-            adapterChips.onItemClickListener { onClickItem(it) }
+    private fun setUpTabLayout() {
+
+        viewModel.listGenresMovie.observe(viewLifecycleOwner) { data ->
+            data.reversed().forEach {
+                binding.tabLayout.addTab(binding.tabLayout.newTab().setText(it.name.toString()))
+            }
         }
-        binding.rcChip.hasFixedSize()
+
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                viewModel.saveCurrentPosition.postValue(tab.position)
+                viewModel.getID(tab.text.toString())
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
+
+        // to save current position when click back btn press
+        viewModel.saveCurrentPosition.observe(viewLifecycleOwner) { position ->
+            binding.tabLayout.getTabAt(position)?.select()
+        }
     }
 
-    private fun onClickItem(genreId: String?) {
-        genreId?.let {
-            vm.getGenresOfMovie(it)
-            initialAdapter()
-        }
-    }
 
     private fun initialAdapter() {
         adapter = GenresPagingAdapter()
-        binding.rcGenres.layoutManager = GridLayoutManager(context, 2)
-        vm.getGenresOfMovie.observe(viewLifecycleOwner) { data ->
+
+        val gridLayoutManager = GridLayoutManager(context, 2)
+        binding.rcGenres.layoutManager = gridLayoutManager
+        gridLayoutManager.orientation = LinearLayoutManager.VERTICAL
+
+
+        viewModel.responseListOfMovie.observe(viewLifecycleOwner) { data ->
             lifecycleScope.launch {
                 adapter.submitData(data)
             }
@@ -104,18 +109,31 @@ class GenresFragment : BaseFragment<FragmentGenresBinding>(R.layout.fragment_gen
         )
 
         adapter.addLoadStateListener { loadState ->
-            val isEmptyList = loadState.refresh is LoadState.NotLoading && adapter.itemCount == 0
+            val isEmptyList =
+                loadState.refresh is LoadState.NotLoading && adapter.itemCount == 0
             showEmptyList(!isEmptyList)
 
             binding.rcGenres.isVisible = loadState.source.refresh is LoadState.NotLoading
             (loadState.source.refresh is LoadState.Loading).also {
-                binding.progressBar.isVisible = it
+                stateManagement(it)
             }
         }
     }
 
     private fun showEmptyList(emptyList: Boolean) {
         binding.rcGenres.isVisible = emptyList
+    }
+
+
+    private fun stateManagement(state: Boolean) {
+        if (state)
+            binding.shimmer.startShimmer()
+        else
+            binding.shimmer.stopShimmer()
+
+        binding.shimmer.isVisible = state
+        binding.swiperefreshlayout.isVisible = !state
+
     }
 
 }

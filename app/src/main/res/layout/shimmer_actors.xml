@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:cardBackgroundColor="@color/color_shimmer"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/color_shimmer"
+            app:layout_constraintEnd_toEndOf="@+id/card1"
+            app:layout_constraintStart_toStartOf="@+id/card1"
+            app:layout_constraintTop_toBottomOf="@+id/card1" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card2"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/size_8"
+            app:cardBackgroundColor="@color/color_shimmer"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/card1"
+            app:layout_constraintStart_toEndOf="@+id/card1"
+            app:layout_constraintTop_toTopOf="@+id/card1" />
+
+        <View
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/color_shimmer"
+            app:layout_constraintEnd_toEndOf="@+id/card2"
+            app:layout_constraintStart_toStartOf="@+id/card2"
+            app:layout_constraintTop_toBottomOf="@+id/card2" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card3"
+            android:layout_width="100dp"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_height="0dp"
+            app:cardBackgroundColor="@color/color_shimmer"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/card2"
+            app:layout_constraintStart_toEndOf="@+id/card2"
+            app:layout_constraintTop_toTopOf="@+id/card2" />
+
+        <View
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/color_shimmer"
+            app:layout_constraintEnd_toEndOf="@+id/card3"
+            app:layout_constraintStart_toStartOf="@+id/card3"
+            app:layout_constraintTop_toBottomOf="@+id/card3" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card4"
+            android:layout_width="100dp"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_height="0dp"
+            app:cardBackgroundColor="@color/color_shimmer"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/card3"
+            app:layout_constraintStart_toEndOf="@+id/card3"
+            app:layout_constraintTop_toTopOf="@+id/card3" />
+
+        <View
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/color_shimmer"
+            app:layout_constraintEnd_toEndOf="@+id/card4"
+            app:layout_constraintStart_toStartOf="@+id/card4"
+            app:layout_constraintTop_toBottomOf="@+id/card4" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

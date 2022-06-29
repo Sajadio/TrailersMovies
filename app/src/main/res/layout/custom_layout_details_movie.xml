@@ -6,29 +6,27 @@
 
     <data>
 
-        <variable
-            name="viewModel"
-            type="com.example.trailers.ui.fragment.movie.vm.MovieViewModel" />
 
     </data>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="invisible">
 
         <TextView
             android:id="@+id/generes"
             style="@style/Body2"
-            android:layout_marginStart="@dimen/size_12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_16"
-            android:ellipsize="end"
-            android:padding="@dimen/size_8"
             android:background="@drawable/background_gray"
+            android:ellipsize="end"
             android:gravity="start|center"
             android:maxLines="1"
+            android:padding="@dimen/size_8"
             android:textColor="?attr/textColorHint"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -49,7 +47,6 @@
             android:textColor="?attr/textColorHint"
             app:layout_constraintStart_toStartOf="@+id/generes"
             app:layout_constraintTop_toBottomOf="@+id/generes"
-            app:setTime="@{viewModel.responseData.data().runtime}"
             tools:text="2h 46m" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -67,7 +64,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_time"
             app:layout_constraintStart_toEndOf="@+id/tv_time"
             app:layout_constraintTop_toTopOf="@+id/tv_time"
-            app:setTextRate="@{viewModel.responseData.data().vote_average}"
             tools:text="4.5 " />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -83,7 +79,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_time"
             app:layout_constraintStart_toEndOf="@+id/rate"
             app:layout_constraintTop_toTopOf="@+id/tv_time"
-            app:setDate="@{viewModel.responseData.data().release_date}"
             tools:text="2020" />
 
 
@@ -98,7 +93,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/generes"
             app:layout_constraintTop_toBottomOf="@+id/date"
-            app:setText="@{viewModel.responseData.data().overview}"
             tools:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here " />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -112,14 +106,35 @@
             app:layout_constraintStart_toStartOf="@+id/description"
             app:layout_constraintTop_toBottomOf="@+id/description" />
 
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/titleSimilar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleActors">
+
+            <include
+                layout="@layout/shimmer_actors"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_actors"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="@dimen/size_16"
             android:background="@android:color/transparent"
             android:orientation="horizontal"
+            android:visibility="invisible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/titleSimilar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleActors"
@@ -131,12 +146,24 @@
             style="@style/Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:text="@string/similar"
             android:textColor="?attr/textColor"
-            app:layout_constraintStart_toStartOf="@+id/description"
-            app:layout_constraintTop_toBottomOf="@+id/rv_actors" />
+            app:layout_constraintBottom_toTopOf="@+id/rc_similar"
+            app:layout_constraintStart_toStartOf="@+id/description" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/seeAll"
+            style="@style/Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="@dimen/size_8"
+            android:text="@string/seeAll"
+            android:textColor="@color/redLight"
+            app:layout_constraintBottom_toBottomOf="@+id/titleSimilar"
+            app:layout_constraintEnd_toEndOf="@+id/rv_actors"
+            app:layout_constraintTop_toTopOf="@+id/titleSimilar" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rc_similar"
@@ -149,21 +176,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleSimilar"
             tools:listitem="@layout/layout_item_similar" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/seeAll"
-            style="@style/Caption"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="@dimen/size_8"
-            android:text="@string/seeAll"
-            android:textColor="@color/redLight"
-            app:layout_constraintBottom_toBottomOf="@+id/titleSimilar"
-            app:layout_constraintEnd_toEndOf="@+id/rv_actors"
-            app:layout_constraintTop_toTopOf="@+id/titleSimilar" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -84,7 +84,7 @@ interface ApiService {
     @GET("search/movie?")
     suspend fun getSearchMovie(
         @Query("api_key") key: String = Constant.API_KEY,
-        @Query("query") query: String,
+        @Query("query") query: String?,
         @Query("page") page: Int,
     ): SearchMovie
 
@@ -94,6 +94,5 @@ interface ApiService {
         @Path("person_id") person_id: Int?,
         @Query("api_key") key: String = Constant.API_KEY,
     ): Response<ActorsMovie>
-
 
 }

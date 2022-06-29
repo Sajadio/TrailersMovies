@@ -15,37 +15,41 @@
             type="com.example.trailers.utils.Constant" />
     </data>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/size_4"
-        app:cardBackgroundColor="?attr/mainColor"
-        app:cardCornerRadius="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:contentDescription="@string/app_name"
-            app:layout_constraintBottom_toBottomOf="@+id/poster"
+            app:cardCornerRadius="5dp"
+            android:layout_margin="@dimen/size_8"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/popcorn1" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/poster"
-            android:layout_width="@dimen/showcase_height3"
-            android:layout_height="400dp"
-            android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
-            app:imageSize="@{imageSize.IMAGE_Size_ORIGINAL}"
-            app:setImage="@{trend.poster_path}"
-            tools:src="@drawable/ic_launcher_background" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/popcorn1"
+                android:contentDescription="@string/app_name"/>
 
-    </com.google.android.material.card.MaterialCardView>
+            <ImageView
+                android:id="@+id/poster"
+                android:layout_width="@dimen/showcase_height4"
+                android:layout_height="@dimen/showcase_height3"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center"
+                app:imageSize="@{imageSize.IMAGE_Size_ORIGINAL}"
+                app:setImage="@{trend.backdrop_path}"
+                tools:src="@drawable/ic_launcher_background" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

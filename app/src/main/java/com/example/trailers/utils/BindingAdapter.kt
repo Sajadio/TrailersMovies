@@ -24,34 +24,12 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
 @BindingAdapter("app:loading")
-fun ProgressBar.loading(state: List<MultiViewTypeItem<NetworkStatus<Any>>>?) {
-    state?.map {
-        this.isVisible = (it.item is NetworkStatus.Loading)
+fun ProgressBar.loading(state: NetworkStatus<Any>?) {
+    state?.let{
+        this.isVisible = (it is NetworkStatus.Loading)
     }
 }
 
-@BindingAdapter("app:stateManage")
-fun RecyclerView.stateManage(state: List<MultiViewTypeItem<NetworkStatus<Any>>>?) {
-    state?.map {
-        this.isVisible = (it.item !is NetworkStatus.Error)
-    }
-}
-
-
-@BindingAdapter("app:mError")
-fun TextView.mError(state: List<MultiViewTypeItem<NetworkStatus<Any>>>?) {
-    state?.map {
-        if (it.item is NetworkStatus.Error) {
-            this.isVisible = true
-            when {
-                it.item.isNetworkError -> this.resources.getString(R.string.noConnection)
-                it.item.errorCode is Int -> Log.d("sajjadio", "mError: ${it.item.errorCode}")
-                else -> Log.d("sajjadio",
-                    "mError: ${it.item.errorBody?.source()?.buffer.toString()}")
-            }
-        }
-    }
-}
 
 @BindingAdapter(value = ["app:setImage", "app:imageSize"])
 fun ImageView.setImage(url: String?, imageSize: String?) {
@@ -86,7 +64,7 @@ fun TextView.setTime(text: Int?) {
 @BindingAdapter(value = ["app:setTextRate"])
 fun TextView.setTextRate(rating: Double?) {
     rating?.let {
-        this.text = it.div(2.0f).toString()
+        this.text = it.toInt().toString()
     }
 }
 

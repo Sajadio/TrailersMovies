@@ -7,6 +7,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.example.trailers.R
 import com.example.trailers.utils.Constant
 import com.example.trailers.utils.UiMode
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
@@ -15,8 +16,9 @@ import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
 
+
 @Singleton
-class DataStorageImp @Inject constructor(context: Context) : DataStorage {
+class DataStorageImp @Inject constructor(@ApplicationContext context: Context) : DataStorage {
 
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = Constant.STORAGE_NAME)
     private val dataStore = context.dataStore

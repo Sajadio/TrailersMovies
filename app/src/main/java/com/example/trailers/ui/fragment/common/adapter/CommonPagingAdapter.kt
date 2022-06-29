@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.trailers.data.model.movie.common.CommonResult
 import com.example.trailers.databinding.LayoutItemCardCommonPagingBinding
 import com.example.trailers.ui.fragment.home.adapter.OnClickListener
+import com.example.trailers.utils.Constant
+import com.example.trailers.utils.loadImage
 
 class CommonPagingAdapter : PagingDataAdapter<CommonResult, CommonPagingAdapter.CommonHolder>(CharacterComparator) {
 
@@ -35,6 +37,7 @@ class CommonPagingAdapter : PagingDataAdapter<CommonResult, CommonPagingAdapter.
         fun bind(item: CommonResult) = apply {
             binding.apply {
                 common = item
+                poster.loadImage(item.poster_path.toString(),Constant.IMAGE_Size_500)
                 root.setOnClickListener {
                     onItemClickListener?.let { it(item.id) }
                 }

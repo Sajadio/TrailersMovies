@@ -1,79 +1,77 @@
 package com.example.trailers.ui.fragment.movie
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.trailers.R
+import com.example.trailers.data.model.movie.actors.Actors
 import com.example.trailers.data.model.movie.actors.Cast
+import com.example.trailers.data.model.movie.id.IDMovie
+import com.example.trailers.data.model.movie.similar.Similar
 import com.example.trailers.databinding.FragmentMovieBinding
 import com.example.trailers.ui.base.BaseFragment
 import com.example.trailers.ui.fragment.movie.adapter.ActorsAdapter
 import com.example.trailers.ui.fragment.movie.adapter.SimilarAdapter
-import com.example.trailers.ui.fragment.movie.vm.MovieViewModel
+import com.example.trailers.ui.fragment.movie.viewModel.MovieViewModel
 import com.example.trailers.utils.*
-import dagger.android.support.AndroidSupportInjection
-import kotlinx.coroutines.Dispatchers
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.custom_layout_details_movie.*
+import kotlinx.android.synthetic.main.layout_item_similar.*
+import kotlinx.android.synthetic.main.layout_item_similar.root
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie) {
 
-    @Inject
-    lateinit var vm: MovieViewModel
+    private val viewModel: MovieViewModel by viewModels()
+
     private val args: MovieFragmentArgs by navArgs()
     private lateinit var actorsAdapter: ActorsAdapter
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.apply {
-            viewModel = vm
-            include.viewModel = vm
-            binding.lifecycleOwner = viewLifecycleOwner
+            activity?.setAsActionBar(toolbar = toolbar, isBack = true)
 
-
-            activity?.setAsActionBar(
-                toolbar = toolbar,
-                isBack = true)
-
-            binding.include.seeAll.setOnClickListener {
-                findNavController().navigate(R.id.action_moiveFragment_to_similarFragment)
+            tryConnection.setOnClickListener {
+                checkConnection()
             }
-            binding.playVideo.setOnClickListener {
-                setPlayVideo()
-            }
-
-            checkConnection()
         }
+        checkConnection()
+        setUpData()
     }
 
-    private fun checkConnection() {
-        NetworkHelper(context = requireContext()).observe(viewLifecycleOwner) { state ->
-            binding.connection.visibility(state.isConnection())
-            if (state.isConnection()) {
-                stateManagement()
-                setGenres()
-                initialAdapter()
+    private fun setUpData() {
+        viewModel.responseData.observe(viewLifecycleOwner) { state ->
+            stateManagement(state)
+            state?.data()?.let { data ->
+                binding.apply {
+                    data.backdrop_path?.let {
+                        backgroundPath.loadImage(it,
+                            Constant.IMAGE_Size_ORIGINAL)
+                    }
+                    data.poster_path?.let { posterPath.loadImage(it, Constant.IMAGE_Size_500) }
+                    collapsingToolbarLayout.title = data.title
+                    include.tvTime.text = data.runtime.formatHourMinutes()
+                    include.rate.text = data.vote_average.toInt().toString()
+                    include.date.text = data.release_date
+                    include.description.text = data.overview
+                }
             }
+
         }
     }
 
     private fun setPlayVideo() {
-        vm.playVideo.observe(viewLifecycleOwner) {
+        viewModel.playVideo.observe(viewLifecycleOwner) {
             it?.data()?.results?.map {
                 startActivity(Intent(Intent.ACTION_VIEW,
                     Uri.parse(Constant.YOUTUBE_BASE + it.key)))
@@ -82,37 +80,51 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
     }
 
 
-    private fun initialAdapter() {
-        vm.getID(args.id)
-        vm.actors.observe(viewLifecycleOwner) {
-            it.data()?.cast?.let { data ->
+    private fun initialAdapterActors() {
+        viewModel.getID(args.id)
+        setGenres()
+        viewModel.actors.observe(viewLifecycleOwner) { state ->
+            stateManagementForActors(state)
+            state.data()?.cast?.let { data ->
                 actorsAdapter = ActorsAdapter(data)
                 binding.include.rvActors.adapter = actorsAdapter
                 actorsAdapter.onItemClickListener { data ->
                     getMovieOfActor(data)
                 }
+                moveToSimilar(state.data()?.id)
             }
-            setUpSimilarData()
+        }
+        initialAdapterSimilar()
+    }
+
+    private fun initialAdapterSimilar() {
+        viewModel.similar.observe(viewLifecycleOwner) { state ->
+            stateManagementForSimilar(state)
+            state?.data()?.results?.let { data ->
+                val adapter = SimilarAdapter(data)
+                binding.include.rcSimilar.adapter = adapter
+            }
         }
     }
 
-    private fun setUpSimilarData() {
-        vm.similar.observe(viewLifecycleOwner) {
-            it?.data()?.results?.let {
-                binding.include.rcSimilar.adapter = SimilarAdapter(it)
+
+    private fun moveToSimilar(id: Int?) {
+        binding.include.seeAll.setOnClickListener {
+            id?.let {
+                val action = MovieFragmentDirections.actionMoiveFragmentToSimilarFragment(id)
+                action.movieToDestination(view = this.root)
             }
         }
     }
-
 
     private fun getMovieOfActor(cast: Cast) {
         val action = MovieFragmentDirections.actionMoiveFragmentToActorsFragment(cast)
-        action.movieToDestination(view)
+        action.movieToDestination(view = this.root)
     }
 
     private fun setGenres() {
-        vm.responseData.observe(viewLifecycleOwner) {
-            val genres = it?.data()?.genres
+        viewModel.responseData.observe(viewLifecycleOwner) { state ->
+            val genres = state?.data()?.genres
             var genre = ""
             if (genres != null) {
                 for (i in genres) {
@@ -126,9 +138,32 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
         }
     }
 
-    private fun stateManagement() {
-        vm.responseData.observe(viewLifecycleOwner) { state ->
-            binding.progressBar.isVisible = (state is NetworkStatus.Loading)
+    private fun stateManagement(state: NetworkStatus<IDMovie>?) {
+        binding.progressBar.isVisible = (state is NetworkStatus.Loading)
+        binding.appBarLayout.isVisible = (state is NetworkStatus.Success)
+        binding.include.root.isVisible = (state is NetworkStatus.Success)
+    }
+
+
+    private fun stateManagementForActors(state: NetworkStatus<Actors>) {
+        binding.apply {
+            if (state is NetworkStatus.Loading)
+                include.shimmer.startShimmer()
+            else
+                include.shimmer.stopShimmer()
+
+            include.shimmer.isVisible = (state is NetworkStatus.Loading)
+            include.rvActors.isVisible = (state is NetworkStatus.Success)
         }
     }
+
+    private fun stateManagementForSimilar(state: NetworkStatus<Similar>?) {
+        binding.include.rcSimilar.isVisible = (state is NetworkStatus.Success)
+    }
+
+    private fun checkConnection() {
+        initialAdapterActors()
+        binding.connection.isVisible = !isNetworkAvailable(requireContext())
+    }
+
 }

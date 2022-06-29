@@ -21,6 +21,8 @@
     <color name="yellow">#E7A827</color>
     <color name="green">#2FCE36</color>
     <color name="transparent">@android:color/transparent</color>
+    <color name="color_shimmer">#DDCACACA</color>
+    <color name="color_child_shimmer">#DD999999</color>
 
 
 </resources>

@@ -1,38 +1,36 @@
 package com.example.trailers.ui.fragment.common
 
-import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
+import androidx.paging.map
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.trailers.R
 import com.example.trailers.databinding.FragmentCommonBinding
 import com.example.trailers.ui.base.BaseFragment
 import com.example.trailers.ui.fragment.common.adapter.CommonPagingAdapter
-import com.example.trailers.ui.fragment.common.vm.CommonViewModel
-import com.example.trailers.ui.fragment.home.vm.HomeViewModel
+import com.example.trailers.ui.fragment.common.viewModel.CommonViewModel
 import com.example.trailers.ui.fragment.search.adapter.PagingLoadStateAdapter
+import com.example.trailers.utils.NetworkStatus
 import com.example.trailers.utils.movieToDestination
 import com.example.trailers.utils.setAsActionBar
-import dagger.android.support.AndroidSupportInjection
-import kotlinx.coroutines.Dispatchers
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import kotlin.math.log
 
+@AndroidEntryPoint
 class CommonFragment : BaseFragment<FragmentCommonBinding>(R.layout.fragment_common) {
 
-    @Inject
-    lateinit var vm: CommonViewModel
+    private val viewModel: CommonViewModel by viewModels()
+
     private lateinit var adapter: CommonPagingAdapter
     private val args: CommonFragmentArgs by navArgs()
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,7 +48,7 @@ class CommonFragment : BaseFragment<FragmentCommonBinding>(R.layout.fragment_com
     }
 
     private fun checkDestinationID() {
-        vm.checkDestination(args.id)
+        viewModel.checkDestination(args.id)
         initialAdapter()
     }
 
@@ -59,7 +57,7 @@ class CommonFragment : BaseFragment<FragmentCommonBinding>(R.layout.fragment_com
         adapter = CommonPagingAdapter()
 
         binding.rcCommon.layoutManager = GridLayoutManager(context, 2)
-        vm.responseCommonPagingData.observe(viewLifecycleOwner) { data ->
+        viewModel.responseCommonPagingData.observe(viewLifecycleOwner) { data ->
             lifecycleScope.launch {
                 adapter.submitData(data)
             }
@@ -88,12 +86,23 @@ class CommonFragment : BaseFragment<FragmentCommonBinding>(R.layout.fragment_com
 
             binding.rcCommon.isVisible = loadState.source.refresh is LoadState.NotLoading
             (loadState.source.refresh is LoadState.Loading).also {
-                binding.progressBar.isVisible = it
+               stateManagement(it)
             }
         }
     }
 
     private fun showEmptyList(emptyList: Boolean) {
-        binding.rcCommon.isVisible = emptyList
+        binding.rcCommon.isVisible = !emptyList
+    }
+
+    private fun stateManagement(state: Boolean) {
+        if (state)
+            binding.shimmer.startShimmer()
+        else
+            binding.shimmer.stopShimmer()
+
+        binding.shimmer.isVisible = state
+        binding.swiperefreshlayout.isVisible = !state
+
     }
 }

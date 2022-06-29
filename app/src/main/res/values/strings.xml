@@ -30,10 +30,10 @@
     <string name="connected">Connected</string>
     <string name="noConnection">Make sure you are connected to the internet and try again</string>
     <string name="notActive">Sorry, something wrong!</string>
-    <string name="no_result">No Result!</string>
+    <string name="no_result">No Result Yet!</string>
     <string name="rated">Top Rated Movies</string>
     <string name="upComing">Upcoming Movies</string>
-    <string name="genres">Genres</string>
+    <string name="category">Categories</string>
     <string name="trending">Trending Movies</string>
     <string name="try_again">Try again</string>
     <string name="seeMorePopular">See more  popular movies</string>

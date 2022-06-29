@@ -1,5 +1,6 @@
 package com.example.trailers.data.repository.common
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.trailers.data.model.movie.common.CommonResult

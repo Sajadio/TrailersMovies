@@ -11,11 +11,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.Interceptor
+import okhttp3.Request
+import okhttp3.Response
 import java.io.IOException
 import java.net.InetSocketAddress
 import javax.net.SocketFactory
+import kotlin.properties.Delegates
 
-class NetworkHelper(context: Context) :LiveData<Int>(){
+class NetworkHelper(context: Context) :LiveData<Int>() {
 
     private lateinit var networkCallback: ConnectivityManager.NetworkCallback
     private val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -36,8 +40,7 @@ class NetworkHelper(context: Context) :LiveData<Int>(){
 
         override fun onAvailable(network: Network) {
             val networkCapabilities = cm.getNetworkCapabilities(network)
-            val hasInternetCapability =
-                networkCapabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+            val hasInternetCapability = networkCapabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
 
             if (hasInternetCapability == true) {
                 CoroutineScope(Dispatchers.IO).launch {
@@ -71,5 +74,6 @@ class NetworkHelper(context: Context) :LiveData<Int>(){
             }
         }
     }
+
 }
 

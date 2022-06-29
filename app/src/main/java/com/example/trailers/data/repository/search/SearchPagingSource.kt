@@ -8,7 +8,7 @@ import com.example.trailers.utils.Constant
 
 class SearchPagingSource(
     private val api: ApiService,
-    private val query: String,
+    private val query: String?,
 ) : PagingSource<Int, Result>() {
 
     override fun getRefreshKey(state: PagingState<Int, Result>): Int? {

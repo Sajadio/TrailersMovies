@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card1"
+            android:layout_width="@dimen/showcase_width3"
+            android:layout_height="@dimen/upcoming_fragment_height"
+            app:cardBackgroundColor="@color/color_shimmer"
+            app:cardCornerRadius="@dimen/corner_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_8"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/card1"
+            app:layout_constraintEnd_toEndOf="@+id/card1"
+            app:layout_constraintStart_toStartOf="@+id/card1">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:background="@color/color_child_shimmer" />
+
+            <View
+                android:layout_width="30dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="@dimen/size_4"
+                android:layout_marginBottom="@dimen/size_8"
+                android:background="@color/color_child_shimmer" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="15dp"
+                    android:background="@color/color_child_shimmer" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="15dp"
+                    android:layout_marginStart="@dimen/size_4"
+                    android:background="@color/color_child_shimmer" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

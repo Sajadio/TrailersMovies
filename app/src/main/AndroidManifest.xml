@@ -17,9 +17,10 @@
         android:theme="@style/Theme.Movie"
         android:usesCleartextTraffic="true">
         <activity
-            android:screenOrientation="fullSensor"
+            android:windowSoftInputMode="adjustPan"
             android:name="com.example.trailers.ui.activity.HomeActivity"
-            android:exported="true" />
+            android:exported="true"
+            tools:ignore="LockedOrientationActivity" />
 
         <activity
             android:name="com.example.trailers.ui.activity.SplashActivity"

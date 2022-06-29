@@ -1,35 +1,34 @@
 package com.example.trailers.ui.activity
 
 
+import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.trailers.R
 import com.example.trailers.databinding.ActivityMovieBinding
-import com.example.trailers.ui.fragment.home.vm.StorageViewModel
+import com.example.trailers.ui.fragment.home.viewModel.StorageViewModel
 import com.example.trailers.utils.*
-import dagger.android.AndroidInjection
-import kotlinx.android.synthetic.main.layout_item_similar.*
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var vm: StorageViewModel
+    val viewModel: StorageViewModel by viewModels()
+
     private var _binding: ActivityMovieBinding? = null
-    val binding: ActivityMovieBinding get() = _binding!!
+    private val binding: ActivityMovieBinding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-        observeUiPreferences()
-        super.onCreate(savedInstanceState)
 
+        super.onCreate(savedInstanceState)
+        observeUiPreferences()
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_movie)
 
         binding.apply {
@@ -39,19 +38,44 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+
+    fun checkCurrentMode() =
+        when (resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK)) {
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> 0
+            Configuration.UI_MODE_NIGHT_NO -> 1
+            Configuration.UI_MODE_NIGHT_YES -> 2
+            else -> -1
+        }
+
     override fun onSupportNavigateUp(): Boolean {
         findNavController(R.id.nav_host_fragment).navigateUp()
         return true
     }
 
     private fun observeUiPreferences() {
-        vm.selectedTheme.observe(this) { uiMode ->
+        viewModel.selectedTheme.observe(this) { uiMode ->
             ThemeHelper.applyTheme(uiMode)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        binding.bottomnavigation.setupWithNavController(binding.navHostFragment.findNavController())
+        binding.navHostFragment.findNavController()
+            .addOnDestinationChangedListener { _, destination, _ ->
+                when (destination.id) {
+                    R.id.homeFragment, R.id.searchFragment, R.id.genresFragment -> {
+                        binding.bottomnavigation.visibility = View.VISIBLE
+                    }
+                    else -> binding.bottomnavigation.visibility = View.GONE
+                }
+            }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
+
 }

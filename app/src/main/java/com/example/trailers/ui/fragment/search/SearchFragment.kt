@@ -3,62 +3,68 @@ package com.example.trailers.ui.fragment.search
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.SearchView
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import androidx.paging.PagingData
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.SnapHelper
 import com.example.trailers.R
 import com.example.trailers.databinding.FragmentSearchBinding
 import com.example.trailers.ui.base.BaseFragment
 import com.example.trailers.ui.fragment.search.adapter.PagingLoadStateAdapter
 import com.example.trailers.ui.fragment.search.adapter.SearchPagingAdapter
-import com.example.trailers.ui.fragment.search.vm.SearchViewModel
+import com.example.trailers.ui.fragment.search.viewModel.SearchViewModel
+import com.example.trailers.utils.Constant.TAG
 import com.example.trailers.utils.movieToDestination
 
-import com.example.trailers.utils.setAsActionBar
-import dagger.android.support.AndroidSupportInjection
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_search.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search),
-    androidx.appcompat.widget.SearchView.OnQueryTextListener {
+    SearchView.OnQueryTextListener {
 
-    @Inject
-    lateinit var vm: SearchViewModel
-    lateinit var adapter: SearchPagingAdapter
+    private val viewModel: SearchViewModel by viewModels()
+    private lateinit var adapter: SearchPagingAdapter
+    private lateinit var helper: SnapHelper
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity?)?.setAsActionBar(binding.toolbar,
-            true,
-            resources.getString(R.string.search))
+        helper = LinearSnapHelper()
+        binding.apply {
 
-        binding.rcSearch.setOnTouchListener { _, _ ->
-            hidePartialKeyboard()
-        }
-        initialAdapter()
+            searchView.setOnQueryTextListener(this@SearchFragment)
+            rcSearch.setOnTouchListener { _, _ ->
+                hidePartialKeyboard()
+            }
+            initialAdapter()
 
-        binding.swiperefreshlayout.setOnRefreshListener {
-            adapter.refresh()
-            binding.swiperefreshlayout.isRefreshing = false
+            swiperefreshlayout.setOnRefreshListener {
+                adapter.refresh()
+                swiperefreshlayout.isRefreshing = false
+            }
+
         }
+
     }
 
     private fun initialAdapter() {
 
         adapter = SearchPagingAdapter()
+        binding.rcSearch.adapter = adapter
+        helper.attachToRecyclerView(binding.rcSearch)
         adapter.onItemClickListener {
             it?.let { id ->
                 val action = SearchFragmentDirections.actionSearchFragmentToMoiveFragment(id)
@@ -71,11 +77,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
             footer = PagingLoadStateAdapter { adapter.retry() }
         )
 
-        vm.getMoviesSearch.observe(viewLifecycleOwner) {
+        viewModel.getMoviesSearch.observe(viewLifecycleOwner) {
             lifecycleScope.launch {
                 it?.let {
                     adapter.submitData(it)
-                    binding.rcSearch.hasFixedSize()
                 }
             }
         }
@@ -88,10 +93,21 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
             binding.rcSearch.isVisible = loadState.source.refresh is LoadState.NotLoading
             // Show loading spinner during initial load or refresh
             (loadState.source.refresh is LoadState.Loading).also {
-                binding.progressBar.isVisible = it
+                stateManagement(it)
             }
 
         }
+    }
+
+    private fun stateManagement(state: Boolean) {
+        if (state)
+            binding.shimmer.startShimmer()
+        else
+            binding.shimmer.stopShimmer()
+
+        binding.shimmer.isVisible = state
+        binding.rcSearch.isVisible = !state
+
     }
 
     private fun hidePartialKeyboard(): Boolean {
@@ -101,31 +117,24 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
     private fun showEmptyList(emptyList: Boolean) {
         binding.rcSearch.isVisible = !emptyList
+        binding.hintText2.isVisible = emptyList
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.top_app_bar, menu)
-
-        val search = menu.findItem(R.id.search)
-        val searchView = search?.actionView as? androidx.appcompat.widget.SearchView
-        searchView?.queryHint = resources.getString(R.string.search_box)
-        searchView?.setOnQueryTextListener(this)
-        searchView?.maxWidth = Integer.MAX_VALUE
-
-        super.onCreateOptionsMenu(menu, inflater)
-
-    }
-
 
     override fun onQueryTextSubmit(query: String?) = false
 
     override fun onQueryTextChange(query: String?): Boolean {
+
         lifecycleScope.launch(Dispatchers.Main) {
             query?.let {
                 if (it.length >= 3) {
                     delay(1000L)
-                    vm.getSearch(it)
+                    viewModel.getSearch(it)
+                } else {
+                    viewModel._getMoviesSearch.postValue(PagingData.empty())
                 }
+                delay(50L)
+                if (it.isEmpty())
+                    binding.hintText2.visibility = View.INVISIBLE
             }
         }
         return true
