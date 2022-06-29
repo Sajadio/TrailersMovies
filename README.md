@@ -20,7 +20,7 @@ The purpose of this project is to learn how to use features and libraries like (
 - <a href="https://developer.android.com/kotlin/flow">Kotlin Flow.</a>
 - <a href="https://developer.android.com/topic/libraries/architecture/viewmodel">MVVM.</a>
 - <a href="https://developer.android.com/topic/libraries/architecture/livedata">LiveData.</a>
-- <a href="https://github.com/codepath/android_guides/wiki/Dependency-Injection-with-Dagger-2">Dagger 2.</a>
+- <a href="https://developer.android.com/training/dependency-injection/hilt-android?authuser=1">Hilt.</a>
 - <a href="https://github.com/square/retrofit">Retrofit.</a>
 - <a href="https://developer.android.com/training/data-storage/room">Room.</a>
 - <a href="https://developer.android.com/guide/navigation/navigation-getting-started">Navigation Components.</a>
@@ -29,6 +29,7 @@ The purpose of this project is to learn how to use features and libraries like (
 - <a href="https://github.com/bumptech/glide">Glid.</a>
 - <a href="https://developer.android.com/topic/libraries/architecture/paging/v3-migration">Paging 3.</a>
 - <a href="https://developer.android.com/topic/libraries/architecture/datastore">Data Store.</a>
+- <a href="https://facebook.github.io/shimmer-android/">Shimmer.</a>
 
 
 ## APIs
