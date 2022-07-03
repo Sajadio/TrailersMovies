@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class SearchRepoImpl @Inject constructor(
     private val api: ApiService,
-) : SearchRepository, SafeApiCall {
+) : SearchRepository {
 
     override fun getMovieSearch(query: String?): Flow<PagingData<Result>> =
         Pager(config = PagingConfig(pageSize = Constant.DEFAULT_PAGE_SIZE, prefetchDistance = 2),

@@ -24,28 +24,26 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @HiltViewModel
-@SuppressLint("StaticFieldLeak")
 class MovieViewModel @Inject constructor(
-    private val repo: MovieRepoImpl, @ApplicationContext private val context: Context,
+    private val repo: MovieRepoImpl
 ) : ViewModel() {
 
-    private var _responseData: MutableLiveData<NetworkStatus<IDMovie>?> = MutableLiveData()
-    var responseData: LiveData<NetworkStatus<IDMovie>?> = _responseData
+    private var _responseData: MutableLiveData<NetworkStatus<IDMovie?>> = MutableLiveData()
+    var responseData: LiveData<NetworkStatus<IDMovie?>> = _responseData
 
-    private val _actors: MutableLiveData<NetworkStatus<Actors>> = MutableLiveData()
-    val actors: LiveData<NetworkStatus<Actors>> = _actors
+    private val _actors: MutableLiveData<NetworkStatus<Actors??>> = MutableLiveData()
+    val actors: LiveData<NetworkStatus<Actors??>> = _actors
 
-    private val _actorsOfMovie: MutableLiveData<NetworkStatus<ActorsMovie>> = MutableLiveData()
-    val actorsOfMovie: LiveData<NetworkStatus<ActorsMovie>> = _actorsOfMovie
+    private val _actorsOfMovie: MutableLiveData<NetworkStatus<ActorsMovie?>> = MutableLiveData()
+    val actorsOfMovie: LiveData<NetworkStatus<ActorsMovie?>> = _actorsOfMovie
 
-    private var _similar: MutableLiveData<NetworkStatus<Similar>?> = MutableLiveData()
-    val similar: LiveData<NetworkStatus<Similar>?> = _similar
+    private var _similar: MutableLiveData<NetworkStatus<Similar?>> = MutableLiveData()
+    val similar: LiveData<NetworkStatus<Similar?>> = _similar
 
-    private var _playVideo: MutableLiveData<NetworkStatus<VideoMovie>?> = MutableLiveData()
-    val playVideo: LiveData<NetworkStatus<VideoMovie>?> = _playVideo
+    private var _playVideo: MutableLiveData<NetworkStatus<VideoMovie?>> = MutableLiveData()
+    val playVideo: LiveData<NetworkStatus<VideoMovie?>> = _playVideo
 
     fun getID(id: Int?) {
-        if (isNetworkAvailable(context)) {
 
             id?.let {
                 viewModelScope.launch {
@@ -60,7 +58,6 @@ class MovieViewModel @Inject constructor(
                     }
                 }
             }
-        }
     }
 
     private fun getActors(id: Int) {

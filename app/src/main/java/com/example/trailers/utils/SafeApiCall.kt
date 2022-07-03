@@ -7,34 +7,19 @@ import retrofit2.HttpException
 import retrofit2.Response
 
 interface SafeApiCall {
-    fun <T> safeApiCall(response: Response<T>): Flow<NetworkStatus<T>> {
+
+    fun <T> safeApiCall(response: suspend () -> Response<T>): Flow<NetworkStatus<T?>> {
         return flow {
+            emit(NetworkStatus.Loading)
             try {
-                emit(NetworkStatus.Loading)
-                if (response.isSuccessful)
-                    emit(NetworkStatus.Success(response.body()))
-                else
-                    emit(
-                        NetworkStatus.Error(
-                            isNetworkError = false,
-                            errorCode = response.code(),
-                            errorBody = response.errorBody()
-                        )
-                    )
-            } catch (throwable: Throwable) {
-                when (throwable) {
-                    is HttpException ->
-                        emit(
-                            NetworkStatus.Error(
-                                isNetworkError = false,
-                                errorCode = throwable.code(),
-                                errorBody = throwable.response()?.errorBody()
-                            )
-                        )
-                    else ->
-                        emit(NetworkStatus.Error(true, null, null))
-                }
+                emit(checkIsSuccessfulResponse(response.invoke()))
+            } catch (e:Exception) {
+                emit(NetworkStatus.Error(e.message))
             }
         }
     }
+
+    private fun <T> checkIsSuccessfulResponse(response: Response<T>): NetworkStatus<T> =
+        if (response.isSuccessful) NetworkStatus.Success(response.body()) else NetworkStatus.Error(
+            response.message())
 }

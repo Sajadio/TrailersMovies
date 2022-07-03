@@ -56,7 +56,7 @@ class RatedFragment : BaseFragment<FragmentRatedBinding>(R.layout.fragment_rated
                 .movieToDestination(view)
     }
 
-    private fun stateManagement(state: NetworkStatus<Common>?) {
+    private fun stateManagement(state: NetworkStatus<Common?>) {
             if (state is NetworkStatus.Loading)
                 binding.shimmer.startShimmer()
             else

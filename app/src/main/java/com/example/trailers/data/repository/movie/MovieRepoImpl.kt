@@ -18,17 +18,17 @@ class MovieRepoImpl @Inject constructor(
 ) : MovieRepository, SafeApiCall {
 
     override suspend fun getMoviesDetails(id: Int?) =
-        safeApiCall(api.getMoviesDetails(id)).flowOn(Dispatchers.IO)
+        safeApiCall{api.getMoviesDetails(id)}.flowOn(Dispatchers.IO)
 
-    override suspend fun getActors(id: Int?) = safeApiCall(api.getActors(id)).flowOn(Dispatchers.IO)
+    override suspend fun getActors(id: Int?) = safeApiCall{api.getActors(id)}.flowOn(Dispatchers.IO)
 
     override suspend fun getSimilar(id: Int?) =
-        safeApiCall(api.getSimilar(id, page = 1)).flowOn(Dispatchers.IO)
+        safeApiCall{api.getSimilar(id, page = 1)}.flowOn(Dispatchers.IO)
 
     override suspend fun getMovieTrailer(id: Int?) =
-        safeApiCall(api.getMovieTrailer(id = id)).flowOn(Dispatchers.IO)
+        safeApiCall{api.getMovieTrailer(id = id)}.flowOn(Dispatchers.IO)
 
    override  suspend fun getMovieOfActor(person_id: Int?) =
-        safeApiCall(api.getMovieOfActor(person_id = person_id)).flowOn(Dispatchers.IO)
+        safeApiCall{api.getMovieOfActor(person_id = person_id)}.flowOn(Dispatchers.IO)
 
 }

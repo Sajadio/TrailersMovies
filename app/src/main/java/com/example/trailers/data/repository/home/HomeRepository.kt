@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface HomeRepository {
 
-    suspend fun getTrendMovie(): Flow<NetworkStatus<TrendMovie>>
-    suspend fun getMoviePopular(): Flow<NetworkStatus<Common>>
-    suspend fun getMovieTopRated(): Flow<NetworkStatus<Common>>
-    suspend fun getUpComingMovie(): Flow<NetworkStatus<Common>>
+    suspend fun getTrendMovie(): Flow<NetworkStatus<TrendMovie?>>
+    suspend fun getMoviePopular(): Flow<NetworkStatus<Common?>>
+    suspend fun getMovieTopRated(): Flow<NetworkStatus<Common?>>
+    suspend fun getUpComingMovie(): Flow<NetworkStatus<Common?>>
 
 }

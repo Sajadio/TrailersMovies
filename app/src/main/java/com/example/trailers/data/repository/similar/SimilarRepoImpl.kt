@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class SimilarRepoImpl @Inject constructor(
     private val api: ApiService,
-) : SimilarRepository, SafeApiCall {
+) : SimilarRepository{
 
     override fun listSimilarOfMovie(id: Int): Flow<PagingData<Result>> =
         Pager(config = PagingConfig(pageSize = Constant.DEFAULT_PAGE_SIZE, prefetchDistance = 2),

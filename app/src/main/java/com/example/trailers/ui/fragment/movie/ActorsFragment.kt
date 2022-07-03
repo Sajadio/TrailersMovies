@@ -1,7 +1,6 @@
 package com.example.trailers.ui.fragment.movie
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -13,7 +12,6 @@ import com.example.trailers.databinding.FragmentActorsBinding
 import com.example.trailers.ui.base.BaseFragment
 import com.example.trailers.ui.fragment.movie.adapter.ActorsMovieAdapter
 import com.example.trailers.ui.fragment.movie.viewModel.MovieViewModel
-import com.example.trailers.utils.Constant.TAG
 import com.example.trailers.utils.NetworkStatus
 import com.example.trailers.utils.movieToDestination
 import com.example.trailers.utils.setAsActionBar
@@ -69,7 +67,7 @@ class ActorsFragment : BaseFragment<FragmentActorsBinding>(R.layout.fragment_act
         }
     }
 
-    private fun stateManagement(state: NetworkStatus<ActorsMovie>) {
+    private fun stateManagement(state: NetworkStatus<ActorsMovie?>) {
         binding.apply {
             if (state is NetworkStatus.Loading)
                 shimmer.startShimmer()

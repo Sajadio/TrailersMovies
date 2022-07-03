@@ -23,17 +23,17 @@ class HomeViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
 ) : ViewModel() {
 
-    private var _responseTrendData: MutableLiveData<NetworkStatus<TrendMovie>> = MutableLiveData()
-    var responseTrendData: LiveData<NetworkStatus<TrendMovie>> = _responseTrendData
+    private var _responseTrendData: MutableLiveData<NetworkStatus<TrendMovie?>> = MutableLiveData()
+    var responseTrendData: LiveData<NetworkStatus<TrendMovie?>> = _responseTrendData
 
-    private var _responsePopularData: MutableLiveData<NetworkStatus<Common>?> = MutableLiveData()
-    var responsePopularData: LiveData<NetworkStatus<Common>?> = _responsePopularData
+    private var _responsePopularData: MutableLiveData<NetworkStatus<Common?>> = MutableLiveData()
+    var responsePopularData: LiveData<NetworkStatus<Common?>> = _responsePopularData
 
-    private var _responseRatedData: MutableLiveData<NetworkStatus<Common>> = MutableLiveData()
-    var responseRatedData: LiveData<NetworkStatus<Common>> = _responseRatedData
+    private var _responseRatedData: MutableLiveData<NetworkStatus<Common?>> = MutableLiveData()
+    var responseRatedData: LiveData<NetworkStatus<Common?>> = _responseRatedData
 
-    private var _responseUpComingData: MutableLiveData<NetworkStatus<Common>> = MutableLiveData()
-    var responseUpComingData: LiveData<NetworkStatus<Common>> = _responseUpComingData
+    private var _responseUpComingData: MutableLiveData<NetworkStatus<Common?>> = MutableLiveData()
+    var responseUpComingData: LiveData<NetworkStatus<Common?>> = _responseUpComingData
 
     val saveCurrentPosition = MutableLiveData<Int>()
 
@@ -43,12 +43,11 @@ class HomeViewModel @Inject constructor(
     }
 
     fun refreshData() {
-        if (isNetworkAvailable(context)) {
             setUpTrendData()
             setUpPopularData()
             setUpRatedData()
             setUpUpComingData()
-        }
+
     }
 
     private fun setUpUpComingData() {

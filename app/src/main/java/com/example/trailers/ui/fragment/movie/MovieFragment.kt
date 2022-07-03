@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.trailers.R
 import com.example.trailers.data.model.movie.actors.Actors
@@ -20,11 +19,7 @@ import com.example.trailers.ui.fragment.movie.adapter.SimilarAdapter
 import com.example.trailers.ui.fragment.movie.viewModel.MovieViewModel
 import com.example.trailers.utils.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.custom_layout_details_movie.*
-import kotlinx.android.synthetic.main.layout_item_similar.*
 import kotlinx.android.synthetic.main.layout_item_similar.root
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -38,15 +33,9 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.apply {
-            activity?.setAsActionBar(toolbar = toolbar, isBack = true)
-
-            tryConnection.setOnClickListener {
-                checkConnection()
-            }
-        }
-        checkConnection()
-        setUpData()
+            activity?.setAsActionBar(toolbar = binding.toolbar, isBack = true)
+            initialAdapterActors()
+            setUpData()
     }
 
     private fun setUpData() {
@@ -138,14 +127,14 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
         }
     }
 
-    private fun stateManagement(state: NetworkStatus<IDMovie>?) {
+    private fun stateManagement(state: NetworkStatus<IDMovie?>) {
         binding.progressBar.isVisible = (state is NetworkStatus.Loading)
         binding.appBarLayout.isVisible = (state is NetworkStatus.Success)
         binding.include.root.isVisible = (state is NetworkStatus.Success)
     }
 
 
-    private fun stateManagementForActors(state: NetworkStatus<Actors>) {
+    private fun stateManagementForActors(state: NetworkStatus<Actors?>) {
         binding.apply {
             if (state is NetworkStatus.Loading)
                 include.shimmer.startShimmer()
@@ -157,13 +146,8 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
         }
     }
 
-    private fun stateManagementForSimilar(state: NetworkStatus<Similar>?) {
+    private fun stateManagementForSimilar(state: NetworkStatus<Similar?>) {
         binding.include.rcSimilar.isVisible = (state is NetworkStatus.Success)
-    }
-
-    private fun checkConnection() {
-        initialAdapterActors()
-        binding.connection.isVisible = !isNetworkAvailable(requireContext())
     }
 
 }

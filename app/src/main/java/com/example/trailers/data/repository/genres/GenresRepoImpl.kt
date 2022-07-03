@@ -12,7 +12,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class GenresRepoImpl @Inject constructor(
     private val api: ApiService,
@@ -25,5 +24,5 @@ class GenresRepoImpl @Inject constructor(
             }
         ).flow.flowOn(Dispatchers.IO)
 
-    override suspend fun getGenresMovie() = safeApiCall(api.getGenresMovie()).flowOn(Dispatchers.IO)
+    override suspend fun getGenresMovie() = safeApiCall{api.getGenresMovie()}.flowOn(Dispatchers.IO)
 }

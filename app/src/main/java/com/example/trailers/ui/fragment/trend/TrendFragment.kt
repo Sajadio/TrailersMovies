@@ -1,7 +1,6 @@
 package com.example.trailers.ui.fragment.trend
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -12,16 +11,12 @@ import com.example.trailers.databinding.FragmentTrendBinding
 import com.example.trailers.ui.base.BaseFragment
 import com.example.trailers.ui.fragment.home.viewModel.HomeViewModel
 import com.example.trailers.ui.fragment.trend.adapter.SliderAdapter
-import com.example.trailers.utils.Constant
-import com.example.trailers.utils.Constant.TAG
 import com.example.trailers.utils.NetworkHelper
 import com.example.trailers.utils.NetworkStatus
-import com.example.trailers.utils.isConnection
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_trend.*
-import kotlin.properties.Delegates
 
 
 @AndroidEntryPoint
@@ -70,7 +65,7 @@ class TrendFragment : BaseFragment<FragmentTrendBinding>(R.layout.fragment_trend
 
     }
 
-    private fun stateManagement(state: NetworkStatus<TrendMovie>) {
+    private fun stateManagement(state: NetworkStatus<TrendMovie?>) {
         if (state is NetworkStatus.Loading)
             binding.shimmer.startShimmer()
         else

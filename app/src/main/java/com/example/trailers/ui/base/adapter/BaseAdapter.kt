@@ -14,7 +14,7 @@ import com.example.trailers.utils.ParentListAdapter
 abstract class BaseAdapter<BINDING : ViewDataBinding, T : ParentListAdapter>(
     private val list: List<ParentListAdapter>,
 ) :
-    RecyclerView.Adapter<BaseViewHolder<BINDING>>() {
+    RecyclerView.Adapter<BaseAdapter.BaseViewHolder<BINDING>>() {
     @get:LayoutRes
     abstract val layoutId: Int
 
@@ -26,15 +26,13 @@ abstract class BaseAdapter<BINDING : ViewDataBinding, T : ParentListAdapter>(
         differ.submitList(list)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<BINDING> {
-        val binder = DataBindingUtil.inflate<BINDING>(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = BaseViewHolder(DataBindingUtil.inflate<BINDING>(
             LayoutInflater.from(parent.context),
             layoutId,
             parent,
             false
         )
-        return BaseViewHolder(binder)
-    }
+    )
 
     override fun onBindViewHolder(holder: BaseViewHolder<BINDING>, position: Int) {
             bind(holder.binder,holder.layoutPosition, differ.currentList[position] as T)
@@ -57,5 +55,6 @@ abstract class BaseAdapter<BINDING : ViewDataBinding, T : ParentListAdapter>(
             oldItem == newItem
     }
 
+    class BaseViewHolder<BINDING : ViewDataBinding>(val binder: BINDING) : RecyclerView.ViewHolder(binder.root)
 }
 

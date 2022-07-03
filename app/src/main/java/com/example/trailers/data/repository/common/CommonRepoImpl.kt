@@ -16,7 +16,7 @@ import javax.inject.Singleton
 
 class CommonRepoImpl @Inject constructor(
     private val api: ApiService,
-) : CommonRepository, SafeApiCall {
+) : CommonRepository {
 
 
     override fun getPopularMoviePaging(): Flow<PagingData<CommonResult>> =

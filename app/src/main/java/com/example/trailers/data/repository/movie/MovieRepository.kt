@@ -12,9 +12,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
 
-    suspend fun getMoviesDetails(id: Int?): Flow<NetworkStatus<IDMovie>>
-    suspend fun getActors(id: Int?): Flow<NetworkStatus<Actors>>
-    suspend fun getSimilar(id: Int?): Flow<NetworkStatus<Similar>>
-    suspend fun getMovieTrailer(id: Int?): Flow<NetworkStatus<VideoMovie>>
-    suspend fun getMovieOfActor(person_id: Int?): Flow<NetworkStatus<ActorsMovie>>
+    suspend fun getMoviesDetails(id: Int?): Flow<NetworkStatus<IDMovie?>>
+    suspend fun getActors(id: Int?): Flow<NetworkStatus<Actors?>>
+    suspend fun getSimilar(id: Int?): Flow<NetworkStatus<Similar?>>
+    suspend fun getMovieTrailer(id: Int?): Flow<NetworkStatus<VideoMovie?>>
+    suspend fun getMovieOfActor(person_id: Int?): Flow<NetworkStatus<ActorsMovie?>>
 }

@@ -2,7 +2,6 @@ package com.example.trailers.ui.fragment.popular
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.example.trailers.R
@@ -16,7 +15,6 @@ import com.example.trailers.utils.NetworkHelper
 import com.example.trailers.utils.NetworkStatus
 import com.example.trailers.utils.movieToDestination
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_trend.view.*
 
 @AndroidEntryPoint
 class PopularFragment : BaseFragment<FragmentPopularBinding>(R.layout.fragment_popular) {
@@ -59,7 +57,7 @@ class PopularFragment : BaseFragment<FragmentPopularBinding>(R.layout.fragment_p
 
     }
 
-    private fun stateManagement(state: NetworkStatus<Common>?) {
+    private fun stateManagement(state: NetworkStatus<Common?>) {
             if (state is NetworkStatus.Loading)
                 binding.shimmer.startShimmer()
             else

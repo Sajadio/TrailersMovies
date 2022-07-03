@@ -63,7 +63,7 @@ class UpComingFragment : BaseFragment<FragmentUpcomingBinding>(R.layout.fragment
                 .movieToDestination(view)
     }
 
-    private fun stateManagement(state: NetworkStatus<Common>?) {
+    private fun stateManagement(state: NetworkStatus<Common?>) {
             if (state is NetworkStatus.Loading)
                 binding.shimmer.startShimmer()
             else
