@@ -42,7 +42,14 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.trailers.ui.fragment.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_moiveFragment"
+            app:destination="@id/moiveFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_commonFragment"
+            app:destination="@id/commonFragment" />
+    </fragment>
     <fragment
         android:id="@+id/genresFragment"
         android:name="com.example.trailers.ui.fragment.genres.GenresFragment"
@@ -111,21 +118,5 @@
             android:id="@+id/action_actorsFragment_to_moiveFragment"
             app:destination="@id/moiveFragment"/>
     </fragment>
-    <fragment
-        android:id="@+id/trendFragment2"
-        android:name="com.example.trailers.ui.fragment.trend.TrendFragment"
-        android:label="TrendFragment" />
-    <fragment
-        android:id="@+id/upComingFragment2"
-        android:name="com.example.trailers.ui.fragment.upcoming.UpComingFragment"
-        android:label="UpComingFragment" />
-    <fragment
-        android:id="@+id/popularFragment2"
-        android:name="com.example.trailers.ui.fragment.popular.PopularFragment"
-        android:label="PopularFragment" />
-    <fragment
-        android:id="@+id/ratedFragment2"
-        android:name="com.example.trailers.ui.fragment.rated.RatedFragment"
-        android:label="RatedFragment" />
 
 </navigation>

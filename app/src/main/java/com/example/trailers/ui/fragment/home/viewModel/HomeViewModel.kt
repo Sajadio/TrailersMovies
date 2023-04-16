@@ -43,11 +43,10 @@ class HomeViewModel @Inject constructor(
     }
 
     fun refreshData() {
-            setUpTrendData()
-            setUpPopularData()
-            setUpRatedData()
-            setUpUpComingData()
-
+        setUpTrendData()
+        setUpPopularData()
+        setUpRatedData()
+        setUpUpComingData()
     }
 
     private fun setUpUpComingData() {

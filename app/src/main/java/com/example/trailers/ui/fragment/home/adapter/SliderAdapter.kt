@@ -1,4 +1,4 @@
-package com.example.trailers.ui.fragment.trend.adapter
+package com.example.trailers.ui.fragment.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -39,7 +39,6 @@ class SliderAdapter(
 
     override fun getCount() = data.size
 
-    inner class SliderHolder(val binding: LayoutTrendCardItemBinding) :
-        SliderViewAdapter.ViewHolder(binding.root)
+    inner class SliderHolder(val binding: LayoutTrendCardItemBinding) : ViewHolder(binding.root)
 
 }

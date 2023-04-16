@@ -38,7 +38,7 @@ abstract class BaseAdapter<BINDING : ViewDataBinding, T : ParentListAdapter>(
             bind(holder.binder,holder.layoutPosition, differ.currentList[position] as T)
     }
 
-    override fun getItemCount(): Int = differ.currentList.size - 10
+    override fun getItemCount(): Int = differ.currentList.size
 
     object DifferCallbacks : DiffUtil.ItemCallback<ParentListAdapter>() {
         override fun areItemsTheSame(
