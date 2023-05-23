@@ -18,12 +18,12 @@
         android:usesCleartextTraffic="true">
         <activity
             android:windowSoftInputMode="adjustPan"
-            android:name="com.sajjadio.trailers.ui.activity.HomeActivity"
+            android:name="com.sajjadio.trailers.ui.HomeActivity"
             android:exported="true"
             tools:ignore="LockedOrientationActivity" />
 
         <activity
-            android:name="com.sajjadio.trailers.ui.activity.SplashActivity"
+            android:name="com.sajjadio.trailers.ui.SplashActivity"
             android:exported="true"
             android:noHistory="true"
             android:theme="@style/Splash">
