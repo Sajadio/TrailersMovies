@@ -4,7 +4,7 @@ import androidx.core.view.isVisible
 import com.example.trailers.R
 import com.example.trailers.data.model.movie.common.CommonResult
 import com.example.trailers.databinding.LayoutItemCardRatedBinding
-import com.example.trailers.ui.base.adapter.BaseAdapter
+import com.example.trailers.ui.base.BaseAdapter
 
 class TopRatedAdapter(
     data: List<CommonResult>

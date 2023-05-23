@@ -3,7 +3,7 @@ package com.example.trailers.ui.fragment.movie.adapter
 import com.example.trailers.R
 import com.example.trailers.data.model.movie.similar.Result
 import com.example.trailers.databinding.LayoutItemSimilarBinding
-import com.example.trailers.ui.base.adapter.BaseAdapter
+import com.example.trailers.ui.base.BaseAdapter
 
 class SimilarAdapter(
     data: List<Result>,

@@ -3,7 +3,7 @@ package com.example.trailers.ui.fragment.movie.adapter
 import com.example.trailers.R
 import com.example.trailers.data.model.movie.actorsmovie.Cast
 import com.example.trailers.databinding.LayoutItemCardActorsMovieBinding
-import com.example.trailers.ui.base.adapter.BaseAdapter
+import com.example.trailers.ui.base.BaseAdapter
 
 class ActorsMovieAdapter(data: List<Cast>) :
     BaseAdapter<LayoutItemCardActorsMovieBinding, Cast>(data) {
