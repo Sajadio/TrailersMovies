@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.ui.search.viewModel
+package com.sajjadio.trailers.ui.search
 
 import androidx.lifecycle.*
 import androidx.paging.PagingData

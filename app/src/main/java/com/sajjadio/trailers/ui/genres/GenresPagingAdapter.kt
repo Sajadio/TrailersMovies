@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.ui.genres.adapter
+package com.sajjadio.trailers.ui.genres
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sajjadio.trailers.data.model.movie.genremovie.MovieResult
 import com.sajjadio.trailers.databinding.LayoutItemCardGenresPagingBinding
 
-class GenresPagingAdapter: PagingDataAdapter<MovieResult, GenresPagingAdapter.GenresHolder>(CharacterComparator) {
+class GenresPagingAdapter: PagingDataAdapter<MovieResult, GenresPagingAdapter.GenresHolder>(
+    CharacterComparator
+) {
 
     private var onItemClickListener: ((Int?) -> Unit)? = null
     fun onItemClickListener(listener: (Int?) -> Unit) {
@@ -31,11 +33,11 @@ class GenresPagingAdapter: PagingDataAdapter<MovieResult, GenresPagingAdapter.Ge
     inner class GenresHolder(private val binding: LayoutItemCardGenresPagingBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: MovieResult) = apply {
+        fun bind(genre: MovieResult) = apply {
             binding.apply {
-                genre = item
+                 item = genre
                 root.setOnClickListener {
-                    onItemClickListener?.let { it(item.id) }
+                    onItemClickListener?.let { it(genre.id) }
                 }
                 executePendingBindings()
             }

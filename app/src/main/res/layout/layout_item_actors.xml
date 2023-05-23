@@ -6,8 +6,12 @@
     <data>
 
         <variable
-            name="actor"
+            name="item"
             type="com.sajjadio.trailers.data.model.movie.actors.Cast" />
+
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.home.adapter.HomeInteractListener" />
 
         <variable
             name="imageSize"
@@ -53,7 +57,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:setImage="@{actor.profile_path}"
+                app:setImage="@{item.profile_path}"
                 tools:srcCompat="@drawable/ic_launcher_background" />
         </com.google.android.material.card.MaterialCardView>
 
@@ -70,7 +74,7 @@
             app:layout_constraintEnd_toEndOf="@+id/materialCardView"
             app:layout_constraintStart_toStartOf="@+id/materialCardView"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView"
-            app:setText="@{actor.original_name}"
+            app:setText="@{item.original_name}"
             tools:text="Tome Hairy" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

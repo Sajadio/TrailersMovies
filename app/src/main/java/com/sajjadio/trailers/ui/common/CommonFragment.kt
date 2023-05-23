@@ -11,9 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentCommonBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.ui.fragment.common.adapter.CommonPagingAdapter
-import com.sajjadio.trailers.ui.fragment.common.viewModel.CommonViewModel
-import com.sajjadio.trailers.ui.fragment.search.adapter.PagingLoadStateAdapter
+import com.sajjadio.trailers.ui.search.PagingLoadStateAdapter
 import com.sajjadio.trailers.utils.movieToDestination
 import com.sajjadio.trailers.utils.setAsActionBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,10 +33,10 @@ class CommonFragment : BaseFragment<FragmentCommonBinding>(R.layout.fragment_com
                 isBack = true,
                 title = resources.getString(args.id))
 
-            swiperefreshlayout.setOnRefreshListener {
-                adapter.refresh()
-                swiperefreshlayout.isRefreshing = false
-            }
+//            swiperefreshlayout.setOnRefreshListener {
+//                adapter.refresh()
+//                swiperefreshlayout.isRefreshing = false
+//            }
             checkDestinationID()
         }
     }
@@ -61,7 +59,7 @@ class CommonFragment : BaseFragment<FragmentCommonBinding>(R.layout.fragment_com
 
         adapter.onItemClickListener { id ->
             id?.let {
-                val action = CommonFragmentDirections.actionCommonFragmentToMoiveFragment(id)
+                val action = CommonFragmentDirections.actionCommonFragmentToMovieFragment(id)
                 action.movieToDestination(view)
             }
         }

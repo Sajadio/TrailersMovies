@@ -11,9 +11,7 @@ import androidx.paging.LoadState
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentSimilarBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.ui.fragment.similar.adapter.SimilarPagingAdapter
-import com.sajjadio.trailers.ui.fragment.search.adapter.PagingLoadStateAdapter
-import com.sajjadio.trailers.ui.fragment.similar.viewModel.SimilarViewModel
+import com.sajjadio.trailers.ui.search.PagingLoadStateAdapter
 import com.sajjadio.trailers.utils.movieToDestination
 import com.sajjadio.trailers.utils.setAsActionBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,7 +56,7 @@ class SimilarFragment : BaseFragment<FragmentSimilarBinding>(R.layout.fragment_s
 
         adapter.onItemClickListener { id ->
             id?.let {
-                val action = SimilarFragmentDirections.actionSimilarFragmentToMoiveFragment(id)
+                val action = SimilarFragmentDirections.actionSimilarFragmentToMovieFragment(id)
                 action.movieToDestination(view)
             }
         }

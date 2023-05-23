@@ -7,8 +7,12 @@
     <data>
 
         <variable
-            name="search"
+            name="item"
             type="com.sajjadio.trailers.data.model.movie.search.Result" />
+
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.home.adapter.HomeInteractListener" />
 
         <variable
             name="imageSize"
@@ -44,7 +48,7 @@
                 app:imageSize="@{imageSize.IMAGE_Size_200}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:setImage="@{search.poster_path}"
+                app:setImage="@{item.poster_path}"
                 tools:srcCompat="@drawable/ic_launcher_background" />
 
         </com.google.android.material.card.MaterialCardView>
@@ -64,7 +68,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cardView"
             app:layout_constraintTop_toTopOf="@+id/cardView"
-            app:setText="@{search.original_title}"
+            app:setText="@{item.original_title}"
             tools:text="Star Wars: IV" />
 
         <TextView
@@ -81,7 +85,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/title"
             app:layout_constraintTop_toBottomOf="@+id/title"
-            app:setText="@{search.overview}" />
+            app:setText="@{item.overview}" />
 
         <TextView
             android:id="@+id/date"
@@ -94,7 +98,7 @@
             android:textColor="@color/redLight"
             app:layout_constraintStart_toStartOf="@+id/overview"
             app:layout_constraintTop_toBottomOf="@+id/overview"
-            app:setDate="@{search.release_date}"
+            app:setDate="@{item.release_date}"
             tools:text="2022-01-02" />
 
         <TextView
@@ -111,7 +115,7 @@
             app:layout_constraintStart_toEndOf="@+id/rate"
             app:layout_constraintTop_toTopOf="@+id/rate"
             app:layout_constraintVertical_bias="0.0"
-            app:vote_count="@{search.vote_count}"
+            app:vote_count="@{item.vote_count}"
             tools:text="10.6 k" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -126,7 +130,7 @@
             android:textColor="?attr/textColorHint"
             app:layout_constraintStart_toStartOf="@+id/date"
             app:layout_constraintTop_toBottomOf="@+id/date"
-            app:setTextRate="@{search.vote_average}"
+            app:setTextRate="@{item.vote_average}"
             tools:text="4.5 " />
 
 

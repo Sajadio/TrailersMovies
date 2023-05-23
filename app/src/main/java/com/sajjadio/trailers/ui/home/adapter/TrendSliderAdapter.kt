@@ -27,11 +27,11 @@ class TrendSliderAdapter(
     }
 
     override fun onBindViewHolder(holder: SliderHolder, position: Int) {
-        val item = items[position]
+        val trend = items[position]
         holder.binding.apply {
-            trend = item
+            item = trend
             root.setOnClickListener {
-                onItemClickListener?.let { it(item.id) }
+                onItemClickListener?.let { it(trend.id) }
             }
             executePendingBindings()
         }

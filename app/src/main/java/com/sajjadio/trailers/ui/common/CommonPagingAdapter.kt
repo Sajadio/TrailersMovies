@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.ui.common.adapter
+package com.sajjadio.trailers.ui.common
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -11,7 +11,9 @@ import com.sajjadio.trailers.databinding.LayoutItemCardCommonPagingBinding
 import com.sajjadio.trailers.utils.Constant
 import com.sajjadio.trailers.utils.loadImage
 
-class CommonPagingAdapter : PagingDataAdapter<CommonResult, CommonPagingAdapter.CommonHolder>(CharacterComparator) {
+class CommonPagingAdapter : PagingDataAdapter<CommonResult, CommonPagingAdapter.CommonHolder>(
+    CharacterComparator
+) {
 
     private var onItemClickListener: ((Int?) -> Unit)? = null
     fun onItemClickListener(listener: (Int?) -> Unit) {
@@ -33,13 +35,10 @@ class CommonPagingAdapter : PagingDataAdapter<CommonResult, CommonPagingAdapter.
     inner class CommonHolder(private val binding: LayoutItemCardCommonPagingBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: CommonResult) = apply {
+        fun bind(common: CommonResult) = apply {
             binding.apply {
-                common = item
-                poster.loadImage(item.poster_path.toString(),Constant.IMAGE_Size_500)
-                root.setOnClickListener {
-                    onItemClickListener?.let { it(item.id) }
-                }
+                item = common
+                poster.loadImage(common.poster_path.toString(),Constant.IMAGE_Size_500)
             }
         }
     }

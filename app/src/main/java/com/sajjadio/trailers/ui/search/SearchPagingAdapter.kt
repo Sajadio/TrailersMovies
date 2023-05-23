@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.ui.search.adapter
+package com.sajjadio.trailers.ui.search
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -31,11 +31,11 @@ class SearchPagingAdapter :
     inner class SearchViewHolder(private val binding: LayoutSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: Result) = apply {
+        fun bind(search: Result) = apply {
             binding.apply {
-                search = item
+                 item = search
                 root.setOnClickListener {
-                    onItemClickListener?.let { (it(item.id)) }
+                    onItemClickListener?.let { (it(search.id)) }
                 }
                 executePendingBindings()
             }

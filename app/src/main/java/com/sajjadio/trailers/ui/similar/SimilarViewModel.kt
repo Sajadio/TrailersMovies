@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.ui.similar.viewModel
+package com.sajjadio.trailers.ui.similar
 
 import androidx.lifecycle.*
 import androidx.paging.PagingData

@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.ui.search.adapter
+package com.sajjadio.trailers.ui.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.ui.similar.adapter
+package com.sajjadio.trailers.ui.similar
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -30,11 +30,11 @@ class SimilarPagingAdapter :
     }
 
     override fun onBindViewHolder(holder: SimilarHolder, position: Int) {
-        val item = getItem(position)
+        val similar = getItem(position)
         holder.binding.apply {
-            similar = item
+              item = similar
             root.setOnClickListener {
-                onItemClickListener?.let { it(item?.id) }
+                onItemClickListener?.let { it(similar?.id) }
             }
 
         }

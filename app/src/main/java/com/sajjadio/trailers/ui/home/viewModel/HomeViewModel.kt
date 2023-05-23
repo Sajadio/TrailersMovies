@@ -1,14 +1,15 @@
 package com.sajjadio.trailers.ui.home.viewModel
 
 import android.annotation.SuppressLint
-import android.content.Context
 import androidx.lifecycle.*
+import com.sajjadio.trailers.data.model.HomeItem
 import com.sajjadio.trailers.data.model.movie.common.Common
-import com.sajjadio.trailers.data.model.movie.trend.TrendMovie
+import com.sajjadio.trailers.data.model.movie.common.CommonResult
+import com.sajjadio.trailers.data.model.movie.trend.TrendResult
 import com.sajjadio.trailers.data.repository.home.HomeRepoImpl
+import com.sajjadio.trailers.ui.home.adapter.HomeInteractListener
 import com.sajjadio.trailers.utils.*
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,20 +17,28 @@ import javax.inject.Inject
 @SuppressLint("StaticFieldLeak")
 class HomeViewModel @Inject constructor(
     private val homeRepo: HomeRepoImpl,
-    @ApplicationContext private val context: Context,
-) : ViewModel() {
+) : ViewModel(), HomeInteractListener {
 
-    private var _responseTrendData: MutableLiveData<NetworkStatus<TrendMovie?>> = MutableLiveData()
-    var responseTrendData: LiveData<NetworkStatus<TrendMovie?>> = _responseTrendData
+    private var _responseTrendData: MutableLiveData<NetworkStatus<List<TrendResult>?>> =
+        MutableLiveData()
+    var responseTrendData: LiveData<NetworkStatus<List<TrendResult>?>> = _responseTrendData
 
-    private var _responsePopularData: MutableLiveData<NetworkStatus<Common?>> = MutableLiveData()
-    var responsePopularData: LiveData<NetworkStatus<Common?>> = _responsePopularData
+    private var _responsePopularData: MutableLiveData<NetworkStatus<List<CommonResult>?>> =
+        MutableLiveData()
+    var responsePopularData: LiveData<NetworkStatus<List<CommonResult>?>> = _responsePopularData
 
-    private var _responseRatedData: MutableLiveData<NetworkStatus<Common?>> = MutableLiveData()
-    var responseRatedData: LiveData<NetworkStatus<Common?>> = _responseRatedData
+    private var _responseRatedData: MutableLiveData<NetworkStatus<List<CommonResult>?>> =
+        MutableLiveData()
+    var responseRatedData: LiveData<NetworkStatus<List<CommonResult>?>> = _responseRatedData
 
-    private var _responseUpComingData: MutableLiveData<NetworkStatus<Common?>> = MutableLiveData()
-    var responseUpComingData: LiveData<NetworkStatus<Common?>> = _responseUpComingData
+    private var _responseUpComingData: MutableLiveData<NetworkStatus<List<CommonResult>?>> =
+        MutableLiveData()
+    var responseUpComingData: LiveData<NetworkStatus<List<CommonResult>?>> = _responseUpComingData
+
+    private var _responseHomeData: MutableLiveData<NetworkStatus<List<HomeItem>>> =
+        MutableLiveData()
+    var responseHomeData: LiveData<NetworkStatus<List<HomeItem>>> = _responseHomeData
+    private val homeData = mutableListOf<HomeItem>()
 
     val saveCurrentPosition = MutableLiveData<Int>()
 
@@ -39,6 +48,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun refreshData() {
+        homeData.clear()
         setUpTrendData()
         setUpPopularData()
         setUpRatedData()
@@ -48,15 +58,26 @@ class HomeViewModel @Inject constructor(
     private fun setUpUpComingData() {
         viewModelScope.launch {
             homeRepo.getUpComingMovie().collect { state ->
-                _responseUpComingData.postValue(state)
+                state.takeIf { it is NetworkStatus.Success }?.let {
+                    it.data()?.let { data ->
+                        homeData.add(HomeItem.Upcoming(data.results))
+                        _responseHomeData.postValue(NetworkStatus.Success(homeData))
+                    }
+                }
             }
         }
     }
 
+
     private fun setUpRatedData() {
         viewModelScope.launch {
             homeRepo.getMovieTopRated().collect { state ->
-                _responseRatedData.postValue(state)
+                state.takeIf { it is NetworkStatus.Success }?.let {
+                    it.data()?.let { data ->
+                        homeData.add(HomeItem.TopRated(data.results))
+                        _responseHomeData.postValue(NetworkStatus.Success(homeData))
+                    }
+                }
             }
         }
     }
@@ -64,7 +85,12 @@ class HomeViewModel @Inject constructor(
     private fun setUpPopularData() {
         viewModelScope.launch {
             homeRepo.getMoviePopular().collect { state ->
-                _responsePopularData.postValue(state)
+                state.takeIf { it is NetworkStatus.Success }?.let {
+                    it.data()?.let { data ->
+                        homeData.add(HomeItem.Popular(data.results))
+                        _responseHomeData.postValue(NetworkStatus.Success(homeData))
+                    }
+                }
             }
         }
     }
@@ -72,7 +98,12 @@ class HomeViewModel @Inject constructor(
     private fun setUpTrendData() {
         viewModelScope.launch {
             homeRepo.getTrendMovie().collect { state ->
-                _responseTrendData.postValue(state)
+                state.takeIf { it is NetworkStatus.Success }?.let {
+                    it.data()?.let { data ->
+                        homeData.add(HomeItem.Trend(data.results))
+                        _responseHomeData.postValue(NetworkStatus.Success(homeData))
+                    }
+                }
             }
         }
     }

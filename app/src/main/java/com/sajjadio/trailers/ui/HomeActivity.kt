@@ -11,7 +11,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.ActivityMovieBinding
-import com.sajjadio.trailers.ui.fragment.home.viewModel.StorageViewModel
+import com.sajjadio.trailers.ui.home.viewModel.StorageViewModel
 import com.sajjadio.trailers.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 

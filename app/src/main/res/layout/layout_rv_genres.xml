@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="adapter"
+            type="com.sajjadio.trailers.ui.genres.GenresPagingAdapter" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +26,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:listitem="@layout/layout_item_card_genres"
+            android:adapter="@{adapter}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

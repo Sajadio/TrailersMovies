@@ -1,21 +1,23 @@
-package com.sajjadio.trailers.ui.movie.viewModel
+package com.sajjadio.trailers.ui.details
 
 import androidx.lifecycle.*
 import com.sajjadio.trailers.data.model.movie.actors.Actors
 import com.sajjadio.trailers.data.model.movie.actorsmovie.ActorsMovie
+import com.sajjadio.trailers.data.model.movie.actorsmovie.Cast
 import com.sajjadio.trailers.data.model.movie.id.IDMovie
 import com.sajjadio.trailers.data.model.movie.similar.Similar
 import com.sajjadio.trailers.data.repository.movie.MovieRepoImpl
 import com.sajjadio.trailers.data.model.movie.video.VideoMovie
+import com.sajjadio.trailers.ui.actors.ActorInteractListener
 import com.sajjadio.trailers.utils.NetworkStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieViewModel @Inject constructor(
+class DetailsViewModel @Inject constructor(
     private val repo: MovieRepoImpl
-) : ViewModel() {
+) : ViewModel(), ActorInteractListener {
 
     private var _responseData: MutableLiveData<NetworkStatus<IDMovie?>> = MutableLiveData()
     var responseData: LiveData<NetworkStatus<IDMovie?>> = _responseData
@@ -23,8 +25,8 @@ class MovieViewModel @Inject constructor(
     private val _actors: MutableLiveData<NetworkStatus<Actors??>> = MutableLiveData()
     val actors: LiveData<NetworkStatus<Actors??>> = _actors
 
-    private val _actorsOfMovie: MutableLiveData<NetworkStatus<ActorsMovie?>> = MutableLiveData()
-    val actorsOfMovie: LiveData<NetworkStatus<ActorsMovie?>> = _actorsOfMovie
+    private val _actorsOfMovie: MutableLiveData<NetworkStatus<List<Cast>?>> = MutableLiveData()
+    val actorsOfMovie: LiveData<NetworkStatus<List<Cast>?>> = _actorsOfMovie
 
     private var _similar: MutableLiveData<NetworkStatus<Similar?>> = MutableLiveData()
     val similar: LiveData<NetworkStatus<Similar?>> = _similar
@@ -60,7 +62,7 @@ class MovieViewModel @Inject constructor(
     fun getMovieOfActor(person_id: Int?) {
         viewModelScope.launch {
             repo.getMovieOfActor(person_id).collect {
-                _actorsOfMovie.postValue(it)
+                _actorsOfMovie.postValue(NetworkStatus.Success(it.data()?.cast))
             }
         }
     }
@@ -79,5 +81,9 @@ class MovieViewModel @Inject constructor(
                 _playVideo.postValue(it)
             }
         }
+    }
+
+    override fun onActorItemClick(id: Int) {
+        TODO("Not yet implemented")
     }
 }

@@ -10,18 +10,17 @@ import com.sajjadio.trailers.data.model.HomeItem
 import com.sajjadio.trailers.databinding.FragmentHomeBinding
 import com.sajjadio.trailers.ui.HomeActivity
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.ui.fragment.home.adapter.HomeAdapter
-import com.sajjadio.trailers.ui.fragment.home.adapter.OnClickListener
-import com.sajjadio.trailers.ui.fragment.home.viewModel.HomeViewModel
 import com.sajjadio.trailers.utils.Destination
 import com.sajjadio.trailers.utils.UiMode
 import com.sajjadio.trailers.utils.isNetworkAvailable
 import com.sajjadio.trailers.utils.movieToDestination
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.sajjadio.trailers.ui.home.adapter.HomeAdapter
+import com.sajjadio.trailers.ui.home.viewModel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), OnClickListener {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private val viewModel: HomeViewModel by viewModels()
 
@@ -32,7 +31,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
         binding.apply {
 
             swiperefreshlayout.setOnRefreshListener {
-                viewModel.refreshData()
+                viewModel?.refreshData()
                 checkConnection()
                 swiperefreshlayout.isRefreshing = false
             }
@@ -48,35 +47,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
     }
 
     private fun setupHomeAdapter() {
-     val adapter = HomeAdapter(this)
+        val adapter = HomeAdapter(viewModel)
         binding.recyclerViewHome.adapter = adapter
-        val nestedItem = mutableListOf<HomeItem>()
 
-        (binding.recyclerViewHome.adapter as HomeAdapter).apply {
-            with(viewModel) {
-                responseTrendData.observe(viewLifecycleOwner) { state ->
-                    state.data()?.let { data ->
-                        nestedItem.add(HomeItem.Trend(data.results))
-                        this@apply.addNestedItem(nestedItem)
-                    }
-                }
-                responsePopularData.observe(viewLifecycleOwner) { state ->
-                    state.data()?.let { data ->
-                        nestedItem.add(HomeItem.Popular(data.results))
-                        this@apply.addNestedItem(nestedItem)
-                    }
-                }
-                responseRatedData.observe(viewLifecycleOwner) { state ->
-                    state.data()?.let { data ->
-                        nestedItem.add(HomeItem.TopRated(data.results))
-                        this@apply.addNestedItem(nestedItem)
-                    }
-                }
-                responseUpComingData.observe(viewLifecycleOwner) { state ->
-                    state.data()?.let { data ->
-                        nestedItem.add(HomeItem.Upcoming(data.results))
-                        this@apply.addNestedItem(nestedItem)
-                    }
+        viewModel.responseHomeData.observe(viewLifecycleOwner) {
+            it.let {states ->
+                states.data()?.let { data ->
+                    adapter.addNestedItem(data)
                 }
             }
         }
@@ -119,13 +96,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
     }
 
 
-    override fun onMoveToMovie(id: Int?) {
+    fun onMoveToMovie(id: Int?) {
         id?.let {
-            HomeFragmentDirections.actionHomeFragmentToMoiveFragment(it).movieToDestination(view)
+            HomeFragmentDirections.actionHomeFragmentToMovieFragment(it).movieToDestination(view)
         }
     }
 
-    override fun onSelectedDestination(destination: Destination) {
+    fun onSelectedDestination(destination: Destination) {
         when (destination) {
             Destination.Popular -> onMoveToDestination(R.string.popular)
             Destination.TopRated -> onMoveToDestination(R.string.rated)

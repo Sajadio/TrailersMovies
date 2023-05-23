@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="adapter"
+            type="com.sajjadio.trailers.ui.common.CommonPagingAdapter" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -145,6 +149,7 @@
                 android:id="@+id/rv_actors"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:adapter="@{adapter}"
                 android:background="?attr/secondColor"
                 android:visibility="invisible"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

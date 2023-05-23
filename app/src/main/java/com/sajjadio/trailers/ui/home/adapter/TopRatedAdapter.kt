@@ -8,5 +8,5 @@ class TopRatedAdapter(
     items: List<CommonResult>,
     listener: HomeInteractListener
 ) : BaseAdapter<CommonResult>(items, listener) {
-    override var layoutId = R.layout.layout_item_top_rated
+    override var layoutId = R.layout.layout_item_card_rated
 }

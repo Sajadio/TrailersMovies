@@ -11,11 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentGenresBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.ui.fragment.genres.adapter.GenresPagingAdapter
-import com.sajjadio.trailers.ui.fragment.genres.viewModel.GenresViewModel
-import com.sajjadio.trailers.ui.fragment.search.adapter.PagingLoadStateAdapter
 import com.sajjadio.trailers.utils.*
 import com.google.android.material.tabs.TabLayout
+import com.sajjadio.trailers.ui.search.PagingLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_genres.*
 import kotlinx.coroutines.launch
@@ -24,9 +22,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class GenresFragment : BaseFragment<FragmentGenresBinding>(R.layout.fragment_genres) {
 
-
     private val viewModel: GenresViewModel by viewModels()
-
     private lateinit var adapter: GenresPagingAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -93,7 +89,7 @@ class GenresFragment : BaseFragment<FragmentGenresBinding>(R.layout.fragment_gen
 
         adapter.onItemClickListener { id ->
             id?.let {
-                val action = GenresFragmentDirections.actionGenresFragmentToMoiveFragment(id)
+                val action = GenresFragmentDirections.actionGenresFragmentToMovieFragment(id)
                 action.movieToDestination(view)
             }
         }

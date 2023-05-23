@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.ui.common.viewModel
+package com.sajjadio.trailers.ui.common
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

@@ -16,11 +16,7 @@ import androidx.recyclerview.widget.SnapHelper
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentSearchBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.ui.fragment.search.adapter.PagingLoadStateAdapter
-import com.sajjadio.trailers.ui.fragment.search.adapter.SearchPagingAdapter
-import com.sajjadio.trailers.ui.fragment.search.viewModel.SearchViewModel
 import com.sajjadio.trailers.utils.movieToDestination
-
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_search.view.*
 import kotlinx.coroutines.Dispatchers
@@ -65,7 +61,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         helper.attachToRecyclerView(binding.rcSearch)
         adapter.onItemClickListener {
             it?.let { id ->
-                val action = SearchFragmentDirections.actionSearchFragmentToMoiveFragment(id)
+                val action = SearchFragmentDirections.actionSearchFragmentToMovieFragment(id)
                 action.movieToDestination(view)
             }
         }

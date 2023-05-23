@@ -5,7 +5,9 @@
 
     <data>
 
-
+        <variable
+            name="adapter"
+            type="com.sajjadio.trailers.ui.home.adapter.UpComingAdapter" />
 
     </data>
 
@@ -71,7 +73,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:visibility="invisible"
+            android:adapter="@{adapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

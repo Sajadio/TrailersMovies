@@ -7,8 +7,12 @@
     <data>
 
         <variable
-            name="trend"
+            name="item"
             type="com.sajjadio.trailers.data.model.movie.trend.TrendResult" />
+
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.home.adapter.HomeInteractListener" />
 
         <variable
             name="imageSize"
@@ -24,6 +28,7 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="5dp"
             android:layout_margin="@dimen/size_8"
+            android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +49,7 @@
                 android:scaleType="centerCrop"
                 android:layout_gravity="center"
                 app:imageSize="@{imageSize.IMAGE_Size_ORIGINAL}"
-                app:setImage="@{trend.backdrop_path}"
+                app:setImage="@{item.backdrop_path}"
                 tools:src="@drawable/ic_launcher_background" />
 
         </com.google.android.material.card.MaterialCardView>

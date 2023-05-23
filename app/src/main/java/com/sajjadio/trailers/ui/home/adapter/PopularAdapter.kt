@@ -10,5 +10,5 @@ class PopularAdapter(
     items: List<CommonResult>,
     listener: HomeInteractListener
 ) : BaseAdapter<CommonResult>(items, listener) {
-    override var layoutId = R.layout.layout_item_popular
+    override var layoutId = R.layout.layout_item_card_popualr
 }

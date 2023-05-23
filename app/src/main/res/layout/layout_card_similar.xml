@@ -7,7 +7,7 @@
     <data>
 
         <variable
-            name="similar"
+            name="item"
             type="com.sajjadio.trailers.data.model.movie.similar.Result" />
 
         <variable
@@ -54,7 +54,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:setImage="@{similar.poster_path}"
+                app:setImage="@{item.poster_path}"
                 tools:srcCompat="@drawable/ic_launcher_background" />
 
 
@@ -80,7 +80,7 @@
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/overview"
                 app:layout_constraintStart_toStartOf="parent"
-                app:setText="@{similar.original_title}"
+                app:setText="@{item.original_title}"
                 tools:text="Star Wars: IV" />
 
             <TextView
@@ -98,7 +98,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/rate"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/title"
-                app:setText="@{similar.overview}"
+                app:setText="@{item.overview}"
                 tools:text="A man with a low IQ has accomplished great things in his life and been present during significant historic events—in each case, far exceeding what anyone imagined he could do. But despite all he has achieved, his one true love eludes him." />
 
             <TextView
@@ -112,7 +112,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:setText="@{similar.release_date}"
+                app:setText="@{item.release_date}"
                 tools:text="2022-01-02" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -126,7 +126,7 @@
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/date"
                 app:layout_constraintStart_toStartOf="@+id/overview"
-                app:setTextRate="@{similar.vote_average}"
+                app:setTextRate="@{item.vote_average}"
                 tools:text="4.5 " />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -141,7 +141,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/rate"
                 app:layout_constraintStart_toEndOf="@+id/rate"
                 app:layout_constraintTop_toTopOf="@+id/rate"
-                app:vote_count="@{similar.vote_count}"
+                app:vote_count="@{item.vote_count}"
                 tools:text=" 4K" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

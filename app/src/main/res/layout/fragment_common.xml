@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="adapter"
+            type="com.sajjadio.trailers.ui.common.CommonPagingAdapter" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -103,6 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:adapter="@{adapter}"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
                 tools:listitem="@layout/layout_item_card_common_paging" />

@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.ui.movie
+package com.sajjadio.trailers.ui.details
 
 import android.content.Intent
 import android.net.Uri
@@ -12,22 +12,20 @@ import com.sajjadio.trailers.data.model.movie.actors.Actors
 import com.sajjadio.trailers.data.model.movie.actors.Cast
 import com.sajjadio.trailers.data.model.movie.id.IDMovie
 import com.sajjadio.trailers.data.model.movie.similar.Similar
-import com.sajjadio.trailers.databinding.FragmentMovieBinding
+import com.sajjadio.trailers.databinding.FragmentDetailsBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.ui.fragment.movie.adapter.ActorsAdapter
-import com.sajjadio.trailers.ui.fragment.movie.adapter.SimilarAdapter
-import com.sajjadio.trailers.ui.fragment.movie.viewModel.MovieViewModel
+import com.sajjadio.trailers.ui.actors.ActorsAdapter
 import com.sajjadio.trailers.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_item_similar.root
 
 
 @AndroidEntryPoint
-class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie) {
+class DetailsFragment : BaseFragment<FragmentDetailsBinding>(R.layout.fragment_details) {
 
-    private val viewModel: MovieViewModel by viewModels()
+    private val viewModel: DetailsViewModel by viewModels()
 
-    private val args: MovieFragmentArgs by navArgs()
+    private val args: DetailsFragmentArgs by navArgs()
     private lateinit var actorsAdapter: ActorsAdapter
 
 
@@ -74,12 +72,9 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
         setGenres()
         viewModel.actors.observe(viewLifecycleOwner) { state ->
             stateManagementForActors(state)
-            state.data()?.cast?.let { data ->
-                actorsAdapter = ActorsAdapter(data)
+            state.data()?.cast?.let { items ->
+//                actorsAdapter = ActorsAdapter(items,viewModel)
                 binding.include.rvActors.adapter = actorsAdapter
-                actorsAdapter.onItemClickListener { data ->
-                    getMovieOfActor(data)
-                }
                 moveToSimilar(state.data()?.id)
             }
         }
@@ -90,8 +85,8 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
         viewModel.similar.observe(viewLifecycleOwner) { state ->
             stateManagementForSimilar(state)
             state?.data()?.results?.let { data ->
-                val adapter = SimilarAdapter(data)
-                binding.include.rcSimilar.adapter = adapter
+//                val adapter = SimilarAdapter(data,viewModel)
+//                binding.include.rcSimilar.adapter = adapter
             }
         }
     }
@@ -100,15 +95,15 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
     private fun moveToSimilar(id: Int?) {
         binding.include.seeAll.setOnClickListener {
             id?.let {
-                val action = MovieFragmentDirections.actionMoiveFragmentToSimilarFragment(id)
+                val action = DetailsFragmentDirections.actionMovieFragmentToSimilarFragment(id)
                 action.movieToDestination(view = this.root)
             }
         }
     }
 
     private fun getMovieOfActor(cast: Cast) {
-        val action = MovieFragmentDirections.actionMoiveFragmentToActorsFragment(cast)
-        action.movieToDestination(view = this.root)
+//        val action = DetailsFragmentDirections.actionMoiveFragmentToActorsFragment(cast)
+//        action.movieToDestination(view = this.root)
     }
 
     private fun setGenres() {

@@ -7,7 +7,7 @@ import timber.log.Timber.DebugTree
 
 
 @HiltAndroidApp
-class App : Application(){
+class MovieApplication : Application(){
 
     override fun onCreate() {
         super.onCreate()

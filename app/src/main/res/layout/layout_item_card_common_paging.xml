@@ -7,8 +7,12 @@
     <data>
 
         <variable
-            name="common"
+            name="item"
             type="com.sajjadio.trailers.data.model.movie.common.CommonResult" />
+
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.home.adapter.HomeInteractListener" />
 
         <variable
             name="imageSize"
@@ -51,7 +55,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:setImage="@{common.poster_path}"
+                app:setImage="@{item.poster_path}"
                 tools:srcCompat="@drawable/ic_launcher_background" />
 
             <TextView
@@ -68,7 +72,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/poster"
-                app:setText="@{common.original_title}"
+                app:setText="@{item.original_title}"
                 tools:text="Star Wars: IV" />
 
 
@@ -83,7 +87,7 @@
                 android:textColor="?attr/textColorHint"
                 app:layout_constraintStart_toStartOf="@+id/title"
                 app:layout_constraintTop_toBottomOf="@+id/title"
-                app:setDate="@{common.release_date}"
+                app:setDate="@{item.release_date}"
                 tools:text="2014" />
 
             <TextView
@@ -115,7 +119,7 @@
                 app:drawableStartCompat="@drawable/ic_baseline_star_12"
                 app:layout_constraintStart_toStartOf="@+id/date"
                 app:layout_constraintTop_toBottomOf="@+id/date"
-                app:setTextRate="@{common.vote_average}"
+                app:setTextRate="@{item.vote_average}"
                 tools:text="9.2" />
 
             <TextView
@@ -132,7 +136,7 @@
                 app:layout_constraintStart_toEndOf="@+id/textRating"
                 app:layout_constraintTop_toTopOf="@+id/textRating"
                 app:layout_constraintVertical_bias="0.0"
-                app:vote_count="@{common.vote_count}"
+                app:vote_count="@{item.vote_count}"
                 tools:text="10.6 k" />
 
 
