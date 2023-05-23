@@ -8,11 +8,11 @@
 
         <variable
             name="search"
-            type="com.example.trailers.data.model.movie.search.Result" />
+            type="com.sajjadio.trailers.data.model.movie.search.Result" />
 
         <variable
             name="imageSize"
-            type="com.example.trailers.utils.Constant" />
+            type="com.sajjadio.trailers.utils.Constant" />
     </data>
 
 

@@ -8,11 +8,11 @@
 
         <variable
             name="popular"
-            type="com.example.trailers.data.model.movie.common.CommonResult" />
+            type="com.sajjadio.trailers.data.model.movie.common.CommonResult" />
 
         <variable
             name="imageSize"
-            type="com.example.trailers.utils.Constant" />
+            type="com.sajjadio.trailers.utils.Constant" />
     </data>
 
 

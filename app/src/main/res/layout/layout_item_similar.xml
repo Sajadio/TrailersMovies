@@ -7,11 +7,11 @@
 
         <variable
             name="similar"
-            type="com.example.trailers.data.model.movie.similar.Result" />
+            type="com.sajjadio.trailers.data.model.movie.similar.Result" />
 
         <variable
             name="imageSize"
-            type="com.example.trailers.utils.Constant" />
+            type="com.sajjadio.trailers.utils.Constant" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
