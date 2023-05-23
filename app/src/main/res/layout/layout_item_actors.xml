@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.sajjadio.trailers.ui.home.adapter.HomeInteractListener" />
+            type="com.sajjadio.trailers.ui.details.DetailsInteractListener" />
 
         <variable
             name="imageSize"

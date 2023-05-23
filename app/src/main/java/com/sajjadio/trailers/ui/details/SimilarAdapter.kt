@@ -6,7 +6,7 @@ import com.sajjadio.trailers.ui.base.BaseAdapter
 
 class SimilarAdapter(
     items: List<Result>,
-    listener: SimilarInteractionist
+    listener: DetailsInteractListener
 ) : BaseAdapter<Result>(items, listener) {
     override var layoutId = R.layout.layout_item_similar
 }

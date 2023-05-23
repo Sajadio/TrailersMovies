@@ -35,6 +35,11 @@ fun ImageView.setImage(url: String?, imageSize: String?) {
     url?.let { this.loadImage(it, imageSize) }
 }
 
+@BindingAdapter(value = ["app:imageUrl", "app:imageSize"])
+fun ImageView.setImage2(url: String?, imageSize: String?) {
+    url?.let { this.loadImage(it, imageSize) }
+}
+
 @BindingAdapter(value = ["app:setText"])
 fun TextView.setText(text: String?) {
     this.text = text
