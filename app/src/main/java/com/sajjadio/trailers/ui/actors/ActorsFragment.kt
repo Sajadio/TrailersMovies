@@ -3,16 +3,13 @@ package com.sajjadio.trailers.ui.actors
 import android.os.Bundle
 import android.view.*
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sajjadio.trailers.R
-import com.sajjadio.trailers.data.model.movie.actorsmovie.ActorsMovie
 import com.sajjadio.trailers.data.model.movie.actorsmovie.Cast
 import com.sajjadio.trailers.databinding.FragmentActorsBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
+import com.sajjadio.trailers.ui.details.ActorsAdapter
 import com.sajjadio.trailers.ui.details.DetailsViewModel
-import com.sajjadio.trailers.ui.similar.SimilarViewModel
 import com.sajjadio.trailers.utils.NetworkStatus
 import com.sajjadio.trailers.utils.setAsActionBar
 import dagger.hilt.android.AndroidEntryPoint

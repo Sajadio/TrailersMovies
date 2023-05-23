@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.sajjadio.trailers.ui.details.DetailsViewModel" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -101,81 +105,82 @@
 
             <include
                 android:id="@+id/include"
+                app:viewModel="@{viewModel}"
                 layout="@layout/custom_layout_details_movie"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
         </androidx.core.widget.NestedScrollView>
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+<!--        <ProgressBar-->
+<!--            android:id="@+id/progress_bar"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
 
-        <LinearLayout
-            android:id="@+id/connection"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/mainColor"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout">
+<!--        <LinearLayout-->
+<!--            android:id="@+id/connection"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="?attr/mainColor"-->
+<!--            android:gravity="center"-->
+<!--            android:orientation="vertical"-->
+<!--            android:visibility="invisible"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout">-->
 
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/not_wifi" />
+<!--            <ImageView-->
+<!--                android:layout_width="70dp"-->
+<!--                android:layout_height="70dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:contentDescription="@string/app_name"-->
+<!--                android:src="@drawable/not_wifi" />-->
 
-            <TextView
-                style="@style/Headline5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/size_8"
-                android:gravity="center"
-                android:text="@string/connection_problem"
-                android:textColor="?attr/textColor"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--            <TextView-->
+<!--                style="@style/Headline5"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="@dimen/size_8"-->
+<!--                android:gravity="center"-->
+<!--                android:text="@string/connection_problem"-->
+<!--                android:textColor="?attr/textColor"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-            <TextView
-                style="@style/Caption"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/size_4"
-                android:gravity="center"
-                android:text="@string/problem_network"
-                android:textColor="?attr/textColorHint"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--            <TextView-->
+<!--                style="@style/Caption"-->
+<!--                android:layout_width="250dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="@dimen/size_4"-->
+<!--                android:gravity="center"-->
+<!--                android:text="@string/problem_network"-->
+<!--                android:textColor="?attr/textColorHint"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-            <Button
-                android:id="@+id/tryConnection"
-                style="@style/Body2"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginTop="@dimen/size_8"
-                android:background="@drawable/shadow_try_btn"
-                android:padding="0dp"
-                android:text="@string/try_again"
-                android:textAllCaps="false"
-                android:textColor="?attr/textColorHint"
-                android:textStyle="bold" />
+<!--            <Button-->
+<!--                android:id="@+id/tryConnection"-->
+<!--                style="@style/Body2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="35dp"-->
+<!--                android:layout_marginTop="@dimen/size_8"-->
+<!--                android:background="@drawable/shadow_try_btn"-->
+<!--                android:padding="0dp"-->
+<!--                android:text="@string/try_again"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="?attr/textColorHint"-->
+<!--                android:textStyle="bold" />-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

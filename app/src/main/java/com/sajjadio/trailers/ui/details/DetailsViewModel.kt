@@ -17,13 +17,13 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
     private val repo: MovieRepoImpl
-) : ViewModel(), ActorInteractListener {
+) : ViewModel(), ActorInteractListener,SimilarInteractionist {
 
     private var _responseData: MutableLiveData<NetworkStatus<IDMovie?>> = MutableLiveData()
     var responseData: LiveData<NetworkStatus<IDMovie?>> = _responseData
 
-    private val _actors: MutableLiveData<NetworkStatus<Actors??>> = MutableLiveData()
-    val actors: LiveData<NetworkStatus<Actors??>> = _actors
+    private val _actors: MutableLiveData<NetworkStatus<Actors?>> = MutableLiveData()
+    val actors: LiveData<NetworkStatus<Actors?>> = _actors
 
     private val _actorsOfMovie: MutableLiveData<NetworkStatus<List<Cast>?>> = MutableLiveData()
     val actorsOfMovie: LiveData<NetworkStatus<List<Cast>?>> = _actorsOfMovie
@@ -84,6 +84,10 @@ class DetailsViewModel @Inject constructor(
     }
 
     override fun onActorItemClick(id: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSimilarItemClick(id: Int) {
         TODO("Not yet implemented")
     }
 }

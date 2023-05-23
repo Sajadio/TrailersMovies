@@ -10,6 +10,17 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.sajjadio.trailers.ui.base.BaseAdapter
+
+
+@BindingAdapter(value = ["app:items"])
+fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
+    items?.let {
+        (view.adapter as BaseAdapter<T>).setItems(items)
+    } ?: (view.adapter as BaseAdapter<T>).setItems(emptyList())
+}
+
 
 @BindingAdapter("app:loading")
 fun ProgressBar.loading(state: NetworkStatus<Any>?) {

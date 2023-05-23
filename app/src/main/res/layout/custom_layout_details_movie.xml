@@ -6,14 +6,16 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.sajjadio.trailers.ui.details.DetailsViewModel" />
 
     </data>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/generes"
@@ -81,7 +83,6 @@
             app:layout_constraintTop_toTopOf="@+id/tv_time"
             tools:text="2020" />
 
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/description"
             style="@style/Body2"
@@ -106,7 +107,6 @@
             app:layout_constraintStart_toStartOf="@+id/description"
             app:layout_constraintTop_toBottomOf="@+id/description" />
 
-
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer"
             android:layout_width="0dp"
@@ -130,6 +130,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="@dimen/size_16"
+            app:items="@{viewModel.actors.data().cast}"
             android:background="@android:color/transparent"
             android:orientation="horizontal"
             android:visibility="invisible"
@@ -157,8 +158,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginBottom="8dp"
             android:text="@string/seeAll"
             android:textColor="@color/redLight"
             app:layout_constraintBottom_toBottomOf="@+id/titleSimilar"
@@ -171,6 +172,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="?attr/secondColor"
+            app:items="@{viewModel.similar.data().results}"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"

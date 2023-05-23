@@ -1,7 +1,8 @@
-package com.sajjadio.trailers.ui.actors
+package com.sajjadio.trailers.ui.details
 
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.data.model.movie.actorsmovie.Cast
+import com.sajjadio.trailers.ui.actors.ActorInteractListener
 import com.sajjadio.trailers.ui.base.BaseAdapter
 
 class ActorsAdapter(
