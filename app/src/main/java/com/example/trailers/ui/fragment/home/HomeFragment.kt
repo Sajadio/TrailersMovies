@@ -48,7 +48,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
     }
 
     private fun setupHomeAdapter() {
-        binding.recyclerViewHome.adapter = HomeAdapter(this)
+     val adapter = HomeAdapter(this)
+        binding.recyclerViewHome.adapter = adapter
         val nestedItem = mutableListOf<HomeItem>()
 
         (binding.recyclerViewHome.adapter as HomeAdapter).apply {

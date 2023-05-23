@@ -1,5 +1,6 @@
 package com.example.trailers.ui.fragment.home.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.trailers.data.model.movie.trend.TrendResult
@@ -9,7 +10,6 @@ import com.smarteist.autoimageslider.SliderViewAdapter
 class SliderAdapter(
     private val data: List<TrendResult>,
 ) : SliderViewAdapter<SliderAdapter.SliderHolder>() {
-
 
     private var onItemClickListener: ((Int) -> Unit)? = null
     fun onItemClickListener(listener: (Int) -> Unit) {
