@@ -18,10 +18,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class CommonFragment : BaseFragment<FragmentCommonBinding>(R.layout.fragment_common) {
+class CommonFragment :
+    BaseFragment<FragmentCommonBinding, CommonViewModel>(R.layout.fragment_common) {
 
-    private val viewModel: CommonViewModel by viewModels()
-
+    override val LOG_TAG = this::class.java.simpleName
+    override val viewModelClass = CommonViewModel::class.java
     private lateinit var adapter: CommonPagingAdapter
     private val args: CommonFragmentArgs by navArgs()
 
@@ -29,9 +30,11 @@ class CommonFragment : BaseFragment<FragmentCommonBinding>(R.layout.fragment_com
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            activity?.setAsActionBar(toolbar = toolbar,
+            activity?.setAsActionBar(
+                toolbar = toolbar,
                 isBack = true,
-                title = resources.getString(args.id))
+                title = resources.getString(args.id)
+            )
 
 //            swiperefreshlayout.setOnRefreshListener {
 //                adapter.refresh()
@@ -80,7 +83,7 @@ class CommonFragment : BaseFragment<FragmentCommonBinding>(R.layout.fragment_com
 
             binding.rcCommon.isVisible = loadState.source.refresh is LoadState.NotLoading
             (loadState.source.refresh is LoadState.Loading).also {
-               stateManagement(it)
+                stateManagement(it)
             }
         }
     }

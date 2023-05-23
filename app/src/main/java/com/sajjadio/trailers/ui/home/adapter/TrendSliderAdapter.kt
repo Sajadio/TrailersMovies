@@ -1,5 +1,6 @@
 package com.sajjadio.trailers.ui.home.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.sajjadio.trailers.data.model.movie.trend.TrendResult

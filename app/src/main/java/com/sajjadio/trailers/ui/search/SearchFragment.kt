@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.SnapHelper
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentSearchBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
+import com.sajjadio.trailers.ui.home.viewModel.HomeViewModel
 import com.sajjadio.trailers.utils.movieToDestination
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_search.view.*
@@ -25,10 +26,11 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search),
+class SearchFragment : BaseFragment<FragmentSearchBinding,SearchViewModel>(R.layout.fragment_search),
     SearchView.OnQueryTextListener {
 
-    private val viewModel: SearchViewModel by viewModels()
+    override val LOG_TAG = this::class.java.simpleName
+    override val viewModelClass = SearchViewModel::class.java
     private lateinit var adapter: SearchPagingAdapter
     private lateinit var helper: SnapHelper
 

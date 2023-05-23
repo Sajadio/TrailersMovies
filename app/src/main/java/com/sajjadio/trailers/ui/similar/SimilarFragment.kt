@@ -12,15 +12,17 @@ import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentSimilarBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
 import com.sajjadio.trailers.ui.search.PagingLoadStateAdapter
+import com.sajjadio.trailers.ui.search.SearchViewModel
 import com.sajjadio.trailers.utils.movieToDestination
 import com.sajjadio.trailers.utils.setAsActionBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SimilarFragment : BaseFragment<FragmentSimilarBinding>(R.layout.fragment_similar) {
+class SimilarFragment : BaseFragment<FragmentSimilarBinding,SimilarViewModel>(R.layout.fragment_similar) {
 
-    private val viewModel: SimilarViewModel by viewModels()
+    override val LOG_TAG = this::class.java.simpleName
+    override val viewModelClass = SimilarViewModel::class.java
     private val arg: SimilarFragmentArgs by navArgs()
     lateinit var adapter: SimilarPagingAdapter
 

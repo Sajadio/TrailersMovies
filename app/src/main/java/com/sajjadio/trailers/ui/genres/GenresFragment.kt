@@ -13,6 +13,7 @@ import com.sajjadio.trailers.databinding.FragmentGenresBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
 import com.sajjadio.trailers.utils.*
 import com.google.android.material.tabs.TabLayout
+import com.sajjadio.trailers.ui.details.DetailsViewModel
 import com.sajjadio.trailers.ui.search.PagingLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_genres.*
@@ -20,9 +21,10 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class GenresFragment : BaseFragment<FragmentGenresBinding>(R.layout.fragment_genres) {
+class GenresFragment : BaseFragment<FragmentGenresBinding,GenresViewModel>(R.layout.fragment_genres) {
 
-    private val viewModel: GenresViewModel by viewModels()
+    override val LOG_TAG = this::class.java.simpleName
+    override val viewModelClass = GenresViewModel::class.java
     private lateinit var adapter: GenresPagingAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

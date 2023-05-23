@@ -15,16 +15,17 @@ import com.sajjadio.trailers.data.model.movie.similar.Similar
 import com.sajjadio.trailers.databinding.FragmentDetailsBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
 import com.sajjadio.trailers.ui.actors.ActorsAdapter
+import com.sajjadio.trailers.ui.common.CommonViewModel
 import com.sajjadio.trailers.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_item_similar.root
 
 
 @AndroidEntryPoint
-class DetailsFragment : BaseFragment<FragmentDetailsBinding>(R.layout.fragment_details) {
+class DetailsFragment : BaseFragment<FragmentDetailsBinding,DetailsViewModel>(R.layout.fragment_details) {
 
-    private val viewModel: DetailsViewModel by viewModels()
-
+    override val LOG_TAG = this::class.java.simpleName
+    override val viewModelClass = DetailsViewModel::class.java
     private val args: DetailsFragmentArgs by navArgs()
     private lateinit var actorsAdapter: ActorsAdapter
 

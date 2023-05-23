@@ -12,15 +12,16 @@ import com.sajjadio.trailers.data.model.movie.actorsmovie.Cast
 import com.sajjadio.trailers.databinding.FragmentActorsBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
 import com.sajjadio.trailers.ui.details.DetailsViewModel
+import com.sajjadio.trailers.ui.similar.SimilarViewModel
 import com.sajjadio.trailers.utils.NetworkStatus
 import com.sajjadio.trailers.utils.setAsActionBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ActorsFragment : BaseFragment<FragmentActorsBinding>(R.layout.fragment_actors) {
+class ActorsFragment : BaseFragment<FragmentActorsBinding,DetailsViewModel>(R.layout.fragment_actors) {
 
-    private val viewModel: DetailsViewModel by viewModels()
-
+    override val LOG_TAG = this::class.java.simpleName
+    override val viewModelClass = DetailsViewModel::class.java
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {

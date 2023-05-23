@@ -2,6 +2,7 @@ package com.sajjadio.trailers.ui.home.adapter
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
+import com.sajjadio.trailers.BR
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.data.model.HomeItem
 import com.sajjadio.trailers.data.model.movie.common.CommonResult
@@ -11,15 +12,14 @@ import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
 
 class HomeAdapter(
-    private val items: List<HomeItem>,
     private val listener: HomeInteractListener
-) : BaseAdapter<HomeItem>(items, listener) {
+) : BaseAdapter<HomeItem>(listOf(), listener) {
 
     override var layoutId: Int = 0
 
     @SuppressLint("NotifyDataSetChanged")
     fun addNestedItem(newItem: List<HomeItem>) {
-        setItems(newItem)
+        setItems(newItem.sortedBy { it.rank })
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
@@ -38,16 +38,18 @@ class HomeAdapter(
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        when (val currentItem = items[position]) {
-            is HomeItem.Trend -> bindTrendItem((holder as ItemViewHolder), currentItem.trend)
-            is HomeItem.Popular -> bindPopularItem((holder as ItemViewHolder), currentItem.popular)
-            is HomeItem.TopRated -> TODO()
-            is HomeItem.Upcoming -> TODO()
+        when (val currentItem = getItems()[position]) {
+            is HomeItem.Trend -> bindTrendItem(holder as ItemViewHolder, currentItem.trend)
+            is HomeItem.Popular -> bindPopularItem(holder as ItemViewHolder, currentItem.popular)
+            is HomeItem.TopRated -> bindTopRatedItem(holder as ItemViewHolder, currentItem.topRated)
+            is HomeItem.Upcoming -> bindUpComingItem(holder as ItemViewHolder, currentItem.upComing)
         }
     }
 
     private fun bindTrendItem(holder: ItemViewHolder, items: List<TrendResult>) {
-        holder.binding.setVariable(BR.adapter, TrendSliderAdapter(items, listener))
+        with((holder.binding as LayoutRecyclerTrendBinding)){
+            sliderView.setSliderAdapter(TrendSliderAdapter(items, listener))
+        }
     }
 
     private fun bindPopularItem(holder: ItemViewHolder, items: List<CommonResult>) {
@@ -62,11 +64,20 @@ class HomeAdapter(
         holder.binding.setVariable(BR.adapter, UpComingAdapter(items, listener))
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return when (getItems()[position]) {
+            is HomeItem.Trend -> LAYOUT_TREND
+            is HomeItem.Popular -> LAYOUT_POPULAR
+            is HomeItem.TopRated -> LAYOUT_TOP_RATED
+            is HomeItem.Upcoming -> LAYOUT_UPCOMING
+        }
+    }
+
     private companion object {
-        const val LAYOUT_TREND = R.layout.layout_item_trend
-        const val LAYOUT_POPULAR = R.layout.layout_item_popular
-        const val LAYOUT_TOP_RATED = R.layout.layout_item_top_rated
-        const val LAYOUT_UPCOMING = R.layout.layout_item_upcoming
+        const val LAYOUT_TREND = R.layout.layout_recycler_trend
+        const val LAYOUT_POPULAR = R.layout.layout_recycler_popular
+        const val LAYOUT_TOP_RATED = R.layout.layout_recycler_rated
+        const val LAYOUT_UPCOMING = R.layout.layout_recycler_upcoming
     }
 }
 

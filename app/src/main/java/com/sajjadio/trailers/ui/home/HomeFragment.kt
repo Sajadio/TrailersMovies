@@ -15,15 +15,16 @@ import com.sajjadio.trailers.utils.UiMode
 import com.sajjadio.trailers.utils.isNetworkAvailable
 import com.sajjadio.trailers.utils.movieToDestination
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.sajjadio.trailers.ui.genres.GenresViewModel
 import com.sajjadio.trailers.ui.home.adapter.HomeAdapter
 import com.sajjadio.trailers.ui.home.viewModel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
+class HomeFragment : BaseFragment<FragmentHomeBinding,HomeViewModel>(R.layout.fragment_home) {
 
-    private val viewModel: HomeViewModel by viewModels()
-
+    override val LOG_TAG = this::class.java.simpleName
+    override val viewModelClass = HomeViewModel::class.java
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
