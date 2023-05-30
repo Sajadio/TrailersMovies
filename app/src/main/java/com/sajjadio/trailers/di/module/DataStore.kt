@@ -13,7 +13,5 @@ import dagger.hilt.components.SingletonComponent
 interface DataStore {
 
     @Binds
-    abstract fun bind(
-       dataStorageImp: DataStorageImp
-    ): DataStorage
+    abstract fun bind(dataStorageImp: DataStorageImp): DataStorage
 }

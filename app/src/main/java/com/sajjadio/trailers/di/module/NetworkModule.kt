@@ -1,21 +1,17 @@
 package com.sajjadio.trailers.di.module
 
-import android.content.Context
-import com.sajjadio.trailers.data.network.ApiService
-import com.sajjadio.trailers.utils.Constant
-import com.google.gson.FieldNamingPolicy
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
+import com.sajjadio.trailers.BuildConfig
+import com.sajjadio.trailers.data.network.AuthInterceptor
+import com.sajjadio.trailers.data.network.MovieApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -24,42 +20,44 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
-        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+    fun providerRetrofit(retrofit: Retrofit): MovieApiService {
+        return retrofit.create(MovieApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(
+        @Named("Movie_Base_Url") baseUrl: String,
+        gsonConverterFactory: GsonConverterFactory,
+        okHttpClient: OkHttpClient,
+    ): Retrofit {
+        return Retrofit
+            .Builder()
+            .apply {
+                baseUrl(baseUrl)
+                addConverterFactory(gsonConverterFactory)
+                client(okHttpClient)
+            }.build()
+    }
+
+    @Provides
+    @Singleton
+    @Named("Movie_Base_Url")
+    fun provideBaseUrlOfMovie(): String = BuildConfig.BASE_URL
+
+    @Singleton
+    @Provides
+    fun provideGsonConverterFactory(): GsonConverterFactory = GsonConverterFactory.create()
 
     @Provides
     @Singleton
     fun provideOkHttpClient(
-        @ApplicationContext context: Context,
-        httpLoggingInterceptor: HttpLoggingInterceptor,
+        authInterceptor: AuthInterceptor,
     ): OkHttpClient = OkHttpClient.Builder().apply {
-        addInterceptor(httpLoggingInterceptor)
+        addInterceptor(authInterceptor)
         readTimeout(100L, TimeUnit.SECONDS)
         connectTimeout(100L, TimeUnit.SECONDS)
         writeTimeout(100L, TimeUnit.SECONDS)
     }.build()
-
-    @Provides
-    @Singleton
-    fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit =
-        Retrofit.Builder().apply {
-            baseUrl(Constant.BASE_URL)
-            addConverterFactory(GsonConverterFactory.create(gson))
-            client(okHttpClient)
-        }.build()
-
-    @Provides
-    @Singleton
-    fun providerRetrofit(retrofit: Retrofit): ApiService =
-        retrofit.create(ApiService::class.java)
-
-    @Provides
-    @Singleton
-    fun provideGson(): Gson =
-        GsonBuilder()
-            .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
-            .serializeNulls()
-            .setLenient()
-            .create()
 
 }

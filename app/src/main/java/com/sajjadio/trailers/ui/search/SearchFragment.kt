@@ -126,7 +126,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchViewModel>(R.lay
                     delay(1000L)
                     viewModel.getSearch(it)
                 } else {
-                    viewModel._getMoviesSearch.postValue(PagingData.empty())
+                    viewModel.getMoviesSearch.postValue(PagingData.empty())
                 }
                 delay(50L)
                 if (it.isEmpty())

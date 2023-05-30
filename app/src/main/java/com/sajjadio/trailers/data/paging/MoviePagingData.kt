@@ -1,28 +1,28 @@
-package com.sajjadio.trailers.data.repository.search
+package com.sajjadio.trailers.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.sajjadio.trailers.data.model.movie.search.Result
-import com.sajjadio.trailers.data.network.ApiService
+import com.sajjadio.trailers.data.model.movie.similar.SimilarResult
+import com.sajjadio.trailers.data.network.MovieApiService
 import com.sajjadio.trailers.utils.Constant
 
-class SearchPagingSource(
-    private val api: ApiService,
-    private val query: String?,
-) : PagingSource<Int, Result>() {
+class MoviePagingData(
+    private val api: MovieApiService,
+    private val id: Int,
+) : PagingSource<Int, SimilarResult>() {
 
-    override fun getRefreshKey(state: PagingState<Int, Result>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, SimilarResult>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Result> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, SimilarResult> {
         val pageNumber = params.key ?: Constant.DEFAULT_PAGE_INDEX
         return try {
-            val response = api.getSearchMovie(query = query, page = pageNumber)
-            val data = response.results
+            val response = api.getSimilar(id = id, page = pageNumber)
+            val data = if (response.isSuccessful) response.body()?.similarResults else null
             LoadResult.Page(
                 data = data ?: emptyList(),
                 prevKey = if (pageNumber == Constant.DEFAULT_PAGE_INDEX) null else pageNumber.minus(1),

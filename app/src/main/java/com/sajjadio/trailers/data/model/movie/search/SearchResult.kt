@@ -1,6 +1,6 @@
 package com.sajjadio.trailers.data.model.movie.search
 
-data class Result(
+data class SearchResult(
     val adult: Boolean?,
     val backdrop_path: String?,
     val genre_ids: List<Int>?,

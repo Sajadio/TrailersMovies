@@ -3,10 +3,7 @@ package com.sajjadio.trailers.ui.home.viewModel
 import android.annotation.SuppressLint
 import androidx.lifecycle.*
 import com.sajjadio.trailers.data.model.HomeItem
-import com.sajjadio.trailers.data.model.movie.common.Common
-import com.sajjadio.trailers.data.model.movie.common.CommonResult
-import com.sajjadio.trailers.data.model.movie.trend.TrendResult
-import com.sajjadio.trailers.data.repository.home.HomeRepoImpl
+import com.sajjadio.trailers.data.repository.MovieRepository
 import com.sajjadio.trailers.ui.home.adapter.HomeInteractListener
 import com.sajjadio.trailers.utils.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,32 +13,13 @@ import javax.inject.Inject
 @HiltViewModel
 @SuppressLint("StaticFieldLeak")
 class HomeViewModel @Inject constructor(
-    private val homeRepo: HomeRepoImpl,
+    private val movieRepo: MovieRepository,
 ) : ViewModel(), HomeInteractListener {
-
-    private var _responseTrendData: MutableLiveData<NetworkStatus<List<TrendResult>?>> =
-        MutableLiveData()
-    var responseTrendData: LiveData<NetworkStatus<List<TrendResult>?>> = _responseTrendData
-
-    private var _responsePopularData: MutableLiveData<NetworkStatus<List<CommonResult>?>> =
-        MutableLiveData()
-    var responsePopularData: LiveData<NetworkStatus<List<CommonResult>?>> = _responsePopularData
-
-    private var _responseRatedData: MutableLiveData<NetworkStatus<List<CommonResult>?>> =
-        MutableLiveData()
-    var responseRatedData: LiveData<NetworkStatus<List<CommonResult>?>> = _responseRatedData
-
-    private var _responseUpComingData: MutableLiveData<NetworkStatus<List<CommonResult>?>> =
-        MutableLiveData()
-    var responseUpComingData: LiveData<NetworkStatus<List<CommonResult>?>> = _responseUpComingData
 
     private var _responseHomeData: MutableLiveData<NetworkStatus<List<HomeItem>>> =
         MutableLiveData()
     var responseHomeData: LiveData<NetworkStatus<List<HomeItem>>> = _responseHomeData
     private val homeData = mutableListOf<HomeItem>()
-
-    val saveCurrentPosition = MutableLiveData<Int>()
-
 
     init {
         refreshData()
@@ -57,7 +35,7 @@ class HomeViewModel @Inject constructor(
 
     private fun setUpUpComingData() {
         viewModelScope.launch {
-            homeRepo.getUpComingMovie().collect { state ->
+            movieRepo.getUpComingMovie().collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
                     it.data()?.let { data ->
                         homeData.add(HomeItem.Upcoming(data.results))
@@ -71,7 +49,7 @@ class HomeViewModel @Inject constructor(
 
     private fun setUpRatedData() {
         viewModelScope.launch {
-            homeRepo.getMovieTopRated().collect { state ->
+            movieRepo.getMovieTopRated().collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
                     it.data()?.let { data ->
                         homeData.add(HomeItem.TopRated(data.results))
@@ -84,7 +62,7 @@ class HomeViewModel @Inject constructor(
 
     private fun setUpPopularData() {
         viewModelScope.launch {
-            homeRepo.getMoviePopular().collect { state ->
+            movieRepo.getMoviePopular().collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
                     it.data()?.let { data ->
                         homeData.add(HomeItem.Popular(data.results))
@@ -97,7 +75,7 @@ class HomeViewModel @Inject constructor(
 
     private fun setUpTrendData() {
         viewModelScope.launch {
-            homeRepo.getTrendMovie().collect { state ->
+            movieRepo.getTrendMovie().collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
                     it.data()?.let { data ->
                         homeData.add(HomeItem.Trend(data.results))

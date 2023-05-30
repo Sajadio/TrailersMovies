@@ -3,25 +3,25 @@ package com.sajjadio.trailers.ui.search
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.sajjadio.trailers.data.model.movie.search.Result
-import com.sajjadio.trailers.data.repository.search.SearchRepoImpl
+import com.sajjadio.trailers.data.model.movie.search.SearchResult
+import com.sajjadio.trailers.data.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(private val searchRepoImpl: SearchRepoImpl) :
-    ViewModel() {
+class SearchViewModel @Inject constructor(
+    private val movieRepo: MovieRepository
+) : ViewModel() {
 
-    val _getMoviesSearch = MutableLiveData<PagingData<Result>?>()
-    val getMoviesSearch: LiveData<PagingData<Result>?> = _getMoviesSearch
+    val getMoviesSearch = MutableLiveData<PagingData<SearchResult>?>()
 
-    private val query: MutableLiveData<PagingData<Result>?> = MutableLiveData()
+    private val query: MutableLiveData<PagingData<SearchResult>?> = MutableLiveData()
 
     fun getSearch(query: String?) {
         viewModelScope.launch {
-            searchRepoImpl.getMovieSearch(query = query).cachedIn(this).collect { data ->
-                _getMoviesSearch.postValue(data)
+            movieRepo.getMovieSearch(query = query).cachedIn(this).collect { data ->
+                getMoviesSearch.postValue(data)
             }
         }
     }

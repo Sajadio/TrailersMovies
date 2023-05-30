@@ -9,6 +9,8 @@ import com.sajjadio.trailers.data.model.movie.id.IDMovie
 import com.sajjadio.trailers.data.model.movie.similar.Similar
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
+import com.sajjadio.trailers.ui.details.adapter.ActorsAdapter
+import com.sajjadio.trailers.ui.details.adapter.SimilarAdapter
 import com.sajjadio.trailers.ui.details.utils.DetailsItem
 
 class DetailsAdapter(
@@ -60,7 +62,7 @@ class DetailsAdapter(
 
     private fun bindSimilarItem(holder: ItemViewHolder, items: Similar) {
         holder.binding.apply {
-            setVariable(BR.adapter, items.results?.let { SimilarAdapter(it, listener) })
+            setVariable(BR.adapter, items.similarResults?.let { SimilarAdapter(it, listener) })
             setVariable(BR.listener, listener)
         }
     }

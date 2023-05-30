@@ -7,7 +7,7 @@
 
         <variable
             name="adapter"
-            type="com.sajjadio.trailers.ui.details.ActorsAdapter" />
+            type="com.sajjadio.trailers.ui.details.adapter.ActorsAdapter" />
 
         <variable
             name="listener"

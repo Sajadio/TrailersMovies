@@ -5,9 +5,7 @@ import com.sajjadio.trailers.R
 object Constant {
     const val STORAGE_NAME = "data_Storage"
 
-    const val BASE_URL = "https://api.themoviedb.org/3/"
     const val IMAGE_PATH = "https://image.tmdb.org/t/p/"
-    const val API_KEY = "24ada3556f9c3697c024bc6ba0f1ab99"
     const val YOUTUBE_BASE = "https://www.youtube.com/watch?v="
 
     const val IMAGE_Size_45 = "w45/"
@@ -57,7 +55,6 @@ object Constant {
         "53" to "Thriller",
         "10752" to "War",
         "37" to "Western",
-
         )
 
 }

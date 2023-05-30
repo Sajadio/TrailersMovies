@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.sajjadio.trailers.data.model.movie.common.CommonResult
-import com.sajjadio.trailers.data.repository.common.CommonRepoImpl
+import com.sajjadio.trailers.data.repository.MovieRepository
 import com.sajjadio.trailers.utils.Constant
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -16,19 +16,23 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CommonViewModel @Inject constructor(
-    private val commonRepo: CommonRepoImpl,
+    private val movieRepo: MovieRepository,
 ) : ViewModel() {
 
     lateinit var responseCommonPagingData: LiveData<PagingData<CommonResult>>
 
     fun checkDestination(id: Int) {
         when (id) {
-            Constant.POPULAR -> responseCommonPagingData = commonRepo.getPopularMoviePaging().cachedIn(viewModelScope + Dispatchers.Main).asLiveData()
-            Constant.TOP_RATED -> responseCommonPagingData =
-                commonRepo.getTopRatedMoviePaging().cachedIn(viewModelScope + Dispatchers.Main)
+            Constant.POPULAR -> responseCommonPagingData =
+                movieRepo.getPopularMoviePaging().cachedIn(viewModelScope + Dispatchers.Main)
                     .asLiveData()
+
+            Constant.TOP_RATED -> responseCommonPagingData =
+                movieRepo.getTopRatedMoviePaging().cachedIn(viewModelScope + Dispatchers.Main)
+                    .asLiveData()
+
             Constant.UP_COMING -> responseCommonPagingData =
-                commonRepo.getUpComingMoviePaging().cachedIn(viewModelScope + Dispatchers.Main)
+                movieRepo.getUpComingMoviePaging().cachedIn(viewModelScope + Dispatchers.Main)
                     .asLiveData()
         }
     }

@@ -8,6 +8,13 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.serialization'
 }
 
+def getSecretKeys() {
+    def keyFile = project.rootProject.file('local.properties')
+    def properties = new Properties()
+    properties.load(new FileInputStream(keyFile))
+    return properties
+}
+
 android {
     compileSdk 32
 
@@ -19,6 +26,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'BASE_URL', getSecretKeys()['BASE_URL']
+        buildConfigField 'String', 'API_KEY', getSecretKeys()['API_KEY']
     }
 
     buildTypes {

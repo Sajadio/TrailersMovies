@@ -5,14 +5,14 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.sajjadio.trailers.data.model.genre.Genres
 import com.sajjadio.trailers.data.model.movie.genremovie.MovieResult
-import com.sajjadio.trailers.data.repository.genres.GenresRepoImpl
+import com.sajjadio.trailers.data.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class GenresViewModel @Inject constructor(
-    private val genresRepoImpl: GenresRepoImpl,
+    private val movieRepo: MovieRepository,
 ) : ViewModel() {
 
     private val _listGenresMovie: MutableLiveData<List<Genres>> = MutableLiveData()
@@ -25,7 +25,7 @@ class GenresViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            genresRepoImpl.getGenresMovie().collect { state ->
+            movieRepo.getGenresMovie().collect { state ->
                 state.data()?.genres?.let { data ->
                     _listGenresMovie.postValue(data)
                 }
@@ -35,7 +35,7 @@ class GenresViewModel @Inject constructor(
 
     fun getID(title: String) {
         viewModelScope.launch {
-            genresRepoImpl.getGenresMovie().collect { state ->
+            movieRepo.getGenresMovie().collect { state ->
                 state.data()?.genres?.let { data ->
                     data.forEach {
                         if (it.name == title)
@@ -50,7 +50,7 @@ class GenresViewModel @Inject constructor(
     private fun getGenresOfMovie(genreId: String?) {
         viewModelScope.launch {
             genreId?.let { id ->
-                genresRepoImpl
+                movieRepo
                     .getGenreList(genreId = id)
                     .cachedIn(viewModelScope).collect { data ->
                         _responseListOfMovie.postValue(data)

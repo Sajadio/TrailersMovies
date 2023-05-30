@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.sajjadio.trailers.data.model.movie.search.Result
+import com.sajjadio.trailers.data.model.movie.search.SearchResult
 import com.sajjadio.trailers.databinding.LayoutSearchBinding
 
 class SearchPagingAdapter :
-    PagingDataAdapter<Result, SearchPagingAdapter.SearchViewHolder>(CharacterComparator) {
+    PagingDataAdapter<SearchResult, SearchPagingAdapter.SearchViewHolder>(CharacterComparator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         SearchViewHolder(
@@ -31,7 +31,7 @@ class SearchPagingAdapter :
     inner class SearchViewHolder(private val binding: LayoutSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(search: Result) = apply {
+        fun bind(search: SearchResult) = apply {
             binding.apply {
                  item = search
                 root.setOnClickListener {
@@ -43,11 +43,11 @@ class SearchPagingAdapter :
         }
     }
 
-    object CharacterComparator : DiffUtil.ItemCallback<Result>() {
-        override fun areItemsTheSame(oldItem: Result, newItem: Result) =
+    object CharacterComparator : DiffUtil.ItemCallback<SearchResult>() {
+        override fun areItemsTheSame(oldItem: SearchResult, newItem: SearchResult) =
             oldItem.title == newItem.title
 
-        override fun areContentsTheSame(oldItem: Result, newItem: Result) =
+        override fun areContentsTheSame(oldItem: SearchResult, newItem: SearchResult) =
             oldItem == newItem
     }
 
