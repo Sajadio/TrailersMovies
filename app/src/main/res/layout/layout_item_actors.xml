@@ -27,6 +27,7 @@
             android:id="@+id/materialCardView"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:onClick="@{() -> listener.onActorItemClick(item.id)}"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_margin="@dimen/size_4"

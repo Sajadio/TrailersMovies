@@ -1,7 +1,6 @@
 package com.sajjadio.trailers.ui.details
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.ViewGroup
 import com.sajjadio.trailers.BR
 import com.sajjadio.trailers.R
@@ -40,7 +39,10 @@ class DetailsAdapter(
         when (val currentItem = getItems()[position]) {
             is DetailsItem.MovieItem -> bindMovieItem(holder as ItemViewHolder, currentItem.movie)
             is DetailsItem.ActorItem -> bindActorItem(holder as ItemViewHolder, currentItem.actors)
-            is DetailsItem.SimilarItem -> bindSimilarItem(holder as ItemViewHolder, currentItem.similar)
+            is DetailsItem.SimilarItem -> bindSimilarItem(
+                holder as ItemViewHolder,
+                currentItem.similar
+            )
         }
     }
 
@@ -49,11 +51,17 @@ class DetailsAdapter(
     }
 
     private fun bindActorItem(holder: ItemViewHolder, items: Actors) {
-        holder.binding.setVariable(BR.adapter, items.cast?.let { ActorsAdapter(it, listener) })
+        holder.binding.apply {
+            setVariable(BR.adapter, items.cast?.let { ActorsAdapter(it, listener) })
+            setVariable(BR.listener, listener)
+        }
     }
 
     private fun bindSimilarItem(holder: ItemViewHolder, items: Similar) {
-        holder.binding.setVariable(BR.adapter, items.results?.let { SimilarAdapter(it, listener) })
+        holder.binding.apply {
+            setVariable(BR.adapter, items.results?.let { SimilarAdapter(it, listener) })
+            setVariable(BR.listener, listener)
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -71,4 +79,8 @@ class DetailsAdapter(
     }
 }
 
-interface DetailsInteractListener : BaseInteractListener
+interface DetailsInteractListener : BaseInteractListener {
+    fun onSeeAllActorsClick()
+    fun onActorItemClick(id: Int)
+    fun onSeeAllSimilarClick()
+}

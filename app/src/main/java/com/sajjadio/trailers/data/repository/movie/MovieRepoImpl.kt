@@ -6,7 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class MovieRepoImpl @Inject constructor(
+class  MovieRepoImpl @Inject constructor(
     private val api: ApiService,
 ) : MovieRepository, SafeApiCall {
 

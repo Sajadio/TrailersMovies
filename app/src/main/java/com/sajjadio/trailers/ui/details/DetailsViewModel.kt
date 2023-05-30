@@ -1,5 +1,6 @@
 package com.sajjadio.trailers.ui.details
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.sajjadio.trailers.data.model.HomeItem
 import com.sajjadio.trailers.data.model.movie.actors.Actors
@@ -100,6 +101,18 @@ class DetailsViewModel @Inject constructor(
                 _playVideo.postValue(it)
             }
         }
+    }
+
+    override fun onSeeAllActorsClick() {
+        Log.d("sajjadio", "onSeeAllActorsClick: you clicked me")
+    }
+
+    override fun onActorItemClick(id: Int) {
+        Log.d("sajjadio", "onActorItemClick: you clicked me $id")
+    }
+
+    override fun onSeeAllSimilarClick() {
+        Log.d("sajjadio", "onSeeAllSimilarClick: clicked me")
     }
 
 }
