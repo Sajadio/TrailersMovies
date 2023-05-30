@@ -99,7 +99,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding,HomeViewModel>(R.layout.fr
 
     fun onMoveToMovie(id: Int?) {
         id?.let {
-            HomeFragmentDirections.actionHomeFragmentToMovieFragment(it).movieToDestination(view)
+            HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it).movieToDestination(view)
         }
     }
 

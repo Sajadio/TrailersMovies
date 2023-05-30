@@ -17,7 +17,7 @@ class SimilarViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _listSimilarOfMovie = MutableLiveData<PagingData<Result>>()
-    val listSimilarOfMovie: LiveData<PagingData<Result>> get() = _listSimilarOfMovie
+    val listSimilarOfMovie: LiveData<PagingData<Result>> = _listSimilarOfMovie
 
     fun getSimilarOfMovieByID(id: Int) {
         viewModelScope.launch {

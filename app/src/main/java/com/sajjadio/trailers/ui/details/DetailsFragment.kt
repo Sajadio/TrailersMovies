@@ -4,18 +4,17 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
-import androidx.core.view.isVisible
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sajjadio.trailers.R
-import com.sajjadio.trailers.data.model.movie.actors.Actors
 import com.sajjadio.trailers.data.model.movie.actors.Cast
-import com.sajjadio.trailers.data.model.movie.id.IDMovie
-import com.sajjadio.trailers.data.model.movie.similar.Similar
 import com.sajjadio.trailers.databinding.FragmentDetailsBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
+import com.sajjadio.trailers.ui.details.utils.DestinationType
+import com.sajjadio.trailers.ui.home.HomeFragmentDirections
 import com.sajjadio.trailers.utils.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_item_similar.root
 
 
 @AndroidEntryPoint
@@ -28,9 +27,10 @@ class DetailsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getID(args.id)
+        viewModel.getMovieId(args.movieId)
         setGenres()
         setupDetailsRecyclerView()
+        observeEventWhenClickItem()
     }
 
     private fun setupDetailsRecyclerView() {
@@ -39,6 +39,40 @@ class DetailsFragment :
                 it.data()?.let { it1 -> addNestedItem(it1) }
             }
         }
+    }
+
+    private fun observeEventWhenClickItem() {
+        viewModel.clickItemEvent.observeEvent(viewLifecycleOwner) { destinationType ->
+            checkDestinationType(destinationType)
+        }
+    }
+
+    private fun checkDestinationType(destinationType: DestinationType) {
+        when (destinationType) {
+            is DestinationType.ActorItem ->
+                navigateToAnotherDestination(
+                    DetailsFragmentDirections.actionDetailsFragmentSelf(destinationType.id)
+                )
+
+            is DestinationType.SimilarItem ->
+                navigateToAnotherDestination(
+                    DetailsFragmentDirections.actionDetailsFragmentSelf(destinationType.id)
+                )
+
+            DestinationType.Actors ->
+                navigateToAnotherDestination(
+                    DetailsFragmentDirections.actionDetailsFragmentToActorsFragment()
+                )
+
+            DestinationType.Similar ->
+                navigateToAnotherDestination(
+                    DetailsFragmentDirections.actionDetailsFragmentToSimilarFragment()
+                )
+        }
+    }
+
+    private fun navigateToAnotherDestination(action: NavDirections) {
+        findNavController().navigate(action)
     }
 
     private fun setPlayVideo() {

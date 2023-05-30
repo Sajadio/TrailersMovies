@@ -1,105 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
-
-    <action
-        android:id="@+id/action_trendFragment_to_movieFragment"
-        app:destination="@+id/movieFragment"
-        app:launchSingleTop="true" />
-
-    <action
-        android:id="@+id/action_popularFragment_to_movieFragment"
-        app:destination="@+id/movieFragment"
-        app:launchSingleTop="true" />
-
-    <action
-        android:id="@+id/action_ratedFragment_to_movieFragment"
-        app:destination="@+id/movieFragment"
-        app:launchSingleTop="true" />
-
-    <action
-        android:id="@+id/action_upComingFragment_to_movieFragment"
-        app:destination="@+id/movieFragment"
-        app:launchSingleTop="true" />
-
-    <action
-        android:id="@+id/action_popularFragment_to_commonFragment"
-        app:destination="@+id/commonFragment"
-        app:launchSingleTop="true"/>
-
-    <action
-        android:id="@+id/action_ratedFragment_to_commonFragment"
-        app:destination="@+id/commonFragment"
-        app:launchSingleTop="true" />
-
-    <action
-        android:id="@+id/action_upComingFragment_to_commonFragment"
-        app:destination="@+id/commonFragment"
-        app:launchSingleTop="true"/>
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.sajjadio.trailers.ui.home.HomeFragment"
-        android:label="HomeFragment" >
-        <action
-            android:id="@+id/action_homeFragment_to_movieFragment"
-            app:destination="@id/movieFragment" />
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_commonFragment"
             app:destination="@id/commonFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/genresFragment"
         android:name="com.sajjadio.trailers.ui.genres.GenresFragment"
-        android:label="CategoriesFragment">
+        android:label="CategoriesFragment"
+        tools:layout="@layout/fragment_genres">
         <action
             android:id="@+id/action_genresFragment_to_movieFragment"
-            app:destination="@id/movieFragment"/>
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.sajjadio.trailers.ui.search.SearchFragment"
-        android:label="SearchFragment">
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_movieFragment"
-            app:destination="@id/movieFragment" />
+            app:destination="@id/detailsFragment" />
 
     </fragment>
     <fragment
-        android:id="@+id/movieFragment"
+        android:id="@+id/detailsFragment"
         android:name="com.sajjadio.trailers.ui.details.DetailsFragment"
-        android:label="MoiveFragment">
-
-        <argument
-            android:name="id"
-            app:argType="integer" />
+        android:label="DetailsFragment"
+        tools:layout="@layout/fragment_details">
         <action
-            android:id="@+id/action_movieFragment_to_similarFragment"
+            android:id="@+id/action_detailsFragment_to_similarFragment"
             app:destination="@id/similarFragment" />
         <action
-            android:id="@+id/action_movieFragment_to_actorsFragment"
-            app:destination="@id/actorsFragment"/>
-    </fragment>
-    <fragment
-        android:id="@+id/similarFragment"
-        android:name="com.sajjadio.trailers.ui.similar.SimilarFragment"
-        android:label="SimilarFragment">
-        <action
-            android:id="@+id/action_similarFragment_to_movieFragment"
-            app:destination="@id/movieFragment" />
+            android:id="@+id/action_detailsFragment_to_actorsFragment"
+            app:destination="@id/actorsFragment" />
         <argument
-            android:name="iDMovie"
+            android:name="movieId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_detailsFragment_self"
+            app:destination="@id/detailsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/commonFragment"
         android:name="com.sajjadio.trailers.ui.common.CommonFragment"
-        android:label="PopularFragment">
+        android:label="PopularFragment"
+        tools:layout="@layout/fragment_common">
         <action
             android:id="@+id/action_commonFragment_to_movieFragment"
-            app:destination="@id/movieFragment"/>
+            app:destination="@id/detailsFragment" />
 
         <argument
             android:name="id"
@@ -110,10 +73,21 @@
     <fragment
         android:id="@+id/actorsFragment"
         android:name="com.sajjadio.trailers.ui.actors.ActorsFragment"
-        android:label="ActorsFragment">
+        android:label="ActorsFragment"
+        tools:layout="@layout/fragment_actors">
         <action
-            android:id="@+id/action_actorsFragment_to_movieFragment"
-            app:destination="@id/movieFragment"/>
+            android:id="@+id/action_actorsFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/similarFragment"
+        android:name="com.sajjadio.trailers.ui.similar.SimilarFragment"
+        android:label="SimilarFragment"
+        tools:layout="@layout/fragment_similar">
+        <action
+            android:id="@+id/action_similarFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
 
 </navigation>

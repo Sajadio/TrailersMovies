@@ -21,11 +21,9 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class SimilarFragment : BaseFragment<FragmentSimilarBinding,SimilarViewModel>(R.layout.fragment_similar) {
 
-    override val LOG_TAG = this::class.java.simpleName
+    override val LOG_TAG: String = this::class.java.simpleName
     override val viewModelClass = SimilarViewModel::class.java
-    private val arg: SimilarFragmentArgs by navArgs()
     lateinit var adapter: SimilarPagingAdapter
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,7 +32,6 @@ class SimilarFragment : BaseFragment<FragmentSimilarBinding,SimilarViewModel>(R.
             isBack = true,
             title = resources.getString(R.string.similar))
 
-        viewModel.getSimilarOfMovieByID(arg.iDMovie)
         initialAdapter()
 
         binding.swiperefreshlayout.apply {
@@ -58,7 +55,7 @@ class SimilarFragment : BaseFragment<FragmentSimilarBinding,SimilarViewModel>(R.
 
         adapter.onItemClickListener { id ->
             id?.let {
-                val action = SimilarFragmentDirections.actionSimilarFragmentToMovieFragment(id)
+                val action = SimilarFragmentDirections.actionSimilarFragmentToDetailsFragment(id)
                 action.movieToDestination(view)
             }
         }

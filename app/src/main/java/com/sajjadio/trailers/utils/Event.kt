@@ -1,13 +1,13 @@
 package com.sajjadio.trailers.utils
 
-open class Event<out T>(private val content: T) {
-    var hasBeenHandled = false
-        private set // Allow external read but not write
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 
-    /**
-     * Returns the content and prevents its use again.
-     */
-    fun getContentIfNotHandled(): T? {
+open class Event<out T>(private val content: T) {
+    private var hasBeenHandled = false
+
+    fun getContentIfHandled(): T? {
         return if (hasBeenHandled) {
             null
         } else {
@@ -16,8 +16,15 @@ open class Event<out T>(private val content: T) {
         }
     }
 
-    /**
-     * Returns the content, even if it's already been handled.
-     */
     fun peekContent(): T = content
+}
+
+class EventObserver<T>(private val onEventUnhandledContent: (T) -> Unit) : Observer<Event<T>> {
+    override fun onChanged(event: Event<T>) {
+        event.getContentIfHandled()?.let { onEventUnhandledContent(it) }
+    }
+}
+
+fun <T> LiveData<Event<T>>.observeEvent(owner: LifecycleOwner, function: (T) -> Unit) {
+    this.observe(owner, EventObserver { function(it) })
 }

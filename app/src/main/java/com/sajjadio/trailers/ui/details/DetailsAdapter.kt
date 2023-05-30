@@ -9,6 +9,7 @@ import com.sajjadio.trailers.data.model.movie.id.IDMovie
 import com.sajjadio.trailers.data.model.movie.similar.Similar
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
+import com.sajjadio.trailers.ui.details.utils.DetailsItem
 
 class DetailsAdapter(
     val listener: DetailsInteractListener
@@ -83,4 +84,5 @@ interface DetailsInteractListener : BaseInteractListener {
     fun onSeeAllActorsClick()
     fun onActorItemClick(id: Int)
     fun onSeeAllSimilarClick()
+    fun onSimilarItemClick(id: Int)
 }

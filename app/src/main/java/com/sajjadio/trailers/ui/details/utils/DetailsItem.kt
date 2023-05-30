@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.ui.details
+package com.sajjadio.trailers.ui.details.utils
 
 import com.sajjadio.trailers.data.model.movie.actors.Actors
 import com.sajjadio.trailers.data.model.movie.id.IDMovie
