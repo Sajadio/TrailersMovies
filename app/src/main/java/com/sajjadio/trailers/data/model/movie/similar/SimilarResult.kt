@@ -15,6 +15,4 @@ data class SimilarResult(
     val video: Boolean?,
     val vote_average: Double?,
     val vote_count: Int?
-):ParentListAdapter {
-    override val item = id
-}
+)

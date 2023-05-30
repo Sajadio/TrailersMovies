@@ -14,7 +14,6 @@ import com.sajjadio.trailers.utils.*
 import com.google.android.material.tabs.TabLayout
 import com.sajjadio.trailers.ui.search.PagingLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_genres.*
 import kotlinx.coroutines.launch
 
 
@@ -56,7 +55,7 @@ class GenresFragment : BaseFragment<FragmentGenresBinding,GenresViewModel>(R.lay
             }
         }
 
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 viewModel.saveCurrentPosition.postValue(tab.position)
                 viewModel.getID(tab.text.toString())

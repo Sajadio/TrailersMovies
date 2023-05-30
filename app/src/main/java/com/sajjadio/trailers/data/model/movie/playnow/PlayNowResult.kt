@@ -15,6 +15,4 @@ data class PlayNowResult(
     val video: Boolean? = null,
     val vote_average: Double? = null,
     val vote_count: Int? = null,
-):ParentListAdapter {
-    override val item = id
-}
+)

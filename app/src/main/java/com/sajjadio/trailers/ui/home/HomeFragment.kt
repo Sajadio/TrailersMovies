@@ -50,7 +50,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding,HomeViewModel>(R.layout.fr
 
         viewModel.responseHomeData.observe(viewLifecycleOwner) {
             it.let {states ->
-                states.data()?.let { data ->
+                states.data?.let { data ->
                     adapter.addNestedItem(data)
                 }
             }

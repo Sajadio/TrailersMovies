@@ -2,10 +2,9 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'kotlin-android-extensions'
     id 'androidx.navigation.safeargs.kotlin'
     id 'dagger.hilt.android.plugin'
-    id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'kotlin-parcelize'
 }
 
 def getSecretKeys() {
@@ -19,7 +18,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.sajjadio.trailers"
+        applicationId "com.example.trailers"
         minSdk 28
         targetSdk 32
         versionCode 1
@@ -44,7 +43,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures{
+    buildFeatures {
         dataBinding true
     }
 }
@@ -68,7 +67,7 @@ dependencies {
     implementation 'com.opensooq.android:pluto:1.6'
     implementation 'com.yarolegovich:discrete-scrollview:1.5.1'
 
-    // Glid
+    // Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
 
     // Retrofit
@@ -89,7 +88,6 @@ dependencies {
     // Room
     implementation "androidx.room:room-runtime:2.4.2"
     kapt "androidx.room:room-compiler:2.4.2"
-    // Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:2.4.2"
 
 
@@ -98,7 +96,6 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.40.3"
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
     implementation "androidx.fragment:fragment-ktx:1.4.1"
-    // When using Kotlin.
     kapt 'androidx.hilt:hilt-compiler:1.0.0'
 
 
@@ -116,6 +113,5 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
-
 
 }

@@ -26,7 +26,7 @@ class GenresViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             movieRepo.getGenresMovie().collect { state ->
-                state.data()?.genres?.let { data ->
+                state.data?.genres?.let { data ->
                     _listGenresMovieDto.postValue(data)
                 }
             }
@@ -36,7 +36,7 @@ class GenresViewModel @Inject constructor(
     fun getID(title: String) {
         viewModelScope.launch {
             movieRepo.getGenresMovie().collect { state ->
-                state.data()?.genres?.let { data ->
+                state.data?.genres?.let { data ->
                     data.forEach {
                         if (it.name == title)
                             getGenresOfMovie(it.id.toString())

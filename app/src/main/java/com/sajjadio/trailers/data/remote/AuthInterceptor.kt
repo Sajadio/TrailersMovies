@@ -1,10 +1,10 @@
 package com.sajjadio.trailers.data.remote
 
-import com.sajjadio.trailers.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
 import javax.inject.Singleton
+import com.sajjadio.trailers.BuildConfig
 
 @Singleton
 class AuthInterceptor @Inject constructor() : Interceptor {
@@ -21,5 +21,4 @@ class AuthInterceptor @Inject constructor() : Interceptor {
     private companion object {
         const val API_KEY = "api_key"
     }
-
 }

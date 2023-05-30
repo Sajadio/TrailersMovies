@@ -36,7 +36,7 @@ class DetailsViewModel @Inject constructor(
             viewModelScope.launch {
                 movieRepo.getMoviesDetails(id).collect { state ->
                     state.takeIf { it is NetworkStatus.Success }?.let {
-                        it.data()?.let { data ->
+                        it.data?.let { data ->
                             detailsData.add(DetailsItem.MovieItem(data))
                             _responseDetailsData.postValue(NetworkStatus.Success(detailsData))
                             getActorsByMovieId(data.id)
@@ -53,7 +53,7 @@ class DetailsViewModel @Inject constructor(
         viewModelScope.launch {
             movieRepo.getActors(id).collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
-                    it.data()?.let { data ->
+                    it.data?.let { data ->
                         detailsData.add(DetailsItem.ActorItem(data))
                         _responseDetailsData.postValue(NetworkStatus.Success(detailsData))
                     }
@@ -66,7 +66,7 @@ class DetailsViewModel @Inject constructor(
         viewModelScope.launch {
             movieRepo.getSimilar(id).collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
-                    it.data()?.let { data ->
+                    it.data?.let { data ->
                         detailsData.add(DetailsItem.SimilarItem(data))
                         _responseDetailsData.postValue(NetworkStatus.Success(detailsData))
                     }

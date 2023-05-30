@@ -101,13 +101,16 @@ class MovieRepositoryImpl @Inject constructor(
             emit(NetworkStatus.Loading)
             try {
                 emit(checkIsSuccessfulResponse(response.invoke()))
-            } catch (e:Exception) {
-                emit(NetworkStatus.Error(e.message))
+            } catch (e: Exception) {
+                emit(NetworkStatus.Error(e.message.toString()))
             }
         }
     }
 
-    private fun <T> checkIsSuccessfulResponse(response: Response<T>): NetworkStatus<T> =
-        if (response.isSuccessful) NetworkStatus.Success(response.body()) else NetworkStatus.Error(
-            response.message())
+    private fun <T> checkIsSuccessfulResponse(response: Response<T>): NetworkStatus<T> {
+        return if (response.isSuccessful)
+            NetworkStatus.Success(response.body())
+        else
+            NetworkStatus.Error(response.message())
+    }
 }

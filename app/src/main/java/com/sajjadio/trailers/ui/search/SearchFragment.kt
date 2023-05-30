@@ -16,10 +16,8 @@ import androidx.recyclerview.widget.SnapHelper
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentSearchBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.ui.home.viewModel.HomeViewModel
 import com.sajjadio.trailers.utils.movieToDestination
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_search.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

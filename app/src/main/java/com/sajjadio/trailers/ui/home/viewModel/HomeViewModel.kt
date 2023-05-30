@@ -37,7 +37,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             movieRepo.getUpComingMovie().collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
-                    it.data()?.let { data ->
+                    it.data?.let { data ->
                         homeData.add(HomeItem.Upcoming(data.results))
                         _responseHomeData.postValue(NetworkStatus.Success(homeData))
                     }
@@ -51,7 +51,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             movieRepo.getMovieTopRated().collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
-                    it.data()?.let { data ->
+                    it.data?.let { data ->
                         homeData.add(HomeItem.TopRated(data.results))
                         _responseHomeData.postValue(NetworkStatus.Success(homeData))
                     }
@@ -64,7 +64,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             movieRepo.getMoviePopular().collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
-                    it.data()?.let { data ->
+                    it.data?.let { data ->
                         homeData.add(HomeItem.Popular(data.results))
                         _responseHomeData.postValue(NetworkStatus.Success(homeData))
                     }
@@ -77,7 +77,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             movieRepo.getTrendMovie().collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
-                    it.data()?.let { data ->
+                    it.data?.let { data ->
                         homeData.add(HomeItem.Trend(data.results))
                         _responseHomeData.postValue(NetworkStatus.Success(homeData))
                     }

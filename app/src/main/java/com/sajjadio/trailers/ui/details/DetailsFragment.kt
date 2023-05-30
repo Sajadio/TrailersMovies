@@ -35,7 +35,7 @@ class DetailsFragment :
     private fun setupDetailsRecyclerView() {
         binding.recyclerViewDetails.adapter = DetailsAdapter(viewModel).apply {
             viewModel.responseDetailsData.observe(viewLifecycleOwner) {
-                it.data()?.let { it1 -> addNestedItem(it1) }
+                it.data?.let { it1 -> addNestedItem(it1) }
             }
         }
     }
@@ -76,7 +76,7 @@ class DetailsFragment :
 
     private fun setPlayVideo() {
         viewModel.playVideo.observe(viewLifecycleOwner) {
-            it?.data()?.results?.map {
+            it?.data?.results?.map {
                 startActivity(
                     Intent(
                         Intent.ACTION_VIEW,
@@ -95,7 +95,7 @@ class DetailsFragment :
 
     private fun setGenres() {
         viewModel.responseData.observe(viewLifecycleOwner) { state ->
-            val genres = state?.data()?.genres
+            val genres = state?.data?.genres
             var genre = ""
             if (genres != null) {
                 for (i in genres) {
