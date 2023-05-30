@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.data.storage
+package com.sajjadio.trailers.domain
 
 import com.sajjadio.trailers.utils.UiMode
 import kotlinx.coroutines.flow.Flow

@@ -3,9 +3,9 @@ package com.sajjadio.trailers.ui.genres
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.sajjadio.trailers.data.model.genre.Genres
+import com.sajjadio.trailers.data.model.genre.GenresDto
 import com.sajjadio.trailers.data.model.movie.genremovie.MovieResult
-import com.sajjadio.trailers.data.repository.MovieRepository
+import com.sajjadio.trailers.domain.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,8 +15,8 @@ class GenresViewModel @Inject constructor(
     private val movieRepo: MovieRepository,
 ) : ViewModel() {
 
-    private val _listGenresMovie: MutableLiveData<List<Genres>> = MutableLiveData()
-    var listGenresMovie: LiveData<List<Genres>> = _listGenresMovie
+    private val _listGenresMovieDto: MutableLiveData<List<GenresDto>> = MutableLiveData()
+    var listGenresMovieDto: LiveData<List<GenresDto>> = _listGenresMovieDto
 
     private var _responseListOfMovie: MutableLiveData<PagingData<MovieResult>> = MutableLiveData()
     var responseListOfMovie: LiveData<PagingData<MovieResult>> = _responseListOfMovie
@@ -27,7 +27,7 @@ class GenresViewModel @Inject constructor(
         viewModelScope.launch {
             movieRepo.getGenresMovie().collect { state ->
                 state.data()?.genres?.let { data ->
-                    _listGenresMovie.postValue(data)
+                    _listGenresMovieDto.postValue(data)
                 }
             }
         }

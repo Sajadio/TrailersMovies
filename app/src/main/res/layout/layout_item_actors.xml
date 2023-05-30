@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.sajjadio.trailers.data.model.movie.actors.Cast" />
+            type="com.sajjadio.trailers.data.model.movie.actors.CastDto" />
 
         <variable
             name="listener"

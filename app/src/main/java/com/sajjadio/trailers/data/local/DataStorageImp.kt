@@ -1,9 +1,10 @@
-package com.sajjadio.trailers.data.storage
+package com.sajjadio.trailers.data.local
 
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
+import com.sajjadio.trailers.domain.DataStorage
 import com.sajjadio.trailers.utils.Constant
 import com.sajjadio.trailers.utils.UiMode
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -16,7 +17,9 @@ import javax.inject.Singleton
 
 
 @Singleton
-class DataStorageImp @Inject constructor(@ApplicationContext context: Context) : DataStorage {
+class DataStorageImp @Inject constructor(
+    @ApplicationContext context: Context
+) : DataStorage {
 
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = Constant.STORAGE_NAME)
     private val dataStore = context.dataStore

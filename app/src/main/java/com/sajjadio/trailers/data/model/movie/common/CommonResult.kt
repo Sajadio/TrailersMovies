@@ -1,7 +1,5 @@
 package com.sajjadio.trailers.data.model.movie.common
 
-import com.sajjadio.trailers.utils.ParentListAdapter
-
 data class CommonResult(
     val adult: Boolean?,
     val backdrop_path: String?,

@@ -3,10 +3,9 @@ package com.sajjadio.trailers.data.model.movie.actors
 import android.annotation.SuppressLint
 import android.os.Parcel
 import android.os.Parcelable
-import com.sajjadio.trailers.utils.ParentListAdapter
 
 @SuppressLint("ParcelCreator")
-data class Cast(
+data class CastDto(
     val adult: Boolean?,
     val cast_id: Int?,
     val character: String?,

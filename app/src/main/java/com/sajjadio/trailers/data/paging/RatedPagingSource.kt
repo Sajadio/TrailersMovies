@@ -3,7 +3,7 @@ package com.sajjadio.trailers.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.sajjadio.trailers.data.model.movie.common.CommonResult
-import com.sajjadio.trailers.data.network.MovieApiService
+import com.sajjadio.trailers.data.remote.MovieApiService
 import com.sajjadio.trailers.utils.Constant
 
 class RatedPagingSource(

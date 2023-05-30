@@ -1,7 +1,5 @@
 package com.sajjadio.trailers.data.model.movie.actorsmovie
 
-import com.sajjadio.trailers.utils.ParentListAdapter
-
 
 data class Cast(
     val adult: Boolean?,

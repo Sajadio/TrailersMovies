@@ -1,7 +1,5 @@
 package com.sajjadio.trailers.data.model.movie.playnow
 
-import com.sajjadio.trailers.utils.ParentListAdapter
-
 data class PlayNowResult(
     val adult: Boolean? = null,
     val backdrop_path: String? = null,

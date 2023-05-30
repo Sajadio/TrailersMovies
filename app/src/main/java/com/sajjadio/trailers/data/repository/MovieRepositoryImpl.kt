@@ -7,35 +7,38 @@ import com.sajjadio.trailers.data.model.movie.common.CommonResult
 import com.sajjadio.trailers.data.model.movie.genremovie.MovieResult
 import com.sajjadio.trailers.data.model.movie.search.SearchResult
 import com.sajjadio.trailers.data.model.movie.similar.SimilarResult
-import com.sajjadio.trailers.data.network.MovieApiService
+import com.sajjadio.trailers.data.remote.MovieApiService
 import com.sajjadio.trailers.data.paging.ComingPagingSource
 import com.sajjadio.trailers.data.paging.GenresPagingSource
 import com.sajjadio.trailers.data.paging.PopularPagingSource
 import com.sajjadio.trailers.data.paging.RatedPagingSource
 import com.sajjadio.trailers.data.paging.MoviePagingData
 import com.sajjadio.trailers.data.paging.SearchPagingSource
+import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.utils.Constant
-import com.sajjadio.trailers.utils.SafeApiCall
+import com.sajjadio.trailers.utils.NetworkStatus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import retrofit2.Response
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
     private val movieApi: MovieApiService,
-) : MovieRepository, SafeApiCall {
+) : MovieRepository {
 
     override suspend fun getTrendMovie() =
-        safeApiCall { movieApi.getTrending() }.flowOn(Dispatchers.IO)
+        wrapWithFlow { movieApi.getTrending() }.flowOn(Dispatchers.IO)
 
     override suspend fun getMoviePopular() =
-        safeApiCall { movieApi.getPopularMovie() }.flowOn(Dispatchers.IO)
+        wrapWithFlow { movieApi.getPopularMovie() }.flowOn(Dispatchers.IO)
 
     override suspend fun getMovieTopRated() =
-        safeApiCall { movieApi.getTopRatedMovie() }.flowOn(Dispatchers.IO)
+        wrapWithFlow { movieApi.getTopRatedMovie() }.flowOn(Dispatchers.IO)
 
     override suspend fun getUpComingMovie() =
-        safeApiCall { movieApi.getUpComingMovie() }.flowOn(Dispatchers.IO)
+        wrapWithFlow { movieApi.getUpComingMovie() }.flowOn(Dispatchers.IO)
 
     override fun listSimilarOfMovie(id: Int): Flow<PagingData<SimilarResult>> =
         Pager(config = PagingConfig(pageSize = Constant.DEFAULT_PAGE_SIZE, prefetchDistance = 2),
@@ -48,19 +51,19 @@ class MovieRepositoryImpl @Inject constructor(
         ).flow
 
     override suspend fun getMoviesDetails(id: Int?) =
-        safeApiCall { movieApi.getMoviesDetails(id) }.flowOn(Dispatchers.IO)
+        wrapWithFlow { movieApi.getMoviesDetails(id) }.flowOn(Dispatchers.IO)
 
     override suspend fun getActors(id: Int?) =
-        safeApiCall { movieApi.getActors(id) }.flowOn(Dispatchers.IO)
+        wrapWithFlow { movieApi.getActors(id) }.flowOn(Dispatchers.IO)
 
     override suspend fun getSimilar(id: Int?) =
-        safeApiCall { movieApi.getSimilar(id, page = 1) }.flowOn(Dispatchers.IO)
+        wrapWithFlow { movieApi.getSimilar(id, page = 1) }.flowOn(Dispatchers.IO)
 
     override suspend fun getMovieTrailer(id: Int?) =
-        safeApiCall { movieApi.getMovieTrailer(id = id) }.flowOn(Dispatchers.IO)
+        wrapWithFlow { movieApi.getMovieTrailer(id = id) }.flowOn(Dispatchers.IO)
 
     override suspend fun getMovieOfActor(person_id: Int?) =
-        safeApiCall { movieApi.getMovieOfActor(person_id = person_id) }.flowOn(Dispatchers.IO)
+        wrapWithFlow { movieApi.getMovieOfActor(person_id = person_id) }.flowOn(Dispatchers.IO)
 
     override fun getPopularMoviePaging(): Flow<PagingData<CommonResult>> =
         Pager(config = PagingConfig(pageSize = Constant.DEFAULT_PAGE_SIZE, prefetchDistance = 2),
@@ -91,5 +94,20 @@ class MovieRepositoryImpl @Inject constructor(
         ).flow.flowOn(Dispatchers.IO)
 
     override suspend fun getGenresMovie() =
-        safeApiCall { movieApi.getGenresMovie() }.flowOn(Dispatchers.IO)
+        wrapWithFlow { movieApi.getGenresMovie() }.flowOn(Dispatchers.IO)
+
+    private fun <T> wrapWithFlow(response: suspend () -> Response<T>): Flow<NetworkStatus<T>> {
+        return flow {
+            emit(NetworkStatus.Loading)
+            try {
+                emit(checkIsSuccessfulResponse(response.invoke()))
+            } catch (e:Exception) {
+                emit(NetworkStatus.Error(e.message))
+            }
+        }
+    }
+
+    private fun <T> checkIsSuccessfulResponse(response: Response<T>): NetworkStatus<T> =
+        if (response.isSuccessful) NetworkStatus.Success(response.body()) else NetworkStatus.Error(
+            response.message())
 }

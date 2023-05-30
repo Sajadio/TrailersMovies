@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import com.sajjadio.trailers.BR
 import com.sajjadio.trailers.R
-import com.sajjadio.trailers.data.model.movie.actors.Actors
+import com.sajjadio.trailers.data.model.movie.actors.ActorsDto
 import com.sajjadio.trailers.data.model.movie.id.IDMovie
 import com.sajjadio.trailers.data.model.movie.similar.Similar
 import com.sajjadio.trailers.ui.base.BaseAdapter
@@ -41,7 +41,7 @@ class DetailsAdapter(
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         when (val currentItem = getItems()[position]) {
             is DetailsItem.MovieItem -> bindMovieItem(holder as ItemViewHolder, currentItem.movie)
-            is DetailsItem.ActorItem -> bindActorItem(holder as ItemViewHolder, currentItem.actors)
+            is DetailsItem.ActorItem -> bindActorItem(holder as ItemViewHolder, currentItem.actorsDto)
             is DetailsItem.SimilarItem -> bindSimilarItem(
                 holder as ItemViewHolder,
                 currentItem.similar
@@ -53,9 +53,9 @@ class DetailsAdapter(
         holder.binding.setVariable(BR.item, item)
     }
 
-    private fun bindActorItem(holder: ItemViewHolder, items: Actors) {
+    private fun bindActorItem(holder: ItemViewHolder, items: ActorsDto) {
         holder.binding.apply {
-            setVariable(BR.adapter, items.cast?.let { ActorsAdapter(it, listener) })
+            setVariable(BR.adapter, items.castDto?.let { ActorsAdapter(it, listener) })
             setVariable(BR.listener, listener)
         }
     }

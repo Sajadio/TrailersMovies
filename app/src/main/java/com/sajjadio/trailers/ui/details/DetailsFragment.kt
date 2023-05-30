@@ -8,11 +8,10 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sajjadio.trailers.R
-import com.sajjadio.trailers.data.model.movie.actors.Cast
+import com.sajjadio.trailers.data.model.movie.actors.CastDto
 import com.sajjadio.trailers.databinding.FragmentDetailsBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
 import com.sajjadio.trailers.ui.details.utils.DestinationType
-import com.sajjadio.trailers.ui.home.HomeFragmentDirections
 import com.sajjadio.trailers.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -89,7 +88,7 @@ class DetailsFragment :
     }
 
 
-    private fun getMovieOfActor(cast: Cast) {
+    private fun getMovieOfActor(castDto: CastDto) {
 //        val action = DetailsFragmentDirections.actionMoiveFragmentToActorsFragment(cast)
 //        action.movieToDestination(view = this.root)
     }

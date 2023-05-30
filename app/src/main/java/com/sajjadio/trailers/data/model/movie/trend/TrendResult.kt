@@ -1,7 +1,5 @@
 package com.sajjadio.trailers.data.model.movie.trend
 
-import com.sajjadio.trailers.utils.ParentListAdapter
-
 data class TrendResult(
     val adult: Boolean?,
     val backdrop_path: String?,

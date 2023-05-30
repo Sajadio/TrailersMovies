@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.data.model
+package com.sajjadio.trailers.ui.home.utils
 
 import com.sajjadio.trailers.data.model.movie.common.CommonResult
 import com.sajjadio.trailers.data.model.movie.trend.TrendResult

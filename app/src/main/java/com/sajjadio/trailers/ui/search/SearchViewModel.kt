@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.sajjadio.trailers.data.model.movie.search.SearchResult
-import com.sajjadio.trailers.data.repository.MovieRepository
+import com.sajjadio.trailers.domain.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

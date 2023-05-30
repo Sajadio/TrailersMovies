@@ -2,8 +2,8 @@ package com.sajjadio.trailers.ui.home.viewModel
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.*
-import com.sajjadio.trailers.data.model.HomeItem
-import com.sajjadio.trailers.data.repository.MovieRepository
+import com.sajjadio.trailers.ui.home.utils.HomeItem
+import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.ui.home.adapter.HomeInteractListener
 import com.sajjadio.trailers.utils.*
 import dagger.hilt.android.lifecycle.HiltViewModel

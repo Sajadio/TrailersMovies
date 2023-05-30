@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.data.network
+package com.sajjadio.trailers.data.remote
 
 import com.sajjadio.trailers.BuildConfig
 import okhttp3.Interceptor

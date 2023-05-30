@@ -3,7 +3,6 @@ package com.sajjadio.trailers.ui.genres
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,7 +12,6 @@ import com.sajjadio.trailers.databinding.FragmentGenresBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
 import com.sajjadio.trailers.utils.*
 import com.google.android.material.tabs.TabLayout
-import com.sajjadio.trailers.ui.details.DetailsViewModel
 import com.sajjadio.trailers.ui.search.PagingLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_genres.*
@@ -52,7 +50,7 @@ class GenresFragment : BaseFragment<FragmentGenresBinding,GenresViewModel>(R.lay
 
     private fun setUpTabLayout() {
 
-        viewModel.listGenresMovie.observe(viewLifecycleOwner) { data ->
+        viewModel.listGenresMovieDto.observe(viewLifecycleOwner) { data ->
             data.reversed().forEach {
                 binding.tabLayout.addTab(binding.tabLayout.newTab().setText(it.name.toString()))
             }

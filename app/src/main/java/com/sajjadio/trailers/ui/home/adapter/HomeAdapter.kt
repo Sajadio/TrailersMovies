@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import com.sajjadio.trailers.BR
 import com.sajjadio.trailers.R
-import com.sajjadio.trailers.data.model.HomeItem
+import com.sajjadio.trailers.ui.home.utils.HomeItem
 import com.sajjadio.trailers.data.model.movie.common.CommonResult
 import com.sajjadio.trailers.data.model.movie.trend.TrendResult
 import com.sajjadio.trailers.databinding.*

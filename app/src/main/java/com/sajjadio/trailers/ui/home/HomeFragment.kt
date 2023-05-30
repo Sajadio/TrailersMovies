@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
 import com.sajjadio.trailers.R
-import com.sajjadio.trailers.data.model.HomeItem
 import com.sajjadio.trailers.databinding.FragmentHomeBinding
 import com.sajjadio.trailers.ui.HomeActivity
 import com.sajjadio.trailers.ui.base.BaseFragment
@@ -15,7 +13,6 @@ import com.sajjadio.trailers.utils.UiMode
 import com.sajjadio.trailers.utils.isNetworkAvailable
 import com.sajjadio.trailers.utils.movieToDestination
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.sajjadio.trailers.ui.genres.GenresViewModel
 import com.sajjadio.trailers.ui.home.adapter.HomeAdapter
 import com.sajjadio.trailers.ui.home.viewModel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint

@@ -1,7 +1,5 @@
 package com.sajjadio.trailers.data.model.movie.similar
 
-import com.sajjadio.trailers.utils.ParentListAdapter
-
 data class SimilarResult(
     val adult: Boolean?,
     val backdrop_path: String?,

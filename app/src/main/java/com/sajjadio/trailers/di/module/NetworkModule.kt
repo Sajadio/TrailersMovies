@@ -1,8 +1,8 @@
 package com.sajjadio.trailers.di.module
 
 import com.sajjadio.trailers.BuildConfig
-import com.sajjadio.trailers.data.network.AuthInterceptor
-import com.sajjadio.trailers.data.network.MovieApiService
+import com.sajjadio.trailers.data.remote.AuthInterceptor
+import com.sajjadio.trailers.data.remote.MovieApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

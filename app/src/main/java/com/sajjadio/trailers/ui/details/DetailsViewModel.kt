@@ -3,7 +3,7 @@ package com.sajjadio.trailers.ui.details
 import androidx.lifecycle.*
 import com.sajjadio.trailers.data.model.movie.id.IDMovie
 import com.sajjadio.trailers.data.model.movie.video.VideoMovie
-import com.sajjadio.trailers.data.repository.MovieRepository
+import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.ui.details.utils.DestinationType
 import com.sajjadio.trailers.ui.details.utils.DetailsItem
 import com.sajjadio.trailers.utils.Event
