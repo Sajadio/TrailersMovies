@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.sajjadio.trailers.data.model.movie.common.CommonResult
 import com.sajjadio.trailers.data.model.movie.genremovie.MovieResult
+import com.sajjadio.trailers.data.model.movie.search.SearchMovie
 import com.sajjadio.trailers.data.model.movie.search.SearchResult
 import com.sajjadio.trailers.data.model.movie.similar.SimilarResult
 import com.sajjadio.trailers.data.remote.MovieApiService
@@ -45,10 +46,16 @@ class MovieRepositoryImpl @Inject constructor(
             pagingSourceFactory = { MoviePagingData(api = movieApi, id = id) }
         ).flow.flowOn(Dispatchers.IO)
 
-    override fun getMovieSearch(query: String?): Flow<PagingData<SearchResult>> =
-        Pager(config = PagingConfig(pageSize = Constant.DEFAULT_PAGE_SIZE, prefetchDistance = 2),
-            pagingSourceFactory = { SearchPagingSource(api = movieApi, query = query) }
+    override fun getMovieSearch(query: String?): Flow<PagingData<SearchResult>> {
+        return Pager(config = PagingConfig(
+            pageSize = Constant.DEFAULT_PAGE_SIZE,
+            prefetchDistance = 2
+        ),
+            pagingSourceFactory = {
+                SearchPagingSource(api = movieApi, query = query)
+            }
         ).flow
+    }
 
     override suspend fun getMoviesDetails(id: Int?) =
         wrapWithFlow { movieApi.getMoviesDetails(id) }.flowOn(Dispatchers.IO)

@@ -8,6 +8,7 @@ import com.sajjadio.trailers.data.model.movie.common.Common
 import com.sajjadio.trailers.data.model.movie.common.CommonResult
 import com.sajjadio.trailers.data.model.movie.genremovie.MovieResult
 import com.sajjadio.trailers.data.model.movie.id.IDMovie
+import com.sajjadio.trailers.data.model.movie.search.SearchMovie
 import com.sajjadio.trailers.data.model.movie.search.SearchResult
 import com.sajjadio.trailers.data.model.movie.similar.Similar
 import com.sajjadio.trailers.data.model.movie.similar.SimilarResult

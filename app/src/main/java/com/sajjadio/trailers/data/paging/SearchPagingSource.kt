@@ -21,8 +21,8 @@ class SearchPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, SearchResult> {
         val pageNumber = params.key ?: Constant.DEFAULT_PAGE_INDEX
         return try {
-            val response = api.getSearchMovie(query = query, page = pageNumber)
-            val data = response.searchResults
+            val response = api.getSearchMovie(query = query, page = pageNumber).body()
+            val data = response?.searchResults
             LoadResult.Page(
                 data = data ?: emptyList(),
                 prevKey = if (pageNumber == Constant.DEFAULT_PAGE_INDEX) null else pageNumber.minus(1),

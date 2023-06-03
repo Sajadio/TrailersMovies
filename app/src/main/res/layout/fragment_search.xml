@@ -35,6 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="@dimen/size_8"
+                    android:paddingStart="@dimen/size_8"
                     android:background="@drawable/shape_search_text"
                     android:hint="@string/search_box"
                     android:minHeight="?attr/actionBarSize"

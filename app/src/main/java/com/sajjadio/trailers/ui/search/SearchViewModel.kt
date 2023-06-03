@@ -8,6 +8,7 @@ import androidx.paging.map
 import com.sajjadio.trailers.data.model.movie.search.SearchResult
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
@@ -28,7 +29,7 @@ class SearchViewModel @Inject constructor(
 
     @OptIn(FlowPreview::class)
     private fun getSearch(query: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.Main){
             movieRepo.getMovieSearch(query)
                 .debounce(500L)
                 .cachedIn(this)

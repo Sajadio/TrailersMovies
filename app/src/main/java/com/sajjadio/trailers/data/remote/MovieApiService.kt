@@ -73,7 +73,7 @@ interface MovieApiService {
     suspend fun getSearchMovie(
         @Query("query") query: String?,
         @Query("page") page: Int,
-    ): SearchMovie
+    ): Response<SearchMovie>
 
 
     @GET("person/{person_id}/movie_credits?")
