@@ -5,10 +5,14 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.sajjadio.trailers.ui.search.SearchViewModel" />
+
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swiperefreshlayout"
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -26,14 +30,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <SearchView
+                <EditText
                     android:id="@+id/searchView"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="@dimen/size_8"
                     android:background="@drawable/shape_search_text"
+                    android:hint="@string/search_box"
                     android:minHeight="?attr/actionBarSize"
-                    app:defaultQueryHint="@string/search_box" />
+                    android:onTextChanged="@{(text,start,before,count) -> viewModel.onSearchInputChanged(text)}" />
 
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -50,32 +55,32 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:weightSum="4"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:weightSum="4">
 
                     <include
                         layout="@layout/shimmer_search"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
 
                     <include
                         layout="@layout/shimmer_search"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
 
                     <include
                         layout="@layout/shimmer_search"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
 
                     <include
                         layout="@layout/shimmer_search"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
 
 
                 </LinearLayout>
@@ -95,7 +100,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/appbar"
                 tools:listitem="@layout/layout_item_search_card" />
-
 
             <TextView
                 android:id="@+id/hintText2"

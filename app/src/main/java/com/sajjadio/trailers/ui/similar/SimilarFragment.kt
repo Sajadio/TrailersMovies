@@ -34,7 +34,7 @@ class SimilarFragment : BaseFragment<FragmentSimilarBinding,SimilarViewModel>(R.
 
         initialAdapter()
 
-        binding.swiperefreshlayout.apply {
+        binding.swipeRefreshLayout.apply {
             this.setOnRefreshListener {
                 initialAdapter()
                 this.isRefreshing = false
@@ -84,7 +84,7 @@ class SimilarFragment : BaseFragment<FragmentSimilarBinding,SimilarViewModel>(R.
                 shimmer.stopShimmer()
 
             shimmer.isVisible = state
-            swiperefreshlayout.isVisible = !state
+            swipeRefreshLayout.isVisible = !state
         }
 
     }

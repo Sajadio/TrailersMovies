@@ -5,12 +5,9 @@ import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
-import android.widget.SearchView
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
-import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.SnapHelper
 import com.sajjadio.trailers.R
@@ -18,14 +15,11 @@ import com.sajjadio.trailers.databinding.FragmentSearchBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
 import com.sajjadio.trailers.utils.movieToDestination
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class SearchFragment : BaseFragment<FragmentSearchBinding,SearchViewModel>(R.layout.fragment_search),
-    SearchView.OnQueryTextListener {
+class SearchFragment : BaseFragment<FragmentSearchBinding,SearchViewModel>(R.layout.fragment_search) {
 
     override val LOG_TAG: String = this::class.java.simpleName
     override val viewModelClass = SearchViewModel::class.java
@@ -39,15 +33,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchViewModel>(R.lay
         helper = LinearSnapHelper()
         binding.apply {
 
-            searchView.setOnQueryTextListener(this@SearchFragment)
             rcSearch.setOnTouchListener { _, _ ->
                 hidePartialKeyboard()
             }
             initialAdapter()
 
-            swiperefreshlayout.setOnRefreshListener {
+            swipeRefreshLayout.setOnRefreshListener {
                 adapter.refresh()
-                swiperefreshlayout.isRefreshing = false
+                swipeRefreshLayout.isRefreshing = false
             }
 
         }
@@ -71,7 +64,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchViewModel>(R.lay
             footer = PagingLoadStateAdapter { adapter.retry() }
         )
 
-        viewModel.getMoviesSearch.observe(viewLifecycleOwner) {
+        viewModel.responseSearchMovies.observe(viewLifecycleOwner) {
             lifecycleScope.launch {
                 it?.let {
                     adapter.submitData(it)
@@ -83,9 +76,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchViewModel>(R.lay
             val isEmptyList = loadState.refresh is LoadState.NotLoading && adapter.itemCount == 0
             showEmptyList(isEmptyList)
 
-            // Only show the list if refresh succeeds
             binding.rcSearch.isVisible = loadState.source.refresh is LoadState.NotLoading
-            // Show loading spinner during initial load or refresh
             (loadState.source.refresh is LoadState.Loading).also {
                 stateManagement(it)
             }
@@ -113,25 +104,4 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchViewModel>(R.lay
         binding.rcSearch.isVisible = !emptyList
         binding.hintText2.isVisible = emptyList
     }
-
-    override fun onQueryTextSubmit(query: String?) = false
-
-    override fun onQueryTextChange(query: String?): Boolean {
-
-        lifecycleScope.launch(Dispatchers.Main) {
-            query?.let {
-                if (it.length >= 3) {
-                    delay(1000L)
-                    viewModel.getSearch(it)
-                } else {
-                    viewModel.getMoviesSearch.postValue(PagingData.empty())
-                }
-                delay(50L)
-                if (it.isEmpty())
-                    binding.hintText2.visibility = View.INVISIBLE
-            }
-        }
-        return true
-    }
-
 }

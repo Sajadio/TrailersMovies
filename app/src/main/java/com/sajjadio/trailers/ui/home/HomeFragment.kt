@@ -29,10 +29,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         checkConnection()
         binding.apply {
 
-            swiperefreshlayout.setOnRefreshListener {
+            swipeRefreshLayout.setOnRefreshListener {
                 viewModel?.refreshData()
                 checkConnection()
-                swiperefreshlayout.isRefreshing = false
+                swipeRefreshLayout.isRefreshing = false
             }
 
             tryConnection.setOnClickListener {

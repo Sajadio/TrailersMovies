@@ -37,9 +37,9 @@ class CommonFragment :
                 isBack = true,
                 title = args.destination.name
             )
-            swiperefreshlayout.setOnRefreshListener {
+            swipeRefreshLayout.setOnRefreshListener {
                 adapter?.refresh()
-                swiperefreshlayout.isRefreshing = false
+                swipeRefreshLayout.isRefreshing = false
             }
             checkDestinationID(args.destination)
         }
@@ -100,7 +100,7 @@ class CommonFragment :
             binding.shimmer.stopShimmer()
 
         binding.shimmer.isVisible = state
-        binding.swiperefreshlayout.isVisible = !state
+        binding.swipeRefreshLayout.isVisible = !state
 
     }
 }

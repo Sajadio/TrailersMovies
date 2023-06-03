@@ -43,10 +43,10 @@
             android:layout_height="0dp"
             android:layout_margin="4dp"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="@+id/swiperefreshlayout"
-            app:layout_constraintEnd_toEndOf="@+id/swiperefreshlayout"
-            app:layout_constraintStart_toStartOf="@+id/swiperefreshlayout"
-            app:layout_constraintTop_toTopOf="@+id/swiperefreshlayout">
+            app:layout_constraintBottom_toBottomOf="@+id/swipeRefreshLayout"
+            app:layout_constraintEnd_toEndOf="@+id/swipeRefreshLayout"
+            app:layout_constraintStart_toStartOf="@+id/swipeRefreshLayout"
+            app:layout_constraintTop_toTopOf="@+id/swipeRefreshLayout">
 
             <GridLayout
                 android:layout_width="match_parent"
@@ -137,7 +137,7 @@
         </com.facebook.shimmer.ShimmerFrameLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swiperefreshlayout"
+            android:id="@+id/swipeRefreshLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"

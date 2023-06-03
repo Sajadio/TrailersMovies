@@ -40,10 +40,10 @@ class GenresFragment : BaseFragment<FragmentGenresBinding,GenresViewModel>(R.lay
     }
 
     private fun refresh() {
-        binding.swiperefreshlayout.setOnRefreshListener {
+        binding.swipeRefreshLayout.setOnRefreshListener {
             checkConnection()
             initialAdapter()
-            binding.swiperefreshlayout.isRefreshing = false
+            binding.swipeRefreshLayout.isRefreshing = false
         }
     }
 
@@ -127,7 +127,7 @@ class GenresFragment : BaseFragment<FragmentGenresBinding,GenresViewModel>(R.lay
             binding.shimmer.stopShimmer()
 
         binding.shimmer.isVisible = state
-        binding.swiperefreshlayout.isVisible = !state
+        binding.swipeRefreshLayout.isVisible = !state
 
     }
 
