@@ -47,7 +47,7 @@
                 app:layout_constraintStart_toStartOf="@+id/title" />
 
             <View
-                android:id="@+id/date"
+                android:id="@+id/textViewDate"
                 android:layout_width="60dp"
                 android:layout_height="15dp"
                 android:layout_margin="@dimen/size_8"
@@ -60,7 +60,7 @@
                 android:layout_width="40dp"
                 android:layout_height="15dp"
                 android:background="@color/color_child_shimmer"
-                app:layout_constraintBottom_toBottomOf="@+id/date"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewDate"
                 app:layout_constraintStart_toStartOf="@+id/overview" />
 
             <androidx.appcompat.widget.AppCompatTextView

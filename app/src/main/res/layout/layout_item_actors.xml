@@ -58,7 +58,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:setImage="@{item.profile_path}"
+                app:imageUrl="@{item.profile_path}"
                 tools:srcCompat="@drawable/ic_launcher_background" />
         </com.google.android.material.card.MaterialCardView>
 

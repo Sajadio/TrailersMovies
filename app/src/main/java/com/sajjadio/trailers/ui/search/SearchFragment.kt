@@ -27,7 +27,7 @@ import kotlinx.coroutines.launch
 class SearchFragment : BaseFragment<FragmentSearchBinding,SearchViewModel>(R.layout.fragment_search),
     SearchView.OnQueryTextListener {
 
-    override val LOG_TAG = this::class.java.simpleName
+    override val LOG_TAG: String = this::class.java.simpleName
     override val viewModelClass = SearchViewModel::class.java
     private lateinit var adapter: SearchPagingAdapter
     private lateinit var helper: SnapHelper

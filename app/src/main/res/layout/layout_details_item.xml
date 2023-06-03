@@ -171,7 +171,7 @@
                     tools:text="4.5 " />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/date"
+                    android:id="@+id/textViewDate"
                     style="@style/Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
@@ -197,7 +197,7 @@
                     android:textColor="?attr/textColorHint"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/generes"
-                    app:layout_constraintTop_toBottomOf="@+id/date"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewDate"
                     tools:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here " />
 
 

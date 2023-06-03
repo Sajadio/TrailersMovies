@@ -50,7 +50,7 @@
                 android:scaleType="centerCrop"
                 android:layout_gravity="center"
                 app:imageSize="@{imageSize.IMAGE_Size_ORIGINAL}"
-                app:setImage="@{item.backdrop_path}"
+                app:imageUrl="@{item.backdrop_path}"
                 tools:src="@drawable/ic_launcher_background" />
 
         </com.google.android.material.card.MaterialCardView>
