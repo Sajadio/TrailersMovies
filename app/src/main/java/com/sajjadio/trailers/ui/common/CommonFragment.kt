@@ -37,11 +37,10 @@ class CommonFragment :
                 isBack = true,
                 title = args.destination.name
             )
-
-//            swiperefreshlayout.setOnRefreshListener {
-//                adapter?.refresh()
-//                swiperefreshlayout.isRefreshing = false
-//            }
+            swiperefreshlayout.setOnRefreshListener {
+                adapter?.refresh()
+                swiperefreshlayout.isRefreshing = false
+            }
             checkDestinationID(args.destination)
         }
     }
@@ -85,12 +84,23 @@ class CommonFragment :
 
             binding.rcCommon.isVisible = loadState.source.refresh is LoadState.NotLoading
             (loadState.source.refresh is LoadState.Loading).also {
-//                stateManagement(it)
+                stateManagement(it)
             }
         }
     }
 
     private fun showEmptyList(emptyList: Boolean) {
         binding.rcCommon.isVisible = !emptyList
+    }
+
+    private fun stateManagement(state: Boolean) {
+        if (state)
+            binding.shimmer.startShimmer()
+        else
+            binding.shimmer.stopShimmer()
+
+        binding.shimmer.isVisible = state
+        binding.swiperefreshlayout.isVisible = !state
+
     }
 }
