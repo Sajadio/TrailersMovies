@@ -31,7 +31,7 @@
     <string name="noConnection">Make sure you are connected to the internet and try again</string>
     <string name="notActive">Sorry, something wrong!</string>
     <string name="no_result">No Result Yet!</string>
-    <string name="rated">Top Rated Movies</string>
+    <string name="topRated">Top Rated Movies</string>
     <string name="upComing">Upcoming Movies</string>
     <string name="category">Categories</string>
     <string name="trending">Trending Movies</string>

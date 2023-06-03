@@ -17,7 +17,7 @@
 
         <com.smarteist.autoimageslider.SliderView
             android:id="@+id/sliderView"
-            android:layout_width="@dimen/showcase_height4"
+            android:layout_width="0dp"
             android:layout_height="@dimen/showcase_height3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

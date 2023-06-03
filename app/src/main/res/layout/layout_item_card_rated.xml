@@ -25,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/size_4"
+        android:onClick="@{() -> listener.onClickItem(item.id)}"
         app:cardBackgroundColor="?attr/mainColor"
         app:cardCornerRadius="@dimen/corner_small"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,12 +41,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:background="@drawable/popcorn1"
                 android:contentDescription="@string/app_name"
                 app:layout_constraintBottom_toBottomOf="@+id/poster"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:background="@drawable/popcorn1" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/poster"
@@ -158,9 +159,9 @@
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:layout_gravity="center"
                     android:contentDescription="@string/app_name"
                     android:scaleType="centerCrop"
-                    android:layout_gravity="center"
                     android:src="@drawable/arrow_right"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -171,8 +172,8 @@
                     style="@style/Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_gravity="center"
+                    android:gravity="center"
                     android:text="@string/seeMoreTopRated"
                     android:textColor="?attr/textColorHint"
                     app:layout_constraintStart_toStartOf="parent"

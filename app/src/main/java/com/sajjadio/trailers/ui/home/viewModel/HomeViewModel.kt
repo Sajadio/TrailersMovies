@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import com.sajjadio.trailers.ui.home.utils.HomeItem
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.ui.home.adapter.HomeInteractListener
+import com.sajjadio.trailers.utils.Destination
 import com.sajjadio.trailers.utils.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,8 +17,13 @@ class HomeViewModel @Inject constructor(
     private val movieRepo: MovieRepository,
 ) : ViewModel(), HomeInteractListener {
 
-    private var _responseHomeData: MutableLiveData<NetworkStatus<List<HomeItem>>> =
-        MutableLiveData()
+    private val _clickItemEvent = MutableLiveData<Event<Int>>()
+    val clickItemEvent: LiveData<Event<Int>> = _clickItemEvent
+
+    private val _clickShowAllItemEvent = MutableLiveData<Event<Destination>>()
+    val clickShowAllItemEvent: LiveData<Event<Destination>> = _clickShowAllItemEvent
+
+    private var _responseHomeData = MutableLiveData<NetworkStatus<List<HomeItem>>>()
     var responseHomeData: LiveData<NetworkStatus<List<HomeItem>>> = _responseHomeData
     private val homeData = mutableListOf<HomeItem>()
 
@@ -45,7 +51,6 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
-
 
     private fun setUpRatedData() {
         viewModelScope.launch {
@@ -84,6 +89,22 @@ class HomeViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    override fun onClickItem(id: Int) {
+        _clickItemEvent.postValue(Event(id))
+    }
+
+    override fun onClickSeeAllPopularItems(popular: Destination) {
+        _clickShowAllItemEvent.postValue(Event(popular))
+    }
+
+    override fun onClickSeeAllTopRatedItems(topRated: Destination) {
+        _clickShowAllItemEvent.postValue(Event(topRated))
+    }
+
+    override fun onClickSeeAllUpComingItems(upComing: Destination) {
+        _clickShowAllItemEvent.postValue(Event(upComing))
     }
 }
 

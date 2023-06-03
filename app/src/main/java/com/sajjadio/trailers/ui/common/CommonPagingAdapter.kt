@@ -1,6 +1,7 @@
 package com.sajjadio.trailers.ui.common
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -38,7 +39,7 @@ class CommonPagingAdapter : PagingDataAdapter<CommonResult, CommonPagingAdapter.
         fun bind(common: CommonResult) = apply {
             binding.apply {
                 item = common
-                poster.loadImage(common.poster_path.toString(),Constant.IMAGE_Size_500)
+                poster.loadImage(common.poster_path.toString(), Constant.IMAGE_Size_500)
             }
         }
     }

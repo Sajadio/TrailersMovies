@@ -9,42 +9,17 @@
             name="adapter"
             type="com.sajjadio.trailers.ui.home.adapter.TopRatedAdapter" />
 
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.home.adapter.HomeInteractListener" />
+
+        <import type="com.sajjadio.trailers.utils.Destination" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/size_8"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleRated">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <include
-                    layout="@layout/common_shimmer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/common_shimmer"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp" />
-
-            </LinearLayout>
-
-        </com.facebook.shimmer.ShimmerFrameLayout>
-
 
         <TextView
             android:id="@+id/titleRated"
@@ -55,12 +30,29 @@
             android:gravity="center|start"
             android:paddingStart="@dimen/size_8"
             android:paddingBottom="@dimen/size_4"
-            android:text="@string/rated"
+            android:text="@string/topRated"
             android:textColor="?attr/textColor"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry" />
+
+        <TextView
+            android:id="@+id/text_view_see_all_actors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginEnd="@dimen/size_8"
+            android:clickable="true"
+            android:gravity="center|start"
+            android:onClick="@{() -> listener.onClickSeeAllTopRatedItems(Destination.TopRated)}"
+            android:text="@string/seeAll"
+            android:textColor="@color/redLight"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/titleRated"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/titleRated"
             tools:ignore="RtlSymmetry" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -76,13 +68,6 @@
             app:layout_constraintTop_toBottomOf="@+id/titleRated"
             tools:listitem="@layout/layout_item_card_rated" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/common_fragment_height"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleRated" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

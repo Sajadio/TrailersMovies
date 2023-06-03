@@ -9,50 +9,20 @@
             name="adapter"
             type="com.sajjadio.trailers.ui.home.adapter.UpComingAdapter" />
 
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.home.adapter.HomeInteractListener" />
+
+        <import type="com.sajjadio.trailers.utils.Destination" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmer"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="@dimen/size_8"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_actors">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:baselineAligned="false"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <include
-                    layout="@layout/upcoming_shimmer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/size_4"
-                    android:layout_weight="1" />
-
-                <include
-                    layout="@layout/upcoming_shimmer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/size_4"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-
-        </com.facebook.shimmer.ShimmerFrameLayout>
-
-
         <TextView
-            android:id="@+id/text_view_actors"
+            android:id="@+id/titleUpComing"
             style="@style/Headline5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -68,17 +38,34 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="RtlSymmetry" />
 
+        <TextView
+            android:id="@+id/text_view_see_all_actors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginEnd="@dimen/size_8"
+            android:clickable="true"
+            android:gravity="center|start"
+            android:onClick="@{() -> listener.onClickSeeAllUpComingItems(Destination.UpComing)}"
+            android:text="@string/seeAll"
+            android:textColor="@color/redLight"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/titleUpComing"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/titleUpComing"
+            tools:ignore="RtlSymmetry" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rc_coming"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
             android:adapter="@{adapter}"
+            android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_actors"
+            app:layout_constraintTop_toBottomOf="@+id/titleUpComing"
             tools:listitem="@layout/layout_item_card_upcoming" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

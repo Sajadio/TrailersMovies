@@ -12,11 +12,6 @@ class TrendSliderAdapter(
     private val listener: HomeInteractListener
 ) : SliderViewAdapter<TrendSliderAdapter.SliderHolder>() {
 
-    private var onItemClickListener: ((Int) -> Unit)? = null
-    fun onItemClickListener(listener: (Int) -> Unit) {
-        onItemClickListener = listener
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup): SliderHolder {
         return SliderHolder(
             LayoutTrendCardItemBinding.inflate(
@@ -31,9 +26,7 @@ class TrendSliderAdapter(
         val trend = items[position]
         holder.binding.apply {
             item = trend
-            root.setOnClickListener {
-                onItemClickListener?.let { it(trend.id) }
-            }
+            listener = this@TrendSliderAdapter.listener
             executePendingBindings()
         }
     }

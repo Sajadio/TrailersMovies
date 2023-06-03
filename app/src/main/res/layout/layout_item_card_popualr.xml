@@ -27,6 +27,7 @@
         android:layout_margin="@dimen/size_4"
         app:cardBackgroundColor="?attr/mainColor"
         app:cardCornerRadius="@dimen/corner_small"
+        android:onClick="@{() -> listener.onClickItem(item.id)}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="9:16"
         app:layout_constraintStart_toStartOf="parent"

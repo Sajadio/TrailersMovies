@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="5dp"
             android:layout_margin="@dimen/size_8"
+            android:onClick="@{() -> listener.onClickItem(item.id)}"
             android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

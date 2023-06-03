@@ -28,7 +28,7 @@
     <string name="noConnection">تأكد من أنك متصل بالإنترنت وحاول مرة أخرى</string>
     <string name="notActive">شيئا ما خاطئ</string>
     <string name="no_result">لاتوجد نتيجة!</string>
-    <string name="rated">الأفلام الأعلى تقييمًا</string>
+    <string name="topRated">الأفلام الأعلى تقييمًا</string>
     <string name="upComing">الأفلام القادمة</string>
     <string name="category">ألانواع</string>
     <string name="trending">الأفلام الشائعة</string>

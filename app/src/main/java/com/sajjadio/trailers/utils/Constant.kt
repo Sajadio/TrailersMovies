@@ -20,7 +20,7 @@ object Constant {
     const val IMAGE_Size_ORIGINAL = "original/"
 
     const val POPULAR = R.string.popular
-    const val TOP_RATED: Int = R.string.rated
+    const val TOP_RATED: Int = R.string.topRated
     const val UP_COMING = R.string.upComing
 
     const val SYSTEM_DEFAULT = "systemDefault"

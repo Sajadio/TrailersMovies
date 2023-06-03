@@ -10,6 +10,7 @@ import com.sajjadio.trailers.data.model.movie.trend.TrendResult
 import com.sajjadio.trailers.databinding.*
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
+import com.sajjadio.trailers.utils.Destination
 
 class HomeAdapter(
     private val listener: HomeInteractListener
@@ -47,21 +48,30 @@ class HomeAdapter(
     }
 
     private fun bindTrendItem(holder: ItemViewHolder, items: List<TrendResult>) {
-        with((holder.binding as LayoutRecyclerTrendBinding)){
+        with((holder.binding as LayoutRecyclerTrendBinding)) {
             sliderView.setSliderAdapter(TrendSliderAdapter(items, listener))
         }
     }
 
     private fun bindPopularItem(holder: ItemViewHolder, items: List<CommonResult>) {
-        holder.binding.setVariable(BR.adapter, PopularAdapter(items, listener))
+        with(holder.binding) {
+            setVariable(BR.adapter, PopularAdapter(items, listener))
+            setVariable(BR.listener, listener)
+        }
     }
 
     private fun bindTopRatedItem(holder: ItemViewHolder, items: List<CommonResult>) {
-        holder.binding.setVariable(BR.adapter, TopRatedAdapter(items, listener))
+        with(holder.binding) {
+            setVariable(BR.adapter, TopRatedAdapter(items, listener))
+            setVariable(BR.listener, listener)
+        }
     }
 
     private fun bindUpComingItem(holder: ItemViewHolder, items: List<CommonResult>) {
-        holder.binding.setVariable(BR.adapter, UpComingAdapter(items, listener))
+        with(holder.binding) {
+            setVariable(BR.adapter, UpComingAdapter(items, listener))
+            setVariable(BR.listener, listener)
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -81,4 +91,9 @@ class HomeAdapter(
     }
 }
 
-interface HomeInteractListener : BaseInteractListener
+interface HomeInteractListener : BaseInteractListener {
+    fun onClickItem(id: Int)
+    fun onClickSeeAllPopularItems(popular: Destination)
+    fun onClickSeeAllTopRatedItems(topRated: Destination)
+    fun onClickSeeAllUpComingItems(upComing: Destination)
+}

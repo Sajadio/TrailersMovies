@@ -1,17 +1,19 @@
 package com.sajjadio.trailers.ui.common
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
+import androidx.paging.map
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentCommonBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
 import com.sajjadio.trailers.ui.search.PagingLoadStateAdapter
+import com.sajjadio.trailers.utils.Destination
 import com.sajjadio.trailers.utils.movieToDestination
 import com.sajjadio.trailers.utils.setAsActionBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,19 +35,19 @@ class CommonFragment :
             activity?.setAsActionBar(
                 toolbar = toolbar,
                 isBack = true,
-                title = resources.getString(args.id)
+                title = args.destination.name
             )
 
 //            swiperefreshlayout.setOnRefreshListener {
-//                adapter.refresh()
+//                adapter?.refresh()
 //                swiperefreshlayout.isRefreshing = false
 //            }
-            checkDestinationID()
+            checkDestinationID(args.destination)
         }
     }
 
-    private fun checkDestinationID() {
-        viewModel.checkDestination(args.id)
+    private fun checkDestinationID(destinationType: Destination) {
+        viewModel.checkDestination(destinationType)
         initialAdapter()
     }
 
@@ -83,23 +85,12 @@ class CommonFragment :
 
             binding.rcCommon.isVisible = loadState.source.refresh is LoadState.NotLoading
             (loadState.source.refresh is LoadState.Loading).also {
-                stateManagement(it)
+//                stateManagement(it)
             }
         }
     }
 
     private fun showEmptyList(emptyList: Boolean) {
         binding.rcCommon.isVisible = !emptyList
-    }
-
-    private fun stateManagement(state: Boolean) {
-        if (state)
-            binding.shimmer.startShimmer()
-        else
-            binding.shimmer.stopShimmer()
-
-        binding.shimmer.isVisible = state
-        binding.swiperefreshlayout.isVisible = !state
-
     }
 }

@@ -4,23 +4,24 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentHomeBinding
 import com.sajjadio.trailers.ui.HomeActivity
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.utils.Destination
 import com.sajjadio.trailers.utils.UiMode
 import com.sajjadio.trailers.utils.isNetworkAvailable
-import com.sajjadio.trailers.utils.movieToDestination
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sajjadio.trailers.ui.home.adapter.HomeAdapter
 import com.sajjadio.trailers.ui.home.viewModel.HomeViewModel
+import com.sajjadio.trailers.utils.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding,HomeViewModel>(R.layout.fragment_home) {
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.fragment_home) {
 
-    override val LOG_TAG = this::class.java.simpleName
+    override val LOG_TAG: String = this::class.java.simpleName
     override val viewModelClass = HomeViewModel::class.java
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,15 +42,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding,HomeViewModel>(R.layout.fr
                 setupDialog()
             }
         }
-        setupHomeAdapter()
+        setupHomeRecyclerView()
+        observeEventWhenClickTrendItem()
+        observeEventWhenClickItem()
     }
 
-    private fun setupHomeAdapter() {
+    private fun setupHomeRecyclerView() {
         val adapter = HomeAdapter(viewModel)
         binding.recyclerViewHome.adapter = adapter
-
         viewModel.responseHomeData.observe(viewLifecycleOwner) {
-            it.let {states ->
+            it.let { states ->
                 states.data?.let { data ->
                     adapter.addNestedItem(data)
                 }
@@ -57,6 +59,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding,HomeViewModel>(R.layout.fr
         }
     }
 
+    private fun observeEventWhenClickTrendItem() {
+        viewModel.clickItemEvent.observeEvent(viewLifecycleOwner) { id ->
+            navigateToAnotherDestination(
+                HomeFragmentDirections.actionHomeFragmentToDetailsFragment(id)
+            )
+        }
+    }
+
+    private fun observeEventWhenClickItem() {
+        viewModel.clickShowAllItemEvent.observeEvent(viewLifecycleOwner) {
+            navigateToAnotherDestination(
+                HomeFragmentDirections.actionHomeFragmentToCommonFragment(it)
+            )
+        }
+    }
+
+    private fun navigateToAnotherDestination(action: NavDirections) {
+        findNavController().navigate(action)
+    }
 
     private fun setupDialog() {
         val arrayAdapter =
@@ -91,24 +112,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding,HomeViewModel>(R.layout.fr
 
     private fun checkConnection() {
         binding.connection.isVisible = !isNetworkAvailable(requireContext())
-    }
-
-
-    fun onMoveToMovie(id: Int?) {
-        id?.let {
-            HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it).movieToDestination(view)
-        }
-    }
-
-    fun onSelectedDestination(destination: Destination) {
-        when (destination) {
-            Destination.Popular -> onMoveToDestination(R.string.popular)
-            Destination.TopRated -> onMoveToDestination(R.string.rated)
-            Destination.UpComing -> onMoveToDestination(R.string.upComing)
-        }
-    }
-
-    private fun onMoveToDestination(id: Int) {
-        HomeFragmentDirections.actionHomeFragmentToCommonFragment(id).movieToDestination(view)
     }
 }
