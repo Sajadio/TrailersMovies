@@ -1,11 +1,5 @@
 package com.sajjadio.trailers.data.model.movie.actors
 
-import android.annotation.SuppressLint
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-
-@SuppressLint("ParcelCreator")
-@Parcelize
 data class CastDto(
     val adult: Boolean?,
     val cast_id: Int?,
@@ -19,4 +13,4 @@ data class CastDto(
     val original_name: String?,
     val popularity: Double?,
     val profile_path: String?,
-) : Parcelable
+)

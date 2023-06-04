@@ -88,7 +88,7 @@ class DetailsFragment :
     }
 
 
-    private fun getMovieOfActor(castDto: CastDto) {
+    private fun getMovieOfActor(cast: CastDto) {
 //        val action = DetailsFragmentDirections.actionMoiveFragmentToActorsFragment(cast)
 //        action.movieToDestination(view = this.root)
     }

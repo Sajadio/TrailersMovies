@@ -34,7 +34,7 @@ class DetailsViewModel @Inject constructor(
         detailsData.clear()
         id?.let {
             viewModelScope.launch {
-                movieRepo.getMoviesDetails(id).collect { state ->
+                movieRepo.getMovieDetails(id).collect { state ->
                     state.takeIf { it is NetworkStatus.Success }?.let {
                         it.data?.let { data ->
                             detailsData.add(DetailsItem.MovieItem(data))
@@ -64,7 +64,7 @@ class DetailsViewModel @Inject constructor(
 
     private fun getSimilarByMovieId(id: Int) {
         viewModelScope.launch {
-            movieRepo.getSimilar(id).collect { state ->
+            movieRepo.getSimilar(id,PAGE_NUMBER).collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
                     it.data?.let { data ->
                         detailsData.add(DetailsItem.SimilarItem(data))
@@ -99,4 +99,7 @@ class DetailsViewModel @Inject constructor(
         _clickItemEvent.postValue(Event(DestinationType.SimilarItem(id)))
     }
 
+    private companion object{
+        const val PAGE_NUMBER = 1
+    }
 }

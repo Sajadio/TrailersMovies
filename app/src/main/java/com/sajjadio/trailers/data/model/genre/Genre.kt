@@ -1,5 +1,5 @@
 package com.sajjadio.trailers.data.model.genre
 
-data class GenreDto(
+data class Genre(
     val genres: List<GenresDto>?
 )

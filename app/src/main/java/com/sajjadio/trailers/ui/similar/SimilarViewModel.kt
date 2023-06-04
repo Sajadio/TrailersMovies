@@ -3,7 +3,7 @@ package com.sajjadio.trailers.ui.similar
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.sajjadio.trailers.data.model.movie.similar.SimilarResult
+import com.sajjadio.trailers.data.model.movie.similar.SimilarResultDto
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -16,8 +16,8 @@ class SimilarViewModel @Inject constructor(
     private val movieRepo: MovieRepository,
 ) : ViewModel() {
 
-    private val _listSimilarOfMovie = MutableLiveData<PagingData<SimilarResult>>()
-    val listSimilarOfMovie: LiveData<PagingData<SimilarResult>> = _listSimilarOfMovie
+    private val _listSimilarOfMovie = MutableLiveData<PagingData<SimilarResultDto>>()
+    val listSimilarOfMovie: LiveData<PagingData<SimilarResultDto>> = _listSimilarOfMovie
 
     fun getSimilarOfMovieByID(id: Int) {
         viewModelScope.launch {

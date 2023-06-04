@@ -22,7 +22,7 @@ class SearchPagingSource(
         val pageNumber = params.key ?: Constant.DEFAULT_PAGE_INDEX
         return try {
             val response = api.getSearchMovie(query = query, page = pageNumber).body()
-            val data = response?.searchResults
+            val data = response?.results
             LoadResult.Page(
                 data = data ?: emptyList(),
                 prevKey = if (pageNumber == Constant.DEFAULT_PAGE_INDEX) null else pageNumber.minus(1),

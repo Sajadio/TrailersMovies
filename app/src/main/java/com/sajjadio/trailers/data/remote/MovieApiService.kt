@@ -1,8 +1,8 @@
 package com.sajjadio.trailers.data.remote
 
 import com.sajjadio.trailers.data.model.movie.common.Common
-import com.sajjadio.trailers.data.model.movie.actors.ActorsDto
-import com.sajjadio.trailers.data.model.genre.GenreDto
+import com.sajjadio.trailers.data.model.movie.actors.Actors
+import com.sajjadio.trailers.data.model.genre.Genre
 import com.sajjadio.trailers.data.model.movie.actorsmovie.ActorsMovie
 import com.sajjadio.trailers.data.model.movie.genremovie.Movie
 import com.sajjadio.trailers.data.model.movie.id.IDMovie
@@ -49,14 +49,14 @@ interface MovieApiService {
     ): Response<VideoMovie>
 
     @GET("movie/{id}?")
-    suspend fun getMoviesDetails(
-        @Path("id") page: Int?,
+    suspend fun getMovieDetails(
+        @Path("id") id: Int?,
     ): Response<IDMovie>
 
     @GET("movie/{id}/credits?")
     suspend fun getActors(
-        @Path("id") page: Int?,
-    ): Response<ActorsDto>
+        @Path("id") id: Int?,
+    ): Response<Actors>
 
     @GET("movie/{id}/similar?")
     suspend fun getSimilar(
@@ -67,7 +67,7 @@ interface MovieApiService {
 
     @GET("genre/movie/list")
     suspend fun getGenresMovie(
-    ): Response<GenreDto>
+    ): Response<Genre>
 
     @GET("search/movie?")
     suspend fun getSearchMovie(

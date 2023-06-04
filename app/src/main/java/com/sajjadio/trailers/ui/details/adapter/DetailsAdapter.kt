@@ -4,9 +4,10 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import com.sajjadio.trailers.BR
 import com.sajjadio.trailers.R
-import com.sajjadio.trailers.data.model.movie.actors.ActorsDto
+import com.sajjadio.trailers.data.model.movie.actors.Actors
 import com.sajjadio.trailers.data.model.movie.id.IDMovie
 import com.sajjadio.trailers.data.model.movie.similar.Similar
+import com.sajjadio.trailers.domain.model.Cast
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
 import com.sajjadio.trailers.ui.details.adapter.ActorsAdapter
@@ -41,7 +42,7 @@ class DetailsAdapter(
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         when (val currentItem = getItems()[position]) {
             is DetailsItem.MovieItem -> bindMovieItem(holder as ItemViewHolder, currentItem.movie)
-            is DetailsItem.ActorItem -> bindActorItem(holder as ItemViewHolder, currentItem.actorsDto)
+            is DetailsItem.ActorItem -> bindActorItem(holder as ItemViewHolder, currentItem.actors)
             is DetailsItem.SimilarItem -> bindSimilarItem(
                 holder as ItemViewHolder,
                 currentItem.similar
@@ -53,16 +54,16 @@ class DetailsAdapter(
         holder.binding.setVariable(BR.item, item)
     }
 
-    private fun bindActorItem(holder: ItemViewHolder, items: ActorsDto) {
+    private fun bindActorItem(holder: ItemViewHolder, items: List<Cast>) {
         holder.binding.apply {
-            setVariable(BR.adapter, items.castDto?.let { ActorsAdapter(it, listener) })
+            setVariable(BR.adapter, ActorsAdapter(items, listener))
             setVariable(BR.listener, listener)
         }
     }
 
     private fun bindSimilarItem(holder: ItemViewHolder, items: Similar) {
         holder.binding.apply {
-            setVariable(BR.adapter, items.similarResults?.let { SimilarAdapter(it, listener) })
+            setVariable(BR.adapter, items.results?.let { SimilarAdapter(it, listener) })
             setVariable(BR.listener, listener)
         }
     }

@@ -1,6 +1,6 @@
 package com.sajjadio.trailers.data.model.movie.similar
 
-data class SimilarResult(
+data class SimilarResultDto(
     val adult: Boolean?,
     val backdrop_path: String?,
     val genre_ids: List<Int>?,
