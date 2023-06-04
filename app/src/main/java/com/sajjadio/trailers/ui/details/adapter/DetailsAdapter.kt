@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import com.sajjadio.trailers.BR
 import com.sajjadio.trailers.R
-import com.sajjadio.trailers.data.model.movie.actors.Actors
 import com.sajjadio.trailers.data.model.movie.id.IDMovie
 import com.sajjadio.trailers.data.model.movie.similar.Similar
 import com.sajjadio.trailers.domain.model.Cast
+import com.sajjadio.trailers.domain.model.SimilarResult
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
 import com.sajjadio.trailers.ui.details.adapter.ActorsAdapter
@@ -43,10 +43,7 @@ class DetailsAdapter(
         when (val currentItem = getItems()[position]) {
             is DetailsItem.MovieItem -> bindMovieItem(holder as ItemViewHolder, currentItem.movie)
             is DetailsItem.ActorItem -> bindActorItem(holder as ItemViewHolder, currentItem.actors)
-            is DetailsItem.SimilarItem -> bindSimilarItem(
-                holder as ItemViewHolder,
-                currentItem.similar
-            )
+            is DetailsItem.SimilarItem -> bindSimilarItem(holder as ItemViewHolder, currentItem.similarResult)
         }
     }
 
@@ -61,9 +58,9 @@ class DetailsAdapter(
         }
     }
 
-    private fun bindSimilarItem(holder: ItemViewHolder, items: Similar) {
+    private fun bindSimilarItem(holder: ItemViewHolder, items: List<SimilarResult>) {
         holder.binding.apply {
-            setVariable(BR.adapter, items.results?.let { SimilarAdapter(it, listener) })
+            setVariable(BR.adapter,SimilarAdapter(items, listener) )
             setVariable(BR.listener, listener)
         }
     }

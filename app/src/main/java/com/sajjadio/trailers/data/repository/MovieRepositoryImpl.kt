@@ -15,7 +15,9 @@ import com.sajjadio.trailers.data.paging.RatedPagingSource
 import com.sajjadio.trailers.data.paging.SimilarPagingData
 import com.sajjadio.trailers.data.paging.SearchPagingSource
 import com.sajjadio.trailers.domain.mapper.ActorMapper
+import com.sajjadio.trailers.domain.mapper.SimilarMapper
 import com.sajjadio.trailers.domain.model.Cast
+import com.sajjadio.trailers.domain.model.SimilarResult
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.utils.Constant
 import com.sajjadio.trailers.utils.NetworkStatus
@@ -23,13 +25,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
 import retrofit2.Response
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
     private val movieApi: MovieApiService,
-    private val actorMapper: ActorMapper
+    private val actorMapper: ActorMapper,
+    private val similarMapper: SimilarMapper
 ) : MovieRepository {
 
     override suspend fun getTrendMovie() =
@@ -64,13 +66,19 @@ class MovieRepositoryImpl @Inject constructor(
         wrapWithFlow { movieApi.getMovieDetails(id) }.flowOn(Dispatchers.IO)
 
     override suspend fun getActors(id: Int?): Flow<NetworkStatus<List<Cast>?>> {
-        return wrapper({ movieApi.getActors(id) }) {
-            it.cast?.let { it1 -> actorMapper.mapTo(it1) }
+        return wrapper({ movieApi.getActors(id) }) { actors ->
+            actors.cast?.let { castDto -> actorMapper.mapTo(castDto) }
         }
     }
 
-    override suspend fun getSimilar(id: Int?, page: Int) =
-        wrapWithFlow { movieApi.getSimilar(id, page) }.flowOn(Dispatchers.IO)
+    override suspend fun getSimilar(
+        id: Int?,
+        page: Int
+    ): Flow<NetworkStatus<List<SimilarResult>?>> {
+        return wrapper({ movieApi.getSimilar(id, page) }) { similar ->
+            similar.results?.let { similarResultDto -> similarMapper.mapTo(similarResultDto) }
+        }
+    }
 
     override suspend fun getMovieTrailer(id: Int?) =
         wrapWithFlow { movieApi.getMovieTrailer(id = id) }.flowOn(Dispatchers.IO)
