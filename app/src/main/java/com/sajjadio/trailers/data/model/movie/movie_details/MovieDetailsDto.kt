@@ -1,6 +1,6 @@
-package com.sajjadio.trailers.data.model.movie.id
+package com.sajjadio.trailers.data.model.movie.movie_details
 
-data class IDMovie(
+data class MovieDetailsDto(
     val adult: Boolean,
     val backdrop_path: String?,
     val belongs_to_collection: Any,

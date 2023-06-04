@@ -1,6 +1,5 @@
 package com.sajjadio.trailers.utils
 
-import android.annotation.SuppressLint
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
@@ -10,6 +9,7 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.sajjadio.trailers.data.model.movie.movie_details.Genre
 import com.sajjadio.trailers.ui.base.BaseAdapter
 
 
@@ -32,10 +32,21 @@ fun setImage(imageView: ImageView, url: String?, imageSize: String?) {
 }
 
 @BindingAdapter(value = ["app:manageState"])
-fun <T> View.manageState(state: NetworkStatus<T>?) {
+fun <T> manageState(view: View, state: NetworkStatus<T>?) {
     if (state is NetworkStatus.Error)
-        this.visibility = VISIBLE
+        view.visibility = VISIBLE
     else
-        this.visibility = INVISIBLE
+        view.visibility = INVISIBLE
 }
 
+@BindingAdapter(value = ["app:list"])
+fun setGenres(textView: TextView, genres: List<Genre>?) {
+    var genre = ""
+    genres?.forEach{
+        genre += if (it != genres.last())
+            "${it.name} | "
+        else
+            it.name
+    }
+    textView.text = genre
+}

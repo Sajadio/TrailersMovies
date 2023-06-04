@@ -15,8 +15,10 @@ import com.sajjadio.trailers.data.paging.RatedPagingSource
 import com.sajjadio.trailers.data.paging.SimilarPagingData
 import com.sajjadio.trailers.data.paging.SearchPagingSource
 import com.sajjadio.trailers.domain.mapper.ActorMapper
+import com.sajjadio.trailers.domain.mapper.MovieDetailsMapper
 import com.sajjadio.trailers.domain.mapper.SimilarMapper
 import com.sajjadio.trailers.domain.model.Cast
+import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.model.SimilarResult
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.utils.Constant
@@ -31,7 +33,8 @@ import javax.inject.Inject
 class MovieRepositoryImpl @Inject constructor(
     private val movieApi: MovieApiService,
     private val actorMapper: ActorMapper,
-    private val similarMapper: SimilarMapper
+    private val similarMapper: SimilarMapper,
+    private val movieDetailsMapper: MovieDetailsMapper
 ) : MovieRepository {
 
     override suspend fun getTrendMovie() =
@@ -62,8 +65,11 @@ class MovieRepositoryImpl @Inject constructor(
         ).flow
     }
 
-    override suspend fun getMovieDetails(id: Int?) =
-        wrapWithFlow { movieApi.getMovieDetails(id) }.flowOn(Dispatchers.IO)
+    override suspend fun getMovieDetails(id: Int?): Flow<NetworkStatus<MovieDetails>> {
+        return wrapper({ movieApi.getMovieDetails(id) }) { movieDetailsDto ->
+            movieDetailsMapper.mapTo(movieDetailsDto)
+        }
+    }
 
     override suspend fun getActors(id: Int?): Flow<NetworkStatus<List<Cast>?>> {
         return wrapper({ movieApi.getActors(id) }) { actors ->

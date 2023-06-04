@@ -1,7 +1,7 @@
 package com.sajjadio.trailers.ui.details
 
 import androidx.lifecycle.*
-import com.sajjadio.trailers.data.model.movie.id.IDMovie
+import com.sajjadio.trailers.data.model.movie.movie_details.MovieDetailsDto
 import com.sajjadio.trailers.data.model.movie.video.VideoMovie
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.ui.details.utils.DestinationType
@@ -17,8 +17,8 @@ class DetailsViewModel @Inject constructor(
     private val movieRepo: MovieRepository,
 ) : ViewModel(), DetailsInteractListener {
 
-    private var _responseData = MutableLiveData<NetworkStatus<IDMovie?>>()
-    var responseData: LiveData<NetworkStatus<IDMovie?>> = _responseData
+    private var _responseData = MutableLiveData<NetworkStatus<MovieDetailsDto?>>()
+    var responseData: LiveData<NetworkStatus<MovieDetailsDto?>> = _responseData
 
     private var _playVideo = MutableLiveData<NetworkStatus<VideoMovie?>>()
     val playVideo: LiveData<NetworkStatus<VideoMovie?>> = _playVideo

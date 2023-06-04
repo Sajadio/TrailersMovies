@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.data.model.movie.id
+package com.sajjadio.trailers.data.model.movie.movie_details
 
 data class SpokenLanguage(
     val english_name: String,

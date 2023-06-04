@@ -6,13 +6,13 @@ import com.sajjadio.trailers.data.model.movie.actorsmovie.ActorsMovie
 import com.sajjadio.trailers.data.model.movie.common.Common
 import com.sajjadio.trailers.data.model.movie.common.CommonResult
 import com.sajjadio.trailers.data.model.movie.genremovie.MovieResult
-import com.sajjadio.trailers.data.model.movie.id.IDMovie
+import com.sajjadio.trailers.data.model.movie.movie_details.MovieDetailsDto
 import com.sajjadio.trailers.data.model.movie.search.SearchResult
-import com.sajjadio.trailers.data.model.movie.similar.Similar
 import com.sajjadio.trailers.data.model.movie.similar.SimilarResultDto
 import com.sajjadio.trailers.data.model.movie.trend.TrendMovie
 import com.sajjadio.trailers.data.model.movie.video.VideoMovie
 import com.sajjadio.trailers.domain.model.Cast
+import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.model.SimilarResult
 import com.sajjadio.trailers.utils.NetworkStatus
 import kotlinx.coroutines.flow.Flow
@@ -24,7 +24,7 @@ interface MovieRepository {
     suspend fun getMovieTopRated(): Flow<NetworkStatus<Common?>>
     suspend fun getUpComingMovie(): Flow<NetworkStatus<Common?>>
 
-    suspend fun getMovieDetails(id: Int?): Flow<NetworkStatus<IDMovie?>>
+    suspend fun getMovieDetails(id: Int?): Flow<NetworkStatus<MovieDetails>>
     suspend fun getActors(id: Int?): Flow<NetworkStatus<List<Cast>?>>
     suspend fun getSimilar(id: Int?,page:Int): Flow<NetworkStatus<List<SimilarResult>?>>
     suspend fun getMovieTrailer(id: Int?): Flow<NetworkStatus<VideoMovie?>>

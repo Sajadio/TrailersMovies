@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.sajjadio.trailers.data.model.movie.id.IDMovie" />
+            type="com.sajjadio.trailers.domain.model.MovieDetails" />
 
 
         <variable
@@ -61,10 +61,10 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:contentDescription="@string/app_name"
-                    app:imageUrl="@{item.backdrop_path}"
-                    app:imageSize="@{imageSize.IMAGE_Size_H632}"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
+                    app:imageSize="@{imageSize.IMAGE_Size_H632}"
+                    app:imageUrl="@{item.backdrop_path}"
                     app:layout_collapseMode="parallax"
                     tools:ignore="VectorDrawableCompat"
                     tools:src="@drawable/ic_launcher_background" />
@@ -129,6 +129,7 @@
                     android:gravity="start|center"
                     android:maxLines="1"
                     android:padding="@dimen/size_8"
+                    app:list="@{item.genres}"
                     android:textColor="?attr/textColorHint"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
