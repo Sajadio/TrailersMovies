@@ -35,7 +35,7 @@ interface MovieRepository {
     fun getGenreList(genreId: String): Flow<PagingData<MovieResult>>
     suspend fun getGenresMovie(): Flow<NetworkStatus<Genre?>>
 
-    fun listSimilarOfMovie(id: Int): Flow<PagingData<SimilarResultDto>>
+    fun getSimilarOfMovie(id: Int): Flow<PagingData<SimilarResult>>
 
     fun getPopularMoviePaging(): Flow<PagingData<CommonResult>>
     fun getTopRatedMoviePaging(): Flow<PagingData<CommonResult>>

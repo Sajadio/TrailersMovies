@@ -19,14 +19,18 @@ class SearchPagingSource(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, SearchResult> {
-        val pageNumber = params.key ?: Constant.DEFAULT_PAGE_INDEX
         return try {
-            val response = api.getSearchMovie(query = query, page = pageNumber).body()
-            val data = response?.results
+            val pageNumber = params.key ?: Constant.DEFAULT_PAGE_INDEX
+            val response = api.getSearchMovie(query = query, page = pageNumber)
+            val data = response.takeIf { it.isSuccessful }?.let {
+                it.body()?.results
+            } ?: emptyList()
+
             LoadResult.Page(
-                data = data ?: emptyList(),
-                prevKey = if (pageNumber == Constant.DEFAULT_PAGE_INDEX) null else pageNumber.minus(1),
-                nextKey = if (data?.isEmpty() == true) null else pageNumber.plus(1)
+                data = data,
+                prevKey = if (pageNumber == Constant.DEFAULT_PAGE_INDEX) null
+                else pageNumber.minus(1),
+                nextKey = if (data.isEmpty()) null else pageNumber.plus(1)
             )
         } catch (e: Exception) {
             LoadResult.Error(e)

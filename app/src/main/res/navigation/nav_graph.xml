@@ -88,6 +88,9 @@
         <action
             android:id="@+id/action_similarFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

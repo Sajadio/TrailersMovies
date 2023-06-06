@@ -55,7 +55,7 @@
             tools:ignore="RtlSymmetry" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rc_similar"
+            android:id="@+id/recuclerViewSimilar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

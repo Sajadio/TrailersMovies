@@ -22,6 +22,7 @@ class DetailsFragment :
 
     override val LOG_TAG: String = this::class.java.simpleName
     override val viewModelClass = DetailsViewModel::class.java
+    private val args :DetailsFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,9 +61,9 @@ class DetailsFragment :
                     DetailsFragmentDirections.actionDetailsFragmentToActorsFragment()
                 )
 
-            DestinationType.Similar ->
+            is DestinationType.Similar ->
                 navigateToAnotherDestination(
-                    DetailsFragmentDirections.actionDetailsFragmentToSimilarFragment()
+                    DetailsFragmentDirections.actionDetailsFragmentToSimilarFragment(args.movieId)
                 )
         }
     }

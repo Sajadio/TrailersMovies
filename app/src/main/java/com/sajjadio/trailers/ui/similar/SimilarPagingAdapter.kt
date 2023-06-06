@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sajjadio.trailers.data.model.movie.similar.SimilarResultDto
 import com.sajjadio.trailers.databinding.LayoutCardSimilarBinding
+import com.sajjadio.trailers.domain.model.SimilarResult
 
 class SimilarPagingAdapter :
-    PagingDataAdapter<SimilarResultDto, SimilarPagingAdapter.SimilarHolder>(CharacterComparator) {
+    PagingDataAdapter<SimilarResult, SimilarPagingAdapter.SimilarHolder>(CharacterComparator) {
 
     private var onItemClickListener: ((Int?) -> Unit)? = null
     fun onItemClickListener(listener: (Int?) -> Unit) {
@@ -21,11 +22,11 @@ class SimilarPagingAdapter :
 
     }
 
-    object CharacterComparator : DiffUtil.ItemCallback<SimilarResultDto>() {
-        override fun areItemsTheSame(oldItem: SimilarResultDto, newItem: SimilarResultDto) =
-            oldItem.title == newItem.title
+    object CharacterComparator : DiffUtil.ItemCallback<SimilarResult>() {
+        override fun areItemsTheSame(oldItem: SimilarResult, newItem: SimilarResult) =
+            oldItem.original_title == newItem.original_title
 
-        override fun areContentsTheSame(oldItem: SimilarResultDto, newItem: SimilarResultDto) =
+        override fun areContentsTheSame(oldItem: SimilarResult, newItem: SimilarResult) =
             oldItem == newItem
     }
 

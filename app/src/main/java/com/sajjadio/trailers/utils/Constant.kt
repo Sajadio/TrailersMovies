@@ -19,9 +19,6 @@ object Constant {
 
     const val IMAGE_Size_ORIGINAL = "original/"
 
-    const val POPULAR = R.string.popular
-    const val TOP_RATED: Int = R.string.topRated
-    const val UP_COMING = R.string.upComing
 
     const val SYSTEM_DEFAULT = "systemDefault"
     const val LIGHT = "light"
@@ -31,30 +28,6 @@ object Constant {
     const val THEME_APP = "selectTheme"
     const val DEFAULT_PAGE_SIZE = 20
     const val DEFAULT_PAGE_INDEX = 1
-
-    const val TAG = "TestingResult"
-
-
-    fun allGenres() = mapOf(
-        "28" to "Action",
-        "12" to "Adventure",
-        "16" to "Animation",
-        "35" to "Comedy",
-        "80" to "Crime",
-        "99" to "Documentary",
-        "18" to "Drama",
-        "10751" to "Family",
-        "14" to "Fantasy",
-        "36" to "History",
-        "27" to "Horror",
-        "10402" to "Music",
-        "9648" to "Mystery",
-        "10749" to "Romance",
-        "878" to "Fiction",
-        "10770" to "Movie",
-        "53" to "Thriller",
-        "10752" to "War",
-        "37" to "Western",
-        )
+    const val PREFETCH_DISTANCE = 2
 
 }

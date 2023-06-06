@@ -10,9 +10,11 @@ class SimilarMapper @Inject constructor() : Mapper<List<SimilarResultDto>, List<
             SimilarResult(
                 id = it.id,
                 original_title = it.original_title,
+                overview = it.overview,
                 poster_path = it.poster_path,
                 vote_average = it.vote_average,
                 vote_count = it.vote_count,
+                release_date = it.release_date
             )
         }
     }

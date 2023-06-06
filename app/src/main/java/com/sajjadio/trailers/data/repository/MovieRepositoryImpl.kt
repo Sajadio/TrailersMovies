@@ -6,7 +6,6 @@ import androidx.paging.PagingData
 import com.sajjadio.trailers.data.model.movie.common.CommonResult
 import com.sajjadio.trailers.data.model.movie.genremovie.MovieResult
 import com.sajjadio.trailers.data.model.movie.search.SearchResult
-import com.sajjadio.trailers.data.model.movie.similar.SimilarResultDto
 import com.sajjadio.trailers.data.remote.MovieApiService
 import com.sajjadio.trailers.data.paging.ComingPagingSource
 import com.sajjadio.trailers.data.paging.GenresPagingSource
@@ -49,20 +48,29 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun getUpComingMovie() =
         wrapWithFlow { movieApi.getUpComingMovie() }.flowOn(Dispatchers.IO)
 
-    override fun listSimilarOfMovie(id: Int): Flow<PagingData<SimilarResultDto>> =
-        Pager(config = PagingConfig(pageSize = Constant.DEFAULT_PAGE_SIZE, prefetchDistance = 2),
-            pagingSourceFactory = { SimilarPagingData(api = movieApi, id = id) }
+    override fun getSimilarOfMovie(id: Int): Flow<PagingData<SimilarResult>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = Constant.DEFAULT_PAGE_SIZE,
+                prefetchDistance = Constant.PREFETCH_DISTANCE
+            ), pagingSourceFactory = {
+                SimilarPagingData(
+                    api = movieApi,
+                    id = id,
+                    similarMapper = SimilarMapper()
+                )
+            }
         ).flow.flowOn(Dispatchers.IO)
+    }
 
     override fun getMovieSearch(query: String?): Flow<PagingData<SearchResult>> {
         return Pager(config = PagingConfig(
             pageSize = Constant.DEFAULT_PAGE_SIZE,
-            prefetchDistance = 2
-        ),
-            pagingSourceFactory = {
-                SearchPagingSource(api = movieApi, query = query)
-            }
-        ).flow
+            prefetchDistance = Constant.PREFETCH_DISTANCE
+        ), pagingSourceFactory = {
+            SearchPagingSource(api = movieApi, query = query)
+        }
+        ).flow.flowOn(Dispatchers.IO)
     }
 
     override suspend fun getMovieDetails(id: Int?): Flow<NetworkStatus<MovieDetails>> {
