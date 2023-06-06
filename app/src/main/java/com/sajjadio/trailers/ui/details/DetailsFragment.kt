@@ -20,13 +20,11 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailsFragment :
     BaseFragment<FragmentDetailsBinding, DetailsViewModel>(R.layout.fragment_details) {
 
-    override val LOG_TAG = this::class.java.simpleName
+    override val LOG_TAG: String = this::class.java.simpleName
     override val viewModelClass = DetailsViewModel::class.java
-    private val args: DetailsFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getMovieId(args.movieId)
         setGenres()
         setupDetailsRecyclerView()
         observeEventWhenClickItem()

@@ -15,6 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
     private val movieRepo: MovieRepository,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel(), DetailsInteractListener {
 
     private var _responseData = MutableLiveData<NetworkStatus<MovieDetailsDto?>>()
@@ -30,18 +31,24 @@ class DetailsViewModel @Inject constructor(
     private val _clickItemEvent = MutableLiveData<Event<DestinationType>>()
     val clickItemEvent: LiveData<Event<DestinationType>> = _clickItemEvent
 
-    fun getMovieId(id: Int?) {
+    private val movieId: Int = checkNotNull(savedStateHandle["movieId"])
+
+    init {
+        getMovieId()
+    }
+
+    private fun getMovieId() {
         detailsData.clear()
-        id?.let {
+        movieId.let {
             viewModelScope.launch {
-                movieRepo.getMovieDetails(id).collect { state ->
+                movieRepo.getMovieDetails(movieId).collect { state ->
                     state.takeIf { it is NetworkStatus.Success }?.let {
                         it.data?.let { data ->
                             detailsData.add(DetailsItem.MovieItem(data))
                             _responseDetailsData.postValue(NetworkStatus.Success(detailsData))
                             getActorsByMovieId(data.id)
                             getSimilarByMovieId(data.id)
-                            getTrailerOfMovie(id)
+                            getTrailerOfMovie(movieId)
                         }
                     }
                 }
@@ -64,7 +71,7 @@ class DetailsViewModel @Inject constructor(
 
     private fun getSimilarByMovieId(id: Int) {
         viewModelScope.launch {
-            movieRepo.getSimilar(id,PAGE_NUMBER).collect { state ->
+            movieRepo.getSimilar(id, PAGE_NUMBER).collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
                     it.data?.let { data ->
                         detailsData.add(DetailsItem.SimilarItem(data))
@@ -99,7 +106,7 @@ class DetailsViewModel @Inject constructor(
         _clickItemEvent.postValue(Event(DestinationType.SimilarItem(id)))
     }
 
-    private companion object{
+    private companion object {
         const val PAGE_NUMBER = 1
     }
 }
