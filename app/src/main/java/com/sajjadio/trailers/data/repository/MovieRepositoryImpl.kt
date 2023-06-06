@@ -90,7 +90,7 @@ class MovieRepositoryImpl @Inject constructor(
         wrapWithFlow { movieApi.getMovieTrailer(id = id) }.flowOn(Dispatchers.IO)
 
     override suspend fun getMovieOfActor(person_id: Int?) =
-        wrapWithFlow { movieApi.getMovieOfActor(person_id = person_id) }.flowOn(Dispatchers.IO)
+        wrapWithFlow { movieApi.getMoviesOfActor(person_id = person_id) }.flowOn(Dispatchers.IO)
 
     override fun getPopularMoviePaging(): Flow<PagingData<CommonResult>> =
         Pager(config = PagingConfig(pageSize = Constant.DEFAULT_PAGE_SIZE, prefetchDistance = 2),

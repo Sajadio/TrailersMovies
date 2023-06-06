@@ -76,7 +76,7 @@ interface MovieApiService {
 
 
     @GET("person/{person_id}/movie_credits?")
-    suspend fun getMovieOfActor(
+    suspend fun getMoviesOfActor(
         @Path("person_id") person_id: Int?,
     ): Response<ActorsMovie>
 

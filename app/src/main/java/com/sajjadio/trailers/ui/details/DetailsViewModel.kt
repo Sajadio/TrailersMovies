@@ -18,9 +18,6 @@ class DetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel(), DetailsInteractListener {
 
-    private var _responseData = MutableLiveData<NetworkStatus<MovieDetailsDto?>>()
-    var responseData: LiveData<NetworkStatus<MovieDetailsDto?>> = _responseData
-
     private var _playVideo = MutableLiveData<NetworkStatus<VideoMovie?>>()
     val playVideo: LiveData<NetworkStatus<VideoMovie?>> = _playVideo
 
@@ -34,10 +31,10 @@ class DetailsViewModel @Inject constructor(
     private val movieId: Int = checkNotNull(savedStateHandle["movieId"])
 
     init {
-        getMovieId()
+        loadMovieData()
     }
 
-    private fun getMovieId() {
+    private fun loadMovieData() {
         detailsData.clear()
         movieId.let {
             viewModelScope.launch {

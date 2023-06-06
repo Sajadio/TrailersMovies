@@ -25,7 +25,6 @@ class DetailsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setGenres()
         setupDetailsRecyclerView()
         observeEventWhenClickItem()
     }
@@ -81,27 +80,6 @@ class DetailsFragment :
                         Uri.parse(Constant.YOUTUBE_BASE + it.key)
                     )
                 )
-            }
-        }
-    }
-
-
-    private fun getMovieOfActor(cast: CastDto) {
-//        val action = DetailsFragmentDirections.actionMoiveFragmentToActorsFragment(cast)
-//        action.movieToDestination(view = this.root)
-    }
-
-    private fun setGenres() {
-        viewModel.responseData.observe(viewLifecycleOwner) { state ->
-            val genres = state?.data?.genres
-            var genre = ""
-            if (genres != null) {
-                for (i in genres) {
-                    genre += if (i != genres.last())
-                        "${i.name} | "
-                    else
-                        i.name
-                }
             }
         }
     }
