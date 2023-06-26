@@ -6,11 +6,10 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
-import androidx.paging.map
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentSimilarBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.ui.search.PagingLoadStateAdapter
+import com.sajjadio.trailers.ui.PagingLoadStateAdapter
 import com.sajjadio.trailers.utils.movieToDestination
 import com.sajjadio.trailers.utils.setAsActionBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,7 +44,7 @@ class SimilarFragment :
     @SuppressLint("NotifyDataSetChanged")
     private fun setupSimilarRecyclerView() {
         adapter = SimilarPagingAdapter()
-        viewModel.listSimilarOfMovie.observe(viewLifecycleOwner) {
+        viewModel.similarOfMovie.observe(viewLifecycleOwner) {
             lifecycleScope.launch {
                 adapter.submitData(it)
                 binding.recyclerViewSimilar.adapter = adapter
@@ -77,19 +76,19 @@ class SimilarFragment :
     }
 
     private fun stateManagement(state: Boolean) {
-//        binding.apply {
-//            if (state)
-//                shimmer.startShimmer()
-//            else
-//                shimmer.stopShimmer()
-//
-//            shimmer.isVisible = state
-//            swipeRefreshLayout.isVisible = !state
-//        }
+        binding.apply {
+            if (state)
+                shimmer.startShimmer()
+            else
+                shimmer.stopShimmer()
+
+            shimmer.isVisible = state
+            swipeRefreshLayout.isVisible = !state
+        }
 
     }
 
     private fun showEmptyList(emptyList: Boolean) {
-//        binding.recyclerViewSimilar.isVisible = !emptyList
+        binding.recyclerViewSimilar.isVisible = !emptyList
     }
 }

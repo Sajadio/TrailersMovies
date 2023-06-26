@@ -5,6 +5,7 @@ import com.sajjadio.trailers.data.model.movie.actors.Actors
 import com.sajjadio.trailers.data.model.genre.Genre
 import com.sajjadio.trailers.data.model.movie.actorsmovie.ActorsMovie
 import com.sajjadio.trailers.data.model.movie.genremovie.Movie
+import com.sajjadio.trailers.data.model.movie.movie_details.MovieDetailsDto
 import com.sajjadio.trailers.data.model.movie.search.SearchMovie
 import com.sajjadio.trailers.data.model.movie.similar.Similar
 import com.sajjadio.trailers.data.model.movie.trend.TrendMovie
@@ -50,7 +51,7 @@ interface MovieApiService {
     @GET("movie/{id}?")
     suspend fun getMovieDetails(
         @Path("id") id: Int?,
-    ): Response<com.sajjadio.trailers.data.model.movie.movie_details.MovieDetailsDto>
+    ): Response<MovieDetailsDto>
 
     @GET("movie/{id}/credits?")
     suspend fun getActors(

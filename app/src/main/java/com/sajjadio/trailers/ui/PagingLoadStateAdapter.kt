@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.ui.search
+package com.sajjadio.trailers.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,7 +11,6 @@ import com.sajjadio.trailers.databinding.LayoutLoadStateBinding
 class PagingLoadStateAdapter(
     private val retry: () -> Unit
 ) : LoadStateAdapter<PagingLoadStateAdapter.ViewHolder>() {
-
 
     override fun onBindViewHolder(holder: ViewHolder, loadState: LoadState) = holder.bind(loadState)
 

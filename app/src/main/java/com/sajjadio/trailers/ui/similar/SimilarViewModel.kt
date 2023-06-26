@@ -17,7 +17,7 @@ class SimilarViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val movieId: Int = checkNotNull(savedStateHandle["movieId"])
-    val listSimilarOfMovie: LiveData<PagingData<SimilarResult>> =
+    val similarOfMovie: LiveData<PagingData<SimilarResult>> =
         movieRepo
             .getSimilarOfMovie(movieId)
             .cachedIn(viewModelScope + Dispatchers.Main)

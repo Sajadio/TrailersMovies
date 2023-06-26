@@ -1,5 +1,6 @@
 package com.sajjadio.trailers.ui.details
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.sajjadio.trailers.data.model.movie.movie_details.MovieDetailsDto
 import com.sajjadio.trailers.data.model.movie.video.VideoMovie
@@ -92,6 +93,7 @@ class DetailsViewModel @Inject constructor(
     }
 
     override fun onActorItemClick(id: Int) {
+        Log.d(this::class.simpleName, "onActorItemClick: $id")
         _clickItemEvent.postValue(Event(DestinationType.ActorItem(id)))
     }
 

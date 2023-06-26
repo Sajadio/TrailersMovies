@@ -12,7 +12,7 @@ import com.sajjadio.trailers.databinding.FragmentGenresBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
 import com.sajjadio.trailers.utils.*
 import com.google.android.material.tabs.TabLayout
-import com.sajjadio.trailers.ui.search.PagingLoadStateAdapter
+import com.sajjadio.trailers.ui.PagingLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

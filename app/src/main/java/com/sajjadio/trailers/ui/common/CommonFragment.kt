@@ -1,18 +1,16 @@
 package com.sajjadio.trailers.ui.common
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
-import androidx.paging.map
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentCommonBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.ui.search.PagingLoadStateAdapter
+import com.sajjadio.trailers.ui.PagingLoadStateAdapter
 import com.sajjadio.trailers.utils.Destination
 import com.sajjadio.trailers.utils.movieToDestination
 import com.sajjadio.trailers.utils.setAsActionBar
