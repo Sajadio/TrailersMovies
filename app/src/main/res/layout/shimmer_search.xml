@@ -32,7 +32,7 @@
 
 
         <View
-            android:id="@+id/title"
+            android:id="@+id/textViewTitle"
             android:layout_width="0dp"
             android:layout_height="15dp"
             android:layout_marginHorizontal="@dimen/size_8"
@@ -49,8 +49,8 @@
             android:layout_marginEnd="@dimen/size_8"
             android:background="@color/color_shimmer"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/title"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintStart_toStartOf="@+id/textViewTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
         <View
             android:id="@+id/textViewDate"

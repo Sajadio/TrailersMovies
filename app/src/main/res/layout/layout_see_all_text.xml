@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <TextView
+        android:id="@+id/text_view_see_all_actors"
+        style="@style/NormalLabel"
+        android:layout_marginEnd="@dimen/medium_margin_size"
+        android:clickable="true"
+        android:background="@drawable/ripple"
+        android:text="@string/seeAll"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewHeader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewHeader"
+        tools:ignore="RtlSymmetry" />
+</layout>

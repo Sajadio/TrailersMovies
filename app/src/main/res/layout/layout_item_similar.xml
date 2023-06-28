@@ -40,7 +40,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/poster"
+                android:id="@+id/imageViewMovie"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/app_name"
@@ -79,7 +79,7 @@
 
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/title"
+                android:id="@+id/textViewTitle"
                 style="@style/Body2"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
                 android:maxLines="1"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/rating"
-                app:layout_constraintStart_toStartOf="@+id/poster"
+                app:layout_constraintStart_toStartOf="@+id/imageViewMovie"
                 app:setText="@{item.original_title}"
                 tools:text="Tome Hairy" />
 

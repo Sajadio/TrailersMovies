@@ -23,7 +23,7 @@
             android:layout_height="match_parent">
 
             <View
-                android:id="@+id/poster"
+                android:id="@+id/imageViewMovie"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/color_shimmer"
@@ -33,14 +33,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <View
-                android:id="@+id/title"
+                android:id="@+id/textViewTitle"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_margin="@dimen/size_8"
                 android:background="@color/color_child_shimmer"
                 app:layout_constraintBottom_toTopOf="@+id/rating"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/poster" />
+                app:layout_constraintStart_toStartOf="@+id/imageViewMovie" />
 
             <View
                 android:id="@+id/showing"
@@ -51,7 +51,7 @@
                 android:background="@color/color_child_shimmer"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/rating"
-                app:layout_constraintTop_toBottomOf="@+id/title" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
             <View
                 android:id="@+id/rating"

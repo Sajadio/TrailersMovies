@@ -8,9 +8,11 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.View
 import android.view.Window
+import android.view.WindowManager
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -88,14 +90,11 @@ fun Int.isConnection() = when (this) {
     else -> false
 }
 
-fun Window.hideSystemUI(view: View) {
-    WindowCompat.setDecorFitsSystemWindows(this, false)
-    WindowInsetsControllerCompat(this, view).let { controller ->
-        controller.hide(WindowInsetsCompat.Type.systemBars())
-        controller.systemBarsBehavior =
-            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-    }
+fun Window.hideSystemUI(color:Int,show:Boolean = false) {
+        WindowCompat.setDecorFitsSystemWindows(this, show)
+        statusBarColor = ContextCompat.getColor(context,color)
 }
+
 
 fun NavDirections.movieToDestination(view: View?) {
     view?.findNavController()?.navigate(this)

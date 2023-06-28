@@ -11,6 +11,7 @@ import androidx.databinding.BindingAdapter
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.sajjadio.trailers.R
 import com.sajjadio.trailers.data.model.movie.movie_details.Genre
 import com.sajjadio.trailers.ui.base.BaseAdapter
 
@@ -41,12 +42,12 @@ fun <T> manageState(view: View, state: NetworkStatus<T>?) {
         view.visibility = INVISIBLE
 }
 
-@BindingAdapter(value = ["app:list"])
+@BindingAdapter(value = ["app:genres"])
 fun setGenres(textView: TextView, genres: List<Genre>?) {
     var genre = ""
     genres?.forEach {
         genre += if (it != genres.last())
-            "${it.name} | "
+            "${it.name} |"
         else
             it.name
     }

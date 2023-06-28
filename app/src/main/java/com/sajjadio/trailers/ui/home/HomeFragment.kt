@@ -1,30 +1,37 @@
 package com.sajjadio.trailers.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentHomeBinding
 import com.sajjadio.trailers.ui.HomeActivity
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.utils.UiMode
-import com.sajjadio.trailers.utils.isNetworkAvailable
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sajjadio.trailers.ui.home.adapter.HomeAdapter
 import com.sajjadio.trailers.ui.home.viewModel.HomeViewModel
+import com.sajjadio.trailers.utils.UiMode
+import com.sajjadio.trailers.utils.hideSystemUI
+import com.sajjadio.trailers.utils.isNetworkAvailable
 import com.sajjadio.trailers.utils.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.fragment_home) {
 
     override val LOG_TAG: String = this::class.java.simpleName
     override val viewModelClass = HomeViewModel::class.java
+
+    @SuppressLint("ObsoleteSdkInt")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        activity?.window?.hideSystemUI(R.color.transparent_color)
 
         checkConnection()
         binding.apply {
@@ -38,9 +45,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
             tryConnection.setOnClickListener {
                 checkConnection()
             }
-            btnTheme.setOnClickListener {
-                setupDialog()
-            }
+//            btnTheme.setOnClickListener {
+//                setupDialog()
+//            }
         }
         setupHomeRecyclerView()
         observeEventWhenClickTrendItem()

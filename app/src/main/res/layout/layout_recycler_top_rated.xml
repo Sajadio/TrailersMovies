@@ -34,7 +34,7 @@
         <include
             layout="@layout/layout_see_all_text"
             android:clickable="true"
-            android:onClick="@{() -> listener.onClickSeeAllPopularItems(Destination.Popular)}" />
+            android:onClick="@{() -> listener.onClickSeeAllTopRatedItems(Destination.TopRated)}" />
 
         <include
             layout="@layout/layout_small_recycler"

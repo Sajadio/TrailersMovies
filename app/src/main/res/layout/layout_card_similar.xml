@@ -46,7 +46,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/poster"
+                android:id="@+id/imageViewMovie"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/app_name"
@@ -71,7 +71,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/textViewTitle"
                 style="@style/Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/rate"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/title"
+                app:layout_constraintStart_toStartOf="@+id/textViewTitle"
                 app:setText="@{item.overview}"
                 tools:text="A man with a low IQ has accomplished great things in his life and been present during significant historic events—in each case, far exceeding what anyone imagined he could do. But despite all he has achieved, his one true love eludes him." />
 

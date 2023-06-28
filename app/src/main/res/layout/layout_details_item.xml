@@ -50,7 +50,7 @@
                     android:layout_gravity="center"
                     android:background="@drawable/popcorn1"
                     android:contentDescription="@string/app_name"
-                    app:layout_constraintBottom_toBottomOf="@+id/poster"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageViewMovie"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -83,7 +83,7 @@
                     android:contentDescription="@string/app_name"
                     app:imageSize="@{imageSize.IMAGE_Size_500}"
                     app:imageUrl="@{item.poster_path}"
-                    app:layout_constraintBottom_toBottomOf="@+id/poster"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageViewMovie"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -129,7 +129,7 @@
                     android:gravity="start|center"
                     android:maxLines="1"
                     android:padding="@dimen/size_8"
-                    app:list="@{item.genres}"
+                    app:genres="@{item.genres}"
                     android:textColor="?attr/textColorHint"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

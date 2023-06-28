@@ -24,7 +24,7 @@
 
 
             <View
-                android:id="@+id/poster"
+                android:id="@+id/imageViewMovie"
                 android:layout_width="@dimen/showcase_width1"
                 android:layout_height="@dimen/showcase_width1"
                 android:background="@color/color_shimmer"
@@ -34,7 +34,7 @@
 
 
             <View
-                android:id="@+id/title"
+                android:id="@+id/textViewTitle"
                 android:layout_width="0dp"
                 android:layout_height="15dp"
                 android:layout_marginHorizontal="@dimen/size_8"
@@ -42,18 +42,18 @@
                 android:background="@color/color_shimmer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/poster" />
+                app:layout_constraintTop_toBottomOf="@+id/imageViewMovie" />
 
             <View
-                android:id="@+id/textRating"
+                android:id="@+id/textViewRating"
                 android:layout_width="35dp"
                 android:layout_height="15dp"
                 android:layout_marginTop="4dp"
                 android:background="@color/color_shimmer"
                 android:drawablePadding="2dp"
                 android:paddingBottom="@dimen/size_8"
-                app:layout_constraintStart_toStartOf="@+id/title"
-                app:layout_constraintTop_toBottomOf="@+id/title" />
+                app:layout_constraintStart_toStartOf="@+id/textViewTitle"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

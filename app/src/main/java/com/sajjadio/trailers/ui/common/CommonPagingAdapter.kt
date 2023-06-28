@@ -39,7 +39,7 @@ class CommonPagingAdapter : PagingDataAdapter<CommonResult, CommonPagingAdapter.
         fun bind(common: CommonResult) = apply {
             binding.apply {
                 item = common
-                poster.loadImage(common.poster_path.toString(), Constant.IMAGE_Size_500)
+                imageViewMovie.loadImage(common.poster_path.toString(), Constant.IMAGE_Size_500)
             }
         }
     }

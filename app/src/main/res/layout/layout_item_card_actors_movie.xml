@@ -44,13 +44,13 @@
                 android:layout_gravity="center"
                 android:background="@drawable/popcorn1"
                 android:contentDescription="@string/app_name"
-                app:layout_constraintBottom_toBottomOf="@+id/poster"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewMovie"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/poster"
+                android:id="@+id/imageViewMovie"
                 android:layout_width="@dimen/showcase_width1"
                 android:layout_height="@dimen/showcase_width1"
                 android:contentDescription="@string/app_name"
@@ -64,7 +64,7 @@
 
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/textViewTitle"
                 style="@style/Subtitle2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -76,12 +76,12 @@
                 android:textColor="?attr/textColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/poster"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewMovie"
                 app:setText="@{item.original_title}"
                 tools:text="Star Wars: IV" />
 
             <TextView
-                android:id="@+id/textRating"
+                android:id="@+id/textViewRating"
                 style="@style/Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -91,8 +91,8 @@
                 android:paddingBottom="@dimen/size_8"
                 android:textColor="?attr/textColorHint"
                 app:drawableStartCompat="@drawable/ic_baseline_star_12"
-                app:layout_constraintStart_toStartOf="@+id/title"
-                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:layout_constraintStart_toStartOf="@+id/textViewTitle"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
                 android:text="@{item.vote_average.toString()}"
                 tools:text="9.2" />
 

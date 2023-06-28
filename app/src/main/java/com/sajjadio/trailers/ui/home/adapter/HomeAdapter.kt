@@ -11,6 +11,7 @@ import com.sajjadio.trailers.databinding.*
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
 import com.sajjadio.trailers.utils.Destination
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 
 class HomeAdapter(
     private val listener: HomeInteractListener
@@ -50,27 +51,31 @@ class HomeAdapter(
     private fun bindTrendItem(holder: ItemViewHolder, items: List<TrendResult>) {
         with((holder.binding as LayoutRecyclerTrendBinding)) {
             sliderView.setSliderAdapter(TrendSliderAdapter(items, listener))
+            sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM)
         }
     }
 
     private fun bindPopularItem(holder: ItemViewHolder, items: List<CommonResult>) {
         with(holder.binding) {
-            setVariable(BR.adapter, PopularAdapter(items, listener))
+            setVariable(BR.adapter, CommonAdapter(items, listener))
             setVariable(BR.listener, listener)
+            setVariable(BR.header, "Popular")
         }
     }
 
     private fun bindTopRatedItem(holder: ItemViewHolder, items: List<CommonResult>) {
         with(holder.binding) {
-            setVariable(BR.adapter, TopRatedAdapter(items, listener))
+            setVariable(BR.adapter, CommonAdapter(items, listener))
             setVariable(BR.listener, listener)
+            setVariable(BR.header, "Top Rated")
         }
     }
 
     private fun bindUpComingItem(holder: ItemViewHolder, items: List<CommonResult>) {
         with(holder.binding) {
-            setVariable(BR.adapter, UpComingAdapter(items, listener))
+            setVariable(BR.adapter, CommonAdapter(items, listener))
             setVariable(BR.listener, listener)
+            setVariable(BR.header, "UpComing")
         }
     }
 
@@ -83,10 +88,11 @@ class HomeAdapter(
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     private companion object {
         const val LAYOUT_TREND = R.layout.layout_recycler_trend
         const val LAYOUT_POPULAR = R.layout.layout_recycler_popular
-        const val LAYOUT_TOP_RATED = R.layout.layout_recycler_rated
+        const val LAYOUT_TOP_RATED = R.layout.layout_recycler_top_rated
         const val LAYOUT_UPCOMING = R.layout.layout_recycler_upcoming
     }
 }

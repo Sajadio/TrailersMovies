@@ -42,7 +42,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/poster"
+                android:id="@+id/imageViewMovie"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/app_name"
@@ -57,7 +57,7 @@
 
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/textViewTitle"
             style="@style/Body2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -85,8 +85,8 @@
             android:maxLines="4"
             android:textColor="?attr/textColorHint"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/title"
-            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:layout_constraintStart_toStartOf="@+id/textViewTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
             app:setText="@{item.overview}" />
 
         <TextView

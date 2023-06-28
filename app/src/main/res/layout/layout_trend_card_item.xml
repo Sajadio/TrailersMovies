@@ -19,43 +19,69 @@
             type="com.sajjadio.trailers.utils.Constant" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/large_poster_height"
+        android:background="@color/background_color"
+        android:clickable="true"
+        android:onClick="@{() -> listener.onClickItem(item.id)}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="5dp"
-            android:layout_margin="@dimen/size_8"
-            android:onClick="@{() -> listener.onClickItem(item.id)}"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/imageViewMovie"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:background="@drawable/popcorn1"
-                android:contentDescription="@string/app_name"/>
-
-            <ImageView
-                android:id="@+id/poster"
-                android:layout_width="@dimen/showcase_height4"
-                android:layout_height="@dimen/showcase_height3"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
-                android:layout_gravity="center"
                 app:imageSize="@{imageSize.IMAGE_Size_ORIGINAL}"
                 app:imageUrl="@{item.backdrop_path}"
                 tools:src="@drawable/ic_launcher_background" />
 
-        </com.google.android.material.card.MaterialCardView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_overlay" />
+
+            <TextView
+                android:id="@+id/textViewTitle"
+                style="@style/LargeTitle"
+                android:layout_marginEnd="@dimen/large_margin_size"
+                android:layout_marginBottom="@dimen/small_margin_size"
+                android:text="@{item.title}"
+                app:layout_constraintBottom_toTopOf="@+id/textViewGenre"
+                app:layout_constraintEnd_toStartOf="@+id/playButton"
+                app:layout_constraintStart_toStartOf="@+id/textViewGenre"
+                tools:text="New Releases The Walking Dead: Dead City" />
+
+            <TextView
+                android:id="@+id/textViewGenre"
+                style="@style/NormalLabel"
+                android:layout_marginStart="@dimen/medium_margin_size"
+                android:layout_marginBottom="@dimen/x_large_margin_size"
+                android:text="Action . Drama . Comedy"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/playButton"
+                style="@style/SmallPlayButton"
+                android:layout_marginEnd="@dimen/medium_margin_size"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewGenre"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewTitle" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 
 </layout>

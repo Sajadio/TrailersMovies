@@ -24,11 +24,10 @@ class HomeActivity : AppCompatActivity() {
     private val binding: ActivityMovieBinding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
+
         observeUiPreferences()
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_movie)
-
         binding.apply {
             NetworkHelper(context = this@HomeActivity).observe(this@HomeActivity) { state ->
                 root.setSnackbar(state)

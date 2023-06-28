@@ -93,7 +93,6 @@ class DetailsViewModel @Inject constructor(
     }
 
     override fun onActorItemClick(id: Int) {
-        Log.d(this::class.simpleName, "onActorItemClick: $id")
         _clickItemEvent.postValue(Event(DestinationType.ActorItem(id)))
     }
 

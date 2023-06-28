@@ -27,9 +27,11 @@
 
     <!--    New colors  -->
     <color name="primary_color">#EF233C</color>
+    <color name="clickable_color">#E6EF233C</color>
     <color name="secondary_color">#2B343D</color>
     <color name="background_color">#1A1E21</color>
     <color name="primary_text_color">#DEFFFFFF</color>
     <color name="secondary_text_color">#A9A9AC</color>
+    <color name="transparent_color">#002B343D</color>
 
 </resources>

@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent"
+        android:background="@color/background_color"
         tools:context="com.sajjadio.trailers.ui.HomeActivity">
 
         <androidx.fragment.app.FragmentContainerView

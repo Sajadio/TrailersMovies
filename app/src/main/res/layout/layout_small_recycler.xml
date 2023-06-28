@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="adapter"
+            type="com.sajjadio.trailers.ui.home.adapter.CommonAdapter" />
+
+    </data>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPopular"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adapter="@{adapter}"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/normal_padding_size"
+        android:paddingEnd="@dimen/normal_padding_size"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeader"
+        tools:listitem="@layout/layout_small_common_card"
+        tools:ignore="RtlSymmetry" />
+</layout>
