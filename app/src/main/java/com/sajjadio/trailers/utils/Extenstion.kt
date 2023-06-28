@@ -90,7 +90,7 @@ fun Int.isConnection() = when (this) {
     else -> false
 }
 
-fun Window.hideSystemUI(color:Int,show:Boolean = false) {
+fun Window.changeStatusBarColor(color:Int, show:Boolean = true) {
         WindowCompat.setDecorFitsSystemWindows(this, show)
         statusBarColor = ContextCompat.getColor(context,color)
 }

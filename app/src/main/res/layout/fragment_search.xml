@@ -14,34 +14,78 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background_color">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/secondColor">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appbar"
-                android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/imageButtonBack"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="@dimen/medium_margin_size"
+                android:layout_marginTop="@dimen/medium_margin_size"
+                android:background="@drawable/rounded_back_button"
+                android:src="@drawable/ic_arrow_left"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextSearch"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/normal_margin_size"
+                android:layout_marginEnd="@dimen/medium_margin_size"
+                android:background="@drawable/rounded_back_button"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="@dimen/medium_padding_size"
+                android:fontFamily="@font/poppins"
+                android:hint="@string/search_hint"
+                android:paddingStart="@dimen/medium_padding_size"
+                android:textColor="@color/primary_text_color"
+                android:textColorHint="@color/secondary_text_color"
+                android:textSize="@dimen/normal_text_size"
+                app:layout_constraintBottom_toBottomOf="@+id/imageButtonBack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageButtonBack"
+                app:layout_constraintTop_toTopOf="@+id/imageButtonBack" />
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="?attr/mainColor"
+                android:src="@drawable/start_search_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="@+id/shimmer" />
 
-                <EditText
-                    android:id="@+id/searchView"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_margin="@dimen/size_8"
-                    android:paddingStart="@dimen/size_8"
-                    android:background="@drawable/shape_search_text"
-                    android:hint="@string/search_box"
-                    android:minHeight="?attr/actionBarSize"
-                    android:onTextChanged="@{(text,start,before,count) -> viewModel.onSearchInputChanged(text)}" />
+            <TextView
+                android:id="@+id/textViewHeader"
+                style="@style/LargeTitle"
+                android:layout_marginTop="@dimen/normal_margin_size"
+                android:gravity="center"
+                android:maxLines="2"
+                android:text="Search in Flick"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-            </com.google.android.material.appbar.AppBarLayout>
+            <TextView
+                android:id="@+id/textViewHint"
+                android:layout_width="219dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin_size"
+                android:gravity="center"
+                android:text="By typing in search box, Flick search movies and then shows you the best result."
+                android:textColor="@color/secondary_text_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textViewHeader"
+                app:layout_constraintTop_toBottomOf="@+id/textViewHeader" />
+
 
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:id="@+id/shimmer"
@@ -51,7 +95,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appbar">
+                app:layout_constraintTop_toBottomOf="@+id/imageButtonBack">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -99,7 +143,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appbar"
+                app:layout_constraintTop_toBottomOf="@+id/imageButtonBack"
                 tools:listitem="@layout/layout_item_search_card" />
 
             <TextView
@@ -113,7 +157,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appbar" />
+                app:layout_constraintTop_toBottomOf="@+id/imageButtonBack" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

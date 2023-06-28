@@ -14,7 +14,7 @@ import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentSearchBinding
 import com.sajjadio.trailers.ui.PagingLoadStateAdapter
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.utils.hideSystemUI
+import com.sajjadio.trailers.utils.changeStatusBarColor
 import com.sajjadio.trailers.utils.movieToDestination
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -32,8 +32,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchViewModel>(R.lay
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        activity?.window?.hideSystemUI(R.color.secondary_color)
 
         helper = LinearSnapHelper()
         binding.apply {

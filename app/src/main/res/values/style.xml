@@ -41,6 +41,11 @@
         <item name="android:textColor">@color/secondary_text_color</item>
     </style>
 
+    <style name="NormalLabelWithoutEllipSize" parent="NormalLabel">
+        <item name="android:maxLines" />
+        <item name="android:ellipsize">none</item>
+    </style>
+
     <style name="SmallCardImageView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/small_card_image_height</item>

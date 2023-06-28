@@ -15,7 +15,7 @@ import com.sajjadio.trailers.ui.base.BaseFragment
 import com.sajjadio.trailers.ui.home.adapter.HomeAdapter
 import com.sajjadio.trailers.ui.home.viewModel.HomeViewModel
 import com.sajjadio.trailers.utils.UiMode
-import com.sajjadio.trailers.utils.hideSystemUI
+import com.sajjadio.trailers.utils.changeStatusBarColor
 import com.sajjadio.trailers.utils.isNetworkAvailable
 import com.sajjadio.trailers.utils.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,8 +30,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     @SuppressLint("ObsoleteSdkInt")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        activity?.window?.hideSystemUI(R.color.transparent_color)
 
         checkConnection()
         binding.apply {
