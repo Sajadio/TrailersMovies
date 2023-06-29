@@ -58,16 +58,16 @@ class HomeActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        binding.bottomnavigation.setupWithNavController(binding.navHostFragment.findNavController())
-        binding.navHostFragment.findNavController()
-            .addOnDestinationChangedListener { _, destination, _ ->
-                when (destination.id) {
-                    R.id.homeFragment, R.id.searchFragment, R.id.genresFragment -> {
-                        binding.bottomnavigation.visibility = View.VISIBLE
-                    }
-                    else -> binding.bottomnavigation.visibility = View.GONE
-                }
-            }
+        binding.bottomNavigation.setupWithNavController(binding.navHostFragment.findNavController())
+//        binding.navHostFragment.findNavController()
+//            .addOnDestinationChangedListener { _, destination, _ ->
+//                when (destination.id) {
+//                    R.id.homeFragment, R.id.searchFragment, R.id.genresFragment -> {
+//                        binding.bottomNavigation.visibility = View.VISIBLE
+//                    }
+//                    else -> binding.bottomNavigation.visibility = View.GONE
+//                }
+//            }
     }
 
     override fun onDestroy() {

@@ -92,5 +92,10 @@
             android:name="movieId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        tools:layout="@layout/fragment_favorite"
+        android:name="com.sajjadio.trailers.ui.favorite.FavoriteFragment"
+        android:label="FavoriteFragment" />
 
 </navigation>

@@ -3,17 +3,22 @@
 
     <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_round_menu_24"
+        android:icon="@drawable/ic_bold_home"
         android:title="@string/home" />
 
     <item
         android:id="@+id/searchFragment"
-        android:icon="@drawable/ic_baseline_search_24"
+        android:icon="@drawable/ic_bold_search"
         android:title="@string/search" />
 
     <item
+        android:id="@+id/favoriteFragment"
+        android:icon="@drawable/ic_bold_fave"
+        android:title="@string/favorite" />
+
+    <item
         android:id="@+id/genresFragment"
-        android:icon="@drawable/ic_outline_movie_24"
+        android:icon="@drawable/ic_bold_category"
         android:title="@string/category" />
 
 </menu>
