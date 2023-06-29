@@ -62,3 +62,11 @@ fun <T : Any> manageShimmerFrameLayout(shimmer: ShimmerFrameLayout, data: Paging
         shimmer.startShimmer()
     }
 }
+
+@BindingAdapter("app:date")
+fun setDateText(textView: TextView, date: String?) {
+    if (date != null) {
+        val formattedDate = date.replace("-", ".")
+        textView.text = formattedDate
+    }
+}

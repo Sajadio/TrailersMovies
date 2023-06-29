@@ -7,14 +7,14 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sajjadio.trailers.data.model.movie.search.SearchResult
-import com.sajjadio.trailers.databinding.LayoutItemSearchCardBinding
+import com.sajjadio.trailers.databinding.LayoutSearchCardBinding
 
 class SearchPagingAdapter :
     PagingDataAdapter<SearchResult, SearchPagingAdapter.SearchViewHolder>(CharacterComparator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         SearchViewHolder(
-            LayoutItemSearchCardBinding.inflate(
+            LayoutSearchCardBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
         )
@@ -28,7 +28,7 @@ class SearchPagingAdapter :
         onItemClickListener = listener
     }
 
-    inner class SearchViewHolder(private val binding: LayoutItemSearchCardBinding) :
+    inner class SearchViewHolder(private val binding: LayoutSearchCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(search: SearchResult) = apply {

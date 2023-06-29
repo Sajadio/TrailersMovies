@@ -20,66 +20,54 @@
 
     </data>
 
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="@dimen/small_card_image_width"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/normal_margin_size"
-        android:layout_marginVertical="@dimen/medium_margin_size"
         android:onClick="@{() -> listener.onClickItem(item.id)}"
-        app:cardCornerRadius="@dimen/card_radius_size"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_marginBottom="@dimen/normal_margin_size"
+        android:layout_marginTop="@dimen/medium_margin_size"
+        android:layout_marginHorizontal="@dimen/normal_margin_size"
         app:layout_constraintDimensionRatio="9:16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@color/background_color">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/background_color">
-
-            <ImageView
-                android:id="@+id/imageViewMovie"
-                style="@style/SmallCardImageView"
-                app:imageSize="@{imageSize.IMAGE_Size_500}"
-                app:imageUrl="@{item.poster_path}"
-                tools:ignore="MissingConstraints"
-                tools:srcCompat="@drawable/ic_launcher_background" />
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/imageViewMovie"
+            style="@style/SmallCardImageView"
+            app:roundPercent="0.11"
+            app:imageSize="@{imageSize.IMAGE_Size_500}"
+            app:imageUrl="@{item.poster_path}"
+            tools:ignore="MissingConstraints"
+            tools:srcCompat="@drawable/ic_launcher_background" />
 
 
-            <TextView
-                android:id="@+id/textViewTitle"
-                style="@style/SmallTitle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageViewMovie"
-                app:setText="@{item.original_title}"
-                tools:text="The Wrath of Becky" />
+        <TextView
+            android:id="@+id/textViewTitle"
+            style="@style/SmallTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewMovie"
+            app:setText="@{item.original_title}"
+            tools:text="The Wrath of Becky" />
 
-            <TextView
-                android:id="@+id/textViewDate"
-                style="@style/NormalLabel"
-                android:layout_marginTop="@dimen/normal_margin_size"
-                android:text="@{item.release_date}"
-                app:layout_constraintStart_toStartOf="@+id/textViewTitle"
-                app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
-                tools:text="0000-00-00" />
+        <TextView
+            android:id="@+id/textViewDate"
+            style="@style/NormalLabel"
+            android:layout_marginTop="@dimen/normal_margin_size"
+            app:date="@{item.release_date}"
+            app:layout_constraintStart_toStartOf="@+id/textViewTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+            tools:text="0000-00-00" />
 
-            <TextView
-                android:id="@+id/textViewRating"
-                style="@style/NormalLabel"
-                android:drawablePadding="@dimen/small_padding_size"
-                android:fontFamily="@font/roboto"
-                android:text="@{item.vote_average.toString()}"
-                app:drawableEndCompat="@drawable/ic_star"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewDate"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textViewDate"
-                tools:text="6.2" />
+        <TextView
+            android:id="@+id/textViewRating"
+            style="@style/TextRating"
+            android:text="@{item.vote_average.toString()}"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewDate"
+            tools:text="6.2" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

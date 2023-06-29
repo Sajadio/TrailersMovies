@@ -7,13 +7,13 @@
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
         <item name="android:gravity">center|start</item>
-        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
         <item name="android:textSize">@dimen/large_text_size</item>
         <item name="android:textColor">@color/primary_text_color</item>
     </style>
 
     <style name="MediumTitle" parent="LargeTitle">
-        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
     </style>
 
     <style name="SmallTitle" parent="LargeTitle">
@@ -36,9 +36,15 @@
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
         <item name="android:gravity">center</item>
-        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">@dimen/normal_text_size</item>
         <item name="android:textColor">@color/secondary_text_color</item>
+    </style>
+
+    <style name="TextRating" parent="NormalLabel">
+        <item name="android:drawableEnd">@drawable/ic_star</item>
+        <item name="android:drawablePadding">@dimen/small_padding_size</item>
+        <item name="android:fontFamily">@font/roboto</item>
     </style>
 
     <style name="NormalLabelWithoutEllipSize" parent="NormalLabel">

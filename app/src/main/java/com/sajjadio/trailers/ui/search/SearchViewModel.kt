@@ -27,11 +27,10 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    @OptIn(FlowPreview::class)
     private fun getSearch(query: String) {
         viewModelScope.launch(Dispatchers.Main){
-            movieRepo.getMovieSearch(query)
-                .debounce(500L)
+            movieRepo
+                .getMovieSearch(query)
                 .cachedIn(this)
                 .collect { data ->
                     responseSearchMovies.postValue(data)

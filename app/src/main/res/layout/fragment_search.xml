@@ -21,36 +21,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageButton
-                android:id="@+id/imageButtonBack"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginStart="@dimen/medium_margin_size"
-                android:layout_marginTop="@dimen/medium_margin_size"
-                android:background="@drawable/rounded_back_button"
-                android:src="@drawable/ic_arrow_left"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/editTextSearch"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="@dimen/normal_margin_size"
+                android:layout_height="56dp"
+                android:layout_marginStart="@dimen/medium_margin_size"
+                android:layout_marginTop="@dimen/medium_margin_size"
                 android:layout_marginEnd="@dimen/medium_margin_size"
                 android:background="@drawable/rounded_back_button"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="@dimen/medium_padding_size"
-                android:fontFamily="@font/poppins"
+                android:fontFamily="@font/roboto"
                 android:hint="@string/search_hint"
+                android:maxLines="1"
+                android:onTextChanged="@{(text,start,before,count) -> viewModel.onSearchInputChanged(text)}"
                 android:paddingStart="@dimen/medium_padding_size"
                 android:textColor="@color/primary_text_color"
                 android:textColorHint="@color/secondary_text_color"
                 android:textSize="@dimen/normal_text_size"
-                app:layout_constraintBottom_toBottomOf="@+id/imageButtonBack"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageButtonBack"
-                app:layout_constraintTop_toTopOf="@+id/imageButtonBack" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry" />
 
 
             <ImageView
@@ -59,9 +52,10 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/start_search_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/shimmer" />
+                app:layout_constraintEnd_toEndOf="@+id/editTextSearch"
+                app:layout_constraintStart_toStartOf="@+id/editTextSearch"
+                app:layout_constraintTop_toBottomOf="@+id/editTextSearch"
+                app:layout_constraintVertical_bias="0.4" />
 
             <TextView
                 android:id="@+id/textViewHeader"
@@ -76,14 +70,17 @@
 
             <TextView
                 android:id="@+id/textViewHint"
-                android:layout_width="219dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/x_x_large_margin_size"
                 android:layout_marginTop="@dimen/normal_margin_size"
                 android:gravity="center"
+                android:lineHeight="@dimen/large_size"
+                android:paddingHorizontal="@dimen/large_padding_size"
                 android:text="By typing in search box, Flick search movies and then shows you the best result."
                 android:textColor="@color/secondary_text_color"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textViewHeader"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewHeader" />
 
 
@@ -95,7 +92,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButtonBack">
+                app:layout_constraintTop_toBottomOf="@+id/editTextSearch">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -137,27 +134,29 @@
                 android:id="@+id/rc_search"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:clipToPadding="false"
+                android:background="@color/background_color"
                 android:orientation="vertical"
+                android:layout_marginTop="@dimen/medium_margin_size"
+                android:paddingHorizontal="@dimen/medium_padding_size"
                 android:visibility="invisible"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButtonBack"
-                tools:listitem="@layout/layout_item_search_card" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextSearch"
+                tools:listitem="@layout/layout_search_card" />
 
             <TextView
                 android:id="@+id/hintText2"
-                style="@style/Body1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/LargeTitle"
+                android:gravity="center"
                 android:text="Try another keyword"
-                android:textColor="?attr/textColorHint"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButtonBack" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextSearch" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

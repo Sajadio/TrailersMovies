@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/size_8"
                 android:ellipsize="end"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/roboto_bold"
                 android:gravity="start|center"
                 android:maxLines="1"
                 android:textColor="?attr/textColor"
