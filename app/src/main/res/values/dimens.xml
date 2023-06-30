@@ -47,12 +47,14 @@
 
     <!--    images  -->
     <dimen name="large_poster_height">250dp</dimen>
-    <dimen name="small_card_image_height">144dp</dimen>
-    <dimen name="small_card_image_width">120dp</dimen>
-    <dimen name="search_card_image_width">130dp</dimen>
-    <dimen name="search_card_image_height">180dp</dimen>
-    <dimen name="actor_card_image_width">80dp</dimen>
-    <dimen name="actor_card_image_height">100dp</dimen>
+    <dimen name="small_card_height">144dp</dimen>
+    <dimen name="small_card_width">120dp</dimen>
+    <dimen name="search_gallery_width">130dp</dimen>
+    <dimen name="search_card_height">180dp</dimen>
+    <dimen name="actor_card_width">80dp</dimen>
+    <dimen name="actor_card_height">100dp</dimen>
+    <dimen name="gallery_card_width">200dp</dimen>
+    <dimen name="gallery_card_height">150dp</dimen>
 
     <dimen name="small_size">4dp</dimen>
     <dimen name="normal_size">8dp</dimen>

@@ -25,7 +25,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
-        android:layout_width="@dimen/small_card_image_width"
+        android:layout_width="@dimen/small_card_width"
         android:layout_height="wrap_content"
         android:onClick="@{() -> listener.onClickItem(item.id)}" app:cardCornerRadius="@dimen/card_radius_size"
         app:layout_constraintBottom_toBottomOf="parent"

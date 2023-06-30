@@ -7,7 +7,7 @@
 
         <variable
             name="adapter"
-            type="com.sajjadio.trailers.ui.details.adapter.SimilarAdapter" />
+            type="com.sajjadio.trailers.ui.details.adapter.GalleryAdapter" />
 
         <variable
             name="listener"
@@ -23,15 +23,15 @@
 
         <include
             layout="@layout/layout_header_text"
-            app:header="@{@string/similar}" />
+            app:header="@{@string/gallery}" />
 
         <include
             layout="@layout/layout_see_all_text"
             android:clickable="true"
-            android:onClick="@{() -> listener.onSeeAllSimilarClick()}" />
+            android:onClick="@{() -> listener.onClickSeeAllGallery()}" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewPopular"
+            android:id="@+id/recyclerViewGallery"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adapter="@{adapter}"
@@ -45,7 +45,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewHeader"
             tools:ignore="RtlSymmetry"
-            tools:listitem="@layout/layout_small_common_card" />
+            tools:listitem="@layout/layout_gallery_card" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

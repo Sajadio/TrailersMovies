@@ -58,7 +58,7 @@
 
     <style name="SmallCardImageView">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/small_card_image_height</item>
+        <item name="android:layout_height">@dimen/small_card_height</item>
         <item name="android:scaleType">centerCrop</item>
     </style>
 

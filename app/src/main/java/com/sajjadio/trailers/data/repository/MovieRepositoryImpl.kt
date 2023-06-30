@@ -6,6 +6,7 @@ import androidx.paging.PagingData
 import com.sajjadio.trailers.data.mapper.mapActorDtoTo
 import com.sajjadio.trailers.data.mapper.mapCommonDtoTo
 import com.sajjadio.trailers.data.mapper.mapCommonResultDtoTo
+import com.sajjadio.trailers.data.mapper.mapImageDtoTo
 import com.sajjadio.trailers.data.mapper.mapMovieDetailsDtoTo
 import com.sajjadio.trailers.data.mapper.mapTrendMovieDtoTo
 import com.sajjadio.trailers.data.model.movie.common.CommonResultDto
@@ -22,6 +23,7 @@ import com.sajjadio.trailers.domain.model.Cast
 import com.sajjadio.trailers.domain.model.Common
 import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.model.CommonResult
+import com.sajjadio.trailers.domain.model.Poster
 import com.sajjadio.trailers.domain.model.TrendMovie
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.utils.Constant
@@ -50,13 +52,13 @@ class MovieRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMovieTopRated(): Flow<NetworkStatus<Common>> {
-        return wrapper({ movieApi.getPopularMovie() }) {
+        return wrapper({ movieApi.getTopRatedMovie() }) {
             mapCommonDtoTo(it)
         }
     }
 
     override suspend fun getUpComingMovie(): Flow<NetworkStatus<Common>> {
-        return wrapper({ movieApi.getPopularMovie() }) {
+        return wrapper({ movieApi.getUpComingMovie() }) {
             mapCommonDtoTo(it)
         }
     }
@@ -91,6 +93,12 @@ class MovieRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getImagesOfMovieById(movieId: Int?): Flow<NetworkStatus<List<Poster>?>> {
+        return wrapper({ movieApi.getImagesOfMovieById(movieId) }) { imageDto ->
+            mapImageDtoTo(imageDto.posters)
+        }
+    }
+
     override suspend fun getActors(id: Int?): Flow<NetworkStatus<List<Cast>?>> {
         return wrapper({ movieApi.getActors(id) }) { actors ->
             actors.cast?.let { castDto -> mapActorDtoTo(castDto) }
@@ -110,7 +118,7 @@ class MovieRepositoryImpl @Inject constructor(
         wrapWithFlow { movieApi.getMovieTrailer(id = id) }.flowOn(Dispatchers.IO)
 
     override suspend fun getMovieOfActor(person_id: Int?) =
-        wrapWithFlow { movieApi.getMoviesOfActor(person_id = person_id) }.flowOn(Dispatchers.IO)
+        wrapWithFlow { movieApi.getMoviesOfActor(personId = person_id) }.flowOn(Dispatchers.IO)
 
     override fun getPopularMoviePaging(): Flow<PagingData<CommonResultDto>> =
         Pager(config = PagingConfig(pageSize = Constant.DEFAULT_PAGE_SIZE, prefetchDistance = 2),

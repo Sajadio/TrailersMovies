@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="adapter"
+            type="com.sajjadio.trailers.ui.details.adapter.ActorsAdapter" />
+
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.details.DetailsInteractListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_margin_size"
+        android:background="@color/background_color">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/layout_header_text"
+            app:header="@{@string/actors}" />
+
+        <include
+            layout="@layout/layout_see_all_text"
+            android:clickable="true"
+            android:onClick="@{() -> listener.onClickSeeAllActors()}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewActors"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adapter="@{adapter}"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/normal_padding_size"
+            android:paddingEnd="@dimen/normal_padding_size"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include"
+            tools:ignore="RtlSymmetry"
+            tools:listitem="@layout/layout_item_actors" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

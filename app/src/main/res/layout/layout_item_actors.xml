@@ -19,8 +19,8 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="@dimen/actor_card_image_width"
-        android:layout_height="@dimen/actor_card_image_height"
+        android:layout_width="@dimen/actor_card_width"
+        android:layout_height="@dimen/actor_card_height"
         android:layout_marginHorizontal="@dimen/normal_margin_size"
         android:layout_marginTop="@dimen/medium_margin_size"
         android:background="@color/background_color">

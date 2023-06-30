@@ -34,6 +34,8 @@
     <color name="primary_text_color">#DEFFFFFF</color>
     <color name="secondary_text_color">#A9A9AC</color>
     <color name="transparent_color">#002B343D</color>
-    <color name="clickable_color">#262E35</color>
+
+    <color name="clickable_color">#D924282C</color>
+    <color name="rounded_button_background_color">#BF24282C</color>
 
 </resources>

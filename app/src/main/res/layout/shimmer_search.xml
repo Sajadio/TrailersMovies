@@ -19,8 +19,8 @@
 
 
         <androidx.constraintlayout.utils.widget.ImageFilterView
-            android:layout_width="@dimen/search_card_image_width"
-            android:layout_height="@dimen/search_card_image_height"
+            android:layout_width="@dimen/search_gallery_width"
+            android:layout_height="@dimen/search_card_height"
             android:background="@color/shimmer_color"
             android:contentDescription="@string/app_name"
             app:layout_constraintDimensionRatio="9:16"

@@ -7,7 +7,7 @@
 
         <variable
             name="adapter"
-            type="com.sajjadio.trailers.ui.details.adapter.ActorsAdapter" />
+            type="com.sajjadio.trailers.ui.details.adapter.SimilarAdapter" />
 
         <variable
             name="listener"
@@ -22,17 +22,16 @@
         android:background="@color/background_color">
 
         <include
-            android:id="@+id/include"
             layout="@layout/layout_header_text"
-            app:header="@{@string/actors}" />
+            app:header="@{@string/similar}" />
 
         <include
             layout="@layout/layout_see_all_text"
             android:clickable="true"
-            android:onClick="@{() -> listener.onSeeAllActorsClick()}" />
+            android:onClick="@{() -> listener.onClickSeeAllSimilar()}" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewActors"
+            android:id="@+id/recyclerViewSimilar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adapter="@{adapter}"
@@ -44,9 +43,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include"
+            app:layout_constraintTop_toBottomOf="@+id/textViewHeader"
             tools:ignore="RtlSymmetry"
-            tools:listitem="@layout/layout_item_actors" />
+            tools:listitem="@layout/layout_small_common_card" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

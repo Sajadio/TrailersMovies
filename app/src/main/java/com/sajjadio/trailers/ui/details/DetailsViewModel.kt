@@ -2,7 +2,6 @@ package com.sajjadio.trailers.ui.details
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.sajjadio.trailers.data.model.movie.movie_details.MovieDetailsDto
 import com.sajjadio.trailers.data.model.movie.video.VideoMovie
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.ui.details.utils.DestinationType
@@ -45,9 +44,23 @@ class DetailsViewModel @Inject constructor(
                             detailsData.add(DetailsItem.MovieItem(data))
                             _responseDetailsData.postValue(NetworkStatus.Success(detailsData))
                             getActorsByMovieId(data.id)
+                            getImageOfMovieById(movieId)
                             getSimilarByMovieId(data.id)
                             getTrailerOfMovie(movieId)
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun getImageOfMovieById(movieId: Int) {
+        viewModelScope.launch {
+            movieRepo.getImagesOfMovieById(movieId).collect { state ->
+                state.takeIf { it is NetworkStatus.Success }?.let {
+                    it.data?.let { data ->
+                        detailsData.add(DetailsItem.GalleryItem(data))
+                        _responseDetailsData.postValue(NetworkStatus.Success(detailsData))
                     }
                 }
             }
@@ -88,18 +101,26 @@ class DetailsViewModel @Inject constructor(
         }
     }
 
-    override fun onSeeAllActorsClick() {
+    override fun onClickSeeAllGallery() {
+        _clickItemEvent.postValue(Event(DestinationType.Gallery))
+    }
+
+    override fun onClickGalleryItem() {
+        _clickItemEvent.postValue(Event(DestinationType.GalleryItem))
+    }
+
+    override fun onClickSeeAllActors() {
         _clickItemEvent.postValue(Event(DestinationType.Actors))
     }
 
-    override fun onActorItemClick(id: Int) {
+    override fun onClickActorItem(id: Int) {
         _clickItemEvent.postValue(Event(DestinationType.ActorItem(id)))
     }
 
-    override fun onSeeAllSimilarClick() {
+
+    override fun onClickSeeAllSimilar() {
         _clickItemEvent.postValue(Event(DestinationType.Similar))
     }
-
     override fun onClickItem(id: Int) {
         _clickItemEvent.postValue(Event(DestinationType.SimilarItem(id)))
     }

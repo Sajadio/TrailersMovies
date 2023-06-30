@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.sajjadio.trailers.domain.model.Poster" />
+
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.details.DetailsInteractListener" />
+
+
+        <variable
+            name="imageSize"
+            type="com.sajjadio.trailers.utils.Constant" />
+
+    </data>
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:layout_width="@dimen/gallery_card_width"
+        android:layout_height="@dimen/gallery_card_height"
+        android:clickable="true"
+        app:roundPercent="0.11"
+        android:layout_marginBottom="@dimen/normal_margin_size"
+        android:layout_marginTop="@dimen/medium_margin_size"
+        android:layout_marginHorizontal="@dimen/normal_margin_size"
+        app:layout_constraintDimensionRatio="9:16"
+        android:scaleType="centerCrop"
+        android:onClick="@{() -> listener.onClickGalleryItem()}"
+        app:imageSize="@{imageSize.IMAGE_Size_300}"
+        app:imageUrl="@{item.filePath}"
+        tools:src="@drawable/ic_launcher_background" />
+</layout>
