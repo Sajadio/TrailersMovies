@@ -1,7 +1,7 @@
 package com.sajjadio.trailers.ui.home.adapter
 
 import com.sajjadio.trailers.R
-import com.sajjadio.trailers.data.model.movie.common.CommonResult
+import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.ui.base.BaseAdapter
 
 class CommonAdapter(

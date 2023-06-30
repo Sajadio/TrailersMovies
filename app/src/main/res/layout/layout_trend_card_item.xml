@@ -8,11 +8,11 @@
 
         <variable
             name="item"
-            type="com.sajjadio.trailers.data.model.movie.trend.TrendResult" />
+            type="com.sajjadio.trailers.domain.model.TrendMovieResult" />
 
         <variable
             name="listener"
-            type="com.sajjadio.trailers.ui.home.adapter.HomeInteractListener" />
+            type="com.sajjadio.trailers.ui.base.BaseInteractListener" />
 
         <variable
             name="imageSize"
@@ -43,7 +43,7 @@
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
                 app:imageSize="@{imageSize.IMAGE_Size_ORIGINAL}"
-                app:imageUrl="@{item.backdrop_path}"
+                app:imageUrl="@{item.poster_path}"
                 tools:src="@drawable/ic_launcher_background" />
 
             <View
@@ -56,9 +56,9 @@
                 style="@style/LargeTitle"
                 android:layout_marginEnd="@dimen/large_margin_size"
                 android:layout_marginBottom="@dimen/small_margin_size"
-                android:text="@{item.title}"
+                android:text="@{item.original_title}"
                 app:layout_constraintBottom_toTopOf="@+id/textViewGenre"
-                app:layout_constraintEnd_toStartOf="@+id/playButton"
+                app:layout_constraintEnd_toStartOf="@+id/ImageButtonPlay"
                 app:layout_constraintStart_toStartOf="@+id/textViewGenre"
                 tools:text="New Releases The Walking Dead: Dead City" />
 

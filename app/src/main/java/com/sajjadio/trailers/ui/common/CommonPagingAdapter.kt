@@ -1,18 +1,17 @@
 package com.sajjadio.trailers.ui.common
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.sajjadio.trailers.data.model.movie.common.CommonResult
+import com.sajjadio.trailers.data.model.movie.common.CommonResultDto
 import com.sajjadio.trailers.databinding.LayoutItemCardCommonPagingBinding
 import com.sajjadio.trailers.utils.Constant
 import com.sajjadio.trailers.utils.loadImage
 
-class CommonPagingAdapter : PagingDataAdapter<CommonResult, CommonPagingAdapter.CommonHolder>(
+class CommonPagingAdapter : PagingDataAdapter<CommonResultDto, CommonPagingAdapter.CommonHolder>(
     CharacterComparator
 ) {
 
@@ -36,7 +35,7 @@ class CommonPagingAdapter : PagingDataAdapter<CommonResult, CommonPagingAdapter.
     inner class CommonHolder(private val binding: LayoutItemCardCommonPagingBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(common: CommonResult) = apply {
+        fun bind(common: CommonResultDto) = apply {
             binding.apply {
                 item = common
                 imageViewMovie.loadImage(common.poster_path.toString(), Constant.IMAGE_Size_500)
@@ -44,11 +43,11 @@ class CommonPagingAdapter : PagingDataAdapter<CommonResult, CommonPagingAdapter.
         }
     }
 
-    object CharacterComparator : DiffUtil.ItemCallback<CommonResult>() {
-        override fun areItemsTheSame(oldItem: CommonResult, newItem: CommonResult) =
+    object CharacterComparator : DiffUtil.ItemCallback<CommonResultDto>() {
+        override fun areItemsTheSame(oldItem: CommonResultDto, newItem: CommonResultDto) =
             oldItem.title == newItem.title
 
-        override fun areContentsTheSame(oldItem: CommonResult, newItem: CommonResult) =
+        override fun areContentsTheSame(oldItem: CommonResultDto, newItem: CommonResultDto) =
             oldItem == newItem
     }
 }

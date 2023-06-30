@@ -6,7 +6,7 @@ import com.sajjadio.trailers.BR
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.domain.model.Cast
 import com.sajjadio.trailers.domain.model.MovieDetails
-import com.sajjadio.trailers.domain.model.SimilarResult
+import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
 import com.sajjadio.trailers.ui.details.adapter.ActorsAdapter
@@ -48,7 +48,7 @@ class DetailsAdapter(
             is DetailsItem.ActorItem -> bindActorItem(holder as ItemViewHolder, currentItem.actors)
             is DetailsItem.SimilarItem -> bindSimilarItem(
                 holder as ItemViewHolder,
-                currentItem.similarResult
+                currentItem.commonResult
             )
         }
     }
@@ -64,7 +64,7 @@ class DetailsAdapter(
         }
     }
 
-    private fun bindSimilarItem(holder: ItemViewHolder, items: List<SimilarResult>) {
+    private fun bindSimilarItem(holder: ItemViewHolder, items: List<CommonResult>) {
         holder.binding.apply {
             setVariable(BR.adapter, SimilarAdapter(items, listener))
             setVariable(BR.listener, listener)
@@ -90,5 +90,4 @@ interface DetailsInteractListener : BaseInteractListener {
     fun onSeeAllActorsClick()
     fun onActorItemClick(id: Int)
     fun onSeeAllSimilarClick()
-    fun onSimilarItemClick(id: Int)
 }

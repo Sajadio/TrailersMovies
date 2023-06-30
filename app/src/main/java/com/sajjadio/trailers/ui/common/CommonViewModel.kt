@@ -6,7 +6,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.sajjadio.trailers.data.model.movie.common.CommonResult
+import com.sajjadio.trailers.data.model.movie.common.CommonResultDto
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.utils.Destination
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +19,7 @@ class CommonViewModel @Inject constructor(
     private val movieRepo: MovieRepository,
 ) : ViewModel() {
 
-    lateinit var responseCommonPagingData: LiveData<PagingData<CommonResult>>
+    lateinit var responseCommonPagingData: LiveData<PagingData<CommonResultDto>>
 
     fun checkDestination(destination: Destination) {
         when (destination) {

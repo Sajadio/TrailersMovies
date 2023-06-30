@@ -1,6 +1,6 @@
 package com.sajjadio.trailers.data.model.movie.trend
 
-data class TrendResult(
+data class TrendResultDto(
     val adult: Boolean?,
     val backdrop_path: String?,
     val first_air_date: String?,

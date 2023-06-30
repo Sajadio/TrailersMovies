@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import com.sajjadio.trailers.BR
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.ui.home.utils.HomeItem
-import com.sajjadio.trailers.data.model.movie.common.CommonResult
-import com.sajjadio.trailers.data.model.movie.trend.TrendResult
+import com.sajjadio.trailers.data.model.movie.trend.TrendResultDto
 import com.sajjadio.trailers.databinding.*
+import com.sajjadio.trailers.domain.model.CommonResult
+import com.sajjadio.trailers.domain.model.TrendMovieResult
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
 import com.sajjadio.trailers.utils.Destination
@@ -48,7 +49,7 @@ class HomeAdapter(
         }
     }
 
-    private fun bindTrendItem(holder: ItemViewHolder, items: List<TrendResult>) {
+    private fun bindTrendItem(holder: ItemViewHolder, items: List<TrendMovieResult>) {
         with((holder.binding as LayoutRecyclerTrendBinding)) {
             sliderView.setSliderAdapter(TrendSliderAdapter(items, listener))
             sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM)
@@ -98,7 +99,6 @@ class HomeAdapter(
 }
 
 interface HomeInteractListener : BaseInteractListener {
-    fun onClickItem(id: Int)
     fun onClickSeeAllPopularItems(popular: Destination)
     fun onClickSeeAllTopRatedItems(topRated: Destination)
     fun onClickSeeAllUpComingItems(upComing: Destination)

@@ -56,4 +56,6 @@ abstract class BaseAdapter<T>(
     open class ItemViewHolder(val binding: ViewDataBinding) : BaseViewHolder(binding)
 }
 
-interface BaseInteractListener
+interface BaseInteractListener{
+    fun onClickItem(id:Int)
+}

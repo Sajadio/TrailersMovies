@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.sajjadio.trailers.domain.model.SimilarResult" />
+            type="com.sajjadio.trailers.domain.model.CommonResult" />
 
         <variable
             name="imageSize"

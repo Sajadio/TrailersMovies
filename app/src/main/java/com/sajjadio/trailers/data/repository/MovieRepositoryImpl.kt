@@ -3,7 +3,12 @@ package com.sajjadio.trailers.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.sajjadio.trailers.data.model.movie.common.CommonResult
+import com.sajjadio.trailers.data.mapper.mapActorDtoTo
+import com.sajjadio.trailers.data.mapper.mapCommonDtoTo
+import com.sajjadio.trailers.data.mapper.mapCommonResultDtoTo
+import com.sajjadio.trailers.data.mapper.mapMovieDetailsDtoTo
+import com.sajjadio.trailers.data.mapper.mapTrendMovieDtoTo
+import com.sajjadio.trailers.data.model.movie.common.CommonResultDto
 import com.sajjadio.trailers.data.model.movie.genremovie.MovieResult
 import com.sajjadio.trailers.data.model.movie.search.SearchResult
 import com.sajjadio.trailers.data.remote.MovieApiService
@@ -13,12 +18,11 @@ import com.sajjadio.trailers.data.paging.PopularPagingSource
 import com.sajjadio.trailers.data.paging.RatedPagingSource
 import com.sajjadio.trailers.data.paging.SimilarPagingData
 import com.sajjadio.trailers.data.paging.SearchPagingSource
-import com.sajjadio.trailers.domain.mapper.ActorMapper
-import com.sajjadio.trailers.domain.mapper.MovieDetailsMapper
-import com.sajjadio.trailers.domain.mapper.SimilarMapper
 import com.sajjadio.trailers.domain.model.Cast
+import com.sajjadio.trailers.domain.model.Common
 import com.sajjadio.trailers.domain.model.MovieDetails
-import com.sajjadio.trailers.domain.model.SimilarResult
+import com.sajjadio.trailers.domain.model.CommonResult
+import com.sajjadio.trailers.domain.model.TrendMovie
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.utils.Constant
 import com.sajjadio.trailers.utils.NetworkStatus
@@ -31,24 +35,33 @@ import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
     private val movieApi: MovieApiService,
-    private val actorMapper: ActorMapper,
-    private val similarMapper: SimilarMapper,
-    private val movieDetailsMapper: MovieDetailsMapper
 ) : MovieRepository {
 
-    override suspend fun getTrendMovie() =
-        wrapWithFlow { movieApi.getTrending() }.flowOn(Dispatchers.IO)
+    override suspend fun getTrendMovie(): Flow<NetworkStatus<TrendMovie>> {
+        return wrapper({ movieApi.getTrending() }) { trendMovie ->
+            mapTrendMovieDtoTo(trendMovie)
+        }
+    }
 
-    override suspend fun getMoviePopular() =
-        wrapWithFlow { movieApi.getPopularMovie() }.flowOn(Dispatchers.IO)
+    override suspend fun getMoviePopular(): Flow<NetworkStatus<Common>> {
+        return wrapper({ movieApi.getPopularMovie() }) {
+            mapCommonDtoTo(it)
+        }
+    }
 
-    override suspend fun getMovieTopRated() =
-        wrapWithFlow { movieApi.getTopRatedMovie() }.flowOn(Dispatchers.IO)
+    override suspend fun getMovieTopRated(): Flow<NetworkStatus<Common>> {
+        return wrapper({ movieApi.getPopularMovie() }) {
+            mapCommonDtoTo(it)
+        }
+    }
 
-    override suspend fun getUpComingMovie() =
-        wrapWithFlow { movieApi.getUpComingMovie() }.flowOn(Dispatchers.IO)
+    override suspend fun getUpComingMovie(): Flow<NetworkStatus<Common>> {
+        return wrapper({ movieApi.getPopularMovie() }) {
+            mapCommonDtoTo(it)
+        }
+    }
 
-    override fun getSimilarOfMovie(id: Int): Flow<PagingData<SimilarResult>> {
+    override fun getSimilarOfMovie(id: Int): Flow<PagingData<CommonResult>> {
         return Pager(
             config = PagingConfig(
                 pageSize = Constant.DEFAULT_PAGE_SIZE,
@@ -57,7 +70,6 @@ class MovieRepositoryImpl @Inject constructor(
                 SimilarPagingData(
                     api = movieApi,
                     id = id,
-                    similarMapper = SimilarMapper()
                 )
             }
         ).flow.flowOn(Dispatchers.IO)
@@ -75,22 +87,22 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getMovieDetails(id: Int?): Flow<NetworkStatus<MovieDetails>> {
         return wrapper({ movieApi.getMovieDetails(id) }) { movieDetailsDto ->
-            movieDetailsMapper.mapTo(movieDetailsDto)
+            mapMovieDetailsDtoTo(movieDetailsDto)
         }
     }
 
     override suspend fun getActors(id: Int?): Flow<NetworkStatus<List<Cast>?>> {
         return wrapper({ movieApi.getActors(id) }) { actors ->
-            actors.cast?.let { castDto -> actorMapper.mapTo(castDto) }
+            actors.cast?.let { castDto -> mapActorDtoTo(castDto) }
         }
     }
 
     override suspend fun getSimilar(
         id: Int?,
         page: Int
-    ): Flow<NetworkStatus<List<SimilarResult>?>> {
+    ): Flow<NetworkStatus<List<CommonResult>?>> {
         return wrapper({ movieApi.getSimilar(id, page) }) { similar ->
-            similar.results?.let { similarResultDto -> similarMapper.mapTo(similarResultDto) }
+            mapCommonResultDtoTo(similar.results)
         }
     }
 
@@ -100,21 +112,21 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun getMovieOfActor(person_id: Int?) =
         wrapWithFlow { movieApi.getMoviesOfActor(person_id = person_id) }.flowOn(Dispatchers.IO)
 
-    override fun getPopularMoviePaging(): Flow<PagingData<CommonResult>> =
+    override fun getPopularMoviePaging(): Flow<PagingData<CommonResultDto>> =
         Pager(config = PagingConfig(pageSize = Constant.DEFAULT_PAGE_SIZE, prefetchDistance = 2),
             pagingSourceFactory = {
                 PopularPagingSource(api = movieApi)
             }
         ).flow.flowOn(Dispatchers.IO)
 
-    override fun getTopRatedMoviePaging(): Flow<PagingData<CommonResult>> =
+    override fun getTopRatedMoviePaging(): Flow<PagingData<CommonResultDto>> =
         Pager(config = PagingConfig(pageSize = Constant.DEFAULT_PAGE_SIZE, prefetchDistance = 2),
             pagingSourceFactory = {
                 RatedPagingSource(api = movieApi)
             }
         ).flow.flowOn(Dispatchers.IO)
 
-    override fun getUpComingMoviePaging(): Flow<PagingData<CommonResult>> =
+    override fun getUpComingMoviePaging(): Flow<PagingData<CommonResultDto>> =
         Pager(config = PagingConfig(pageSize = Constant.DEFAULT_PAGE_SIZE, prefetchDistance = 2),
             pagingSourceFactory = {
                 ComingPagingSource(api = movieApi)

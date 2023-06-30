@@ -1,14 +1,13 @@
 package com.sajjadio.trailers.data.remote
 
-import com.sajjadio.trailers.data.model.movie.common.Common
+import com.sajjadio.trailers.data.model.movie.common.CommonDto
 import com.sajjadio.trailers.data.model.movie.actors.Actors
 import com.sajjadio.trailers.data.model.genre.Genre
 import com.sajjadio.trailers.data.model.movie.actorsmovie.ActorsMovie
 import com.sajjadio.trailers.data.model.movie.genremovie.Movie
 import com.sajjadio.trailers.data.model.movie.movie_details.MovieDetailsDto
 import com.sajjadio.trailers.data.model.movie.search.SearchMovie
-import com.sajjadio.trailers.data.model.movie.similar.Similar
-import com.sajjadio.trailers.data.model.movie.trend.TrendMovie
+import com.sajjadio.trailers.data.model.movie.trend.TrendMovieDto
 import com.sajjadio.trailers.data.model.movie.video.VideoMovie
 import retrofit2.Response
 import retrofit2.http.GET
@@ -23,25 +22,25 @@ interface MovieApiService {
         @Query("page") page: Int,
     ): Movie
 
-    @GET("trending/all/day?")
+    @GET("trending/movie/day?")
     suspend fun getTrending(
-    ): Response<TrendMovie>
+    ): Response<TrendMovieDto>
 
     @GET("movie/popular?")
     suspend fun getPopularMovie(
         @Query("page") page: Int = 1,
-    ): Response<Common>
+    ): Response<CommonDto>
 
 
     @GET("movie/top_rated?")
     suspend fun getTopRatedMovie(
         @Query("page") page: Int = 1,
-    ): Response<Common>
+    ): Response<CommonDto>
 
     @GET("movie/upcoming?")
     suspend fun getUpComingMovie(
         @Query("page") page: Int = 1,
-    ): Response<Common>
+    ): Response<CommonDto>
 
     @GET("movie/{id}/videos?")
     suspend fun getMovieTrailer(
@@ -62,7 +61,7 @@ interface MovieApiService {
     suspend fun getSimilar(
         @Path("id") id: Int?,
         @Query("page") page: Int?,
-    ): Response<Similar>
+    ): Response<CommonDto>
 
 
     @GET("genre/movie/list")

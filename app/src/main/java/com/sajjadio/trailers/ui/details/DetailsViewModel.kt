@@ -100,7 +100,7 @@ class DetailsViewModel @Inject constructor(
         _clickItemEvent.postValue(Event(DestinationType.Similar))
     }
 
-    override fun onSimilarItemClick(id: Int) {
+    override fun onClickItem(id: Int) {
         _clickItemEvent.postValue(Event(DestinationType.SimilarItem(id)))
     }
 

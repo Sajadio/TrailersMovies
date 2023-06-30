@@ -1,14 +1,14 @@
 package com.sajjadio.trailers.ui.home.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.sajjadio.trailers.data.model.movie.trend.TrendResult
+import com.sajjadio.trailers.data.model.movie.trend.TrendResultDto
 import com.sajjadio.trailers.databinding.LayoutTrendCardItemBinding
+import com.sajjadio.trailers.domain.model.TrendMovieResult
 import com.smarteist.autoimageslider.SliderViewAdapter
 
 class TrendSliderAdapter(
-    private val items: List<TrendResult>,
+    private val items: List<TrendMovieResult>,
     private val listener: HomeInteractListener
 ) : SliderViewAdapter<TrendSliderAdapter.SliderHolder>() {
 

@@ -32,7 +32,7 @@
             android:onClick="@{() -> listener.onSeeAllActorsClick()}" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewPopular"
+            android:id="@+id/recyclerViewActors"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adapter="@{adapter}"
