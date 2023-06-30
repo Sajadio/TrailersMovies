@@ -71,8 +71,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/playButton"
+            <ImageButton
+                android:id="@+id/ImageButtonPlay"
                 style="@style/SmallPlayButton"
                 android:layout_marginEnd="@dimen/medium_margin_size"
                 app:layout_constraintBottom_toBottomOf="@+id/textViewGenre"

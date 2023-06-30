@@ -21,13 +21,17 @@
         <item name="android:layout_marginTop">@dimen/normal_margin_size</item>
     </style>
 
-    <style name="SmallPlayButton" parent="Widget.AppCompat.Button">
+    <style name="SmallPlayButton" parent="Widget.AppCompat.ImageButton">
         <item name="android:layout_width">@dimen/small_play_button_size</item>
         <item name="android:layout_height">@dimen/small_play_button_size</item>
         <item name="android:background">@drawable/fab_play_button</item>
         <item name="android:src">@drawable/ic_play</item>
-        <item name="android:drawableStart">@drawable/ic_play</item>
-        <item name="android:padding">@dimen/medium_padding_size</item>
+    </style>
+
+    <style name="NormalPlayButton" parent="SmallPlayButton">
+        <item name="android:layout_width">@dimen/button_size</item>
+        <item name="android:layout_height">@dimen/button_size</item>
+        <item name="android:src">@drawable/ic_normal_play</item>
     </style>
 
     <style name="NormalLabel" parent="Widget.AppCompat.TextView">

@@ -14,8 +14,9 @@ fun formatVoteCount(value: Int): String {
 fun formatHourMinutes(value: Int): String {
     val hours = value.div(60)
     val minutes = value % 60
-    return String.format("%d:%02d", hours, minutes) + " m"
+    return String.format("%dh %02dm", hours, minutes)
 }
+
 
 object DateTimeFormatter {
     private const val DATE_FORMAT = "yyyy-MM-dd"

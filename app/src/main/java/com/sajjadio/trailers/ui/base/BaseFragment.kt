@@ -38,7 +38,6 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : ViewModel>(@LayoutRes pr
             setHasOptionsMenu(true)
             setVariable(BR.viewModel, viewModel)
             lifecycleOwner = viewLifecycleOwner
-            changeStatusBarColor()
             return root
         }
     }
