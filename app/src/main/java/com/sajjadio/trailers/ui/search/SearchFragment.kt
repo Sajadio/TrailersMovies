@@ -14,19 +14,20 @@ import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentSearchBinding
 import com.sajjadio.trailers.ui.PagingLoadStateAdapter
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.utils.changeStatusBarColor
 import com.sajjadio.trailers.utils.movieToDestination
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class SearchFragment : BaseFragment<FragmentSearchBinding,SearchViewModel>(R.layout.fragment_search) {
+class SearchFragment :
+    BaseFragment<FragmentSearchBinding, SearchViewModel>(R.layout.fragment_search){
 
     override val LOG_TAG: String = this::class.java.simpleName
     override val viewModelClass = SearchViewModel::class.java
-    private lateinit var adapter: SearchPagingAdapter
+    private lateinit var searchPagingAdapter: SearchPagingAdapter
     private lateinit var helper: SnapHelper
+    private lateinit var listKeyword: MutableList<String>
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -42,7 +43,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchViewModel>(R.lay
             initialAdapter()
 
             swipeRefreshLayout.setOnRefreshListener {
-                adapter.refresh()
+                searchPagingAdapter.refresh()
                 swipeRefreshLayout.isRefreshing = false
             }
 
@@ -52,31 +53,32 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchViewModel>(R.lay
 
     private fun initialAdapter() {
 
-        adapter = SearchPagingAdapter()
-        binding.rcSearch.adapter = adapter
+        searchPagingAdapter = SearchPagingAdapter()
+        binding.rcSearch.adapter = searchPagingAdapter
         helper.attachToRecyclerView(binding.rcSearch)
-        adapter.onItemClickListener {
+        searchPagingAdapter.onItemClickListener {
             it?.let { id ->
                 val action = SearchFragmentDirections.actionSearchFragmentToMovieFragment(id)
                 action.movieToDestination(view)
             }
         }
 
-        binding.rcSearch.adapter = adapter.withLoadStateHeaderAndFooter(
-            header = PagingLoadStateAdapter { adapter.retry() },
-            footer = PagingLoadStateAdapter { adapter.retry() }
+        binding.rcSearch.adapter = searchPagingAdapter.withLoadStateHeaderAndFooter(
+            header = PagingLoadStateAdapter { searchPagingAdapter.retry() },
+            footer = PagingLoadStateAdapter { searchPagingAdapter.retry() }
         )
 
         viewModel.responseSearchMovies.observe(viewLifecycleOwner) {
             lifecycleScope.launch {
                 it?.let {
-                    adapter.submitData(it)
+                    searchPagingAdapter.submitData(it)
                 }
             }
         }
 
-        adapter.addLoadStateListener { loadState ->
-            val isEmptyList = loadState.refresh is LoadState.NotLoading && adapter.itemCount == 0
+        searchPagingAdapter.addLoadStateListener { loadState ->
+            val isEmptyList =
+                loadState.refresh is LoadState.NotLoading && searchPagingAdapter.itemCount == 0
             showEmptyList(isEmptyList)
 
             binding.rcSearch.isVisible = loadState.source.refresh is LoadState.NotLoading
@@ -88,10 +90,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchViewModel>(R.lay
     }
 
     private fun stateManagement(state: Boolean) {
-        if (state)
+        if (state) {
             binding.shimmer.startShimmer()
-        else
+            binding.linearLayoutSearchScreenHint.visibility = View.INVISIBLE
+        } else {
             binding.shimmer.stopShimmer()
+            binding.linearLayoutSearchScreenHint.visibility = View.VISIBLE
+        }
 
         binding.shimmer.isVisible = state
         binding.rcSearch.isVisible = !state

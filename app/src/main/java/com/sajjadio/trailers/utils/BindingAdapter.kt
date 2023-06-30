@@ -3,6 +3,9 @@ package com.sajjadio.trailers.utils
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView

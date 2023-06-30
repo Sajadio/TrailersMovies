@@ -7,6 +7,7 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import com.sajjadio.trailers.data.model.movie.search.SearchResult
 import com.sajjadio.trailers.domain.repository.MovieRepository
+import com.sajjadio.trailers.utils.SearchItemClickListener
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
@@ -17,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val movieRepo: MovieRepository
-) : ViewModel() {
+) : ViewModel(), SearchItemClickListener {
 
     val responseSearchMovies = MutableLiveData<PagingData<SearchResult>?>()
 
@@ -28,7 +29,7 @@ class SearchViewModel @Inject constructor(
     }
 
     private fun getSearch(query: String) {
-        viewModelScope.launch(Dispatchers.Main){
+        viewModelScope.launch(Dispatchers.Main) {
             movieRepo
                 .getMovieSearch(query)
                 .cachedIn(this)
@@ -39,4 +40,7 @@ class SearchViewModel @Inject constructor(
     }
 
     private fun isSearchInputValid(text: String) = text.isNotBlank()
+    override fun onSearchItemClick(keyword: String) {
+        getSearch(keyword)
+    }
 }

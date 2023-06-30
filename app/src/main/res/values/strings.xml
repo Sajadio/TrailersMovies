@@ -42,4 +42,7 @@
     <string name="can_t_search">You can\'t search without the internet</string>
     <string name="problem_network">Sorry, couldn\t connection with server. Please checkyour internet and try again</string>
     <string name="connection_problem">Connection problem</string>
+    <string name="clear_history">Clear history</string>
+    <string name="history">History</string>
+    <string name="try_another_keyword">Try another keyword</string>
 </resources>
