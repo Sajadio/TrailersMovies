@@ -40,9 +40,16 @@ class DetailsAdapter(
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         when (val currentItem = getItems()[position]) {
-            is DetailsItem.MovieItem -> bindMovieItem(holder as ItemViewHolder, currentItem.movieDetails)
+            is DetailsItem.MovieItem -> bindMovieItem(
+                holder as ItemViewHolder,
+                currentItem.movieDetails
+            )
+
             is DetailsItem.ActorItem -> bindActorItem(holder as ItemViewHolder, currentItem.actors)
-            is DetailsItem.SimilarItem -> bindSimilarItem(holder as ItemViewHolder, currentItem.similarResult)
+            is DetailsItem.SimilarItem -> bindSimilarItem(
+                holder as ItemViewHolder,
+                currentItem.similarResult
+            )
         }
     }
 
@@ -59,7 +66,7 @@ class DetailsAdapter(
 
     private fun bindSimilarItem(holder: ItemViewHolder, items: List<SimilarResult>) {
         holder.binding.apply {
-            setVariable(BR.adapter,SimilarAdapter(items, listener) )
+            setVariable(BR.adapter, SimilarAdapter(items, listener))
             setVariable(BR.listener, listener)
         }
     }

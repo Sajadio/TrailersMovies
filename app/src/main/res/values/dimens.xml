@@ -51,6 +51,8 @@
     <dimen name="small_card_image_width">120dp</dimen>
     <dimen name="search_card_image_width">130dp</dimen>
     <dimen name="search_card_image_height">180dp</dimen>
+    <dimen name="actor_card_image_width">80dp</dimen>
+    <dimen name="actor_card_image_height">100dp</dimen>
 
     <dimen name="small_size">4dp</dimen>
     <dimen name="normal_size">8dp</dimen>

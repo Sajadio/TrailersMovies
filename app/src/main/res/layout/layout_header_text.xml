@@ -12,10 +12,11 @@
     <TextView
         android:id="@+id/textViewHeader"
         style="@style/LargeTitle"
-        android:layout_width="wrap_content"
         android:layout_marginStart="@dimen/medium_margin_size"
         android:fontFamily="@font/roboto_bold"
         android:text="@{header}"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlSymmetry"
         tools:text="Header" />
 </layout>
