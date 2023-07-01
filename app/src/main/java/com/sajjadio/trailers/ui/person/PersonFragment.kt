@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.transition.TransitionInflater
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -40,11 +41,9 @@ class PersonFragment :
         super.onViewCreated(view, savedInstanceState)
         setupDetailsRecyclerView()
         observeEventWhenClickItem()
-
-        viewModel.imageUrl.observe(viewLifecycleOwner){
-                saveImageToStorage(it)
+        viewModel.imageUrl.observe(viewLifecycleOwner) {
+            saveImageToStorage(it)
         }
-
     }
 
     private fun setupDetailsRecyclerView() {
@@ -100,19 +99,21 @@ class PersonFragment :
                     put(MediaStore.MediaColumns.MIME_TYPE, "image/jpg")
                     put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
                 }
-                val imageUri: Uri? = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,contentValues)
+                val imageUri: Uri? =
+                    resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
                 outputStream = imageUri.let {
                     it?.let { it1 -> resolver.openOutputStream(it1) }
                 }
             }
-        }else{
-            val imageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-            val image = File(imageDir,imageName)
+        } else {
+            val imageDir =
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+            val image = File(imageDir, imageName)
             outputStream = FileOutputStream(image)
         }
         outputStream?.use {
-            bitmap.compress(Bitmap.CompressFormat.JPEG,100,it)
-            Toast.makeText(requireContext(),"Downloaded",Toast.LENGTH_LONG).show()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
+            Toast.makeText(requireContext(), "Downloaded", Toast.LENGTH_LONG).show()
         }
     }
 }

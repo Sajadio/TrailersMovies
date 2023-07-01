@@ -15,7 +15,9 @@
             app:destination="@id/commonFragment" />
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/genresFragment"
@@ -24,7 +26,9 @@
         tools:layout="@layout/fragment_genres">
         <action
             android:id="@+id/action_genresFragment_to_movieFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -33,7 +37,9 @@
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_movieFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
 
     </fragment>
     <fragment
@@ -43,16 +49,22 @@
         tools:layout="@layout/fragment_details">
         <action
             android:id="@+id/action_detailsFragment_to_similarFragment"
-            app:destination="@id/similarFragment" />
+            app:destination="@id/similarFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
         <argument
             android:name="movieId"
             app:argType="integer" />
         <action
             android:id="@+id/action_detailsFragment_self"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_detailsFragment_to_personFragment"
-            app:destination="@id/personFragment" />
+            app:destination="@id/personFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
     </fragment>
 
     <fragment
@@ -62,7 +74,9 @@
         tools:layout="@layout/fragment_common">
         <action
             android:id="@+id/action_commonFragment_to_movieFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
 
         <argument
             android:name="destination"
@@ -87,15 +101,17 @@
         tools:layout="@layout/fragment_similar">
         <action
             android:id="@+id/action_similarFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
         <argument
             android:name="movieId"
             app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
-        tools:layout="@layout/fragment_favorite"
         android:name="com.sajjadio.trailers.ui.favorite.FavoriteFragment"
-        android:label="FavoriteFragment" />
+        android:label="FavoriteFragment"
+        tools:layout="@layout/fragment_favorite" />
 
 </navigation>

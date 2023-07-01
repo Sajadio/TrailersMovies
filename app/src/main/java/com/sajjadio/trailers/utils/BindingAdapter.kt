@@ -11,11 +11,14 @@ import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -62,7 +65,9 @@ fun setHeight(view: View, heightInDp: Int?) {
 
 @BindingAdapter(value = ["app:imageUrl", "app:imageSize"])
 fun setImage(imageView: ImageView, url: String?, imageSize: String?) {
-    url?.let { imageView.loadImage(it, imageSize) }
+    url?.let {
+        imageView.loadImage(it, imageSize)
+    }
 }
 
 @BindingAdapter(value = ["app:manageState"])

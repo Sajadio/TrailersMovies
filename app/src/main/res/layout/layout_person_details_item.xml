@@ -53,6 +53,7 @@
         <androidx.constraintlayout.utils.widget.ImageFilterView
             android:id="@+id/imageViewPerson"
             android:layout_width="@dimen/gallery_card_height"
+            android:transitionName="big_person_image"
             android:layout_height="@dimen/gallery_card_height"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"

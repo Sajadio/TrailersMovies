@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import androidx.navigation.NavDirections
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sajjadio.trailers.R
@@ -46,12 +47,11 @@ class DetailsFragment :
 
     private fun checkDestinationType(movieDetailsDestinationType: MovieDetailsDestinationType) {
         when (movieDetailsDestinationType) {
-            is MovieDetailsDestinationType.PersonItem ->
+            is MovieDetailsDestinationType.PersonItem -> {
                 navigateToAnotherDestination(
-                    DetailsFragmentDirections.actionDetailsFragmentToPersonFragment(
-                        movieDetailsDestinationType.personId
-                    )
+                    DetailsFragmentDirections.actionDetailsFragmentToPersonFragment(movieDetailsDestinationType.personId)
                 )
+            }
 
             is MovieDetailsDestinationType.SimilarItem ->
                 navigateToAnotherDestination(

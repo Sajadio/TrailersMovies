@@ -1,36 +1,37 @@
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
 
     </data>
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="@dimen/dialog_image_width"
-        android:layout_height="@dimen/dialog_image_height"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/clickable_color">
 
         <ImageView
             android:id="@+id/largeImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/dialog_image_width"
+            android:layout_height="@dimen/dialog_image_height"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_background" />
 
         <ImageButton
             android:id="@+id/imageButtonBack"
             android:layout_width="@dimen/button_size"
             android:layout_height="@dimen/button_size"
-            android:layout_marginStart="@dimen/medium_margin_size"
-            android:layout_marginTop="@dimen/medium_margin_size"
+            android:layout_margin="@dimen/medium_margin_size"
             android:background="@drawable/rounded_clickable"
             android:src="@drawable/ic_download"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/largeImage"
+            app:layout_constraintTop_toTopOf="@+id/largeImage" />
 
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
