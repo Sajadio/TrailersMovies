@@ -69,7 +69,7 @@ class MovieDetailsViewModel @Inject constructor(
 
     private fun getActorsByMovieId(id: Int) {
         viewModelScope.launch {
-            movieRepo.getActorsOfMovie(id).collect { state ->
+            movieRepo.getPersonOfMovieById(id).collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
                     it.data?.let { data ->
                         detailsData.add(MovieDetailsItem.PersonOfMovieItem(data))

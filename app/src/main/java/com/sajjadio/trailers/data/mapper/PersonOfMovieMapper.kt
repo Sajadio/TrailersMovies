@@ -3,7 +3,7 @@ package com.sajjadio.trailers.data.mapper
 import com.sajjadio.trailers.data.model.movie.actors.CastDto
 import com.sajjadio.trailers.domain.model.Cast
 
-internal fun mapActorDtoTo(input: List<CastDto>): List<Cast> {
+internal fun mapPersonOfMovieDtoToPersonOfMovie(input: List<CastDto>): List<Cast> {
     return input.map {
         Cast(
             id = it.id,

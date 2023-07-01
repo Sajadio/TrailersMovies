@@ -60,7 +60,7 @@ interface MovieApiService {
     ): Response<ImageDto>
 
     @GET("movie/{id}/credits?")
-    suspend fun getActorsOfMovie(
+    suspend fun getPersonOfMovieById(
         @Path("id") id: Int?,
     ): Response<Actors>
 

@@ -12,6 +12,7 @@ import com.sajjadio.trailers.domain.model.Cast
 import com.sajjadio.trailers.domain.model.Common
 import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.model.CommonResult
+import com.sajjadio.trailers.domain.model.Person
 import com.sajjadio.trailers.domain.model.Poster
 import com.sajjadio.trailers.domain.model.TrendMovie
 import com.sajjadio.trailers.utils.NetworkStatus
@@ -33,9 +34,9 @@ interface MovieRepository {
         movieId: Int?,
     ): Flow<NetworkStatus<List<Poster>?>>
 
-    suspend fun getActorsOfMovie(id: Int?): Flow<NetworkStatus<List<Cast>?>>
+    suspend fun getPersonOfMovieById(id: Int?): Flow<NetworkStatus<List<Cast>?>>
 
-    fun getPersonById(personId: Int?, ): Flow<NetworkStatus<PersonDto>>
+    fun getPersonById(personId: Int?, ): Flow<NetworkStatus<Person>>
 
     suspend fun getSimilar(id: Int?, page: Int): Flow<NetworkStatus<List<CommonResult>?>>
     suspend fun getMovieTrailer(id: Int?): Flow<NetworkStatus<VideoMovie?>>

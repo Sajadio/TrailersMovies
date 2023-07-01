@@ -32,10 +32,10 @@
             android:contentDescription="@string/app_name"
             android:fitsSystemWindows="true"
             android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="9:16"
             app:imageSize="@{imageSize.IMAGE_Size_H632}"
             app:imageUrl="@{item.poster_path}"
             app:layout_collapseMode="parallax"
+            app:layout_constraintDimensionRatio="9:16"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="VectorDrawableCompat"
             tools:src="@drawable/ic_launcher_background" />
@@ -84,14 +84,17 @@
 
         <TextView
             android:id="@+id/textViewGenre"
-            style="@style/NormalLabel"
+            style="@style/NormalLabelWithoutEllipSize"
+            android:layout_width="0dp"
             android:layout_marginStart="@dimen/medium_margin_size"
+            android:layout_marginEnd="@dimen/medium_margin_size"
             android:layout_marginBottom="@dimen/normal_margin_size"
-            android:drawablePadding="@dimen/small_padding_size"
+            android:gravity="start|center"
             app:genres="@{item.genres}"
             app:layout_constraintBottom_toTopOf="@+id/textViewRunTime"
+            app:layout_constraintEnd_toStartOf="@+id/playButton"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="Action, Comedy, Drama" />
+            tools:text="Action | Comedy | Drama" />
 
         <TextView
             android:id="@+id/textViewRunTime"

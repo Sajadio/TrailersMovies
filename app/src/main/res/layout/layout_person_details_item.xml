@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.sajjadio.trailers.data.model.movie.person.PersonDto" />
+            type="com.sajjadio.trailers.domain.model.Person" />
 
 
         <variable
@@ -94,12 +94,15 @@
         <TextView
             android:id="@+id/textViewDepartment"
             style="@style/NormalLabel"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/x_x_large_margin_size"
             android:layout_marginTop="@dimen/medium_margin_size"
             android:drawablePadding="@dimen/small_padding_size"
+            android:maxLines="5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
-            app:text="@{item.knownForDepartment}"
+            app:list="@{item.alsoKnownAs}"
             tools:text="Acting" />
 
         <TextView
@@ -108,8 +111,8 @@
             android:layout_marginStart="@dimen/medium_margin_size"
             android:layout_marginTop="@dimen/medium_margin_size"
             android:gravity="center"
-            android:text="Popularity"
-            app:layout_constraintEnd_toStartOf="@+id/textViewDepartment"
+            android:text="@string/popularity"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewPerson"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewDepartment" />
 
@@ -154,7 +157,7 @@
             android:layout_marginTop="@dimen/medium_margin_size"
             android:text="@string/bio"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewMovie" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionPopularity" />
 
         <TextView
             android:id="@+id/textViewDescriptionBio"

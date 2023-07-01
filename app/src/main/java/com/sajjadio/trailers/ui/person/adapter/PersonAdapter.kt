@@ -4,14 +4,11 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import com.sajjadio.trailers.BR
 import com.sajjadio.trailers.R
-import com.sajjadio.trailers.data.model.movie.person.PersonDto
 import com.sajjadio.trailers.domain.model.CommonResult
+import com.sajjadio.trailers.domain.model.Person
 import com.sajjadio.trailers.domain.model.Poster
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
-import com.sajjadio.trailers.ui.details.adapter.GalleryOdMovieAdapter
-import com.sajjadio.trailers.ui.details.adapter.MovieDetailsInteractListener
-import com.sajjadio.trailers.ui.details.adapter.SimilarAdapter
 import com.sajjadio.trailers.ui.person.utils.PersonDetailsItem
 
 class PersonAdapter(
@@ -42,7 +39,7 @@ class PersonAdapter(
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         when (val currentItem = getItems()[position]) {
             is PersonDetailsItem.PersonItem -> {
-                bindPersonItem(holder as ItemViewHolder, currentItem.personDto)
+                bindPersonItem(holder as ItemViewHolder, currentItem.person)
             }
 
             is PersonDetailsItem.GalleryOFPersonItem -> {
@@ -55,7 +52,7 @@ class PersonAdapter(
         }
     }
 
-    private fun bindPersonItem(holder: ItemViewHolder, item: PersonDto) {
+    private fun bindPersonItem(holder: ItemViewHolder, item: Person) {
         holder.binding.setVariable(BR.item, item)
     }
 

@@ -3,7 +3,7 @@ package com.sajjadio.trailers.data.mapper
 import com.sajjadio.trailers.data.model.movie.movie_details.MovieDetailsDto
 import com.sajjadio.trailers.domain.model.MovieDetails
 
-internal fun mapMovieDetailsDtoTo(input: MovieDetailsDto): MovieDetails {
+internal fun mapMovieDetailsDtoToMovieDetails(input: MovieDetailsDto): MovieDetails {
     return MovieDetails(
         backdrop_path = input.backdrop_path,
         genres = input.genres,
@@ -13,7 +13,7 @@ internal fun mapMovieDetailsDtoTo(input: MovieDetailsDto): MovieDetails {
         runtime = input.runtime,
         poster_path = input.poster_path,
         release_date = input.release_date,
-        vote_average = input.vote_average?.toFloat(),
+        vote_average = input.vote_average.toFloat(),
         vote_count = input.vote_count,
     )
 }

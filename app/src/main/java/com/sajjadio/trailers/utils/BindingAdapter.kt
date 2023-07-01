@@ -1,11 +1,14 @@
 package com.sajjadio.trailers.utils
 
+import android.os.Build
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.paging.PagingData
@@ -14,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.sajjadio.trailers.R
 import com.sajjadio.trailers.data.model.movie.movie_details.Genre
 import com.sajjadio.trailers.ui.base.BaseAdapter
 
@@ -47,13 +51,28 @@ fun <T> manageState(view: View, state: NetworkStatus<T>?) {
 @BindingAdapter(value = ["app:genres"])
 fun setGenres(textView: TextView, genres: List<Genre>?) {
     var genre = ""
-    genres?.forEach {
-        genre += if (it != genres.last())
-            "${it.name} |"
-        else
+    genres?.forEachIndexed { index, it ->
+        genre += if (index != genre.lastIndex) {
+            "${it.name} | "
+        } else {
             it.name
+        }
     }
     textView.text = genre
+}
+
+@BindingAdapter(value = ["app:list"])
+fun formatListString(textView: TextView, names: List<String>?) {
+    var name = ""
+    names?.forEachIndexed { index, it ->
+        name += if (index != names.lastIndex) {
+            "$it | "
+        } else {
+            it
+        }
+    }
+    textView.text = name
+
 }
 
 @BindingAdapter(value = ["app:shimmer"])
