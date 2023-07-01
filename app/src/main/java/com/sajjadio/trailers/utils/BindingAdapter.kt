@@ -3,9 +3,6 @@ package com.sajjadio.trailers.utils
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -13,8 +10,10 @@ import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.sajjadio.trailers.R
 import com.sajjadio.trailers.data.model.movie.movie_details.Genre
 import com.sajjadio.trailers.ui.base.BaseAdapter
 

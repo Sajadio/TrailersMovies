@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.ui.details
+package com.sajjadio.trailers.ui.details.adapter
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
@@ -10,19 +10,16 @@ import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.domain.model.Poster
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
-import com.sajjadio.trailers.ui.details.adapter.ActorsAdapter
-import com.sajjadio.trailers.ui.details.adapter.GalleryAdapter
-import com.sajjadio.trailers.ui.details.adapter.SimilarAdapter
-import com.sajjadio.trailers.ui.details.utils.DetailsItem
+import com.sajjadio.trailers.ui.details.utils.MovieDetailsItem
 
-class DetailsAdapter(
-    val listener: DetailsInteractListener
-) : BaseAdapter<DetailsItem>(listOf(), listener) {
+class MovieDetailsAdapter(
+    val listener: MovieDetailsInteractListener
+) : BaseAdapter<MovieDetailsItem>(listOf(), listener) {
 
     override var layoutId: Int = 0
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addNestedItem(newItem: List<DetailsItem>) {
+    fun addNestedItem(newItem: List<MovieDetailsItem>) {
         setItems(newItem.sortedBy { it.rank })
     }
 
@@ -35,7 +32,7 @@ class DetailsAdapter(
         return when (viewType) {
             LAYOUT_MOVIE -> LAYOUT_MOVIE
             LAYOUT_GALLERY -> LAYOUT_GALLERY
-            LAYOUT_ACTORS -> LAYOUT_ACTORS
+            LAYOUT_PERSON -> LAYOUT_PERSON
             LAYOUT_SIMILAR -> LAYOUT_SIMILAR
             else -> throw Exception("unknown view type")
         }
@@ -43,13 +40,13 @@ class DetailsAdapter(
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         when (val currentItem = getItems()[position]) {
-            is DetailsItem.MovieItem -> bindMovieItem(
+            is MovieDetailsItem.MovieItem -> bindMovieItem(
                 holder as ItemViewHolder,
                 currentItem.movieDetails
             )
-            is DetailsItem.GalleryItem -> bindGalleryItem(holder as ItemViewHolder, currentItem.poster)
-            is DetailsItem.ActorItem -> bindActorItem(holder as ItemViewHolder, currentItem.actors)
-            is DetailsItem.SimilarItem -> bindSimilarItem(
+            is MovieDetailsItem.GalleryItem -> bindGalleryItem(holder as ItemViewHolder, currentItem.poster)
+            is MovieDetailsItem.PersonOfMovieItem -> bindPersonItem(holder as ItemViewHolder, currentItem.person)
+            is MovieDetailsItem.SimilarItemMovie -> bindSimilarItem(
                 holder as ItemViewHolder,
                 currentItem.commonResult
             )
@@ -62,15 +59,15 @@ class DetailsAdapter(
 
     private fun bindGalleryItem(holder: ItemViewHolder, items: List<Poster>) {
         holder.binding.apply {
-            setVariable(BR.adapter, GalleryAdapter(items, listener))
+            setVariable(BR.adapter, GalleryOdMovieAdapter(items, listener))
             setVariable(BR.listener, listener)
         }
     }
 
 
-    private fun bindActorItem(holder: ItemViewHolder, items: List<Cast>) {
+    private fun bindPersonItem(holder: ItemViewHolder, items: List<Cast>) {
         holder.binding.apply {
-            setVariable(BR.adapter, ActorsAdapter(items, listener))
+            setVariable(BR.adapter, PersonOfMovieAdapter(items, listener))
             setVariable(BR.listener, listener)
         }
     }
@@ -84,25 +81,25 @@ class DetailsAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return when (getItems()[position]) {
-            is DetailsItem.MovieItem -> LAYOUT_MOVIE
-            is DetailsItem.GalleryItem -> LAYOUT_GALLERY
-            is DetailsItem.ActorItem -> LAYOUT_ACTORS
-            is DetailsItem.SimilarItem -> LAYOUT_SIMILAR
+            is MovieDetailsItem.MovieItem -> LAYOUT_MOVIE
+            is MovieDetailsItem.GalleryItem -> LAYOUT_GALLERY
+            is MovieDetailsItem.PersonOfMovieItem -> LAYOUT_PERSON
+            is MovieDetailsItem.SimilarItemMovie -> LAYOUT_SIMILAR
         }
     }
 
     private companion object {
-        const val LAYOUT_MOVIE = R.layout.layout_details_item
+        const val LAYOUT_MOVIE = R.layout.layout_movie_details_item
         const val LAYOUT_GALLERY = R.layout.layout_gallery_recycler
-        const val LAYOUT_ACTORS = R.layout.layout_actor_recycler
+        const val LAYOUT_PERSON = R.layout.layout_person_of_movie_recycler
         const val LAYOUT_SIMILAR = R.layout.layout_similar_recycler
     }
 }
 
-interface DetailsInteractListener : BaseInteractListener {
+interface MovieDetailsInteractListener : BaseInteractListener {
     fun onClickGalleryItem()
     fun onClickSeeAllGallery()
-    fun onClickSeeAllActors()
-    fun onClickActorItem(id: Int)
+    fun onClickSeeAllPersons()
+    fun onClickPersonItem(id: Int)
     fun onClickSeeAllSimilar()
 }

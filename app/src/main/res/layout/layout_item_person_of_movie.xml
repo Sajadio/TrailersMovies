@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.sajjadio.trailers.ui.details.DetailsInteractListener" />
+            type="com.sajjadio.trailers.ui.details.adapter.MovieDetailsInteractListener" />
 
         <variable
             name="imageSize"
@@ -23,11 +23,12 @@
         android:layout_height="@dimen/actor_card_height"
         android:layout_marginHorizontal="@dimen/normal_margin_size"
         android:layout_marginTop="@dimen/medium_margin_size"
+        android:onClick="@{() -> listener.onClickPersonItem(item.id)}"
         android:background="@color/background_color">
 
 
         <androidx.constraintlayout.utils.widget.ImageFilterView
-            android:id="@+id/actorsPoster"
+            android:id="@+id/personPoster"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x_x_large_size"
             android:contentDescription="@string/app_name"
@@ -44,7 +45,7 @@
             android:text="@{item.original_name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/actorsPoster"
+            app:layout_constraintTop_toBottomOf="@+id/personPoster"
             tools:text="Actor" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

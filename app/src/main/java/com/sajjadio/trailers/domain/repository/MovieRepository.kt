@@ -5,6 +5,7 @@ import com.sajjadio.trailers.data.model.genre.Genre
 import com.sajjadio.trailers.data.model.movie.actorsmovie.ActorsMovie
 import com.sajjadio.trailers.data.model.movie.common.CommonResultDto
 import com.sajjadio.trailers.data.model.movie.genremovie.MovieResult
+import com.sajjadio.trailers.data.model.movie.person.PersonDto
 import com.sajjadio.trailers.data.model.movie.search.SearchResult
 import com.sajjadio.trailers.data.model.movie.video.VideoMovie
 import com.sajjadio.trailers.domain.model.Cast
@@ -15,6 +16,7 @@ import com.sajjadio.trailers.domain.model.Poster
 import com.sajjadio.trailers.domain.model.TrendMovie
 import com.sajjadio.trailers.utils.NetworkStatus
 import kotlinx.coroutines.flow.Flow
+import retrofit2.Response
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -31,7 +33,10 @@ interface MovieRepository {
         movieId: Int?,
     ): Flow<NetworkStatus<List<Poster>?>>
 
-    suspend fun getActors(id: Int?): Flow<NetworkStatus<List<Cast>?>>
+    suspend fun getActorsOfMovie(id: Int?): Flow<NetworkStatus<List<Cast>?>>
+
+    fun getPersonById(personId: Int?, ): Flow<NetworkStatus<PersonDto>>
+
     suspend fun getSimilar(id: Int?, page: Int): Flow<NetworkStatus<List<CommonResult>?>>
     suspend fun getMovieTrailer(id: Int?): Flow<NetworkStatus<VideoMovie?>>
 

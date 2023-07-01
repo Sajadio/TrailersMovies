@@ -44,15 +44,15 @@
         <action
             android:id="@+id/action_detailsFragment_to_similarFragment"
             app:destination="@id/similarFragment" />
-        <action
-            android:id="@+id/action_detailsFragment_to_actorsFragment"
-            app:destination="@id/actorsFragment" />
         <argument
             android:name="movieId"
             app:argType="integer" />
         <action
             android:id="@+id/action_detailsFragment_self"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_detailsFragment_to_personFragment"
+            app:destination="@id/personFragment" />
     </fragment>
 
     <fragment
@@ -71,13 +71,13 @@
     </fragment>
 
     <fragment
-        android:id="@+id/actorsFragment"
-        android:name="com.sajjadio.trailers.ui.actors.ActorsFragment"
-        android:label="ActorsFragment"
-        tools:layout="@layout/fragment_actors">
-        <action
-            android:id="@+id/action_actorsFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+        android:id="@+id/personFragment"
+        android:name="com.sajjadio.trailers.ui.person.PersonFragment"
+        android:label="PersonFragment"
+        tools:layout="@layout/fragment_person">
+        <argument
+            android:name="personId"
+            app:argType="integer" />
     </fragment>
 
     <fragment

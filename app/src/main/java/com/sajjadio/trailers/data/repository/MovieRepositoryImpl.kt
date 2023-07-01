@@ -11,6 +11,7 @@ import com.sajjadio.trailers.data.mapper.mapMovieDetailsDtoTo
 import com.sajjadio.trailers.data.mapper.mapTrendMovieDtoTo
 import com.sajjadio.trailers.data.model.movie.common.CommonResultDto
 import com.sajjadio.trailers.data.model.movie.genremovie.MovieResult
+import com.sajjadio.trailers.data.model.movie.person.PersonDto
 import com.sajjadio.trailers.data.model.movie.search.SearchResult
 import com.sajjadio.trailers.data.remote.MovieApiService
 import com.sajjadio.trailers.data.paging.ComingPagingSource
@@ -99,9 +100,15 @@ class MovieRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getActors(id: Int?): Flow<NetworkStatus<List<Cast>?>> {
-        return wrapper({ movieApi.getActors(id) }) { actors ->
+    override suspend fun getActorsOfMovie(id: Int?): Flow<NetworkStatus<List<Cast>?>> {
+        return wrapper({ movieApi.getActorsOfMovie(id) }) { actors ->
             actors.cast?.let { castDto -> mapActorDtoTo(castDto) }
+        }
+    }
+
+    override fun getPersonById(personId: Int?): Flow<NetworkStatus<PersonDto>> {
+        return wrapWithFlow {
+            movieApi.getPersonById(personId)
         }
     }
 

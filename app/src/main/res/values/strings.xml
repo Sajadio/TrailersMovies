@@ -14,7 +14,7 @@
     <string name="movies">Movies</string>
     <string name="home">Home</string>
     <string name="menu">Menu</string>
-    <string name="actors">Actors</string>
+    <string name="persons">Persons</string>
     <string name="similar">Similar</string>
     <string name="gallery">Gallery</string>
     <string name="seeAll">See all</string>
@@ -47,4 +47,5 @@
     <string name="history">History</string>
     <string name="try_another_keyword">Try another keyword</string>
     <string name="story">Story</string>
+    <string name="bio">Bio</string>
 </resources>

@@ -62,4 +62,30 @@
         <item name="android:scaleType">centerCrop</item>
     </style>
 
+    <style name="GalleryCard">
+        <item name="android:layout_width">@dimen/gallery_card_width</item>
+        <item name="android:layout_height">@dimen/gallery_card_height</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:layout_marginTop">@dimen/medium_margin_size</item>
+        <item name="android:layout_marginBottom">@dimen/normal_margin_size</item>
+        <item name="android:layout_marginHorizontal">@dimen/normal_margin_size</item>
+        <item name="android:clickable">true</item>
+        <item name="roundPercent">0.11</item>
+        <item name="layout_constraintDimensionRatio">9:16</item>
+    </style>
+
+    <style name="MovieRecyclerOfDetails">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingHorizontal">@dimen/normal_padding_size</item>
+        <item name="layoutManager">androidx.recyclerview.widget.LinearLayoutManager</item>
+        <item name="layout_constraintTop_toBottomOf">@+id/textViewHeader</item>
+    </style>
+
+    <style name="GalleryRecyclerOfDetails" parent="MovieRecyclerOfDetails"/>
+
+    <style name="PersonRecyclerOfMovieDetails" parent="MovieRecyclerOfDetails"/>
+
 </resources>

@@ -8,21 +8,21 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sajjadio.trailers.R
-import com.sajjadio.trailers.data.model.movie.actors.CastDto
 import com.sajjadio.trailers.databinding.FragmentDetailsBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.ui.details.utils.DestinationType
+import com.sajjadio.trailers.ui.details.adapter.MovieDetailsAdapter
+import com.sajjadio.trailers.ui.details.utils.MovieDetailsDestinationType
 import com.sajjadio.trailers.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class DetailsFragment :
-    BaseFragment<FragmentDetailsBinding, DetailsViewModel>(R.layout.fragment_details) {
+    BaseFragment<FragmentDetailsBinding, MovieDetailsViewModel>(R.layout.fragment_details) {
 
     override val LOG_TAG: String = this::class.java.simpleName
-    override val viewModelClass = DetailsViewModel::class.java
-    private val args :DetailsFragmentArgs by navArgs()
+    override val viewModelClass = MovieDetailsViewModel::class.java
+    private val args: DetailsFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,7 +31,7 @@ class DetailsFragment :
     }
 
     private fun setupDetailsRecyclerView() {
-        binding.recyclerViewDetails.adapter = DetailsAdapter(viewModel).apply {
+        binding.recyclerViewDetails.adapter = MovieDetailsAdapter(viewModel).apply {
             viewModel.responseDetailsData.observe(viewLifecycleOwner) {
                 it.data?.let { it1 -> addNestedItem(it1) }
             }
@@ -44,27 +44,31 @@ class DetailsFragment :
         }
     }
 
-    private fun checkDestinationType(destinationType: DestinationType) {
-        when (destinationType) {
-            is DestinationType.ActorItem ->
+    private fun checkDestinationType(movieDetailsDestinationType: MovieDetailsDestinationType) {
+        when (movieDetailsDestinationType) {
+            is MovieDetailsDestinationType.PersonItem ->
                 navigateToAnotherDestination(
-                    DetailsFragmentDirections.actionDetailsFragmentSelf(destinationType.id)
+                    DetailsFragmentDirections.actionDetailsFragmentToPersonFragment(
+                        movieDetailsDestinationType.personId
+                    )
                 )
 
-            is DestinationType.SimilarItem ->
+            is MovieDetailsDestinationType.SimilarItem ->
                 navigateToAnotherDestination(
-                    DetailsFragmentDirections.actionDetailsFragmentSelf(destinationType.id)
+                    DetailsFragmentDirections.actionDetailsFragmentSelf(movieDetailsDestinationType.movieId)
                 )
 
-            DestinationType.Actors ->
-                navigateToAnotherDestination(
-                    DetailsFragmentDirections.actionDetailsFragmentToActorsFragment()
-                )
-
-            is DestinationType.Similar ->
+            is MovieDetailsDestinationType.Similar ->
                 navigateToAnotherDestination(
                     DetailsFragmentDirections.actionDetailsFragmentToSimilarFragment(args.movieId)
                 )
+
+            MovieDetailsDestinationType.Galleries -> {}
+            MovieDetailsDestinationType.GalleryItem -> {
+
+            }
+
+            MovieDetailsDestinationType.Persons -> {}
         }
     }
 

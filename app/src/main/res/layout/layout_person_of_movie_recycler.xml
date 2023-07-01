@@ -7,11 +7,11 @@
 
         <variable
             name="adapter"
-            type="com.sajjadio.trailers.ui.details.adapter.ActorsAdapter" />
+            type="com.sajjadio.trailers.ui.details.adapter.PersonOfMovieAdapter" />
 
         <variable
             name="listener"
-            type="com.sajjadio.trailers.ui.details.DetailsInteractListener" />
+            type="com.sajjadio.trailers.ui.details.adapter.MovieDetailsInteractListener" />
 
     </data>
 
@@ -24,29 +24,20 @@
         <include
             android:id="@+id/include"
             layout="@layout/layout_header_text"
-            app:header="@{@string/actors}" />
+            app:header="@{@string/persons}" />
 
         <include
             layout="@layout/layout_see_all_text"
             android:clickable="true"
-            android:onClick="@{() -> listener.onClickSeeAllActors()}" />
+            android:onClick="@{() -> listener.onClickSeeAllPersons()}" />
 
         <androidx.recyclerview.widget.RecyclerView
+            style="@style/PersonRecyclerOfMovieDetails"
             android:id="@+id/recyclerViewActors"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:adapter="@{adapter}"
-            android:clipToPadding="false"
-            android:orientation="horizontal"
-            android:paddingStart="@dimen/normal_padding_size"
-            android:paddingEnd="@dimen/normal_padding_size"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/include"
             tools:ignore="RtlSymmetry"
-            tools:listitem="@layout/layout_item_actors" />
+            tools:listitem="@layout/layout_item_person_of_movie" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

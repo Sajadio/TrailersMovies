@@ -1,11 +1,11 @@
 package com.sajjadio.trailers.ui.details
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.sajjadio.trailers.data.model.movie.video.VideoMovie
 import com.sajjadio.trailers.domain.repository.MovieRepository
-import com.sajjadio.trailers.ui.details.utils.DestinationType
-import com.sajjadio.trailers.ui.details.utils.DetailsItem
+import com.sajjadio.trailers.ui.details.adapter.MovieDetailsInteractListener
+import com.sajjadio.trailers.ui.details.utils.MovieDetailsDestinationType
+import com.sajjadio.trailers.ui.details.utils.MovieDetailsItem
 import com.sajjadio.trailers.utils.Event
 import com.sajjadio.trailers.utils.NetworkStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,20 +13,20 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailsViewModel @Inject constructor(
+class MovieDetailsViewModel @Inject constructor(
     private val movieRepo: MovieRepository,
     savedStateHandle: SavedStateHandle
-) : ViewModel(), DetailsInteractListener {
+) : ViewModel(), MovieDetailsInteractListener {
 
     private var _playVideo = MutableLiveData<NetworkStatus<VideoMovie?>>()
     val playVideo: LiveData<NetworkStatus<VideoMovie?>> = _playVideo
 
-    private var _responseDetailsData = MutableLiveData<NetworkStatus<List<DetailsItem>>>()
-    var responseDetailsData: LiveData<NetworkStatus<List<DetailsItem>>> = _responseDetailsData
-    private val detailsData = mutableListOf<DetailsItem>()
+    private var _responseDetailsData = MutableLiveData<NetworkStatus<List<MovieDetailsItem>>>()
+    var responseDetailsData: LiveData<NetworkStatus<List<MovieDetailsItem>>> = _responseDetailsData
+    private val detailsData = mutableListOf<MovieDetailsItem>()
 
-    private val _clickItemEvent = MutableLiveData<Event<DestinationType>>()
-    val clickItemEvent: LiveData<Event<DestinationType>> = _clickItemEvent
+    private val _clickItemEvent = MutableLiveData<Event<MovieDetailsDestinationType>>()
+    val clickItemEvent: LiveData<Event<MovieDetailsDestinationType>> = _clickItemEvent
 
     private val movieId: Int = checkNotNull(savedStateHandle["movieId"])
 
@@ -41,7 +41,7 @@ class DetailsViewModel @Inject constructor(
                 movieRepo.getMovieDetails(movieId).collect { state ->
                     state.takeIf { it is NetworkStatus.Success }?.let {
                         it.data?.let { data ->
-                            detailsData.add(DetailsItem.MovieItem(data))
+                            detailsData.add(MovieDetailsItem.MovieItem(data))
                             _responseDetailsData.postValue(NetworkStatus.Success(detailsData))
                             getActorsByMovieId(data.id)
                             getImageOfMovieById(movieId)
@@ -59,7 +59,7 @@ class DetailsViewModel @Inject constructor(
             movieRepo.getImagesOfMovieById(movieId).collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
                     it.data?.let { data ->
-                        detailsData.add(DetailsItem.GalleryItem(data))
+                        detailsData.add(MovieDetailsItem.GalleryItem(data))
                         _responseDetailsData.postValue(NetworkStatus.Success(detailsData))
                     }
                 }
@@ -69,10 +69,10 @@ class DetailsViewModel @Inject constructor(
 
     private fun getActorsByMovieId(id: Int) {
         viewModelScope.launch {
-            movieRepo.getActors(id).collect { state ->
+            movieRepo.getActorsOfMovie(id).collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
                     it.data?.let { data ->
-                        detailsData.add(DetailsItem.ActorItem(data))
+                        detailsData.add(MovieDetailsItem.PersonOfMovieItem(data))
                         _responseDetailsData.postValue(NetworkStatus.Success(detailsData))
                     }
                 }
@@ -85,7 +85,7 @@ class DetailsViewModel @Inject constructor(
             movieRepo.getSimilar(id, PAGE_NUMBER).collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
                     it.data?.let { data ->
-                        detailsData.add(DetailsItem.SimilarItem(data))
+                        detailsData.add(MovieDetailsItem.SimilarItemMovie(data))
                         _responseDetailsData.postValue(NetworkStatus.Success(detailsData))
                     }
                 }
@@ -102,27 +102,27 @@ class DetailsViewModel @Inject constructor(
     }
 
     override fun onClickSeeAllGallery() {
-        _clickItemEvent.postValue(Event(DestinationType.Gallery))
+        _clickItemEvent.postValue(Event(MovieDetailsDestinationType.Galleries))
     }
 
     override fun onClickGalleryItem() {
-        _clickItemEvent.postValue(Event(DestinationType.GalleryItem))
+        _clickItemEvent.postValue(Event(MovieDetailsDestinationType.GalleryItem))
     }
 
-    override fun onClickSeeAllActors() {
-        _clickItemEvent.postValue(Event(DestinationType.Actors))
+    override fun onClickSeeAllPersons() {
+        _clickItemEvent.postValue(Event(MovieDetailsDestinationType.Persons))
     }
 
-    override fun onClickActorItem(id: Int) {
-        _clickItemEvent.postValue(Event(DestinationType.ActorItem(id)))
+    override fun onClickPersonItem(id: Int) {
+        _clickItemEvent.postValue(Event(MovieDetailsDestinationType.PersonItem(id)))
     }
 
 
     override fun onClickSeeAllSimilar() {
-        _clickItemEvent.postValue(Event(DestinationType.Similar))
+        _clickItemEvent.postValue(Event(MovieDetailsDestinationType.Similar))
     }
     override fun onClickItem(id: Int) {
-        _clickItemEvent.postValue(Event(DestinationType.SimilarItem(id)))
+        _clickItemEvent.postValue(Event(MovieDetailsDestinationType.SimilarItem(id)))
     }
 
     private companion object {

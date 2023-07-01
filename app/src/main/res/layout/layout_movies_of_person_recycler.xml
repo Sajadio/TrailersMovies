@@ -7,11 +7,11 @@
 
         <variable
             name="adapter"
-            type="com.sajjadio.trailers.ui.details.adapter.SimilarAdapter" />
+            type="com.sajjadio.trailers.ui.person.adapter.MoviesOfPersonAdapter" />
 
         <variable
             name="listener"
-            type="com.sajjadio.trailers.ui.details.adapter.MovieDetailsInteractListener" />
+            type="com.sajjadio.trailers.ui.person.adapter.PersonDetailsInteractListener" />
 
     </data>
 
@@ -23,12 +23,12 @@
 
         <include
             layout="@layout/layout_header_text"
-            app:header="@{@string/similar}" />
+            app:header="@{@string/movies}" />
 
         <include
             layout="@layout/layout_see_all_text"
             android:clickable="true"
-            android:onClick="@{() -> listener.onClickSeeAllSimilar()}" />
+            android:onClick="@{() -> listener.onClickSeeAllMovies()}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewSimilar"

@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.sajjadio.trailers.ui.details.DetailsInteractListener" />
+            type="com.sajjadio.trailers.ui.person.adapter.PersonDetailsInteractListener" />
 
 
         <variable
@@ -21,17 +21,9 @@
     </data>
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
-        android:layout_width="@dimen/gallery_card_width"
-        android:layout_height="@dimen/gallery_card_height"
-        android:clickable="true"
-        app:roundPercent="0.11"
-        android:layout_marginBottom="@dimen/normal_margin_size"
-        android:layout_marginTop="@dimen/medium_margin_size"
-        android:layout_marginHorizontal="@dimen/normal_margin_size"
-        app:layout_constraintDimensionRatio="9:16"
-        android:scaleType="centerCrop"
+        style="@style/GalleryCard"
         android:onClick="@{() -> listener.onClickGalleryItem()}"
-        app:imageSize="@{imageSize.IMAGE_Size_300}"
+        app:imageSize="@{imageSize.IMAGE_Size_780}"
         app:imageUrl="@{item.filePath}"
         tools:src="@drawable/ic_launcher_background" />
 </layout>
