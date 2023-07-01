@@ -82,6 +82,8 @@
     <dimen name="button_size">48dp</dimen>
 
     <dimen name="card_radius_size">@dimen/normal_margin_size</dimen>
+    <dimen name="dialog_image_width">500dp</dimen>
+    <dimen name="dialog_image_height">700dp</dimen>
 
 
 </resources>

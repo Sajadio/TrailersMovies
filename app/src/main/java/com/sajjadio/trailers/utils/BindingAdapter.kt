@@ -1,26 +1,30 @@
 package com.sajjadio.trailers.utils
 
 import android.content.Context
-import android.os.Build
+import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
+import android.os.Environment
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.sajjadio.trailers.R
 import com.sajjadio.trailers.data.model.movie.movie_details.Genre
 import com.sajjadio.trailers.ui.base.BaseAdapter
+import com.sajjadio.trailers.ui.person.adapter.PersonDetailsInteractListener
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 
 @BindingAdapter(value = ["app:items"])
@@ -37,17 +41,17 @@ fun loading(progress: ProgressBar, state: NetworkStatus<Any>?) {
 }
 
 @BindingAdapter(value = ["app:customWidth"])
-fun setWidth(view: View, widthInDp:Int?) {
+fun setWidth(view: View, widthInDp: Int?) {
     widthInDp?.let {
-       val layoutParams = view.layoutParams
-       val widthInPx = widthInDp.convertDpToPx(view.context)
-       layoutParams.width = widthInPx
-       view.layoutParams = layoutParams
-   }
+        val layoutParams = view.layoutParams
+        val widthInPx = widthInDp.convertDpToPx(view.context)
+        layoutParams.width = widthInPx
+        view.layoutParams = layoutParams
+    }
 }
 
 @BindingAdapter(value = ["app:customHeight"])
-fun setHeight(view: View, heightInDp:Int?) {
+fun setHeight(view: View, heightInDp: Int?) {
     heightInDp?.let {
         val layoutParams = view.layoutParams
         val widthInPx = heightInDp.convertDpToPx(view.context)
@@ -110,5 +114,26 @@ fun setDateText(textView: TextView, date: String?) {
     if (date != null) {
         val formattedDate = date.replace("-", ".")
         textView.text = formattedDate
+    }
+}
+
+@BindingAdapter(
+    value = [
+        "app:largeImage",
+        "app:largeImageSize",
+        "app:onClickDownloadImage"
+    ]
+)
+fun openLargeImage(
+    imageView: ImageView,
+    imageUrl: String,
+    imageSize: String,
+    onClickDownloadImage:PersonDetailsInteractListener
+) {
+    imageView.setOnClickListener { view ->
+        val context = view.context
+        context.openLargeImageInDialog(imageUrl, imageSize){
+            onClickDownloadImage.onClickDownloadImage(it)
+        }
     }
 }

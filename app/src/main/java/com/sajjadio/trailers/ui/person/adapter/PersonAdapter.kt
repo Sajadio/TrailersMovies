@@ -1,7 +1,9 @@
 package com.sajjadio.trailers.ui.person.adapter
 
 import android.annotation.SuppressLint
+import android.graphics.Bitmap
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.sajjadio.trailers.BR
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.domain.model.CommonResult
@@ -91,4 +93,6 @@ interface PersonDetailsInteractListener : BaseInteractListener{
     fun onClickSeeAllGallery()
     fun onClickMovieItem(id: Int)
     fun onClickSeeAllMovies()
+
+    fun onClickDownloadImage(bitmap: Bitmap)
 }
