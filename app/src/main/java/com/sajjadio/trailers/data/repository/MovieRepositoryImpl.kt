@@ -6,13 +6,13 @@ import androidx.paging.PagingData
 import com.sajjadio.trailers.data.mapper.mapPersonOfMovieDtoToPersonOfMovie
 import com.sajjadio.trailers.data.mapper.mapCommonDtoToCommon
 import com.sajjadio.trailers.data.mapper.mapCommonResultDtoToCommonResult
-import com.sajjadio.trailers.data.mapper.mapImagesDtoToImages
+import com.sajjadio.trailers.data.mapper.mapImagesOfMovieDtoToImagesOfMovie
+import com.sajjadio.trailers.data.mapper.mapImagesOfPersonDtoToImagesOfPerson
 import com.sajjadio.trailers.data.mapper.mapMovieDetailsDtoToMovieDetails
 import com.sajjadio.trailers.data.mapper.mapPersonDtoToPerson
 import com.sajjadio.trailers.data.mapper.mapTrendMovieDtoToTrendMoive
 import com.sajjadio.trailers.data.model.movie.common.CommonResultDto
 import com.sajjadio.trailers.data.model.movie.genremovie.MovieResult
-import com.sajjadio.trailers.data.model.movie.person.PersonDto
 import com.sajjadio.trailers.data.model.movie.search.SearchResult
 import com.sajjadio.trailers.data.remote.MovieApiService
 import com.sajjadio.trailers.data.paging.ComingPagingSource
@@ -27,6 +27,7 @@ import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.domain.model.Person
 import com.sajjadio.trailers.domain.model.Poster
+import com.sajjadio.trailers.domain.model.Profile
 import com.sajjadio.trailers.domain.model.TrendMovie
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.utils.Constant
@@ -98,7 +99,13 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getImagesOfMovieById(movieId: Int?): Flow<NetworkStatus<List<Poster>?>> {
         return wrapper({ movieApi.getImagesOfMovieById(movieId) }) { imageDto ->
-            mapImagesDtoToImages(imageDto.posters)
+            mapImagesOfMovieDtoToImagesOfMovie(imageDto.posters)
+        }
+    }
+
+    override suspend fun getImagesOfPersonById(personId: Int?): Flow<NetworkStatus<List<Profile>?>> {
+        return wrapper({ movieApi.getImagesOfPersonById(personId) }) { imageDto ->
+            mapImagesOfPersonDtoToImagesOfPerson(imageDto.profileDto)
         }
     }
 

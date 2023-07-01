@@ -1,5 +1,6 @@
 package com.sajjadio.trailers.ui.person
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.ui.person.adapter.PersonDetailsInteractListener
@@ -17,8 +18,10 @@ class PersonViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel(), PersonDetailsInteractListener {
 
-    private var _responsePersonDetailsData = MutableLiveData<NetworkStatus<List<PersonDetailsItem>>>()
-    var responsePersonDetailsData: LiveData<NetworkStatus<List<PersonDetailsItem>>> = _responsePersonDetailsData
+    private var _responsePersonDetailsData =
+        MutableLiveData<NetworkStatus<List<PersonDetailsItem>>>()
+    var responsePersonDetailsData: LiveData<NetworkStatus<List<PersonDetailsItem>>> =
+        _responsePersonDetailsData
     private val personDetailsData = mutableListOf<PersonDetailsItem>()
 
     private val _clickItemEvent = MutableLiveData<Event<PersonDetailsDestinationType>>()
@@ -38,7 +41,11 @@ class PersonViewModel @Inject constructor(
                     state.takeIf { it is NetworkStatus.Success }?.let {
                         it.data?.let { data ->
                             personDetailsData.add(PersonDetailsItem.PersonItem(data))
-                            _responsePersonDetailsData.postValue(NetworkStatus.Success(personDetailsData))
+                            _responsePersonDetailsData.postValue(
+                                NetworkStatus.Success(
+                                    personDetailsData
+                                )
+                            )
                             getImageOfPersonById(personId)
                             getMoviesOfPerson(data.id)
                         }
@@ -50,7 +57,7 @@ class PersonViewModel @Inject constructor(
 
     private fun getImageOfPersonById(personId: Int) {
         viewModelScope.launch {
-            movieRepo.getImagesOfMovieById(personId).collect { state ->
+            movieRepo.getImagesOfPersonById(personId).collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
                     it.data?.let { data ->
                         personDetailsData.add(PersonDetailsItem.GalleryOFPersonItem(data))

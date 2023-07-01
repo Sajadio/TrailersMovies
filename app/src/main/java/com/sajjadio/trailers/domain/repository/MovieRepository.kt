@@ -14,6 +14,7 @@ import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.domain.model.Person
 import com.sajjadio.trailers.domain.model.Poster
+import com.sajjadio.trailers.domain.model.Profile
 import com.sajjadio.trailers.domain.model.TrendMovie
 import com.sajjadio.trailers.utils.NetworkStatus
 import kotlinx.coroutines.flow.Flow
@@ -33,6 +34,10 @@ interface MovieRepository {
     suspend fun getImagesOfMovieById(
         movieId: Int?,
     ): Flow<NetworkStatus<List<Poster>?>>
+
+    suspend fun getImagesOfPersonById(
+        personId: Int?,
+    ): Flow<NetworkStatus<List<Profile>?>>
 
     suspend fun getPersonOfMovieById(id: Int?): Flow<NetworkStatus<List<Cast>?>>
 

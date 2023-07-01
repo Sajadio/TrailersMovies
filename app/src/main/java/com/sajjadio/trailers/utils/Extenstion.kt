@@ -122,5 +122,8 @@ fun isNetworkAvailable(context: Context): Boolean {
     }
 }
 
-
+fun Int.convertDpToPx(context: Context): Int {
+    val density = context.resources.displayMetrics.density
+    return (this * density).toInt()
+}
 

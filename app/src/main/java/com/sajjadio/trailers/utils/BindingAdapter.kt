@@ -1,5 +1,6 @@
 package com.sajjadio.trailers.utils
 
+import android.content.Context
 import android.os.Build
 import android.view.View
 import android.view.View.INVISIBLE
@@ -32,6 +33,26 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
 fun loading(progress: ProgressBar, state: NetworkStatus<Any>?) {
     state?.let {
         progress.isVisible = (it is NetworkStatus.Loading)
+    }
+}
+
+@BindingAdapter(value = ["app:customWidth"])
+fun setWidth(view: View, widthInDp:Int?) {
+    widthInDp?.let {
+       val layoutParams = view.layoutParams
+       val widthInPx = widthInDp.convertDpToPx(view.context)
+       layoutParams.width = widthInPx
+       view.layoutParams = layoutParams
+   }
+}
+
+@BindingAdapter(value = ["app:customHeight"])
+fun setHeight(view: View, heightInDp:Int?) {
+    heightInDp?.let {
+        val layoutParams = view.layoutParams
+        val widthInPx = heightInDp.convertDpToPx(view.context)
+        layoutParams.height = widthInPx
+        view.layoutParams = layoutParams
     }
 }
 
