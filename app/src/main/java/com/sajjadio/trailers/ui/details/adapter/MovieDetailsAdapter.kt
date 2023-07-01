@@ -7,7 +7,7 @@ import com.sajjadio.trailers.R
 import com.sajjadio.trailers.domain.model.Cast
 import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.model.CommonResult
-import com.sajjadio.trailers.domain.model.Poster
+import com.sajjadio.trailers.domain.model.Image
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
 import com.sajjadio.trailers.ui.details.utils.MovieDetailsItem
@@ -44,7 +44,7 @@ class MovieDetailsAdapter(
                 holder as ItemViewHolder,
                 currentItem.movieDetails
             )
-            is MovieDetailsItem.GalleryItem -> bindGalleryItem(holder as ItemViewHolder, currentItem.poster)
+            is MovieDetailsItem.GalleryItem -> bindGalleryItem(holder as ItemViewHolder, currentItem.image)
             is MovieDetailsItem.PersonOfMovieItem -> bindPersonItem(holder as ItemViewHolder, currentItem.person)
             is MovieDetailsItem.SimilarItemMovie -> bindSimilarItem(
                 holder as ItemViewHolder,
@@ -57,7 +57,7 @@ class MovieDetailsAdapter(
         holder.binding.setVariable(BR.item, item)
     }
 
-    private fun bindGalleryItem(holder: ItemViewHolder, items: List<Poster>) {
+    private fun bindGalleryItem(holder: ItemViewHolder, items: List<Image>) {
         holder.binding.apply {
             setVariable(BR.adapter, GalleryOdMovieAdapter(items, listener))
             setVariable(BR.listener, listener)

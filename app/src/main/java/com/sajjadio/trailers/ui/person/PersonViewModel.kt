@@ -70,7 +70,7 @@ class PersonViewModel @Inject constructor(
 
     private fun getMoviesOfPerson(id: Int?) {
         viewModelScope.launch {
-            movieRepo.getSimilar(id, PAGE_NUMBER).collect { state ->
+            movieRepo.getMoviesOfPersonById(id).collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
                     it.data?.let { data ->
                         personDetailsData.add(PersonDetailsItem.MoviesOfPersonItem(data))
@@ -100,9 +100,5 @@ class PersonViewModel @Inject constructor(
 
     override fun onClickItem(id: Int) {
         _clickItemEvent.postValue(Event(PersonDetailsDestinationType.MovieItem(id)))
-    }
-
-    private companion object {
-        const val PAGE_NUMBER = 1
     }
 }

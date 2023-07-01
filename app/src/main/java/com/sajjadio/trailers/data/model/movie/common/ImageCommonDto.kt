@@ -1,9 +1,9 @@
-package com.sajjadio.trailers.data.model.movie.person
+package com.sajjadio.trailers.data.model.movie.common
 
 
 import com.google.gson.annotations.SerializedName
 
-data class ProfileDto(
+data class ImageCommonDto(
     @SerializedName("aspect_ratio")
     val aspectRatio: Double?,
     @SerializedName("file_path")
@@ -11,7 +11,7 @@ data class ProfileDto(
     @SerializedName("height")
     val height: Int?,
     @SerializedName("iso_639_1")
-    val iso6391: Any?,
+    val iso6391: String?,
     @SerializedName("vote_average")
     val voteAverage: Double?,
     @SerializedName("vote_count")

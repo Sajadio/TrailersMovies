@@ -6,8 +6,7 @@ import androidx.paging.PagingData
 import com.sajjadio.trailers.data.mapper.mapPersonOfMovieDtoToPersonOfMovie
 import com.sajjadio.trailers.data.mapper.mapCommonDtoToCommon
 import com.sajjadio.trailers.data.mapper.mapCommonResultDtoToCommonResult
-import com.sajjadio.trailers.data.mapper.mapImagesOfMovieDtoToImagesOfMovie
-import com.sajjadio.trailers.data.mapper.mapImagesOfPersonDtoToImagesOfPerson
+import com.sajjadio.trailers.data.mapper.mapImagesDtoToImages
 import com.sajjadio.trailers.data.mapper.mapMovieDetailsDtoToMovieDetails
 import com.sajjadio.trailers.data.mapper.mapPersonDtoToPerson
 import com.sajjadio.trailers.data.mapper.mapTrendMovieDtoToTrendMoive
@@ -26,8 +25,7 @@ import com.sajjadio.trailers.domain.model.Common
 import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.domain.model.Person
-import com.sajjadio.trailers.domain.model.Poster
-import com.sajjadio.trailers.domain.model.Profile
+import com.sajjadio.trailers.domain.model.Image
 import com.sajjadio.trailers.domain.model.TrendMovie
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.utils.Constant
@@ -97,15 +95,21 @@ class MovieRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getImagesOfMovieById(movieId: Int?): Flow<NetworkStatus<List<Poster>?>> {
+    override suspend fun getImagesOfMovieById(movieId: Int?): Flow<NetworkStatus<List<Image>?>> {
         return wrapper({ movieApi.getImagesOfMovieById(movieId) }) { imageDto ->
-            mapImagesOfMovieDtoToImagesOfMovie(imageDto.posters)
+            mapImagesDtoToImages(imageDto.images)
         }
     }
 
-    override suspend fun getImagesOfPersonById(personId: Int?): Flow<NetworkStatus<List<Profile>?>> {
+    override suspend fun getImagesOfPersonById(personId: Int?): Flow<NetworkStatus<List<Image>?>> {
         return wrapper({ movieApi.getImagesOfPersonById(personId) }) { imageDto ->
-            mapImagesOfPersonDtoToImagesOfPerson(imageDto.profileDto)
+            mapImagesDtoToImages(imageDto.profileDto)
+        }
+    }
+
+    override suspend fun getMoviesOfPersonById(personId: Int?): Flow<NetworkStatus<List<CommonResult>>> {
+        return wrapper({ movieApi.getMoviesOfPersonById(personId) }) { similar ->
+            mapCommonResultDtoToCommonResult(similar.cast)
         }
     }
 

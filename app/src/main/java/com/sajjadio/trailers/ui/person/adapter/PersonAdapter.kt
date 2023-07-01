@@ -6,7 +6,7 @@ import com.sajjadio.trailers.BR
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.domain.model.Person
-import com.sajjadio.trailers.domain.model.Profile
+import com.sajjadio.trailers.domain.model.Image
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
 import com.sajjadio.trailers.ui.person.utils.PersonDetailsItem
@@ -43,7 +43,7 @@ class PersonAdapter(
             }
 
             is PersonDetailsItem.GalleryOFPersonItem -> {
-                bindGalleryItem(holder as ItemViewHolder, currentItem.profile)
+                bindGalleryItem(holder as ItemViewHolder, currentItem.image)
             }
 
             is PersonDetailsItem.MoviesOfPersonItem -> {
@@ -56,7 +56,7 @@ class PersonAdapter(
         holder.binding.setVariable(BR.item, item)
     }
 
-    private fun bindGalleryItem(holder: ItemViewHolder, items: List<Profile>) {
+    private fun bindGalleryItem(holder: ItemViewHolder, items: List<Image>) {
         holder.binding.apply {
             setVariable(BR.adapter, GalleryOfPersonAdapter(items, listener))
             setVariable(BR.listener, listener)

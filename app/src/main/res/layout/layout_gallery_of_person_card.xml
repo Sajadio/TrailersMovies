@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.sajjadio.trailers.domain.model.Profile" />
+            type="com.sajjadio.trailers.domain.model.Image" />
 
         <variable
             name="listener"

@@ -5,7 +5,6 @@ import com.sajjadio.trailers.data.model.genre.Genre
 import com.sajjadio.trailers.data.model.movie.actorsmovie.ActorsMovie
 import com.sajjadio.trailers.data.model.movie.common.CommonResultDto
 import com.sajjadio.trailers.data.model.movie.genremovie.MovieResult
-import com.sajjadio.trailers.data.model.movie.person.PersonDto
 import com.sajjadio.trailers.data.model.movie.search.SearchResult
 import com.sajjadio.trailers.data.model.movie.video.VideoMovie
 import com.sajjadio.trailers.domain.model.Cast
@@ -13,14 +12,10 @@ import com.sajjadio.trailers.domain.model.Common
 import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.domain.model.Person
-import com.sajjadio.trailers.domain.model.Poster
-import com.sajjadio.trailers.domain.model.Profile
+import com.sajjadio.trailers.domain.model.Image
 import com.sajjadio.trailers.domain.model.TrendMovie
 import com.sajjadio.trailers.utils.NetworkStatus
 import kotlinx.coroutines.flow.Flow
-import retrofit2.Response
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface MovieRepository {
 
@@ -33,11 +28,15 @@ interface MovieRepository {
 
     suspend fun getImagesOfMovieById(
         movieId: Int?,
-    ): Flow<NetworkStatus<List<Poster>?>>
+    ): Flow<NetworkStatus<List<Image>?>>
 
     suspend fun getImagesOfPersonById(
         personId: Int?,
-    ): Flow<NetworkStatus<List<Profile>?>>
+    ): Flow<NetworkStatus<List<Image>?>>
+
+    suspend fun getMoviesOfPersonById(
+        personId: Int?,
+    ): Flow<NetworkStatus<List<CommonResult>>>
 
     suspend fun getPersonOfMovieById(id: Int?): Flow<NetworkStatus<List<Cast>?>>
 
