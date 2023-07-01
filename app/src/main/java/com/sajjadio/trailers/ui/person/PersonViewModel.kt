@@ -1,8 +1,6 @@
 package com.sajjadio.trailers.ui.person
 
 import android.graphics.Bitmap
-import android.util.Log
-import android.widget.ImageView
 import androidx.lifecycle.*
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.ui.person.adapter.PersonDetailsInteractListener
@@ -31,7 +29,7 @@ class PersonViewModel @Inject constructor(
 
     private val personId: Int = checkNotNull(savedStateHandle["personId"])
 
-     var imageUrl = MutableLiveData<Bitmap>()
+     var bitmap = MutableLiveData<Bitmap>()
 
     init {
         loadPersonData()
@@ -99,7 +97,7 @@ class PersonViewModel @Inject constructor(
     }
 
     override fun onClickDownloadImage(bitmap: Bitmap) {
-        imageUrl.postValue(bitmap)
+        this.bitmap.postValue(bitmap)
     }
 
     override fun onClickGalleryItem() {

@@ -3,15 +3,20 @@ package com.sajjadio.trailers.utils
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
+import android.content.ContentValues
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.net.Uri
 import android.os.Build
+import android.os.Environment
+import android.provider.MediaStore
 import android.view.View
 import android.view.Window
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -24,6 +29,9 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.snackbar.Snackbar
 import com.sajjadio.trailers.R
+import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
 import java.util.*
 
 
@@ -146,7 +154,7 @@ fun Context.openLargeImageInDialog(
     dialog.show()
 }
 
-fun Context.getBitmap(imageSize: String, imageUrl: String, onClickDownloadImage: (Bitmap) -> Unit) {
+private fun Context.getBitmap(imageSize: String, imageUrl: String, onClickDownloadImage: (Bitmap) -> Unit) {
     Glide.with(this)
         .asBitmap()
         .load(Constant.IMAGE_PATH + imageSize + imageUrl)
@@ -159,4 +167,32 @@ fun Context.getBitmap(imageSize: String, imageUrl: String, onClickDownloadImage:
                 // Do nothing
             }
         })
+}
+
+ fun Context.saveImageToStorage(bitmap: Bitmap) {
+    val imageName = "noo${System.currentTimeMillis()}.jpg"
+    var outputStream: OutputStream? = null
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        this.contentResolver?.also { resolver ->
+            val contentValues = ContentValues().apply {
+                put(MediaStore.MediaColumns.DISPLAY_NAME, imageName)
+                put(MediaStore.MediaColumns.MIME_TYPE, "image/jpg")
+                put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
+            }
+            val imageUri: Uri? =
+                resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+            outputStream = imageUri.let {
+                it?.let { it1 -> resolver.openOutputStream(it1) }
+            }
+        }
+    } else {
+        val imageDir =
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        val image = File(imageDir, imageName)
+        outputStream = FileOutputStream(image)
+    }
+    outputStream?.use {
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
+        Toast.makeText(this, "Downloaded", Toast.LENGTH_LONG).show()
+    }
 }

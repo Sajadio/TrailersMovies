@@ -3,16 +3,12 @@ package com.sajjadio.trailers.ui.person
 
 import android.content.ContentValues
 import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.transition.TransitionInflater
-import android.util.Log
 import android.view.View
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
@@ -24,6 +20,7 @@ import com.sajjadio.trailers.ui.details.DetailsFragmentArgs
 import com.sajjadio.trailers.ui.person.adapter.PersonAdapter
 import com.sajjadio.trailers.ui.person.utils.PersonDetailsDestinationType
 import com.sajjadio.trailers.utils.observeEvent
+import com.sajjadio.trailers.utils.saveImageToStorage
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.io.FileOutputStream
@@ -41,8 +38,8 @@ class PersonFragment :
         super.onViewCreated(view, savedInstanceState)
         setupDetailsRecyclerView()
         observeEventWhenClickItem()
-        viewModel.imageUrl.observe(viewLifecycleOwner) {
-            saveImageToStorage(it)
+        viewModel.bitmap.observe(viewLifecycleOwner) {
+            requireActivity().saveImageToStorage(it)
         }
     }
 
@@ -87,33 +84,5 @@ class PersonFragment :
 
     private fun navigateToAnotherDestination(action: NavDirections) {
         findNavController().navigate(action)
-    }
-
-    private fun saveImageToStorage(bitmap: Bitmap) {
-        val imageName = "noo${System.currentTimeMillis()}.jpg"
-        var outputStream: OutputStream? = null
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            requireActivity().contentResolver?.also { resolver ->
-                val contentValues = ContentValues().apply {
-                    put(MediaStore.MediaColumns.DISPLAY_NAME, imageName)
-                    put(MediaStore.MediaColumns.MIME_TYPE, "image/jpg")
-                    put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
-                }
-                val imageUri: Uri? =
-                    resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
-                outputStream = imageUri.let {
-                    it?.let { it1 -> resolver.openOutputStream(it1) }
-                }
-            }
-        } else {
-            val imageDir =
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-            val image = File(imageDir, imageName)
-            outputStream = FileOutputStream(image)
-        }
-        outputStream?.use {
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
-            Toast.makeText(requireContext(), "Downloaded", Toast.LENGTH_LONG).show()
-        }
     }
 }

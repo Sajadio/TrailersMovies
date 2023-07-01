@@ -29,6 +29,9 @@ class DetailsFragment :
         super.onViewCreated(view, savedInstanceState)
         setupDetailsRecyclerView()
         observeEventWhenClickItem()
+        viewModel.bitmap.observe(viewLifecycleOwner) {
+            requireActivity().saveImageToStorage(it)
+        }
     }
 
     private fun setupDetailsRecyclerView() {

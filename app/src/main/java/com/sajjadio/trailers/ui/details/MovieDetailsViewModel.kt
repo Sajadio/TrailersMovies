@@ -1,5 +1,6 @@
 package com.sajjadio.trailers.ui.details
 
+import android.graphics.Bitmap
 import androidx.lifecycle.*
 import com.sajjadio.trailers.data.model.movie.video.VideoMovie
 import com.sajjadio.trailers.domain.repository.MovieRepository
@@ -29,6 +30,10 @@ class MovieDetailsViewModel @Inject constructor(
     val clickItemEvent: LiveData<Event<MovieDetailsDestinationType>> = _clickItemEvent
 
     private val movieId: Int = checkNotNull(savedStateHandle["movieId"])
+
+    var bitmap = MutableLiveData<Bitmap>()
+
+
 
     init {
         loadMovieData()
@@ -121,6 +126,11 @@ class MovieDetailsViewModel @Inject constructor(
     override fun onClickSeeAllSimilar() {
         _clickItemEvent.postValue(Event(MovieDetailsDestinationType.Similar))
     }
+
+    override fun onClickDownloadImage(bitmap: Bitmap) {
+        this.bitmap.postValue(bitmap)
+    }
+
     override fun onClickItem(id: Int) {
         _clickItemEvent.postValue(Event(MovieDetailsDestinationType.SimilarItem(id)))
     }

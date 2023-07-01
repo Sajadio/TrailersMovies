@@ -24,6 +24,8 @@ import com.bumptech.glide.request.transition.Transition
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.sajjadio.trailers.data.model.movie.movie_details.Genre
 import com.sajjadio.trailers.ui.base.BaseAdapter
+import com.sajjadio.trailers.ui.base.BaseInteractListener
+import com.sajjadio.trailers.ui.details.adapter.MovieDetailsInteractListener
 import com.sajjadio.trailers.ui.person.adapter.PersonDetailsInteractListener
 import java.io.File
 import java.io.FileOutputStream
@@ -133,12 +135,19 @@ fun openLargeImage(
     imageView: ImageView,
     imageUrl: String,
     imageSize: String,
-    onClickDownloadImage:PersonDetailsInteractListener
+    listener:BaseInteractListener
 ) {
     imageView.setOnClickListener { view ->
         val context = view.context
         context.openLargeImageInDialog(imageUrl, imageSize){
-            onClickDownloadImage.onClickDownloadImage(it)
+            when(listener){
+               is PersonDetailsInteractListener ->{
+                   listener.onClickDownloadImage(it)
+               }
+                is MovieDetailsInteractListener ->{
+                    listener.onClickDownloadImage(it)
+                }
+            }
         }
     }
 }
