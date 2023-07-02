@@ -9,6 +9,9 @@
             name="item"
             type="com.sajjadio.trailers.domain.model.MovieDetails" />
 
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener" />
 
         <variable
             name="imageSize"
@@ -56,6 +59,7 @@
             android:layout_height="@dimen/button_size"
             android:layout_marginStart="@dimen/medium_margin_size"
             android:layout_marginTop="@dimen/medium_margin_size"
+            android:onClick="@{() -> listener.onclickBackButton()}"
             android:background="@drawable/rounded_clickable"
             android:src="@drawable/ic_arrow_left"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,6 +70,7 @@
             android:layout_width="@dimen/button_size"
             android:layout_height="@dimen/button_size"
             android:layout_marginEnd="@dimen/medium_margin_size"
+            android:onClick="@{() -> listener.onclickFavoriteButton(`item`)}"
             android:background="@drawable/rounded_clickable"
             android:src="@drawable/ic_large_fave"
             app:layout_constraintBottom_toBottomOf="@+id/imageButtonBack"

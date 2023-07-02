@@ -45,8 +45,17 @@ class MovieDetailsAdapter(
                 holder as ItemViewHolder,
                 currentItem.movieDetails
             )
-            is MovieDetailsItem.GalleryItem -> bindGalleryItem(holder as ItemViewHolder, currentItem.image)
-            is MovieDetailsItem.PersonOfMovieItem -> bindPersonItem(holder as ItemViewHolder, currentItem.person)
+
+            is MovieDetailsItem.GalleryItem -> bindGalleryItem(
+                holder as ItemViewHolder,
+                currentItem.image
+            )
+
+            is MovieDetailsItem.PersonOfMovieItem -> bindPersonItem(
+                holder as ItemViewHolder,
+                currentItem.person
+            )
+
             is MovieDetailsItem.SimilarItemMovie -> bindSimilarItem(
                 holder as ItemViewHolder,
                 currentItem.commonResult
@@ -55,11 +64,14 @@ class MovieDetailsAdapter(
     }
 
     private fun bindMovieItem(holder: ItemViewHolder, item: MovieDetails) {
-        holder.binding.setVariable(BR.item, item)
+        with(holder.binding) {
+            setVariable(BR.item, item)
+            setVariable(BR.listener, listener)
+        }
     }
 
     private fun bindGalleryItem(holder: ItemViewHolder, items: List<Image>) {
-        holder.binding.apply {
+        with(holder.binding) {
             setVariable(BR.adapter, GalleryOdMovieAdapter(items, listener))
             setVariable(BR.listener, listener)
         }
@@ -67,14 +79,14 @@ class MovieDetailsAdapter(
 
 
     private fun bindPersonItem(holder: ItemViewHolder, items: List<Cast>) {
-        holder.binding.apply {
+        with(holder.binding) {
             setVariable(BR.adapter, PersonOfMovieAdapter(items, listener))
             setVariable(BR.listener, listener)
         }
     }
 
     private fun bindSimilarItem(holder: ItemViewHolder, items: List<CommonResult>) {
-        holder.binding.apply {
+        with(holder.binding) {
             setVariable(BR.adapter, SimilarAdapter(items, listener))
             setVariable(BR.listener, listener)
         }
@@ -102,5 +114,7 @@ interface MovieDetailsInteractListener : BaseInteractListener {
     fun onClickPersonItem(id: Int)
     fun onClickSeeAllSimilar()
     fun onClickDownloadImage(bitmap: Bitmap)
+    fun onclickBackButton()
+    fun onclickFavoriteButton(item: String)
 
 }

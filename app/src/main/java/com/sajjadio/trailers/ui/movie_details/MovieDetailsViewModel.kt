@@ -121,6 +121,14 @@ class MovieDetailsViewModel @Inject constructor(
         this.bitmap.postValue(bitmap)
     }
 
+    override fun onclickBackButton() {
+        _clickItemEvent.postValue(Event(MovieDetailsDestinationType.BackButton))
+    }
+
+    override fun onclickFavoriteButton(item: String) {
+        _clickItemEvent.postValue(Event(MovieDetailsDestinationType.FavoriteItem(item)))
+    }
+
     override fun onClickItem(id: Int) {
         _clickItemEvent.postValue(Event(MovieDetailsDestinationType.SimilarItem(id)))
     }

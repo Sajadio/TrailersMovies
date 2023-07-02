@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
-import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sajjadio.trailers.R
@@ -47,12 +46,12 @@ class MovieDetailsFragment :
         }
     }
 
-    private fun checkDestinationType(movieDetailsDestinationType: MovieDetailsDestinationType) {
-        when (movieDetailsDestinationType) {
+    private fun checkDestinationType(destination: MovieDetailsDestinationType) {
+        when (destination) {
             is MovieDetailsDestinationType.PersonItem -> {
                 navigateToAnotherDestination(
                     MovieDetailsFragmentDirections.actionDetailsFragmentToPersonFragment(
-                        movieDetailsDestinationType.personId
+                        destination.personId
                     )
                 )
             }
@@ -60,7 +59,7 @@ class MovieDetailsFragment :
             is MovieDetailsDestinationType.SimilarItem ->
                 navigateToAnotherDestination(
                     MovieDetailsFragmentDirections.actionDetailsFragmentSelf(
-                        movieDetailsDestinationType.movieId
+                        destination.movieId
                     )
                 )
 
@@ -69,11 +68,17 @@ class MovieDetailsFragment :
                     MovieDetailsFragmentDirections.actionDetailsFragmentToSimilarFragment(args.movieId)
                 )
 
+            is MovieDetailsDestinationType.FavoriteItem -> {
+                log(destination.item)
+            }
+
             MovieDetailsDestinationType.Persons -> {
                 navigateToAnotherDestination(
                     MovieDetailsFragmentDirections.actionDetailsFragmentToPersonsFragment(args.movieId)
                 )
             }
+
+            MovieDetailsDestinationType.BackButton -> findNavController().popBackStack()
         }
     }
 

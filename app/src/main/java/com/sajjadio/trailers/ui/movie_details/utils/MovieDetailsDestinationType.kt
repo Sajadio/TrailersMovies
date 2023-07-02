@@ -5,4 +5,8 @@ sealed class MovieDetailsDestinationType {
     object Persons : MovieDetailsDestinationType()
     object Similar : MovieDetailsDestinationType()
     class SimilarItem(val movieId: Int) : MovieDetailsDestinationType()
+    object BackButton : MovieDetailsDestinationType()
+    class FavoriteItem(val item: String) : MovieDetailsDestinationType()
+
+
 }
