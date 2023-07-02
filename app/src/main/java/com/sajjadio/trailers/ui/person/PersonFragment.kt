@@ -1,15 +1,8 @@
 package com.sajjadio.trailers.ui.person
 
 
-import android.content.ContentValues
-import android.graphics.Bitmap
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
 import android.view.View
-import android.widget.Toast
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -22,9 +15,6 @@ import com.sajjadio.trailers.ui.person.utils.PersonDetailsDestinationType
 import com.sajjadio.trailers.utils.observeEvent
 import com.sajjadio.trailers.utils.saveImageToStorage
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.File
-import java.io.FileOutputStream
-import java.io.OutputStream
 
 @AndroidEntryPoint
 class PersonFragment :
@@ -57,27 +47,14 @@ class PersonFragment :
         }
     }
 
-    private fun checkDestinationType(personDetailsDestinationType: PersonDetailsDestinationType) {
-        when (personDetailsDestinationType) {
-
-            PersonDetailsDestinationType.Galleries -> {
-
-            }
-
-            PersonDetailsDestinationType.GalleryItem -> {
-
-            }
-
+    private fun checkDestinationType(destination: PersonDetailsDestinationType) {
+        when (destination) {
             PersonDetailsDestinationType.Movies -> {
-
             }
-
-            PersonDetailsDestinationType.PersonsDetails -> {
-
-            }
-
             is PersonDetailsDestinationType.MovieItem -> {
-
+                navigateToAnotherDestination(
+                    PersonFragmentDirections.actionPersonFragmentToDetailsFragment(destination.movieId)
+                )
             }
         }
     }

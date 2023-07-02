@@ -21,9 +21,8 @@
     </data>
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
-        style="@style/GalleryCard"
+        style="@style/GalleryCardDetails"
         app:onClickDownloadImage="@{listener}"
-        android:onClick="@{() -> listener.onClickGalleryItem()}"
         app:imageSize="@{imageSize.IMAGE_Size_300}"
         app:imageUrl="@{item.filePath}"
         app:largeImage="@{item.filePath}"

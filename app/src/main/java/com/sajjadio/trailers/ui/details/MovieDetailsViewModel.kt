@@ -106,14 +106,6 @@ class MovieDetailsViewModel @Inject constructor(
         }
     }
 
-    override fun onClickSeeAllGallery() {
-        _clickItemEvent.postValue(Event(MovieDetailsDestinationType.Galleries))
-    }
-
-    override fun onClickGalleryItem() {
-        _clickItemEvent.postValue(Event(MovieDetailsDestinationType.GalleryItem))
-    }
-
     override fun onClickSeeAllPersons() {
         _clickItemEvent.postValue(Event(MovieDetailsDestinationType.Persons))
     }

@@ -25,11 +25,6 @@
             layout="@layout/layout_header_text"
             app:header="@{@string/gallery}" />
 
-        <include
-            layout="@layout/layout_see_all_text"
-            android:clickable="true"
-            android:onClick="@{() -> listener.onClickSeeAllGallery()}" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewGallery"
             style="@style/GalleryRecyclerOfDetails"

@@ -98,12 +98,9 @@ class MovieDetailsAdapter(
 }
 
 interface MovieDetailsInteractListener : BaseInteractListener {
-    fun onClickGalleryItem()
-    fun onClickSeeAllGallery()
     fun onClickSeeAllPersons()
     fun onClickPersonItem(id: Int)
     fun onClickSeeAllSimilar()
-
     fun onClickDownloadImage(bitmap: Bitmap)
 
 }

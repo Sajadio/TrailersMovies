@@ -62,7 +62,7 @@ class PersonViewModel @Inject constructor(
             movieRepo.getImagesOfPersonById(personId).collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {
                     it.data?.let { data ->
-                        personDetailsData.add(PersonDetailsItem.GalleryOFPersonItem(data))
+                        personDetailsData.add(PersonDetailsItem.GalleryOfPersonItem(data))
                         _responsePersonDetailsData.postValue(NetworkStatus.Success(personDetailsData))
                     }
                 }
@@ -84,10 +84,6 @@ class PersonViewModel @Inject constructor(
     }
 
 
-    override fun onClickSeeAllGallery() {
-        _clickItemEvent.postValue(Event(PersonDetailsDestinationType.Galleries))
-    }
-
     override fun onClickMovieItem(id: Int) {
         _clickItemEvent.postValue(Event(PersonDetailsDestinationType.MovieItem(id)))
     }
@@ -98,10 +94,6 @@ class PersonViewModel @Inject constructor(
 
     override fun onClickDownloadImage(bitmap: Bitmap) {
         this.bitmap.postValue(bitmap)
-    }
-
-    override fun onClickGalleryItem() {
-        _clickItemEvent.postValue(Event(PersonDetailsDestinationType.GalleryItem))
     }
 
     override fun onClickItem(id: Int) {

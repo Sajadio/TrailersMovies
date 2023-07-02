@@ -52,7 +52,9 @@ class DetailsFragment :
         when (movieDetailsDestinationType) {
             is MovieDetailsDestinationType.PersonItem -> {
                 navigateToAnotherDestination(
-                    DetailsFragmentDirections.actionDetailsFragmentToPersonFragment(movieDetailsDestinationType.personId)
+                    DetailsFragmentDirections.actionDetailsFragmentToPersonFragment(
+                        movieDetailsDestinationType.personId
+                    )
                 )
             }
 
@@ -65,11 +67,6 @@ class DetailsFragment :
                 navigateToAnotherDestination(
                     DetailsFragmentDirections.actionDetailsFragmentToSimilarFragment(args.movieId)
                 )
-
-            MovieDetailsDestinationType.Galleries -> {}
-            MovieDetailsDestinationType.GalleryItem -> {
-
-            }
 
             MovieDetailsDestinationType.Persons -> {}
         }

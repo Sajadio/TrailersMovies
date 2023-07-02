@@ -62,7 +62,7 @@
         <item name="android:scaleType">centerCrop</item>
     </style>
 
-    <style name="GalleryCard">
+    <style name="GalleryCardDetails">
         <item name="android:layout_width">@dimen/gallery_card_width</item>
         <item name="android:layout_height">@dimen/gallery_card_height</item>
         <item name="android:scaleType">centerCrop</item>
@@ -73,6 +73,7 @@
         <item name="roundPercent">0.11</item>
         <item name="layout_constraintDimensionRatio">9:16</item>
     </style>
+
 
     <style name="MovieRecyclerOfDetails">
         <item name="android:layout_width">match_parent</item>
@@ -87,5 +88,6 @@
     <style name="GalleryRecyclerOfDetails" parent="MovieRecyclerOfDetails"/>
 
     <style name="PersonRecyclerOfMovieDetails" parent="MovieRecyclerOfDetails"/>
+
 
 </resources>

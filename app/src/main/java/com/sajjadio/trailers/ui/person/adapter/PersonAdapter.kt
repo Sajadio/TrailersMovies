@@ -3,7 +3,6 @@ package com.sajjadio.trailers.ui.person.adapter
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.view.ViewGroup
-import android.widget.ImageView
 import com.sajjadio.trailers.BR
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.domain.model.CommonResult
@@ -44,7 +43,7 @@ class PersonAdapter(
                 bindPersonItem(holder as ItemViewHolder, currentItem.person)
             }
 
-            is PersonDetailsItem.GalleryOFPersonItem -> {
+            is PersonDetailsItem.GalleryOfPersonItem -> {
                 bindGalleryItem(holder as ItemViewHolder, currentItem.image)
             }
 
@@ -76,7 +75,7 @@ class PersonAdapter(
     override fun getItemViewType(position: Int): Int {
         return when (getItems()[position]) {
             is PersonDetailsItem.PersonItem -> LAYOUT_PERSON
-            is PersonDetailsItem.GalleryOFPersonItem -> LAYOUT_GALLERY
+            is PersonDetailsItem.GalleryOfPersonItem -> LAYOUT_GALLERY
             is PersonDetailsItem.MoviesOfPersonItem -> LAYOUT_MOVIE
         }
     }
@@ -89,10 +88,7 @@ class PersonAdapter(
 }
 
 interface PersonDetailsInteractListener : BaseInteractListener{
-    fun onClickGalleryItem()
-    fun onClickSeeAllGallery()
     fun onClickMovieItem(id: Int)
     fun onClickSeeAllMovies()
-
     fun onClickDownloadImage(bitmap: Bitmap)
 }
