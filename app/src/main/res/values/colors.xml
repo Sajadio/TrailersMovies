@@ -27,15 +27,15 @@
 
     <!--    New colors  -->
     <color name="primary_color">#30A2FF</color>
-    <color name="play_button_color">#2384D3</color>
-    <color name="secondary_color">#2B343D</color>
-    <color name="shimmer_color">#5B6F81</color>
-    <color name="background_color">#1A1E21</color>
-    <color name="primary_text_color">#DEFFFFFF</color>
-    <color name="secondary_text_color">#A9A9AC</color>
+    <color name="play_button_color">#0082EC</color>
+    <color name="secondary_color">#00182B</color>
+    <color name="shimmer_color">#003B6B</color>
+    <color name="background_color">#000C15</color>
+    <color name="primary_text_color">#F0F8FF</color>
+    <color name="secondary_text_color">#8898A5</color>
     <color name="transparent_color">#002B343D</color>
 
-    <color name="clickable_color">#D924282C</color>
-    <color name="rounded_button_background_color">#BF24282C</color>
+    <color name="clickable_color">#BF00182B</color>
+    <color name="rounded_button_background_color">#8000182B</color>
 
 </resources>
