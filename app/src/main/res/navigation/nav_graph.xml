@@ -44,9 +44,9 @@
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.sajjadio.trailers.ui.details.DetailsFragment"
+        android:name="com.sajjadio.trailers.ui.movie_details.MovieDetailsFragment"
         android:label="DetailsFragment"
-        tools:layout="@layout/fragment_details">
+        tools:layout="@layout/fragment_movie_details">
         <action
             android:id="@+id/action_detailsFragment_to_similarFragment"
             app:destination="@id/similarFragment"
@@ -62,9 +62,12 @@
             app:popEnterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_detailsFragment_to_personFragment"
-            app:destination="@id/personFragment"
+            app:destination="@id/personDetailsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/action_detailsFragment_to_personsFragment"
+            app:destination="@id/personsFragment" />
 
     </fragment>
 
@@ -86,16 +89,18 @@
     </fragment>
 
     <fragment
-        android:id="@+id/personFragment"
-        android:name="com.sajjadio.trailers.ui.person.PersonFragment"
+        android:id="@+id/personDetailsFragment"
+        android:name="com.sajjadio.trailers.ui.person_details.PersonDetailsFragment"
         android:label="PersonFragment"
-        tools:layout="@layout/fragment_person">
+        tools:layout="@layout/fragment_person_details">
         <argument
             android:name="personId"
             app:argType="integer" />
         <action
             android:id="@+id/action_personFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
 
     </fragment>
 
@@ -118,5 +123,20 @@
         android:name="com.sajjadio.trailers.ui.favorite.FavoriteFragment"
         android:label="FavoriteFragment"
         tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/personsFragment"
+        android:name="com.sajjadio.trailers.ui.persons.PersonsFragment"
+        android:label="PersonsFragment"
+        tools:layout="@layout/fragment_persons" >
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_personsFragment_to_personFragment"
+            app:destination="@id/personDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
+
+    </fragment>
 
 </navigation>

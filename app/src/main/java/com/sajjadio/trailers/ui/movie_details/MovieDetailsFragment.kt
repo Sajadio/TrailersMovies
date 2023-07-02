@@ -1,29 +1,28 @@
-package com.sajjadio.trailers.ui.details
+package com.sajjadio.trailers.ui.movie_details
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import androidx.navigation.NavDirections
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sajjadio.trailers.R
-import com.sajjadio.trailers.databinding.FragmentDetailsBinding
+import com.sajjadio.trailers.databinding.FragmentMovieDetailsBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.ui.details.adapter.MovieDetailsAdapter
-import com.sajjadio.trailers.ui.details.utils.MovieDetailsDestinationType
+import com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsAdapter
+import com.sajjadio.trailers.ui.movie_details.utils.MovieDetailsDestinationType
 import com.sajjadio.trailers.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class DetailsFragment :
-    BaseFragment<FragmentDetailsBinding, MovieDetailsViewModel>(R.layout.fragment_details) {
+class MovieDetailsFragment :
+    BaseFragment<FragmentMovieDetailsBinding, MovieDetailsViewModel>(R.layout.fragment_movie_details) {
 
     override val LOG_TAG: String = this::class.java.simpleName
     override val viewModelClass = MovieDetailsViewModel::class.java
-    private val args: DetailsFragmentArgs by navArgs()
+    private val args: MovieDetailsFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,7 +51,7 @@ class DetailsFragment :
         when (movieDetailsDestinationType) {
             is MovieDetailsDestinationType.PersonItem -> {
                 navigateToAnotherDestination(
-                    DetailsFragmentDirections.actionDetailsFragmentToPersonFragment(
+                    MovieDetailsFragmentDirections.actionDetailsFragmentToPersonFragment(
                         movieDetailsDestinationType.personId
                     )
                 )
@@ -60,21 +59,24 @@ class DetailsFragment :
 
             is MovieDetailsDestinationType.SimilarItem ->
                 navigateToAnotherDestination(
-                    DetailsFragmentDirections.actionDetailsFragmentSelf(movieDetailsDestinationType.movieId)
+                    MovieDetailsFragmentDirections.actionDetailsFragmentSelf(
+                        movieDetailsDestinationType.movieId
+                    )
                 )
 
             is MovieDetailsDestinationType.Similar ->
                 navigateToAnotherDestination(
-                    DetailsFragmentDirections.actionDetailsFragmentToSimilarFragment(args.movieId)
+                    MovieDetailsFragmentDirections.actionDetailsFragmentToSimilarFragment(args.movieId)
                 )
 
-            MovieDetailsDestinationType.Persons -> {}
+            MovieDetailsDestinationType.Persons -> {
+                navigateToAnotherDestination(
+                    MovieDetailsFragmentDirections.actionDetailsFragmentToPersonsFragment(args.movieId)
+                )
+            }
         }
     }
 
-    private fun navigateToAnotherDestination(action: NavDirections) {
-        findNavController().navigate(action)
-    }
 
     private fun setPlayVideo() {
         viewModel.playVideo.observe(viewLifecycleOwner) {

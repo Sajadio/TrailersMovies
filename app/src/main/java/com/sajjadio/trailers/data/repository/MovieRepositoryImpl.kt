@@ -113,14 +113,14 @@ class MovieRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getPersonOfMovieById(id: Int?): Flow<NetworkStatus<List<Cast>?>> {
+    override fun getPersonOfMovieById(id: Int): Flow<NetworkStatus<List<Cast>?>> {
         return wrapper({ movieApi.getPersonOfMovieById(id) }) { actors ->
             actors.cast?.let { castDto -> mapPersonOfMovieDtoToPersonOfMovie(castDto) }
         }
     }
 
     override fun getPersonById(personId: Int?): Flow<NetworkStatus<Person>> {
-        return wrapper({movieApi.getPersonById(personId)}) {
+        return wrapper({ movieApi.getPersonById(personId) }) {
             mapPersonDtoToPerson(it)
         }
     }

@@ -9,6 +9,9 @@
             name="item"
             type="com.sajjadio.trailers.domain.model.Person" />
 
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.person_details.adapter.PersonDetailsInteractListener" />
 
         <variable
             name="imageSize"
@@ -73,6 +76,7 @@
             android:layout_height="@dimen/button_size"
             android:layout_marginStart="@dimen/medium_margin_size"
             android:layout_marginTop="@dimen/medium_margin_size"
+            android:onClick="@{() -> listener.onClickBackButton()}"
             android:background="@drawable/rounded_clickable"
             android:src="@drawable/ic_arrow_left"
             app:layout_constraintStart_toStartOf="parent"

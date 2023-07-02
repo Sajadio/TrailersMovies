@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.ui.details.adapter
+package com.sajjadio.trailers.ui.movie_details.adapter
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
@@ -11,7 +11,7 @@ import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.domain.model.Image
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
-import com.sajjadio.trailers.ui.details.utils.MovieDetailsItem
+import com.sajjadio.trailers.ui.movie_details.utils.MovieDetailsItem
 
 class MovieDetailsAdapter(
     val listener: MovieDetailsInteractListener

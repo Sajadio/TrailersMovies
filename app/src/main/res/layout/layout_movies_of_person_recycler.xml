@@ -7,11 +7,11 @@
 
         <variable
             name="adapter"
-            type="com.sajjadio.trailers.ui.person.adapter.MoviesOfPersonAdapter" />
+            type="com.sajjadio.trailers.ui.person_details.adapter.MoviesOfPersonAdapter" />
 
         <variable
             name="listener"
-            type="com.sajjadio.trailers.ui.person.adapter.PersonDetailsInteractListener" />
+            type="com.sajjadio.trailers.ui.person_details.adapter.PersonDetailsInteractListener" />
 
     </data>
 

@@ -22,8 +22,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -194,5 +196,15 @@ private fun Context.getBitmap(imageSize: String, imageUrl: String, onClickDownlo
     outputStream?.use {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
         Toast.makeText(this, "Downloaded", Toast.LENGTH_LONG).show()
+    }
+}
+
+ fun Fragment.navigateToAnotherDestination(action: NavDirections) {
+    findNavController().navigate(action)
+}
+
+fun Fragment.onClickBackButton(view: View){
+    view.setOnClickListener {
+    findNavController().popBackStack()
     }
 }

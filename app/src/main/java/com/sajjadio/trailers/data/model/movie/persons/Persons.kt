@@ -1,6 +1,6 @@
-package com.sajjadio.trailers.data.model.movie.actors
+package com.sajjadio.trailers.data.model.movie.persons
 
-data class Actors(
+data class Persons(
     val cast: List<CastDto>?,
     val crew: List<Crew>?,
     val id: Int?

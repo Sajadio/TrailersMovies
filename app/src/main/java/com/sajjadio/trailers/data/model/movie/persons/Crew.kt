@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.data.model.movie.actors
+package com.sajjadio.trailers.data.model.movie.persons
 
 data class Crew(
     val adult: Boolean?,

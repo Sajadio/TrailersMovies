@@ -85,9 +85,15 @@
         <item name="layout_constraintTop_toBottomOf">@+id/textViewHeader</item>
     </style>
 
-    <style name="GalleryRecyclerOfDetails" parent="MovieRecyclerOfDetails"/>
+    <style name="GalleryRecyclerOfDetails" parent="MovieRecyclerOfDetails" />
 
-    <style name="PersonRecyclerOfMovieDetails" parent="MovieRecyclerOfDetails"/>
+    <style name="PersonRecyclerOfMovieDetails" parent="MovieRecyclerOfDetails" />
+
+    <style name="PersonsRecycler" parent="MovieRecyclerOfDetails">
+        <item name="android:layout_height">0dp</item>
+        <item name="layoutManager">androidx.recyclerview.widget.GridLayoutManager</item>
+        <item name="android:orientation">vertical</item>
+    </style>
 
 
 </resources>

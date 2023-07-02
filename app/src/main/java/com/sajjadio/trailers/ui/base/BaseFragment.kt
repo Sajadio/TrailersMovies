@@ -47,7 +47,7 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : ViewModel>(@LayoutRes pr
             R.layout.fragment_home -> {
                 setColorOfStatusBar(R.color.transparent_color, false)
             }
-            R.layout.fragment_details -> {
+            R.layout.fragment_movie_details -> {
                 setColorOfStatusBar(R.color.transparent_color, false)
             }
             else -> {

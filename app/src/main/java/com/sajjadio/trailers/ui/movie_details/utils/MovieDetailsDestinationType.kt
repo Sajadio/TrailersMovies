@@ -1,6 +1,4 @@
-package com.sajjadio.trailers.ui.details.utils
-
-import android.widget.ImageView
+package com.sajjadio.trailers.ui.movie_details.utils
 
 sealed class MovieDetailsDestinationType {
     data class PersonItem(val personId: Int) : MovieDetailsDestinationType()

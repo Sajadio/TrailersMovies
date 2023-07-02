@@ -1,11 +1,12 @@
-package com.sajjadio.trailers.ui.person
+package com.sajjadio.trailers.ui.person_details
 
 import android.graphics.Bitmap
+import android.util.Log
 import androidx.lifecycle.*
 import com.sajjadio.trailers.domain.repository.MovieRepository
-import com.sajjadio.trailers.ui.person.adapter.PersonDetailsInteractListener
-import com.sajjadio.trailers.ui.person.utils.PersonDetailsDestinationType
-import com.sajjadio.trailers.ui.person.utils.PersonDetailsItem
+import com.sajjadio.trailers.ui.person_details.adapter.PersonDetailsInteractListener
+import com.sajjadio.trailers.ui.person_details.utils.PersonDetailsDestinationType
+import com.sajjadio.trailers.ui.person_details.utils.PersonDetailsItem
 import com.sajjadio.trailers.utils.Event
 import com.sajjadio.trailers.utils.NetworkStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PersonViewModel @Inject constructor(
+class PersonDetailsViewModel @Inject constructor(
     private val movieRepo: MovieRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel(), PersonDetailsInteractListener {
@@ -29,7 +30,7 @@ class PersonViewModel @Inject constructor(
 
     private val personId: Int = checkNotNull(savedStateHandle["personId"])
 
-     var bitmap = MutableLiveData<Bitmap>()
+    var bitmap = MutableLiveData<Bitmap>()
 
     init {
         loadPersonData()
@@ -96,7 +97,15 @@ class PersonViewModel @Inject constructor(
         this.bitmap.postValue(bitmap)
     }
 
+    override fun onClickBackButton() {
+        _clickItemEvent.postValue(Event(PersonDetailsDestinationType.BackButton))
+    }
+
     override fun onClickItem(id: Int) {
         _clickItemEvent.postValue(Event(PersonDetailsDestinationType.MovieItem(id)))
+    }
+
+    private companion object {
+        const val PAGE_NUMBER = 1
     }
 }

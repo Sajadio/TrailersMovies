@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.sajjadio.trailers.ui.details.adapter.MovieDetailsInteractListener" />
+            type="com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener" />
 
         <variable
             name="imageSize"
@@ -19,8 +19,8 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="@dimen/actor_card_width"
-        android:layout_height="@dimen/actor_card_height"
+        android:layout_width="@dimen/small_person_card_width"
+        android:layout_height="@dimen/small_person_card_height"
         android:layout_marginHorizontal="@dimen/normal_margin_size"
         android:layout_marginTop="@dimen/medium_margin_size"
         android:onClick="@{() -> listener.onClickPersonItem(item.id)}"
@@ -46,7 +46,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/personPoster"
-            tools:text="Actor" />
+            tools:text="Person" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

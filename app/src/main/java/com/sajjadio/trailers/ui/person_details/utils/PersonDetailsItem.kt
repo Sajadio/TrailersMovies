@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.ui.person.utils
+package com.sajjadio.trailers.ui.person_details.utils
 
 import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.domain.model.Person

@@ -1,12 +1,12 @@
-package com.sajjadio.trailers.ui.details
+package com.sajjadio.trailers.ui.movie_details
 
 import android.graphics.Bitmap
 import androidx.lifecycle.*
 import com.sajjadio.trailers.data.model.movie.video.VideoMovie
 import com.sajjadio.trailers.domain.repository.MovieRepository
-import com.sajjadio.trailers.ui.details.adapter.MovieDetailsInteractListener
-import com.sajjadio.trailers.ui.details.utils.MovieDetailsDestinationType
-import com.sajjadio.trailers.ui.details.utils.MovieDetailsItem
+import com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener
+import com.sajjadio.trailers.ui.movie_details.utils.MovieDetailsDestinationType
+import com.sajjadio.trailers.ui.movie_details.utils.MovieDetailsItem
 import com.sajjadio.trailers.utils.Event
 import com.sajjadio.trailers.utils.NetworkStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,8 +33,6 @@ class MovieDetailsViewModel @Inject constructor(
 
     var bitmap = MutableLiveData<Bitmap>()
 
-
-
     init {
         loadMovieData()
     }
@@ -48,7 +46,7 @@ class MovieDetailsViewModel @Inject constructor(
                         it.data?.let { data ->
                             detailsData.add(MovieDetailsItem.MovieItem(data))
                             _responseDetailsData.postValue(NetworkStatus.Success(detailsData))
-                            getActorsByMovieId(data.id)
+                            getPersonsByMovieId(data.id)
                             getImageOfMovieById(movieId)
                             getSimilarByMovieId(data.id)
                             getTrailerOfMovie(movieId)
@@ -72,7 +70,7 @@ class MovieDetailsViewModel @Inject constructor(
         }
     }
 
-    private fun getActorsByMovieId(id: Int) {
+    private fun getPersonsByMovieId(id: Int) {
         viewModelScope.launch {
             movieRepo.getPersonOfMovieById(id).collect { state ->
                 state.takeIf { it is NetworkStatus.Success }?.let {

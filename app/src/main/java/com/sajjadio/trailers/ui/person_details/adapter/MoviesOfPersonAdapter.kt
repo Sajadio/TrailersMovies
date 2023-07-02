@@ -1,13 +1,12 @@
-package com.sajjadio.trailers.ui.details.adapter
+package com.sajjadio.trailers.ui.person_details.adapter
 
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.ui.base.BaseAdapter
 
-class SimilarAdapter(
+class MoviesOfPersonAdapter(
     items: List<CommonResult>,
-    listener: MovieDetailsInteractListener
+    listener: PersonDetailsInteractListener
 ) : BaseAdapter<CommonResult>(items, listener) {
     override var layoutId = R.layout.layout_small_common_card
 }
-

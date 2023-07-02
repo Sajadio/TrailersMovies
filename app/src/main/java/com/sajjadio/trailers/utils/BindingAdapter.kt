@@ -1,35 +1,21 @@
 package com.sajjadio.trailers.utils
 
-import android.content.Context
-import android.content.Intent
-import android.graphics.Bitmap
-import android.net.Uri
-import android.os.Environment
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.SimpleTarget
-import com.bumptech.glide.request.transition.Transition
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.sajjadio.trailers.data.model.movie.movie_details.Genre
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
-import com.sajjadio.trailers.ui.details.adapter.MovieDetailsInteractListener
-import com.sajjadio.trailers.ui.person.adapter.PersonDetailsInteractListener
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
+import com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener
+import com.sajjadio.trailers.ui.person_details.adapter.PersonDetailsInteractListener
 
 
 @BindingAdapter(value = ["app:items"])

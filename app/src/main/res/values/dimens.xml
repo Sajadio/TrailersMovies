@@ -51,10 +51,17 @@
     <dimen name="small_card_width">120dp</dimen>
     <dimen name="search_gallery_width">130dp</dimen>
     <dimen name="search_card_height">180dp</dimen>
-    <dimen name="actor_card_width">80dp</dimen>
-    <dimen name="actor_card_height">100dp</dimen>
+    <dimen name="small_person_card_width">80dp</dimen>
+    <dimen name="small_person_card_height">100dp</dimen>
+
+    <dimen name="normal_person_card_width">120dp</dimen>
+    <dimen name="normal_person_card_height">180dp</dimen>
+
     <dimen name="gallery_card_width">264dp</dimen>
     <dimen name="gallery_card_height">150dp</dimen>
+    <dimen name="card_radius_size">@dimen/normal_margin_size</dimen>
+    <dimen name="dialog_image_width">360dp</dimen>
+    <dimen name="dialog_image_height">600dp</dimen>
 
     <dimen name="small_size">4dp</dimen>
     <dimen name="normal_size">8dp</dimen>
@@ -62,6 +69,7 @@
     <dimen name="large_size">24dp</dimen>
     <dimen name="x_large_size">32dp</dimen>
     <dimen name="x_x_large_size">64dp</dimen>
+    <dimen name="x_x_x_large_size">120dp</dimen>
 
     <dimen name="small_margin_size">@dimen/small_size</dimen>
     <dimen name="normal_margin_size">@dimen/normal_size</dimen>
@@ -80,10 +88,6 @@
     <dimen name="small_play_button_size">40dp</dimen>
 
     <dimen name="button_size">48dp</dimen>
-
-    <dimen name="card_radius_size">@dimen/normal_margin_size</dimen>
-    <dimen name="dialog_image_width">360dp</dimen>
-    <dimen name="dialog_image_height">600dp</dimen>
 
 
 </resources>

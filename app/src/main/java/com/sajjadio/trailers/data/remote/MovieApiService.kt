@@ -1,7 +1,7 @@
 package com.sajjadio.trailers.data.remote
 
 import com.sajjadio.trailers.data.model.movie.common.CommonDto
-import com.sajjadio.trailers.data.model.movie.actors.Actors
+import com.sajjadio.trailers.data.model.movie.persons.Persons
 import com.sajjadio.trailers.data.model.genre.Genre
 import com.sajjadio.trailers.data.model.movie.actorsmovie.ActorsMovie
 import com.sajjadio.trailers.data.model.movie.genremovie.Movie
@@ -73,8 +73,8 @@ interface MovieApiService {
 
     @GET("movie/{id}/credits?")
     suspend fun getPersonOfMovieById(
-        @Path("id") id: Int?,
-    ): Response<Actors>
+        @Path("id") personId: Int?,
+    ): Response<Persons>
 
     @GET("person/{id}")
     suspend fun getPersonById(

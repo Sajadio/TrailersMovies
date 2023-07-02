@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.ui.details.utils
+package com.sajjadio.trailers.ui.movie_details.utils
 
 import com.sajjadio.trailers.domain.model.Cast
 import com.sajjadio.trailers.domain.model.MovieDetails

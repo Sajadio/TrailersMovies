@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.ui.person.adapter
+package com.sajjadio.trailers.ui.person_details.adapter
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
@@ -10,7 +10,7 @@ import com.sajjadio.trailers.domain.model.Person
 import com.sajjadio.trailers.domain.model.Image
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
-import com.sajjadio.trailers.ui.person.utils.PersonDetailsItem
+import com.sajjadio.trailers.ui.person_details.utils.PersonDetailsItem
 
 class PersonAdapter(
     val listener: PersonDetailsInteractListener
@@ -54,18 +54,21 @@ class PersonAdapter(
     }
 
     private fun bindPersonItem(holder: ItemViewHolder, item: Person) {
-        holder.binding.setVariable(BR.item, item)
+        with(holder.binding) {
+            setVariable(BR.item, item)
+            setVariable(BR.listener, listener)
+        }
     }
 
     private fun bindGalleryItem(holder: ItemViewHolder, items: List<Image>) {
-        holder.binding.apply {
+        with(holder.binding) {
             setVariable(BR.adapter, GalleryOfPersonAdapter(items, listener))
             setVariable(BR.listener, listener)
         }
     }
 
     private fun bindMovieItem(holder: ItemViewHolder, items: List<CommonResult>) {
-        holder.binding.apply {
+        with(holder.binding) {
             setVariable(BR.adapter, MoviesOfPersonAdapter(items, listener))
             setVariable(BR.listener, listener)
         }
@@ -87,8 +90,9 @@ class PersonAdapter(
     }
 }
 
-interface PersonDetailsInteractListener : BaseInteractListener{
+interface PersonDetailsInteractListener : BaseInteractListener {
     fun onClickMovieItem(id: Int)
     fun onClickSeeAllMovies()
     fun onClickDownloadImage(bitmap: Bitmap)
+    fun onClickBackButton()
 }

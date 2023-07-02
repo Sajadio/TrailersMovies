@@ -7,11 +7,11 @@
 
         <variable
             name="adapter"
-            type="com.sajjadio.trailers.ui.details.adapter.PersonOfMovieAdapter" />
+            type="com.sajjadio.trailers.ui.movie_details.adapter.PersonOfMovieAdapter" />
 
         <variable
             name="listener"
-            type="com.sajjadio.trailers.ui.details.adapter.MovieDetailsInteractListener" />
+            type="com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener" />
 
     </data>
 
@@ -37,7 +37,7 @@
             android:adapter="@{adapter}"
             app:layout_constraintTop_toBottomOf="@+id/include"
             tools:ignore="RtlSymmetry"
-            tools:listitem="@layout/layout_item_person_of_movie" />
+            tools:listitem="@layout/layout_item_person_of_movie_card" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
