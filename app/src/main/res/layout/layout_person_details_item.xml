@@ -72,8 +72,8 @@
 
         <ImageButton
             android:id="@+id/imageButtonBack"
-            android:layout_width="@dimen/button_size"
-            android:layout_height="@dimen/button_size"
+            android:layout_width="@dimen/normal_button_size"
+            android:layout_height="@dimen/normal_button_size"
             android:layout_marginStart="@dimen/medium_margin_size"
             android:layout_marginTop="@dimen/medium_margin_size"
             android:onClick="@{() -> listener.onClickBackButton()}"

@@ -110,11 +110,14 @@ class MovieDetailsAdapter(
 }
 
 interface MovieDetailsInteractListener : BaseInteractListener {
+
     fun onClickSeeAllPersons()
     fun onClickPersonItem(id: Int)
     fun onClickSeeAllSimilar()
     fun onClickDownloadImage(bitmap: Bitmap)
-    fun onclickBackButton()
-    fun onclickFavoriteButton(item: String)
+    fun onClickBackButton()
+    fun onClickFavoriteButton(item: String)
+    fun onClickToShowBottomSheet(item: MovieDetails,listener: MovieDetailsInteractListener)
+    fun onClickWatchNow(id: Int)
 
 }

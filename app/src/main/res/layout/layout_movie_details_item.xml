@@ -55,23 +55,23 @@
 
         <ImageButton
             android:id="@+id/imageButtonBack"
-            android:layout_width="@dimen/button_size"
-            android:layout_height="@dimen/button_size"
+            android:layout_width="@dimen/normal_button_size"
+            android:layout_height="@dimen/normal_button_size"
             android:layout_marginStart="@dimen/medium_margin_size"
             android:layout_marginTop="@dimen/medium_margin_size"
-            android:onClick="@{() -> listener.onclickBackButton()}"
             android:background="@drawable/rounded_clickable"
+            android:onClick="@{() -> listener.onClickBackButton()}"
             android:src="@drawable/ic_arrow_left"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/imageButtonFave"
-            android:layout_width="@dimen/button_size"
-            android:layout_height="@dimen/button_size"
+            android:layout_width="@dimen/normal_button_size"
+            android:layout_height="@dimen/normal_button_size"
             android:layout_marginEnd="@dimen/medium_margin_size"
-            android:onClick="@{() -> listener.onclickFavoriteButton(`item`)}"
             android:background="@drawable/rounded_clickable"
+            android:onClick="@{() -> listener.onClickFavoriteButton(`item`)}"
             android:src="@drawable/ic_large_fave"
             app:layout_constraintBottom_toBottomOf="@+id/imageButtonBack"
             app:layout_constraintEnd_toEndOf="parent"
@@ -156,14 +156,24 @@
             style="@style/NormalLabel"
             android:layout_width="0dp"
             android:layout_marginTop="@dimen/normal_margin_size"
-            android:gravity="start"
-            android:maxLines="5"
+            android:gravity="start|center"
+            android:maxLines="3"
             android:text="@{item.overview}"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/playButton"
             app:layout_constraintStart_toStartOf="@+id/textViewStory"
             app:layout_constraintTop_toBottomOf="@+id/textViewStory"
             tools:text="After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission. After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission." />
+
+        <ImageButton
+            android:layout_width="@dimen/small_button_size"
+            android:layout_height="@dimen/small_button_size"
+            android:layout_marginTop="@dimen/normal_margin_size"
+            android:background="@drawable/rounded_clickable_down_button"
+            android:src="@drawable/ic_arrow_downward"
+            app:layout_constraintEnd_toEndOf="@+id/textViewDescriptionStory"
+            app:layout_constraintStart_toStartOf="@+id/textViewDescriptionStory"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionStory"
+            android:onClick="@{() -> listener.onClickToShowBottomSheet(item,listener)}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

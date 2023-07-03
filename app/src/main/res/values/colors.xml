@@ -27,7 +27,7 @@
 
     <!--    New colors  -->
     <color name="primary_color">#30A2FF</color>
-    <color name="play_button_color">#0082EC</color>
+    <color name="primary_clickable_color">#0082EC</color>
     <color name="secondary_color">#00182B</color>
     <color name="shimmer_color">#003B6B</color>
     <color name="background_color">#000C15</color>

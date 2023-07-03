@@ -4,10 +4,14 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.sajjadio.trailers.BR
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentMovieDetailsBinding
+import com.sajjadio.trailers.databinding.LayoutBottomSheetStoryOfMovieBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
 import com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsAdapter
 import com.sajjadio.trailers.ui.movie_details.utils.MovieDetailsDestinationType
@@ -72,6 +76,10 @@ class MovieDetailsFragment :
                 log(destination.item)
             }
 
+            is MovieDetailsDestinationType.WatchNowMovie -> {
+                log(destination.movieId.toString())
+            }
+
             MovieDetailsDestinationType.Persons -> {
                 navigateToAnotherDestination(
                     MovieDetailsFragmentDirections.actionDetailsFragmentToPersonsFragment(args.movieId)
@@ -79,7 +87,26 @@ class MovieDetailsFragment :
             }
 
             MovieDetailsDestinationType.BackButton -> findNavController().popBackStack()
+            is MovieDetailsDestinationType.BottomSheet -> {
+                createBottomSheet(destination)
+            }
         }
+    }
+
+    private fun createBottomSheet(destination: MovieDetailsDestinationType.BottomSheet) {
+        val bottomSheetDialog = view?.context?.let { BottomSheetDialog(it) }
+        val binding: LayoutBottomSheetStoryOfMovieBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(view?.context),
+            R.layout.layout_bottom_sheet_story_of_movie,
+            null,
+            false
+        )
+        bottomSheetDialog?.setContentView(binding.root)
+        with(binding) {
+            setVariable(BR.item, destination.item)
+            setVariable(BR.listener, destination.listener)
+        }
+        bottomSheetDialog?.show()
     }
 
 

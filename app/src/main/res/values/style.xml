@@ -24,13 +24,13 @@
     <style name="SmallPlayButton" parent="Widget.AppCompat.ImageButton">
         <item name="android:layout_width">@dimen/small_play_button_size</item>
         <item name="android:layout_height">@dimen/small_play_button_size</item>
-        <item name="android:background">@drawable/fab_play_button</item>
+        <item name="android:background">@drawable/play_button</item>
         <item name="android:src">@drawable/ic_play</item>
     </style>
 
     <style name="NormalPlayButton" parent="SmallPlayButton">
-        <item name="android:layout_width">@dimen/button_size</item>
-        <item name="android:layout_height">@dimen/button_size</item>
+        <item name="android:layout_width">@dimen/normal_button_size</item>
+        <item name="android:layout_height">@dimen/normal_button_size</item>
         <item name="android:src">@drawable/ic_normal_play</item>
     </style>
 
@@ -45,16 +45,17 @@
         <item name="android:textColor">@color/secondary_text_color</item>
     </style>
 
+    <style name="NormalLabelWithoutEllipSize" parent="NormalLabel">
+        <item name="android:maxLines">100</item>
+        <item name="android:ellipsize">none</item>
+    </style>
+
     <style name="TextRating" parent="NormalLabel">
         <item name="android:drawableEnd">@drawable/ic_star</item>
         <item name="android:drawablePadding">@dimen/small_padding_size</item>
         <item name="android:fontFamily">@font/roboto</item>
     </style>
 
-    <style name="NormalLabelWithoutEllipSize" parent="NormalLabel">
-        <item name="android:maxLines" />
-        <item name="android:ellipsize">none</item>
-    </style>
 
     <style name="SmallCardImageView">
         <item name="android:layout_width">match_parent</item>

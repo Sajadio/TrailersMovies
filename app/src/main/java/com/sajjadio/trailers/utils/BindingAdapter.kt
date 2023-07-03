@@ -1,5 +1,7 @@
 package com.sajjadio.trailers.utils
 
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
@@ -8,14 +10,22 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
+import androidx.databinding.DataBindingUtil
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.sajjadio.trailers.BR
+import com.sajjadio.trailers.R
 import com.sajjadio.trailers.data.model.movie.movie_details.Genre
+import com.sajjadio.trailers.databinding.LayoutBottomSheetBinding
+import com.sajjadio.trailers.databinding.LayoutBottomSheetStoryOfMovieBinding
+import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
 import com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener
 import com.sajjadio.trailers.ui.person_details.adapter.PersonDetailsInteractListener
+import kotlin.math.log
 
 
 @BindingAdapter(value = ["app:items"])
@@ -121,19 +131,37 @@ fun openLargeImage(
     imageView: ImageView,
     imageUrl: String,
     imageSize: String,
-    listener:BaseInteractListener
+    listener: BaseInteractListener
 ) {
     imageView.setOnClickListener { view ->
         val context = view.context
-        context.openLargeImageInDialog(imageUrl, imageSize){
-            when(listener){
-               is PersonDetailsInteractListener ->{
-                   listener.onClickDownloadImage(it)
-               }
-                is MovieDetailsInteractListener ->{
+        context.openLargeImageInDialog(imageUrl, imageSize) {
+            when (listener) {
+                is PersonDetailsInteractListener -> {
+                    listener.onClickDownloadImage(it)
+                }
+
+                is MovieDetailsInteractListener -> {
                     listener.onClickDownloadImage(it)
                 }
             }
         }
     }
 }
+
+@BindingAdapter(
+    value = [
+        "app:showBottomSheet",
+        "app:item",
+        "app:listener"
+    ]
+)
+fun showBottomSheet(
+    view: View,
+    show: Boolean,
+    item: MovieDetails,
+    listener: MovieDetailsInteractListener
+) {
+
+}
+

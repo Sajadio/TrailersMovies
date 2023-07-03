@@ -1,8 +1,10 @@
 package com.sajjadio.trailers.ui.movie_details
 
 import android.graphics.Bitmap
+import android.util.Log
 import androidx.lifecycle.*
 import com.sajjadio.trailers.data.model.movie.video.VideoMovie
+import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener
 import com.sajjadio.trailers.ui.movie_details.utils.MovieDetailsDestinationType
@@ -104,6 +106,7 @@ class MovieDetailsViewModel @Inject constructor(
         }
     }
 
+
     override fun onClickSeeAllPersons() {
         _clickItemEvent.postValue(Event(MovieDetailsDestinationType.Persons))
     }
@@ -121,12 +124,20 @@ class MovieDetailsViewModel @Inject constructor(
         this.bitmap.postValue(bitmap)
     }
 
-    override fun onclickBackButton() {
+    override fun onClickBackButton() {
         _clickItemEvent.postValue(Event(MovieDetailsDestinationType.BackButton))
     }
 
-    override fun onclickFavoriteButton(item: String) {
+    override fun onClickFavoriteButton(item: String) {
         _clickItemEvent.postValue(Event(MovieDetailsDestinationType.FavoriteItem(item)))
+    }
+
+    override fun onClickToShowBottomSheet(item: MovieDetails, listener: MovieDetailsInteractListener) {
+        _clickItemEvent.postValue(Event(MovieDetailsDestinationType.BottomSheet(item,listener)))
+    }
+
+    override fun onClickWatchNow(id: Int) {
+        _clickItemEvent.postValue(Event(MovieDetailsDestinationType.WatchNowMovie(id)))
     }
 
     override fun onClickItem(id: Int) {
