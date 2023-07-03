@@ -87,7 +87,7 @@
 
     <dimen name="small_play_button_size">40dp</dimen>
 
-    <dimen name="small_button_size">28dp</dimen>
+    <dimen name="small_button_size">@dimen/medium_size</dimen>
     <dimen name="normal_button_size">48dp</dimen>
 
 

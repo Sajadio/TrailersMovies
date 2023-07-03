@@ -148,20 +148,3 @@ fun openLargeImage(
         }
     }
 }
-
-@BindingAdapter(
-    value = [
-        "app:showBottomSheet",
-        "app:item",
-        "app:listener"
-    ]
-)
-fun showBottomSheet(
-    view: View,
-    show: Boolean,
-    item: MovieDetails,
-    listener: MovieDetailsInteractListener
-) {
-
-}
-

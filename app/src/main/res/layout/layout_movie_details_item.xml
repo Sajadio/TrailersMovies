@@ -19,6 +19,8 @@
 
         <import type="com.sajjadio.trailers.utils.FormatKt" />
 
+        <import type="android.view.View" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -159,21 +161,23 @@
             android:gravity="start|center"
             android:maxLines="3"
             android:text="@{item.overview}"
-            app:layout_constraintEnd_toEndOf="@+id/playButton"
+            app:layout_constraintEnd_toStartOf="@+id/imageButtonShowBottomSheet"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/textViewStory"
             app:layout_constraintTop_toBottomOf="@+id/textViewStory"
             tools:text="After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission. After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission." />
 
         <ImageButton
+            android:id="@+id/imageButtonShowBottomSheet"
             android:layout_width="@dimen/small_button_size"
             android:layout_height="@dimen/small_button_size"
-            android:layout_marginTop="@dimen/normal_margin_size"
-            android:background="@drawable/rounded_clickable_down_button"
-            android:src="@drawable/ic_arrow_downward"
-            app:layout_constraintEnd_toEndOf="@+id/textViewDescriptionStory"
-            app:layout_constraintStart_toStartOf="@+id/textViewDescriptionStory"
-            app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionStory"
-            android:onClick="@{() -> listener.onClickToShowBottomSheet(item,listener)}" />
+            android:background="@color/transparent_color"
+            android:onClick="@{() -> listener.onClickToShowBottomSheet(item,listener)}"
+            android:src="@drawable/ic_more_horiz"
+            android:visibility="@{item.overview.length() > 190 ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewDescriptionStory"
+            app:layout_constraintEnd_toEndOf="@+id/playButton"
+            app:layout_constraintStart_toStartOf="@+id/playButton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
