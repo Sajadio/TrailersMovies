@@ -3,7 +3,11 @@ package com.sajjadio.trailers.ui.person_details
 import android.graphics.Bitmap
 import android.util.Log
 import androidx.lifecycle.*
+import com.sajjadio.trailers.domain.model.MovieDetails
+import com.sajjadio.trailers.domain.model.Person
 import com.sajjadio.trailers.domain.repository.MovieRepository
+import com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener
+import com.sajjadio.trailers.ui.movie_details.utils.MovieDetailsDestinationType
 import com.sajjadio.trailers.ui.person_details.adapter.PersonDetailsInteractListener
 import com.sajjadio.trailers.ui.person_details.utils.PersonDetailsDestinationType
 import com.sajjadio.trailers.ui.person_details.utils.PersonDetailsItem
@@ -89,10 +93,6 @@ class PersonDetailsViewModel @Inject constructor(
         _clickItemEvent.postValue(Event(PersonDetailsDestinationType.MovieItem(id)))
     }
 
-    override fun onClickSeeAllMovies() {
-        _clickItemEvent.postValue(Event(PersonDetailsDestinationType.Movies))
-    }
-
     override fun onClickDownloadImage(bitmap: Bitmap) {
         this.bitmap.postValue(bitmap)
     }
@@ -105,7 +105,7 @@ class PersonDetailsViewModel @Inject constructor(
         _clickItemEvent.postValue(Event(PersonDetailsDestinationType.MovieItem(id)))
     }
 
-    private companion object {
-        const val PAGE_NUMBER = 1
+    override fun onClickToShowBottomSheet(item: Person, listener: PersonDetailsInteractListener) {
+        _clickItemEvent.postValue(Event(PersonDetailsDestinationType.BottomSheet(item,listener)))
     }
 }

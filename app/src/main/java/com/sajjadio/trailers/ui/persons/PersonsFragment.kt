@@ -34,7 +34,7 @@ class PersonsFragment :
                 PersonsFragmentDirections.actionPersonsFragmentToPersonFragment(it)
             )
         }
-        onClickBackButton(binding.toolbar)
+        onClickBackButton(binding.appBarLayout.toolbar)
        binding.recyclerViewPersons.adapter =  PersonsAdapter(emptyList(), viewModel)
     }
 }

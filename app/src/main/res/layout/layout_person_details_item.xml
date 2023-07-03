@@ -19,6 +19,8 @@
 
         <import type="com.sajjadio.trailers.utils.FormatKt" />
 
+        <import type="android.view.View" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -169,14 +171,26 @@
             style="@style/NormalLabel"
             android:layout_width="0dp"
             android:layout_marginTop="@dimen/normal_margin_size"
-            android:layout_marginEnd="@dimen/medium_margin_size"
-            android:gravity="start"
+            android:gravity="start|center"
             android:maxLines="5"
             android:text="@{item.biography}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textViewBio"
             app:layout_constraintTop_toBottomOf="@+id/textViewBio"
+            app:layout_constraintEnd_toStartOf="@+id/imageButtonShowBottomSheet"
             tools:text="After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission. After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission." />
+
+        <ImageButton
+            android:id="@+id/imageButtonShowBottomSheet"
+            android:layout_width="@dimen/small_button_size"
+            android:layout_height="@dimen/small_button_size"
+            android:background="@color/transparent_color"
+            android:onClick="@{() -> listener.onClickToShowBottomSheet(item,listener)}"
+            android:src="@drawable/ic_more_horiz"
+            android:visibility="@{item.biography.length() > 190 ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewDescriptionBio"
+            app:layout_constraintEnd_toEndOf="@+id/textViewBirthday"
+            app:layout_constraintStart_toEndOf="@+id/textViewDescriptionBio" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

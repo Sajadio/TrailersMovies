@@ -3,14 +3,21 @@ package com.sajjadio.trailers.ui.person_details
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.sajjadio.trailers.BR
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentPersonDetailsBinding
+import com.sajjadio.trailers.databinding.LayoutBottomSheetBioOfPersonBinding
+import com.sajjadio.trailers.databinding.LayoutBottomSheetStoryOfMovieBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
 import com.sajjadio.trailers.ui.movie_details.MovieDetailsFragmentArgs
+import com.sajjadio.trailers.ui.movie_details.utils.MovieDetailsDestinationType
 import com.sajjadio.trailers.ui.person_details.adapter.PersonAdapter
 import com.sajjadio.trailers.ui.person_details.utils.PersonDetailsDestinationType
 import com.sajjadio.trailers.utils.observeEvent
@@ -51,9 +58,6 @@ class PersonDetailsFragment :
 
     private fun checkDestinationType(destination: PersonDetailsDestinationType) {
         when (destination) {
-            PersonDetailsDestinationType.Movies -> {
-            }
-
             is PersonDetailsDestinationType.MovieItem -> {
                 navigateToAnotherDestination(
                     PersonDetailsFragmentDirections.actionPersonFragmentToDetailsFragment(
@@ -65,7 +69,28 @@ class PersonDetailsFragment :
             PersonDetailsDestinationType.BackButton -> {
                 findNavController().popBackStack()
             }
+
+            is PersonDetailsDestinationType.BottomSheet -> {
+                createBottomSheet(destination)
+            }
         }
+
+    }
+
+    private fun createBottomSheet(destination: PersonDetailsDestinationType.BottomSheet) {
+        val bottomSheetDialog = view?.context?.let { BottomSheetDialog(it) }
+        val binding: LayoutBottomSheetBioOfPersonBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(view?.context),
+            R.layout.layout_bottom_sheet_bio_of_person,
+            null,
+            false
+        )
+        bottomSheetDialog?.setContentView(binding.root)
+        with(binding) {
+            setVariable(BR.item, destination.item)
+            setVariable(BR.listener, destination.listener)
+        }
+        bottomSheetDialog?.show()
     }
 
     private fun navigateToAnotherDestination(action: NavDirections) {

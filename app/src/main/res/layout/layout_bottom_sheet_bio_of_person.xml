@@ -7,11 +7,11 @@
 
         <variable
             name="listener"
-            type="com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener" />
+            type="com.sajjadio.trailers.ui.person_details.adapter.PersonDetailsInteractListener" />
 
         <variable
             name="item"
-            type="com.sajjadio.trailers.domain.model.MovieDetails" />
+            type="com.sajjadio.trailers.domain.model.Person" />
     </data>
 
     <LinearLayout
@@ -36,26 +36,16 @@
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/medium_margin_size"
-            android:text="@string/story" />
+            android:text="@string/bio" />
 
         <TextView
             android:id="@+id/textViewDescriptionStory"
             style="@style/NormalLabelWithoutEllipSize"
             android:layout_marginHorizontal="@dimen/medium_margin_size"
-            android:layout_marginTop="@dimen/medium_margin_size"
+            android:layout_marginVertical="@dimen/medium_margin_size"
             android:gravity="start|center|top"
-            android:text="@{item.overview}"
+            android:text="@{item.biography}"
             tools:text="After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission. After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission. After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission. After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission." />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/small_person_card_width" />
-
-        <include
-            layout="@layout/layout_button_watch_now"
-            android:clickable="true"
-            android:onClick="@{() -> listener.onClickWatchNow(item.id)}"
-            tools:ignore="IncludeLayoutParam" />
 
     </LinearLayout>
 </layout>

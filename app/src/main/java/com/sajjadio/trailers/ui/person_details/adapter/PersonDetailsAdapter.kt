@@ -8,8 +8,10 @@ import com.sajjadio.trailers.R
 import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.domain.model.Person
 import com.sajjadio.trailers.domain.model.Image
+import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
+import com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener
 import com.sajjadio.trailers.ui.person_details.utils.PersonDetailsItem
 
 class PersonAdapter(
@@ -92,7 +94,7 @@ class PersonAdapter(
 
 interface PersonDetailsInteractListener : BaseInteractListener {
     fun onClickMovieItem(id: Int)
-    fun onClickSeeAllMovies()
     fun onClickDownloadImage(bitmap: Bitmap)
     fun onClickBackButton()
+    fun onClickToShowBottomSheet(item: Person, listener: PersonDetailsInteractListener)
 }

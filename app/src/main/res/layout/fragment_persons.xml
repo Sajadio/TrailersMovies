@@ -16,25 +16,14 @@
         android:layout_height="match_parent"
         android:background="@color/background_color">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <include
             android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@color/secondary_color">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:navigationIcon="@drawable/ic_arrow_left"
-                app:title="@string/persons"
-                app:titleTextColor="@color/primary_text_color" />
-
-        </com.google.android.material.appbar.AppBarLayout>
+            layout="@layout/layout_top_app_bar"
+            app:titleToolBar="@{@string/persons}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewPersons"
-            style="@style/PersonsRecycler"
+            style="@style/GridRecycler"
             android:layout_height="0dp"
             app:items="@{viewModel.responsePersonsOfMovie.data}"
             app:layout_constraintBottom_toBottomOf="parent"
