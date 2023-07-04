@@ -13,6 +13,9 @@ import com.sajjadio.trailers.ui.base.BaseFragment
 import com.sajjadio.trailers.ui.PagingLoadStateAdapter
 import com.sajjadio.trailers.utils.Destination
 import com.sajjadio.trailers.utils.movieToDestination
+import com.sajjadio.trailers.utils.navigateToAnotherDestination
+import com.sajjadio.trailers.utils.observeEvent
+import com.sajjadio.trailers.utils.onClickBackButton
 import com.sajjadio.trailers.utils.setAsActionBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -30,16 +33,20 @@ class CommonFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            activity?.setAsActionBar(
-                toolbar = toolbar,
-                isBack = true,
-                title = args.destination.name
-            )
+            onClickBackButton(appBarLayout.toolbar)
+            viewModel?.title = args.destination.name
+
             swipeRefreshLayout.setOnRefreshListener {
                 adapter?.refresh()
                 swipeRefreshLayout.isRefreshing = false
             }
             checkDestinationID(args.destination)
+        }
+
+        viewModel.clickItemEvent.observeEvent(viewLifecycleOwner){
+            navigateToAnotherDestination(
+                CommonFragmentDirections.actionCommonFragmentToMovieFragment(it)
+            )
         }
     }
 
@@ -50,19 +57,12 @@ class CommonFragment :
 
 
     private fun initialAdapter() {
-        adapter = CommonPagingAdapter()
+        adapter = CommonPagingAdapter(viewModel)
 
         binding.rcCommon.layoutManager = GridLayoutManager(context, 2)
         viewModel.responseCommonPagingData.observe(viewLifecycleOwner) { data ->
             lifecycleScope.launch {
                 adapter.submitData(data)
-            }
-        }
-
-        adapter.onItemClickListener { id ->
-            id?.let {
-                val action = CommonFragmentDirections.actionCommonFragmentToMovieFragment(id)
-                action.movieToDestination(view)
             }
         }
 

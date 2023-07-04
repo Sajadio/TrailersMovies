@@ -140,21 +140,21 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun getMovieOfActor(person_id: Int?) =
         wrapWithFlow { movieApi.getMoviesOfActor(personId = person_id) }.flowOn(Dispatchers.IO)
 
-    override fun getPopularMoviePaging(): Flow<PagingData<CommonResultDto>> =
+    override fun getPopularMoviePaging(): Flow<PagingData<CommonResult>> =
         Pager(config = PagingConfig(pageSize = Constant.DEFAULT_PAGE_SIZE, prefetchDistance = 2),
             pagingSourceFactory = {
                 PopularPagingSource(api = movieApi)
             }
         ).flow.flowOn(Dispatchers.IO)
 
-    override fun getTopRatedMoviePaging(): Flow<PagingData<CommonResultDto>> =
+    override fun getTopRatedMoviePaging(): Flow<PagingData<CommonResult>> =
         Pager(config = PagingConfig(pageSize = Constant.DEFAULT_PAGE_SIZE, prefetchDistance = 2),
             pagingSourceFactory = {
                 RatedPagingSource(api = movieApi)
             }
         ).flow.flowOn(Dispatchers.IO)
 
-    override fun getUpComingMoviePaging(): Flow<PagingData<CommonResultDto>> =
+    override fun getUpComingMoviePaging(): Flow<PagingData<CommonResult>> =
         Pager(config = PagingConfig(pageSize = Constant.DEFAULT_PAGE_SIZE, prefetchDistance = 2),
             pagingSourceFactory = {
                 ComingPagingSource(api = movieApi)

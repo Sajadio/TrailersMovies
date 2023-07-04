@@ -8,21 +8,22 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sajjadio.trailers.data.model.movie.common.CommonResultDto
 import com.sajjadio.trailers.databinding.LayoutItemCardCommonPagingBinding
+import com.sajjadio.trailers.databinding.LayoutNormalCommonCardBinding
+import com.sajjadio.trailers.databinding.LayoutSmallCommonCardBinding
+import com.sajjadio.trailers.domain.model.CommonResult
+import com.sajjadio.trailers.ui.base.BaseInteractListener
 import com.sajjadio.trailers.utils.Constant
 import com.sajjadio.trailers.utils.loadImage
 
-class CommonPagingAdapter : PagingDataAdapter<CommonResultDto, CommonPagingAdapter.CommonHolder>(
+class CommonPagingAdapter(
+    private val _listener: BaseInteractListener
+) : PagingDataAdapter<CommonResult, CommonPagingAdapter.CommonHolder>(
     CharacterComparator
 ) {
 
-    private var onItemClickListener: ((Int?) -> Unit)? = null
-    fun onItemClickListener(listener: (Int?) -> Unit) {
-        onItemClickListener = listener
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         CommonHolder(
-            LayoutItemCardCommonPagingBinding.inflate(
+            LayoutNormalCommonCardBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
         )
@@ -32,22 +33,21 @@ class CommonPagingAdapter : PagingDataAdapter<CommonResultDto, CommonPagingAdapt
     }
 
 
-    inner class CommonHolder(private val binding: LayoutItemCardCommonPagingBinding) :
+    inner class CommonHolder(private val binding: LayoutNormalCommonCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        @SuppressLint("SetTextI18n")
-        fun bind(common: CommonResultDto) = apply {
+        fun bind(common: CommonResult) = apply {
             binding.apply {
                 item = common
-                imageViewMovie.loadImage(common.poster_path.toString(), Constant.IMAGE_Size_500)
+                listener = _listener
             }
         }
     }
 
-    object CharacterComparator : DiffUtil.ItemCallback<CommonResultDto>() {
-        override fun areItemsTheSame(oldItem: CommonResultDto, newItem: CommonResultDto) =
-            oldItem.title == newItem.title
+    object CharacterComparator : DiffUtil.ItemCallback<CommonResult>() {
+        override fun areItemsTheSame(oldItem: CommonResult, newItem: CommonResult) =
+            oldItem.original_title == newItem.original_title
 
-        override fun areContentsTheSame(oldItem: CommonResultDto, newItem: CommonResultDto) =
+        override fun areContentsTheSame(oldItem: CommonResult, newItem: CommonResult) =
             oldItem == newItem
     }
 }

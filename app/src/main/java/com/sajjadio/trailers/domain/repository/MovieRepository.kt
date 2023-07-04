@@ -54,8 +54,8 @@ interface MovieRepository {
 
     fun getSimilarOfMovie(id: Int): Flow<PagingData<CommonResult>>
 
-    fun getPopularMoviePaging(): Flow<PagingData<CommonResultDto>>
-    fun getTopRatedMoviePaging(): Flow<PagingData<CommonResultDto>>
-    fun getUpComingMoviePaging(): Flow<PagingData<CommonResultDto>>
+    fun getPopularMoviePaging(): Flow<PagingData<CommonResult>>
+    fun getTopRatedMoviePaging(): Flow<PagingData<CommonResult>>
+    fun getUpComingMoviePaging(): Flow<PagingData<CommonResult>>
 
 }
