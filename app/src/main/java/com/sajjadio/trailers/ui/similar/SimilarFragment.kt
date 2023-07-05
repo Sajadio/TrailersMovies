@@ -10,7 +10,11 @@ import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentSimilarBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
 import com.sajjadio.trailers.ui.PagingLoadStateAdapter
+import com.sajjadio.trailers.ui.common.CommonFragmentDirections
 import com.sajjadio.trailers.utils.movieToDestination
+import com.sajjadio.trailers.utils.navigateToAnotherDestination
+import com.sajjadio.trailers.utils.observeEvent
+import com.sajjadio.trailers.utils.onClickBackButton
 import com.sajjadio.trailers.utils.setAsActionBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -25,37 +29,31 @@ class SimilarFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.setAsActionBar(
-            toolbar = binding.toolbar,
-            isBack = true,
-            title = resources.getString(R.string.similar)
-        )
 
+        onClickBackButton(binding.appBarLayout.toolbar)
         setupSimilarRecyclerView()
-
         binding.swipeRefreshLayout.apply {
             this.setOnRefreshListener {
                 setupSimilarRecyclerView()
                 this.isRefreshing = false
             }
         }
+
+        viewModel.clickItemEvent.observeEvent(viewLifecycleOwner){
+            navigateToAnotherDestination(
+                SimilarFragmentDirections.actionSimilarFragmentToDetailsFragment(it)
+            )
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun setupSimilarRecyclerView() {
-        adapter = SimilarPagingAdapter()
+        adapter = SimilarPagingAdapter(viewModel)
         viewModel.similarOfMovie.observe(viewLifecycleOwner) {
             lifecycleScope.launch {
                 adapter.submitData(it)
                 binding.recyclerViewSimilar.adapter = adapter
                 binding.recyclerViewSimilar.hasFixedSize()
-            }
-        }
-
-        adapter.onItemClickListener { id ->
-            id?.let {
-                val action = SimilarFragmentDirections.actionSimilarFragmentToDetailsFragment(id)
-                action.movieToDestination(view)
             }
         }
 

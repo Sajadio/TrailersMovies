@@ -177,7 +177,7 @@
             android:visibility="@{item.overview.length() > 190 ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="@+id/textViewDescriptionStory"
             app:layout_constraintEnd_toEndOf="@+id/playButton"
-            app:layout_constraintStart_toStartOf="@+id/playButton" />
+            app:layout_constraintStart_toEndOf="@+id/textViewDescriptionStory" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

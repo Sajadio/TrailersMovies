@@ -5,6 +5,8 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.domain.repository.MovieRepository
+import com.sajjadio.trailers.ui.base.BaseInteractListener
+import com.sajjadio.trailers.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.plus
@@ -14,7 +16,10 @@ import javax.inject.Inject
 class SimilarViewModel @Inject constructor(
     movieRepo: MovieRepository,
     savedStateHandle: SavedStateHandle
-) : ViewModel() {
+) : ViewModel(), BaseInteractListener {
+
+    private val _clickItemEvent = MutableLiveData<Event<Int>>()
+    val clickItemEvent: LiveData<Event<Int>> = _clickItemEvent
 
     private val movieId: Int = checkNotNull(savedStateHandle["movieId"])
     val similarOfMovie: LiveData<PagingData<CommonResult>> =
@@ -22,4 +27,8 @@ class SimilarViewModel @Inject constructor(
             .getSimilarOfMovie(movieId)
             .cachedIn(viewModelScope + Dispatchers.Main)
             .asLiveData()
+
+    override fun onClickItem(id: Int) {
+        _clickItemEvent.postValue(Event(id))
+    }
 }

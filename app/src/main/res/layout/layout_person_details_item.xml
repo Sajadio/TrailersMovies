@@ -172,7 +172,7 @@
             android:layout_width="0dp"
             android:layout_marginTop="@dimen/normal_margin_size"
             android:gravity="start|center"
-            android:maxLines="5"
+            android:maxLines="3"
             android:text="@{item.biography}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textViewBio"
@@ -191,7 +191,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/textViewDescriptionBio"
             app:layout_constraintEnd_toEndOf="@+id/textViewBirthday"
             app:layout_constraintStart_toEndOf="@+id/textViewDescriptionBio" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
