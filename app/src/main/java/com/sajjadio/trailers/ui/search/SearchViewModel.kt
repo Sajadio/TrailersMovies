@@ -1,26 +1,25 @@
 package com.sajjadio.trailers.ui.search
 
-import android.util.Log
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import androidx.paging.map
 import com.sajjadio.trailers.data.model.movie.search.SearchResult
 import com.sajjadio.trailers.domain.repository.MovieRepository
-import com.sajjadio.trailers.utils.SearchItemClickListener
+import com.sajjadio.trailers.ui.base.BaseInteractListener
+import com.sajjadio.trailers.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val movieRepo: MovieRepository
-) : ViewModel(), SearchItemClickListener {
+) : ViewModel(), BaseInteractListener {
 
     val responseSearchMovies = MutableLiveData<PagingData<SearchResult>?>()
+    private val _clickItemEvent = MutableLiveData<Event<Int>>()
+    val clickItemEvent: LiveData<Event<Int>> = _clickItemEvent
 
     fun onSearchInputChanged(text: CharSequence?) {
         if (isSearchInputValid(text.toString())) {
@@ -40,7 +39,8 @@ class SearchViewModel @Inject constructor(
     }
 
     private fun isSearchInputValid(text: String) = text.isNotBlank()
-    override fun onSearchItemClick(keyword: String) {
-        getSearch(keyword)
+
+    override fun onClickItem(id:Int) {
+        _clickItemEvent.postValue(Event(id))
     }
 }

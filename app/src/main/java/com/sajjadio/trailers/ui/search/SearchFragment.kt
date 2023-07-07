@@ -14,7 +14,8 @@ import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentSearchBinding
 import com.sajjadio.trailers.ui.PagingLoadStateAdapter
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.utils.movieToDestination
+import com.sajjadio.trailers.utils.navigateToAnotherDestination
+import com.sajjadio.trailers.utils.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -27,14 +28,18 @@ class SearchFragment :
     override val viewModelClass = SearchViewModel::class.java
     private lateinit var searchPagingAdapter: SearchPagingAdapter
     private lateinit var helper: SnapHelper
-    private lateinit var listKeyword: MutableList<String>
-
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         helper = LinearSnapHelper()
+        viewModel.clickItemEvent.observeEvent(viewLifecycleOwner){
+            navigateToAnotherDestination(
+                SearchFragmentDirections.actionSearchFragmentToMovieFragment(it)
+            )
+        }
+
         binding.apply {
 
             rcSearch.setOnTouchListener { _, _ ->
@@ -53,15 +58,15 @@ class SearchFragment :
 
     private fun initialAdapter() {
 
-        searchPagingAdapter = SearchPagingAdapter()
+        searchPagingAdapter = SearchPagingAdapter(viewModel)
         binding.rcSearch.adapter = searchPagingAdapter
         helper.attachToRecyclerView(binding.rcSearch)
-        searchPagingAdapter.onItemClickListener {
-            it?.let { id ->
-                val action = SearchFragmentDirections.actionSearchFragmentToMovieFragment(id)
-                action.movieToDestination(view)
-            }
-        }
+//        searchPagingAdapter.onItemClickListener {
+//            it?.let { id ->
+//                val action = SearchFragmentDirections.actionSearchFragmentToMovieFragment(id)
+//                action.movieToDestination(view)
+//            }
+//        }
 
         binding.rcSearch.adapter = searchPagingAdapter.withLoadStateHeaderAndFooter(
             header = PagingLoadStateAdapter { searchPagingAdapter.retry() },

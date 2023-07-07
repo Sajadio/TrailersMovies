@@ -11,5 +11,4 @@ class PersonsAdapter(
 ) : BaseAdapter<Cast>(items, listener) {
     override var layoutId = R.layout.layout_item_person_card
 }
-
 interface PersonInteractListener : BaseInteractListener
