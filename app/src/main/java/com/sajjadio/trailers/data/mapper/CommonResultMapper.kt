@@ -5,16 +5,16 @@ import com.sajjadio.trailers.data.model.movie.common.CommonResultDto
 import com.sajjadio.trailers.domain.model.Common
 import com.sajjadio.trailers.domain.model.CommonResult
 
-internal fun mapCommonDtoToCommon(input: CommonDto): Common {
+internal fun mapToCommon(input: CommonDto): Common {
     return Common(
         page = input.page,
-        results = mapCommonResultDtoToCommonResult(input.results),
+        results = mapToCommonResult(input.results),
         total_pages = input.total_pages,
         total_results = input.total_results,
     )
 }
 
-internal fun mapCommonResultDtoToCommonResult(input: List<CommonResultDto>): List<CommonResult> {
+internal fun mapToCommonResult(input: List<CommonResultDto>): List<CommonResult> {
     return input.map {
         CommonResult(
             id = it.id,

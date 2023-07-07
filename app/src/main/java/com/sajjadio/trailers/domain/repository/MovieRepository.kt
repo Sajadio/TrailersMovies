@@ -1,17 +1,17 @@
 package com.sajjadio.trailers.domain.repository
 
 import androidx.paging.PagingData
-import com.sajjadio.trailers.data.model.genre.Genre
+import com.sajjadio.trailers.data.model.genre.GenreDto
+import com.sajjadio.trailers.data.model.genre.GenresDto
 import com.sajjadio.trailers.data.model.movie.actorsmovie.ActorsMovie
-import com.sajjadio.trailers.data.model.movie.common.CommonResultDto
 import com.sajjadio.trailers.data.model.movie.genremovie.MovieResult
-import com.sajjadio.trailers.data.model.movie.persons.CastDto
 import com.sajjadio.trailers.data.model.movie.search.SearchResult
 import com.sajjadio.trailers.data.model.movie.video.VideoMovie
 import com.sajjadio.trailers.domain.model.Cast
 import com.sajjadio.trailers.domain.model.Common
 import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.model.CommonResult
+import com.sajjadio.trailers.domain.model.Genres
 import com.sajjadio.trailers.domain.model.Person
 import com.sajjadio.trailers.domain.model.Image
 import com.sajjadio.trailers.domain.model.TrendMovie
@@ -49,8 +49,8 @@ interface MovieRepository {
     suspend fun getMovieOfActor(person_id: Int?): Flow<NetworkStatus<ActorsMovie?>>
     fun getMovieSearch(query: String?): Flow<PagingData<SearchResult>>
 
-    fun getGenreList(genreId: String): Flow<PagingData<MovieResult>>
-    suspend fun getGenresMovie(): Flow<NetworkStatus<Genre?>>
+    fun getMoviesOfGenreById(genreId: Int): Flow<PagingData<CommonResult>>
+    suspend fun getGenresMovie(): Flow<NetworkStatus<List<Genres>>>
 
     fun getSimilarOfMovie(id: Int): Flow<PagingData<CommonResult>>
 

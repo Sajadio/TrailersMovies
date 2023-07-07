@@ -18,7 +18,7 @@
 
     <item
         android:id="@+id/genresFragment"
-        android:icon="@drawable/categories_icon"
-        android:title="@string/category" />
+        android:icon="@drawable/genres_icon"
+        android:title="@string/genres" />
 
 </menu>

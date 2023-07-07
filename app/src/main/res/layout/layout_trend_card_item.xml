@@ -41,7 +41,6 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:contentDescription="@string/app_name"
-                android:scaleType="centerCrop"
                 app:imageSize="@{imageSize.IMAGE_Size_ORIGINAL}"
                 app:imageUrl="@{item.poster_path}"
                 tools:src="@drawable/ic_launcher_background" />

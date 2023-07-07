@@ -7,8 +7,9 @@ import com.sajjadio.trailers.data.remote.MovieApiService
 import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.utils.Constant
 
-class PopularPagingSource(
+class MoviesOfGenresPagingSource(
     private val api: MovieApiService,
+    private val genreId: Int,
 ) : PagingSource<Int, CommonResult>() {
 
     override fun getRefreshKey(state: PagingState<Int, CommonResult>): Int? {
@@ -21,7 +22,7 @@ class PopularPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CommonResult> {
         val pageNumber = params.key ?: Constant.DEFAULT_PAGE_INDEX
         return try {
-            val response = api.getPopularMovie(page = pageNumber)
+            val response = api.getMoviesOfGenreById(genreId,page = pageNumber)
             val data = response.body()?.results?.let {
                 mapToCommonResult(it)
             } ?: emptyList()

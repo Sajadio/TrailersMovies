@@ -29,5 +29,4 @@ object Constant {
     const val DEFAULT_PAGE_SIZE = 20
     const val DEFAULT_PAGE_INDEX = 1
     const val PREFETCH_DISTANCE = 2
-
 }

@@ -35,7 +35,6 @@
             android:layout_height="400dp"
             android:layout_gravity="center"
             android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
             app:imageSize="@{imageSize.IMAGE_Size_780}"
             app:imageUrl="@{item.profilePath}"
             app:layout_constraintDimensionRatio="9:16"
@@ -74,15 +73,10 @@
 
         <ImageButton
             android:id="@+id/imageButtonBack"
-            android:layout_width="@dimen/normal_button_size"
-            android:layout_height="@dimen/normal_button_size"
-            android:layout_marginStart="@dimen/medium_margin_size"
-            android:layout_marginTop="@dimen/medium_margin_size"
+            style="@style/CircularImageButton"
             android:onClick="@{() -> listener.onClickBackButton()}"
-            android:background="@drawable/rounded_clickable"
             android:src="@drawable/ic_arrow_left"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
 
         <TextView
@@ -180,13 +174,15 @@
             app:layout_constraintEnd_toStartOf="@+id/imageButtonShowBottomSheet"
             tools:text="After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission. After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission." />
 
-        <ImageButton
+        <TextView
             android:id="@+id/imageButtonShowBottomSheet"
-            android:layout_width="@dimen/small_button_size"
-            android:layout_height="@dimen/small_button_size"
-            android:background="@color/transparent_color"
+            android:layout_width="wrap_content"
+            style="@style/NormalLabel"
+            android:clickable="true"
+            android:ellipsize="none"
+            android:textColor="@color/primary_color"
             android:onClick="@{() -> listener.onClickToShowBottomSheet(item,listener)}"
-            android:src="@drawable/ic_more_horiz"
+            android:text="@string/read_more"
             android:visibility="@{item.biography.length() > 190 ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="@+id/textViewDescriptionBio"
             app:layout_constraintEnd_toEndOf="@+id/textViewBirthday"

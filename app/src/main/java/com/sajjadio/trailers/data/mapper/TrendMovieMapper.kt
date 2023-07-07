@@ -5,16 +5,16 @@ import com.sajjadio.trailers.data.model.movie.trend.TrendResultDto
 import com.sajjadio.trailers.domain.model.TrendMovie
 import com.sajjadio.trailers.domain.model.TrendMovieResult
 
-internal fun mapTrendMovieDtoToTrendMoive(input: TrendMovieDto): TrendMovie {
+internal fun mapToTrendMove(input: TrendMovieDto): TrendMovie {
     return TrendMovie(
         page = input.page,
-        results = mapTrendMovieResultDtoToTrendMovieResult(input.results),
+        results = mapToTrendMovieResult(input.results),
         total_pages = input.total_pages,
         total_results = input.total_results,
     )
 }
 
-internal fun mapTrendMovieResultDtoToTrendMovieResult(input: List<TrendResultDto>): List<TrendMovieResult> {
+internal fun mapToTrendMovieResult(input: List<TrendResultDto>): List<TrendMovieResult> {
     return input.map {
         TrendMovieResult(
             id = it.id,

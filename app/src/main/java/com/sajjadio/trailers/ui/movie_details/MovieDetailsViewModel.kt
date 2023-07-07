@@ -140,7 +140,7 @@ class MovieDetailsViewModel @Inject constructor(
         _clickItemEvent.postValue(Event(MovieDetailsDestinationType.WatchNowMovie(id)))
     }
 
-    override fun onClickItem(id: Int) {
+    override fun onClickItem(id:Int) {
         _clickItemEvent.postValue(Event(MovieDetailsDestinationType.SimilarItem(id)))
     }
 

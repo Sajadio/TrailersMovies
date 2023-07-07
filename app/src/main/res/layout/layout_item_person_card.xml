@@ -35,10 +35,9 @@
             android:layout_height="@dimen/x_x_x_large_size"
             android:layout_weight="1"
             android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
             app:imageSize="@{imageSize.IMAGE_Size_200}"
             app:imageUrl="@{item.profile_path}"
-            app:roundPercent="0.14"
+            app:roundPercent="0.11"
             tools:srcCompat="@drawable/ic_launcher_background" />
 
         <TextView

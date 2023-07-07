@@ -36,12 +36,11 @@
             android:layout_width="@dimen/search_gallery_width"
             android:layout_height="@dimen/search_card_height"
             android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
             app:imageSize="@{imageSize.IMAGE_Size_200}"
             app:imageUrl="@{item.poster_path}"
             app:layout_constraintDimensionRatio="9:16"
             app:layout_constraintStart_toStartOf="parent"
-            app:roundPercent="0.14"
+            app:roundPercent="0.11"
             tools:ignore="MissingConstraints"
             tools:srcCompat="@drawable/ic_launcher_background" />
 

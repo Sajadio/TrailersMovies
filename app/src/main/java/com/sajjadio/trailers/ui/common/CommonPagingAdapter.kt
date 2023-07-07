@@ -1,19 +1,13 @@
 package com.sajjadio.trailers.ui.common
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.sajjadio.trailers.data.model.movie.common.CommonResultDto
-import com.sajjadio.trailers.databinding.LayoutItemCardCommonPagingBinding
 import com.sajjadio.trailers.databinding.LayoutNormalCommonCardBinding
-import com.sajjadio.trailers.databinding.LayoutSmallCommonCardBinding
 import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.ui.base.BaseInteractListener
-import com.sajjadio.trailers.utils.Constant
-import com.sajjadio.trailers.utils.loadImage
 
 class CommonPagingAdapter(
     private val _listener: BaseInteractListener

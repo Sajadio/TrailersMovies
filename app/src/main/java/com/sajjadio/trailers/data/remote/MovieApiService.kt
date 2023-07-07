@@ -2,9 +2,9 @@ package com.sajjadio.trailers.data.remote
 
 import com.sajjadio.trailers.data.model.movie.common.CommonDto
 import com.sajjadio.trailers.data.model.movie.persons.Persons
-import com.sajjadio.trailers.data.model.genre.Genre
+import com.sajjadio.trailers.data.model.genre.GenreDto
 import com.sajjadio.trailers.data.model.movie.actorsmovie.ActorsMovie
-import com.sajjadio.trailers.data.model.movie.genremovie.Movie
+import com.sajjadio.trailers.data.model.movie.common.CommonResultDto
 import com.sajjadio.trailers.data.model.movie.movie_details.ImageOfMovieDto
 import com.sajjadio.trailers.data.model.movie.movie_details.MovieDetailsDto
 import com.sajjadio.trailers.data.model.movie.person.ImageOfPersonDto
@@ -21,10 +21,10 @@ import retrofit2.http.Query
 interface MovieApiService {
 
     @GET("discover/movie")
-    suspend fun getGenreList(
-        @Query("with_genres") genreId: String?,
+    suspend fun getMoviesOfGenreById(
+        @Query("with_genres") genreId: Int,
         @Query("page") page: Int,
-    ): Movie
+    ): Response<CommonDto>
 
     @GET("trending/movie/day?")
     suspend fun getTrending(
@@ -90,7 +90,7 @@ interface MovieApiService {
 
     @GET("genre/movie/list")
     suspend fun getGenresMovie(
-    ): Response<Genre>
+    ): Response<GenreDto>
 
     @GET("search/movie?")
     suspend fun getSearchMovie(

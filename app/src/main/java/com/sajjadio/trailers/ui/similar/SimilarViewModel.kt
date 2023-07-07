@@ -28,7 +28,7 @@ class SimilarViewModel @Inject constructor(
             .cachedIn(viewModelScope + Dispatchers.Main)
             .asLiveData()
 
-    override fun onClickItem(id: Int) {
+    override fun onClickItem(id:Int) {
         _clickItemEvent.postValue(Event(id))
     }
 }

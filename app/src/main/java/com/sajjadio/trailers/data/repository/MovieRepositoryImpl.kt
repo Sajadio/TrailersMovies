@@ -3,19 +3,18 @@ package com.sajjadio.trailers.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.sajjadio.trailers.data.mapper.mapPersonOfMovieDtoToPersonOfMovie
-import com.sajjadio.trailers.data.mapper.mapCommonDtoToCommon
-import com.sajjadio.trailers.data.mapper.mapCommonResultDtoToCommonResult
-import com.sajjadio.trailers.data.mapper.mapImagesDtoToImages
-import com.sajjadio.trailers.data.mapper.mapMovieDetailsDtoToMovieDetails
-import com.sajjadio.trailers.data.mapper.mapPersonDtoToPerson
-import com.sajjadio.trailers.data.mapper.mapTrendMovieDtoToTrendMoive
-import com.sajjadio.trailers.data.model.movie.common.CommonResultDto
-import com.sajjadio.trailers.data.model.movie.genremovie.MovieResult
+import com.sajjadio.trailers.data.mapper.mapToPersonOfMovie
+import com.sajjadio.trailers.data.mapper.mapToCommon
+import com.sajjadio.trailers.data.mapper.mapToCommonResult
+import com.sajjadio.trailers.data.mapper.mapToGenres
+import com.sajjadio.trailers.data.mapper.mapToImages
+import com.sajjadio.trailers.data.mapper.mapToMovieDetails
+import com.sajjadio.trailers.data.mapper.mapToPerson
+import com.sajjadio.trailers.data.mapper.mapToTrendMove
 import com.sajjadio.trailers.data.model.movie.search.SearchResult
 import com.sajjadio.trailers.data.remote.MovieApiService
 import com.sajjadio.trailers.data.paging.ComingPagingSource
-import com.sajjadio.trailers.data.paging.GenresPagingSource
+import com.sajjadio.trailers.data.paging.MoviesOfGenresPagingSource
 import com.sajjadio.trailers.data.paging.PopularPagingSource
 import com.sajjadio.trailers.data.paging.RatedPagingSource
 import com.sajjadio.trailers.data.paging.SimilarPagingData
@@ -24,6 +23,7 @@ import com.sajjadio.trailers.domain.model.Cast
 import com.sajjadio.trailers.domain.model.Common
 import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.model.CommonResult
+import com.sajjadio.trailers.domain.model.Genres
 import com.sajjadio.trailers.domain.model.Person
 import com.sajjadio.trailers.domain.model.Image
 import com.sajjadio.trailers.domain.model.TrendMovie
@@ -43,25 +43,25 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getTrendMovie(): Flow<NetworkStatus<TrendMovie>> {
         return wrapper({ movieApi.getTrending() }) { trendMovie ->
-            mapTrendMovieDtoToTrendMoive(trendMovie)
+            mapToTrendMove(trendMovie)
         }
     }
 
     override suspend fun getMoviePopular(): Flow<NetworkStatus<Common>> {
         return wrapper({ movieApi.getPopularMovie() }) {
-            mapCommonDtoToCommon(it)
+            mapToCommon(it)
         }
     }
 
     override suspend fun getMovieTopRated(): Flow<NetworkStatus<Common>> {
         return wrapper({ movieApi.getTopRatedMovie() }) {
-            mapCommonDtoToCommon(it)
+            mapToCommon(it)
         }
     }
 
     override suspend fun getUpComingMovie(): Flow<NetworkStatus<Common>> {
         return wrapper({ movieApi.getUpComingMovie() }) {
-            mapCommonDtoToCommon(it)
+            mapToCommon(it)
         }
     }
 
@@ -91,37 +91,37 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getMovieDetails(id: Int?): Flow<NetworkStatus<MovieDetails>> {
         return wrapper({ movieApi.getMovieDetails(id) }) { movieDetailsDto ->
-            mapMovieDetailsDtoToMovieDetails(movieDetailsDto)
+            mapToMovieDetails(movieDetailsDto)
         }
     }
 
     override suspend fun getImagesOfMovieById(movieId: Int?): Flow<NetworkStatus<List<Image>?>> {
         return wrapper({ movieApi.getImagesOfMovieById(movieId) }) { imageDto ->
-            mapImagesDtoToImages(imageDto.images)
+            mapToImages(imageDto.images)
         }
     }
 
     override suspend fun getImagesOfPersonById(personId: Int?): Flow<NetworkStatus<List<Image>?>> {
         return wrapper({ movieApi.getImagesOfPersonById(personId) }) { imageDto ->
-            mapImagesDtoToImages(imageDto.profileDto)
+            mapToImages(imageDto.profileDto)
         }
     }
 
     override suspend fun getMoviesOfPersonById(personId: Int?): Flow<NetworkStatus<List<CommonResult>>> {
         return wrapper({ movieApi.getMoviesOfPersonById(personId) }) { similar ->
-            mapCommonResultDtoToCommonResult(similar.cast)
+            mapToCommonResult(similar.cast)
         }
     }
 
     override fun getPersonOfMovieById(id: Int): Flow<NetworkStatus<List<Cast>?>> {
         return wrapper({ movieApi.getPersonOfMovieById(id) }) { actors ->
-            actors.cast?.let { castDto -> mapPersonOfMovieDtoToPersonOfMovie(castDto) }
+            actors.cast?.let { castDto -> mapToPersonOfMovie(castDto) }
         }
     }
 
     override fun getPersonById(personId: Int?): Flow<NetworkStatus<Person>> {
         return wrapper({ movieApi.getPersonById(personId) }) {
-            mapPersonDtoToPerson(it)
+            mapToPerson(it)
         }
     }
 
@@ -130,7 +130,7 @@ class MovieRepositoryImpl @Inject constructor(
         page: Int
     ): Flow<NetworkStatus<List<CommonResult>?>> {
         return wrapper({ movieApi.getSimilar(id, page) }) { similar ->
-            mapCommonResultDtoToCommonResult(similar.results)
+            mapToCommonResult(similar.results)
         }
     }
 
@@ -161,15 +161,18 @@ class MovieRepositoryImpl @Inject constructor(
             }
         ).flow.flowOn(Dispatchers.IO)
 
-    override fun getGenreList(genreId: String): Flow<PagingData<MovieResult>> =
+    override fun getMoviesOfGenreById(genreId: Int): Flow<PagingData<CommonResult>> =
         Pager(config = PagingConfig(pageSize = Constant.DEFAULT_PAGE_SIZE, prefetchDistance = 2),
             pagingSourceFactory = {
-                GenresPagingSource(genreId = genreId, api = movieApi)
+                MoviesOfGenresPagingSource(genreId = genreId, api = movieApi)
             }
         ).flow.flowOn(Dispatchers.IO)
 
-    override suspend fun getGenresMovie() =
-        wrapWithFlow { movieApi.getGenresMovie() }.flowOn(Dispatchers.IO)
+    override suspend fun getGenresMovie(): Flow<NetworkStatus<List<Genres>>> {
+        return wrapper({ movieApi.getGenresMovie() }) {
+            mapToGenres(it.genres)
+        }
+    }
 
     private fun <I, O> wrapper(
         function: suspend () -> Response<I>,

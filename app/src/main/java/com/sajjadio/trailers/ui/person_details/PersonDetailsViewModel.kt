@@ -101,7 +101,7 @@ class PersonDetailsViewModel @Inject constructor(
         _clickItemEvent.postValue(Event(PersonDetailsDestinationType.BackButton))
     }
 
-    override fun onClickItem(id: Int) {
+    override fun onClickItem(id:Int) {
         _clickItemEvent.postValue(Event(PersonDetailsDestinationType.MovieItem(id)))
     }
 

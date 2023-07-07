@@ -5,14 +5,9 @@
 
     <data>
 
-        <variable
-            name="adapter"
-            type="com.sajjadio.trailers.ui.common.CommonPagingAdapter" />
-
-
-        <variable
-            name="viewModel"
-            type="com.sajjadio.trailers.ui.common.CommonViewModel" />
+      <variable
+          name="viewModel"
+          type="com.sajjadio.trailers.ui.genres.viewModel.MoviesOfGenresViewModel" />
 
     </data>
 
@@ -26,7 +21,7 @@
             android:id="@+id/appBarLayout"
             layout="@layout/layout_top_app_bar"
             app:visible="@{true}"
-            app:titleToolBar="@{viewModel.title}" />
+            app:titleToolBar="@{viewModel.titleToolBar}" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayout"

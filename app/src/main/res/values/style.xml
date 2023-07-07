@@ -46,7 +46,7 @@
     </style>
 
     <style name="NormalLabelWithoutEllipSize" parent="NormalLabel">
-        <item name="android:maxLines"/>
+        <item name="android:maxLines" />
         <item name="android:ellipsize">none</item>
     </style>
 
@@ -60,7 +60,6 @@
     <style name="SmallCardImageView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/small_card_height</item>
-        <item name="android:scaleType">centerCrop</item>
     </style>
 
     <style name="NormalCardImageView" parent="SmallCardImageView">
@@ -71,7 +70,6 @@
     <style name="GalleryCardDetails">
         <item name="android:layout_width">@dimen/gallery_card_width</item>
         <item name="android:layout_height">@dimen/gallery_card_height</item>
-        <item name="android:scaleType">centerCrop</item>
         <item name="android:layout_marginTop">@dimen/medium_margin_size</item>
         <item name="android:layout_marginBottom">@dimen/normal_margin_size</item>
         <item name="android:layout_marginHorizontal">@dimen/normal_margin_size</item>
@@ -102,5 +100,13 @@
         <item name="spanCount">3</item>
     </style>
 
+    <style name="CircularImageButton" parent="Widget.AppCompat.ImageButton">
+        <item name="android:layout_width">@dimen/normal_button_size</item>
+        <item name="android:layout_height">@dimen/normal_button_size</item>
+        <item name="android:background">@drawable/rounded_clickable</item>
+        <item name="android:layout_marginHorizontal">@dimen/medium_margin_size</item>
+        <item name="android:layout_marginTop">@dimen/medium_margin_size</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+    </style>
 
 </resources>

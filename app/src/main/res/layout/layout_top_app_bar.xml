@@ -6,6 +6,10 @@
         <variable
             name="titleToolBar"
             type="java.lang.String" />
+
+        <variable
+            name="visible"
+            type="java.lang.Boolean" />
     </data>
 
     <com.google.android.material.appbar.AppBarLayout
@@ -20,6 +24,7 @@
             android:layout_height="match_parent"
             app:navigationIcon="@drawable/ic_arrow_left"
             app:title="@{titleToolBar}"
+            app:visibleNavIcon="@{visible}"
             app:titleTextColor="@color/primary_text_color" />
 
     </com.google.android.material.appbar.AppBarLayout>

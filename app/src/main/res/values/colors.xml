@@ -38,4 +38,6 @@
     <color name="clickable_color">#BF00182B</color>
     <color name="rounded_button_background_color">#8000182B</color>
 
+    <color name="ripple_color">#003B6B</color>
+
 </resources>

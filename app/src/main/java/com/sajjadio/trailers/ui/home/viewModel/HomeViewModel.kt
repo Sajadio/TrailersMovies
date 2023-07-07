@@ -91,7 +91,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    override fun onClickItem(id: Int) {
+    override fun onClickItem(id:Int) {
         _clickItemEvent.postValue(Event(id))
     }
 

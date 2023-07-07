@@ -41,13 +41,22 @@ fun language() = if (Locale.getDefault().displayLanguage == "English") "en" else
 
 
 @SuppressLint("UseCompatLoadingForDrawables")
-fun ImageView.loadImage(url: String, imageSize: String?) {
+fun ImageView.loadImageWithSize(url: String, imageSize: String?) {
     imageSize?.let {
         Glide.with(this)
             .load(Constant.IMAGE_PATH + imageSize + url)
+            .centerCrop()
             .into(this)
     }
 }
+
+fun ImageView.loadImage(url: String) {
+    Glide.with(this)
+        .load(url)
+        .centerCrop()
+        .into(this)
+}
+
 
 fun Activity.setAsActionBar(toolbar: Toolbar, isBack: Boolean = true, title: String? = null) {
     (this as AppCompatActivity).setSupportActionBar(toolbar)
@@ -152,11 +161,15 @@ fun Context.openLargeImageInDialog(
     downloadButton.setOnClickListener {
         getBitmap(imageSize, imageUrl, onClickDownloadImage)
     }
-    largeImage.loadImage(imageUrl, imageSize)
+    largeImage.loadImageWithSize(imageUrl, imageSize)
     dialog.show()
 }
 
-private fun Context.getBitmap(imageSize: String, imageUrl: String, onClickDownloadImage: (Bitmap) -> Unit) {
+private fun Context.getBitmap(
+    imageSize: String,
+    imageUrl: String,
+    onClickDownloadImage: (Bitmap) -> Unit
+) {
     Glide.with(this)
         .asBitmap()
         .load(Constant.IMAGE_PATH + imageSize + imageUrl)
@@ -171,7 +184,7 @@ private fun Context.getBitmap(imageSize: String, imageUrl: String, onClickDownlo
         })
 }
 
- fun Context.saveImageToStorage(bitmap: Bitmap) {
+fun Context.saveImageToStorage(bitmap: Bitmap) {
     val imageName = "noo${System.currentTimeMillis()}.jpg"
     var outputStream: OutputStream? = null
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -199,12 +212,12 @@ private fun Context.getBitmap(imageSize: String, imageUrl: String, onClickDownlo
     }
 }
 
- fun Fragment.navigateToAnotherDestination(action: NavDirections) {
+fun Fragment.navigateToAnotherDestination(action: NavDirections) {
     findNavController().navigate(action)
 }
 
-fun Fragment.onClickBackButton(view: View){
+fun Fragment.onClickBackButton(view: View) {
     view.setOnClickListener {
-    findNavController().popBackStack()
+        findNavController().popBackStack()
     }
 }

@@ -19,6 +19,7 @@
         <include
             android:id="@+id/appBarLayout"
             layout="@layout/layout_top_app_bar"
+            app:visible="@{true}"
             app:titleToolBar="@{@string/persons}" />
 
         <androidx.recyclerview.widget.RecyclerView

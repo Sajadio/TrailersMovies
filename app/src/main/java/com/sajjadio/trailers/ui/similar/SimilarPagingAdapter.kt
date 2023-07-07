@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.sajjadio.trailers.databinding.LayoutCardSimilarBinding
 import com.sajjadio.trailers.databinding.LayoutNormalCommonCardBinding
 import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.ui.base.BaseInteractListener
@@ -14,11 +13,6 @@ class SimilarPagingAdapter(
     private val _listener: BaseInteractListener
 ) :
     PagingDataAdapter<CommonResult, SimilarPagingAdapter.SimilarHolder>(CharacterComparator) {
-
-    private var onItemClickListener: ((Int?) -> Unit)? = null
-    fun onItemClickListener(listener: (Int?) -> Unit) {
-        onItemClickListener = listener
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         SimilarHolder(

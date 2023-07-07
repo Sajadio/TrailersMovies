@@ -35,7 +35,7 @@
     <string name="no_result">No Result Yet!</string>
     <string name="topRated">Top Rated Movies</string>
     <string name="upComing">Upcoming Movies</string>
-    <string name="category">Categories</string>
+    <string name="genres">Genres</string>
     <string name="trending">Trending Movies</string>
     <string name="try_again">Try again</string>
     <string name="seeMorePopular">See more  popular movies</string>
@@ -51,4 +51,5 @@
     <string name="bio">Bio</string>
     <string name="popularity">Popularity</string>
     <string name="watch_now">Watch now</string>
+    <string name="read_more">read more</string>
 </resources>

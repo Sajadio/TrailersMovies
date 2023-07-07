@@ -1,7 +1,6 @@
 package com.sajjadio.trailers.utils
 
-import android.util.Log
-import android.view.LayoutInflater
+
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
@@ -10,22 +9,15 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
-import androidx.databinding.DataBindingUtil
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.sajjadio.trailers.BR
-import com.sajjadio.trailers.R
+import com.google.android.material.appbar.MaterialToolbar
 import com.sajjadio.trailers.data.model.movie.movie_details.Genre
-import com.sajjadio.trailers.databinding.LayoutBottomSheetBinding
-import com.sajjadio.trailers.databinding.LayoutBottomSheetStoryOfMovieBinding
-import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
 import com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener
 import com.sajjadio.trailers.ui.person_details.adapter.PersonDetailsInteractListener
-import kotlin.math.log
 
 
 @BindingAdapter(value = ["app:items"])
@@ -62,11 +54,19 @@ fun setHeight(view: View, heightInDp: Int?) {
 }
 
 @BindingAdapter(value = ["app:imageUrl", "app:imageSize"])
-fun setImage(imageView: ImageView, url: String?, imageSize: String?) {
+fun setImageWithSize(imageView: ImageView, url: String?, imageSize: String?) {
     url?.let {
-        imageView.loadImage(it, imageSize)
+        imageView.loadImageWithSize(it, imageSize)
     }
 }
+
+@BindingAdapter(value = ["app:genreImageUrl"])
+fun setImage(imageView: ImageView, url: String?) {
+    url?.let {
+        imageView.loadImage(it)
+    }
+}
+
 
 @BindingAdapter(value = ["app:manageState"])
 fun <T> manageState(view: View, state: NetworkStatus<T>?) {
@@ -146,5 +146,12 @@ fun openLargeImage(
                 }
             }
         }
+    }
+}
+
+@BindingAdapter(value = ["app:visibleNavIcon"])
+fun setVisibilityIconOfToolBar(view: MaterialToolbar, visible: Boolean) {
+    if (!visible) {
+        view.navigationIcon = null
     }
 }

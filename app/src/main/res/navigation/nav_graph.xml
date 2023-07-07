@@ -27,8 +27,8 @@
         android:label="CategoriesFragment"
         tools:layout="@layout/fragment_genres">
         <action
-            android:id="@+id/action_genresFragment_to_movieFragment"
-            app:destination="@id/detailsFragment"
+            android:id="@+id/action_genresFragment_to_moviesOfGenreFragment"
+            app:destination="@id/moviesOfGenreFragment"
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_left" />
     </fragment>
@@ -140,6 +140,23 @@
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_left" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/moviesOfGenreFragment"
+        android:name="com.sajjadio.trailers.ui.genres.MoviesOfGenreFragment"
+        android:label="MoviesOfGenreFragment"
+        tools:layout="@layout/fragment_movies_of_genres">
+        <argument
+            android:name="genreTitle"
+            app:argType="string" />
+        <argument
+            android:name="genreId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_moviesOfGenreFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
     </fragment>
 
 </navigation>

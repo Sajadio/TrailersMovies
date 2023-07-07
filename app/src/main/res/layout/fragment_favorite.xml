@@ -8,11 +8,19 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/background_color"
         android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/appBarLayout"
+            layout="@layout/layout_top_app_bar"
+            app:visible="@{false}"
+            app:titleToolBar="@{@string/favorite}" />
 
         <TextView
             style="@style/LargeTitle"
             android:text="Favorite Screen"
+            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

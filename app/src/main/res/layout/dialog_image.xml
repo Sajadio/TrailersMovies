@@ -16,7 +16,6 @@
             android:id="@+id/largeImage"
             android:layout_width="@dimen/dialog_image_width"
             android:layout_height="@dimen/dialog_image_height"
-            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
