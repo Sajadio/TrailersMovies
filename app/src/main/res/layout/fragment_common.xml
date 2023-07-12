@@ -5,34 +5,47 @@
 
     <data>
 
+        <variable
+            name="adapter"
+            type="com.sajjadio.trailers.ui.common.CommonPagingAdapter" />
+
+
+        <variable
+            name="viewModel"
+            type="com.sajjadio.trailers.ui.common.CommonViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/secondColor">
+        android:background="@color/background_color">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar"
+        <include
+            android:id="@+id/appBarLayout"
+            layout="@layout/layout_top_app_bar"
+            app:visible="@{true}"
+            app:titleToolBar="@{viewModel.title}" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/mainColor"
+            android:layout_height="0dp"
+            android:background="@color/background_color"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@android:color/transparent"
-                android:minHeight="?attr/actionBarSize"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewCommon"
+                style="@style/GridRecycler"
+                app:spanCount="2"
+                tools:listitem="@layout/layout_normal_common_card" />
 
-        </com.google.android.material.appbar.AppBarLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer"
@@ -40,73 +53,56 @@
             android:layout_height="0dp"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appbar">
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:columnCount="2"
-                android:rowCount="2">
+                android:paddingStart="@dimen/normal_padding_size"
+                android:rowCount="2"
+                tools:ignore="RtlSymmetry">
 
                 <include
                     layout="@layout/common_shimmer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_marginVertical="@dimen/normal_margin_size" />
 
                 <include
                     layout="@layout/common_shimmer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_4"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_marginVertical="@dimen/normal_margin_size" />
 
                 <include
                     layout="@layout/common_shimmer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_8"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_marginVertical="@dimen/normal_margin_size" />
 
                 <include
                     layout="@layout/common_shimmer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_4"
-                    android:layout_marginTop="@dimen/size_8"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_marginVertical="@dimen/normal_margin_size" />
+
+                <include
+                    layout="@layout/common_shimmer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/normal_margin_size" />
+
+                <include
+                    layout="@layout/common_shimmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/normal_margin_size" />
 
             </GridLayout>
 
 
         </com.facebook.shimmer.ShimmerFrameLayout>
-
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swiperefreshlayout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appbar">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcCommon"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                tools:listitem="@layout/layout_item_card_common_paging" />
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

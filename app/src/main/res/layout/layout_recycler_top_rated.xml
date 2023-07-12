@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="adapter"
+            type="com.sajjadio.trailers.ui.home.adapter.CommonAdapter" />
+
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.home.adapter.HomeInteractListener" />
+
+        <variable
+            name="header"
+            type="java.lang.String" />
+
+        <import type="com.sajjadio.trailers.utils.Destination" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_margin_size"
+        android:background="@color/background_color">
+
+        <include
+            layout="@layout/layout_header_text"
+            app:header="@{header}" />
+
+        <include
+            layout="@layout/layout_see_all_text"
+            android:clickable="true"
+            android:onClick="@{() -> listener.onClickSeeAllTopRatedItems(Destination.TopRated)}" />
+
+        <include
+            layout="@layout/layout_small_recycler"
+            app:adapter="@{adapter}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

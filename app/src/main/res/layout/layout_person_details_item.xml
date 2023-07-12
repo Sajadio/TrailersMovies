@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.sajjadio.trailers.domain.model.Person" />
+
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.person_details.adapter.PersonDetailsInteractListener" />
+
+        <variable
+            name="imageSize"
+            type="com.sajjadio.trailers.utils.Constant" />
+
+        <import type="com.sajjadio.trailers.utils.FormatKt" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_color"
+        android:fitsSystemWindows="true">
+
+        <ImageView
+            android:id="@+id/imageViewMovie"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/app_name"
+            app:imageSize="@{imageSize.IMAGE_Size_780}"
+            app:imageUrl="@{item.profilePath}"
+            app:layout_constraintDimensionRatio="9:16"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="VectorDrawableCompat"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/gradient_overlay"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewMovie"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewMovie"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/imageViewMovie"
+            app:layout_constraintTop_toTopOf="@+id/imageViewMovie"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/imageViewPerson"
+            android:layout_width="@dimen/gallery_card_height"
+            android:transitionName="big_person_image"
+            android:layout_height="@dimen/gallery_card_height"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop"
+            app:imageSize="@{imageSize.IMAGE_Size_780}"
+            app:imageUrl="@{item.profilePath}"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewMovie"
+            app:layout_constraintDimensionRatio="9:16"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewMovie"
+            app:layout_constraintStart_toStartOf="@+id/imageViewMovie"
+            app:layout_constraintTop_toTopOf="parent"
+            app:roundPercent="1"
+            tools:ignore="VectorDrawableCompat" />
+
+        <ImageButton
+            android:id="@+id/imageButtonBack"
+            style="@style/CircularImageButton"
+            android:onClick="@{() -> listener.onClickBackButton()}"
+            android:src="@drawable/ic_arrow_left"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            style="@style/LargeTitle"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/medium_margin_size"
+            android:layout_marginBottom="@dimen/normal_margin_size"
+            android:gravity="center"
+            android:text="@{item.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPerson"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/textViewDepartment"
+            style="@style/NormalLabel"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/x_x_large_margin_size"
+            android:layout_marginTop="@dimen/medium_margin_size"
+            android:drawablePadding="@dimen/small_padding_size"
+            android:maxLines="5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+            app:list="@{item.alsoKnownAs}"
+            tools:text="Acting" />
+
+        <TextView
+            android:id="@+id/textViewPopularity"
+            style="@style/LargeTitle"
+            android:layout_marginStart="@dimen/medium_margin_size"
+            android:layout_marginTop="@dimen/medium_margin_size"
+            android:gravity="center"
+            android:text="@string/popularity"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewPerson"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDepartment" />
+
+
+        <TextView
+            android:id="@+id/textViewDescriptionPopularity"
+            style="@style/NormalLabel"
+            android:layout_marginTop="@dimen/normal_margin_size"
+            android:gravity="center"
+            android:text="@{item.popularity.toString()}"
+            app:layout_constraintEnd_toEndOf="@+id/textViewPopularity"
+            app:layout_constraintStart_toStartOf="@+id/textViewPopularity"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPopularity"
+            tools:text="30.222K" />
+
+        <TextView
+            android:id="@+id/textViewBirthday"
+            style="@style/LargeTitle"
+            android:layout_marginEnd="@dimen/medium_margin_size"
+            android:gravity="center"
+            android:text="Birthday"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewPerson"
+            app:layout_constraintTop_toTopOf="@+id/textViewPopularity" />
+
+
+        <TextView
+            android:id="@+id/textViewDescriptionBirthday"
+            style="@style/NormalLabel"
+            android:layout_marginTop="@dimen/normal_margin_size"
+            android:gravity="center"
+            android:text="@{item.birthday}"
+            app:layout_constraintEnd_toEndOf="@+id/textViewBirthday"
+            app:layout_constraintStart_toStartOf="@+id/textViewBirthday"
+            app:layout_constraintTop_toBottomOf="@+id/textViewBirthday"
+            tools:text="1978-07-12" />
+
+        <TextView
+            android:id="@+id/textViewBio"
+            style="@style/LargeTitle"
+            android:layout_marginStart="@dimen/medium_margin_size"
+            android:layout_marginTop="@dimen/medium_margin_size"
+            android:text="@string/bio"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionPopularity" />
+
+        <TextView
+            android:id="@+id/textViewDescriptionBio"
+            style="@style/NormalLabel"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/normal_margin_size"
+            android:gravity="start|center"
+            android:maxLines="3"
+            android:text="@{item.biography}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textViewBio"
+            app:layout_constraintTop_toBottomOf="@+id/textViewBio"
+            app:layout_constraintEnd_toStartOf="@+id/imageButtonShowBottomSheet"
+            tools:text="After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission. After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission." />
+
+        <TextView
+            android:id="@+id/imageButtonShowBottomSheet"
+            android:layout_width="wrap_content"
+            style="@style/NormalLabel"
+            android:clickable="true"
+            android:ellipsize="none"
+            android:textColor="@color/primary_color"
+            android:onClick="@{() -> listener.onClickToShowBottomSheet(item,listener)}"
+            android:text="@string/read_more"
+            android:visibility="@{item.biography.length() > 190 ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewDescriptionBio"
+            app:layout_constraintEnd_toEndOf="@+id/textViewBirthday"
+            app:layout_constraintStart_toEndOf="@+id/textViewDescriptionBio" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

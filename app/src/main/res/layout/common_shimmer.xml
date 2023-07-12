@@ -15,10 +15,13 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card1"
-            android:layout_width="@dimen/showcase_width3"
-            android:layout_height="@dimen/upcoming_fragment_height"
-            app:cardBackgroundColor="@color/color_shimmer"
+            android:layout_width="@dimen/normal_card_height"
+            android:layout_height="200dp"
+            android:layout_marginHorizontal="@dimen/normal_margin_size"
+            android:layout_marginVertical="@dimen/normal_margin_size"
+            app:cardBackgroundColor="@color/shimmer_color"
             app:cardCornerRadius="@dimen/corner_small"
+            app:layout_constraintDimensionRatio="9:16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,14 +37,14 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
-                android:background="@color/color_child_shimmer" />
+                android:background="@color/shimmer_color" />
 
             <View
                 android:layout_width="30dp"
                 android:layout_height="15dp"
                 android:layout_marginTop="@dimen/size_4"
                 android:layout_marginBottom="@dimen/size_8"
-                android:background="@color/color_child_shimmer" />
+                android:background="@color/shimmer_color" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -51,13 +54,13 @@
                 <View
                     android:layout_width="30dp"
                     android:layout_height="15dp"
-                    android:background="@color/color_child_shimmer" />
+                    android:background="@color/shimmer_color" />
 
                 <View
                     android:layout_width="40dp"
                     android:layout_height="15dp"
                     android:layout_marginStart="@dimen/size_4"
-                    android:background="@color/color_child_shimmer" />
+                    android:background="@color/shimmer_color" />
 
             </LinearLayout>
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="adapter"
+            type="com.sajjadio.trailers.ui.movie_details.adapter.PersonOfMovieAdapter" />
+
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_margin_size"
+        android:background="@color/background_color">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/layout_header_text"
+            app:header="@{@string/persons}" />
+
+        <include
+            layout="@layout/layout_see_all_text"
+            android:clickable="true"
+            android:onClick="@{() -> listener.onClickSeeAllPersons()}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            style="@style/PersonRecyclerOfMovieDetails"
+            android:id="@+id/recyclerViewActors"
+            android:adapter="@{adapter}"
+            app:layout_constraintTop_toBottomOf="@+id/include"
+            tools:ignore="RtlSymmetry"
+            tools:listitem="@layout/layout_item_person_of_movie_card" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

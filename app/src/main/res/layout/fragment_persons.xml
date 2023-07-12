@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sajjadio.trailers.ui.persons.PersonViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color">
+
+        <include
+            android:id="@+id/appBarLayout"
+            layout="@layout/layout_top_app_bar"
+            app:visible="@{true}"
+            app:titleToolBar="@{@string/persons}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPersons"
+            style="@style/GridRecycler"
+            android:layout_height="0dp"
+            app:items="@{viewModel.responsePersonsOfMovie.data}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            app:spanCount="3"
+            tools:listitem="@layout/layout_item_person_card" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

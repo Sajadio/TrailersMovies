@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="adapter"
+            type="com.sajjadio.trailers.ui.home.adapter.TrendSliderAdapter" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@color/background_color"
+        android:layout_height="@dimen/large_poster_height">
+
+        <com.smarteist.autoimageslider.SliderView
+            android:id="@+id/sliderView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:sliderAnimationDuration="500"
+            app:sliderAutoCycleDirection="back_and_forth"
+            app:sliderAutoCycleEnabled="true"
+            app:sliderIndicatorAnimationDuration="500"
+            app:sliderIndicatorGravity="start|bottom"
+            app:sliderIndicatorOrientation="horizontal"
+            app:sliderIndicatorPadding="@dimen/small_padding_size"
+            app:sliderIndicatorRadius="2dp"
+            app:sliderIndicatorRtlMode="auto"
+            app:sliderIndicatorSelectedColor="@color/primary_color"
+            app:sliderIndicatorUnselectedColor="@color/secondary_color"
+            app:sliderScrollTimeInSec="5"
+            app:sliderStartAutoCycle="true" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

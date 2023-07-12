@@ -8,15 +8,17 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search">Search</string>
-    <string name="search_box">Search movies…</string>
+    <string name="search_hint">Search for movies…</string>
     <string name="popular">Popular Movies</string>
     <string name="movie">Movie</string>
     <string name="movies">Movies</string>
     <string name="home">Home</string>
     <string name="menu">Menu</string>
-    <string name="actors">Actors</string>
+    <string name="persons">Persons</string>
+    <string name="moives">Movies</string>
     <string name="similar">Similar</string>
-    <string name="seeAll">See All</string>
+    <string name="gallery">Gallery</string>
+    <string name="seeAll">See all</string>
     <string name="categories">Generes</string>
     <string name="tv">TV</string>
     <string name="all">All</string>
@@ -31,9 +33,9 @@
     <string name="noConnection">Make sure you are connected to the internet and try again</string>
     <string name="notActive">Sorry, something wrong!</string>
     <string name="no_result">No Result Yet!</string>
-    <string name="rated">Top Rated Movies</string>
+    <string name="topRated">Top Rated Movies</string>
     <string name="upComing">Upcoming Movies</string>
-    <string name="category">Categories</string>
+    <string name="genres">Genres</string>
     <string name="trending">Trending Movies</string>
     <string name="try_again">Try again</string>
     <string name="seeMorePopular">See more  popular movies</string>
@@ -42,4 +44,12 @@
     <string name="can_t_search">You can\'t search without the internet</string>
     <string name="problem_network">Sorry, couldn\t connection with server. Please checkyour internet and try again</string>
     <string name="connection_problem">Connection problem</string>
+    <string name="clear_history">Clear history</string>
+    <string name="history">History</string>
+    <string name="try_another_keyword">Try another keyword</string>
+    <string name="story">Story</string>
+    <string name="bio">Bio</string>
+    <string name="popularity">Popularity</string>
+    <string name="watch_now">Watch now</string>
+    <string name="read_more">read more</string>
 </resources>

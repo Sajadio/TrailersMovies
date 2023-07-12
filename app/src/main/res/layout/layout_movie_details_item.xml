@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.sajjadio.trailers.domain.model.MovieDetails" />
+
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener" />
+
+        <variable
+            name="imageSize"
+            type="com.sajjadio.trailers.utils.Constant" />
+
+        <import type="com.sajjadio.trailers.utils.FormatKt" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_color"
+        android:fitsSystemWindows="true">
+
+        <ImageView
+            android:id="@+id/imageViewMovie"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/app_name"
+            app:imageSize="@{imageSize.IMAGE_Size_H632}"
+            app:imageUrl="@{item.poster_path}"
+            app:layout_constraintDimensionRatio="9:16"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="VectorDrawableCompat"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/gradient_overlay"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewMovie"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewMovie"
+            app:layout_constraintStart_toStartOf="@+id/imageViewMovie"
+            app:layout_constraintTop_toTopOf="@+id/imageViewMovie" />
+
+        <ImageButton
+            android:id="@+id/imageButtonBack"
+            style="@style/CircularImageButton"
+            android:onClick="@{() -> listener.onClickBackButton()}"
+            android:src="@drawable/ic_arrow_left"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imageButtonFave"
+            style="@style/CircularImageButton"
+            android:onClick="@{() -> listener.onClickFavoriteButton(`item`)}"
+            android:src="@drawable/ic_large_fave"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            style="@style/LargeTitle"
+            android:layout_marginStart="@dimen/medium_margin_size"
+            android:layout_marginBottom="@dimen/normal_margin_size"
+            android:text="@{item.original_title}"
+            app:layout_constraintBottom_toTopOf="@+id/textViewGenre"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/textViewGenre"
+            style="@style/NormalLabelWithoutEllipSize"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/medium_margin_size"
+            android:layout_marginEnd="@dimen/medium_margin_size"
+            android:layout_marginBottom="@dimen/normal_margin_size"
+            android:gravity="start|center"
+            app:genres="@{item.genres}"
+            app:layout_constraintBottom_toTopOf="@+id/textViewRunTime"
+            app:layout_constraintEnd_toStartOf="@+id/playButton"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Action | Comedy | Drama" />
+
+        <TextView
+            android:id="@+id/textViewRunTime"
+            style="@style/NormalLabel"
+            android:layout_marginStart="@dimen/medium_margin_size"
+            android:layout_marginBottom="@dimen/normal_margin_size"
+            android:drawablePadding="@dimen/small_padding_size"
+            android:text="@{`Runtime: `+FormatKt.formatHourMinutes(item.runtime)}"
+            app:layout_constraintBottom_toTopOf="@+id/textViewRating"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Runtime: 1h 30m" />
+
+        <TextView
+            android:id="@+id/textViewRating"
+            style="@style/NormalLabel"
+            android:layout_marginStart="@dimen/medium_margin_size"
+            android:layout_marginBottom="@dimen/medium_margin_size"
+            android:drawablePadding="@dimen/small_padding_size"
+            android:text="@{item.vote_average + ``}"
+            android:textColor="@color/primary_text_color"
+            app:drawableEndCompat="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewMovie"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="4.2" />
+
+        <TextView
+            android:id="@+id/textViewVoteCount"
+            style="@style/NormalLabel"
+            android:layout_marginStart="@dimen/normal_margin_size"
+            android:text="@{`(`+FormatKt.formatVoteCount(item.vote_count)+`K)`}"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewRating"
+            app:layout_constraintStart_toEndOf="@+id/textViewRating"
+            app:layout_constraintTop_toTopOf="@+id/textViewRating"
+            tools:text="(10.6K)" />
+
+        <ImageButton
+            android:id="@+id/playButton"
+            style="@style/NormalPlayButton"
+            android:layout_marginEnd="@dimen/medium_margin_size"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewRating"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewTitle" />
+
+        <TextView
+            android:id="@+id/textViewStory"
+            style="@style/LargeTitle"
+            android:layout_marginTop="@dimen/medium_margin_size"
+            android:text="@string/story"
+            app:layout_constraintStart_toStartOf="@+id/textViewRating"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewMovie" />
+
+        <TextView
+            android:id="@+id/textViewDescriptionStory"
+            style="@style/NormalLabel"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/normal_margin_size"
+            android:gravity="start|center"
+            android:maxLines="3"
+            android:text="@{item.overview}"
+            app:layout_constraintEnd_toStartOf="@+id/imageButtonShowBottomSheet"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textViewStory"
+            app:layout_constraintTop_toBottomOf="@+id/textViewStory"
+            tools:text="After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission. After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission." />
+
+        <TextView
+            android:id="@+id/imageButtonShowBottomSheet"
+            style="@style/NormalLabel"
+            android:layout_width="wrap_content"
+            android:clickable="true"
+            android:ellipsize="none"
+            android:onClick="@{() -> listener.onClickToShowBottomSheet(item,listener)}"
+            android:text="@string/read_more"
+            android:textColor="@color/primary_color"
+            android:visibility="@{item.overview.length() > 190 ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewDescriptionStory"
+            app:layout_constraintEnd_toEndOf="@+id/playButton"
+            app:layout_constraintStart_toEndOf="@+id/textViewDescriptionStory" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

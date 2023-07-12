@@ -6,112 +6,29 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.sajjadio.trailers.ui.home.viewModel.HomeViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/secondColor">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/mainColor"
-            android:fitsSystemWindows="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/mainColor"
-                android:minHeight="?attr/actionBarSize"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:title="@string/home">
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/btnTheme"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="end"
-                    android:background="@drawable/shadow_menu_btn"
-                    android:src="@drawable/ic_outline_dark_mode_24" />
-
-            </com.google.android.material.appbar.MaterialToolbar>
-
-        </com.google.android.material.appbar.AppBarLayout>
+        android:background="@color/background_color">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swiperefreshlayout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout">
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <ScrollView
-                android:id="@+id/scrollView"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_home"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
                 android:orientation="vertical"
-                android:scrollbars="none"
-                tools:ignore="ScrollViewCount">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <androidx.fragment.app.FragmentContainerView
-                        android:id="@+id/trendFragment"
-                        android:name="com.example.trailers.ui.fragment.trend.TrendFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="MissingConstraints" />
-
-
-                    <androidx.fragment.app.FragmentContainerView
-                        android:id="@+id/popularFragment"
-                        android:name="com.example.trailers.ui.fragment.popular.PopularFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/trendFragment"
-                        tools:ignore="MissingConstraints" />
-
-
-                    <androidx.fragment.app.FragmentContainerView
-                        android:id="@+id/ratedFragment"
-                        android:name="com.example.trailers.ui.fragment.rated.RatedFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/popularFragment"
-                        tools:ignore="MissingConstraints" />
-
-                    <androidx.fragment.app.FragmentContainerView
-                        android:id="@+id/upcomingFragment"
-                        android:name="com.example.trailers.ui.fragment.upcoming.UpComingFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/ratedFragment"
-                        tools:ignore="MissingConstraints" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </ScrollView>
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -121,12 +38,12 @@
             android:layout_height="0dp"
             android:background="?attr/mainColor"
             android:gravity="center"
-            android:visibility="invisible"
             android:orientation="vertical"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout">
+            app:layout_constraintTop_toBottomOf="@+id/swipeRefreshLayout">
 
             <ImageView
                 android:layout_width="70dp"

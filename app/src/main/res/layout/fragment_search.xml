@@ -5,111 +5,165 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.sajjadio.trailers.ui.search.SearchViewModel" />
+
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swiperefreshlayout"
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background_color">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/secondColor">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/mainColor"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
 
-                <SearchView
-                    android:id="@+id/searchView"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_margin="@dimen/size_8"
-                    android:background="@drawable/shape_search_text"
-                    android:minHeight="?attr/actionBarSize"
-                    app:defaultQueryHint="@string/search_box" />
-
-            </com.google.android.material.appbar.AppBarLayout>
-
-            <com.facebook.shimmer.ShimmerFrameLayout
-                android:id="@+id/shimmer"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editTextSearch"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="56dp"
+                android:layout_marginHorizontal="@dimen/medium_margin_size"
+                android:layout_marginTop="@dimen/medium_margin_size"
+                android:hint="@string/search_hint"
+                android:textColorHint="@color/secondary_text_color"
+                app:boxStrokeColor="@color/transparent_color"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/secondary_text_color"
+                app:hintTextColor="@color/secondary_text_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appbar">
+                app:layout_constraintTop_toTopOf="parent"
+                app:startIconDrawable="@drawable/ic_search"
+                app:startIconTint="@color/secondary_text_color">
 
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:weightSum="4"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_search_box"
+                    android:onTextChanged="@{(text,start,before,count) -> viewModel.onSearchInputChanged(text)}"
+                    android:textColor="@color/primary_text_color" />
 
-                    <include
-                        layout="@layout/shimmer_search"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <include
-                        layout="@layout/shimmer_search"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <include
-                        layout="@layout/shimmer_search"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <include
-                        layout="@layout/shimmer_search"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-                </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayoutSearchScreenHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/editTextSearch"
+                app:layout_constraintStart_toStartOf="@+id/editTextSearch"
+                app:layout_constraintTop_toBottomOf="@+id/editTextSearch"
+                app:layout_constraintVertical_bias="0.4">
 
-            </com.facebook.shimmer.ShimmerFrameLayout>
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/start_search_icon" />
+
+                <TextView
+                    android:id="@+id/textViewHeader"
+                    style="@style/LargeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/normal_margin_size"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="Search in Flick" />
+
+                <TextView
+                    android:id="@+id/textViewHint"
+                    style="@style/NormalLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="@dimen/x_x_large_margin_size"
+                    android:layout_marginTop="@dimen/normal_margin_size"
+                    android:ellipsize="none"
+                    android:gravity="center"
+                    android:maxLines="10"
+                    android:paddingHorizontal="@dimen/large_padding_size"
+                    android:text="By typing in search box, Flick search movies and then shows you the best result."
+                    android:textColor="@color/secondary_text_color" />
+
+            </LinearLayout>
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rc_search"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginTop="@dimen/medium_margin_size"
+                android:background="@color/background_color"
+                android:clipToPadding="false"
                 android:orientation="vertical"
+                android:paddingHorizontal="@dimen/medium_padding_size"
                 android:visibility="invisible"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appbar"
-                tools:listitem="@layout/layout_search" />
-
+                app:layout_constraintTop_toBottomOf="@+id/editTextSearch"
+                tools:listitem="@layout/layout_search_card" />
 
             <TextView
                 android:id="@+id/hintText2"
-                style="@style/Body1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Try another keyword"
-                android:textColor="?attr/textColorHint"
+                style="@style/LargeTitle"
+                android:gravity="center"
+                android:text="@string/try_another_keyword"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appbar" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextSearch" />
 
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/background_color"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextSearch">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/normal_margin_size"
+                    android:background="@color/background_color"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/medium_padding_size">
+
+                    <include
+                        layout="@layout/shimmer_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/normal_margin_size" />
+
+                    <include
+                        layout="@layout/shimmer_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/normal_margin_size" />
+
+                    <include
+                        layout="@layout/shimmer_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/normal_margin_size" />
+
+                    <include
+                        layout="@layout/shimmer_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/normal_margin_size" />
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

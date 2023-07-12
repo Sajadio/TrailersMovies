@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="header"
+            type="java.lang.String" />
+    </data>
+
+    <TextView
+        android:id="@+id/textViewHeader"
+        style="@style/LargeTitle"
+        android:layout_marginStart="@dimen/medium_margin_size"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@{header}"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry"
+        tools:text="Header" />
+</layout>

@@ -2,23 +2,32 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'kotlin-android-extensions'
     id 'androidx.navigation.safeargs.kotlin'
     id 'dagger.hilt.android.plugin'
-    id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'kotlin-parcelize'
+}
+
+def getSecretKeys() {
+    def keyFile = project.rootProject.file('local.properties')
+    def properties = new Properties()
+    properties.load(new FileInputStream(keyFile))
+    return properties
 }
 
 android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.trailers"
+        applicationId "com.sajjadio.trailers"
         minSdk 28
         targetSdk 32
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'BASE_URL', getSecretKeys()['BASE_URL']
+        buildConfigField 'String', 'API_KEY', getSecretKeys()['API_KEY']
     }
 
     buildTypes {
@@ -34,7 +43,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures{
+    buildFeatures {
         dataBinding true
     }
 }
@@ -58,7 +67,7 @@ dependencies {
     implementation 'com.opensooq.android:pluto:1.6'
     implementation 'com.yarolegovich:discrete-scrollview:1.5.1'
 
-    // Glid
+    // Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
 
     // Retrofit
@@ -79,7 +88,6 @@ dependencies {
     // Room
     implementation "androidx.room:room-runtime:2.4.2"
     kapt "androidx.room:room-compiler:2.4.2"
-    // Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:2.4.2"
 
 
@@ -88,7 +96,6 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.40.3"
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
     implementation "androidx.fragment:fragment-ktx:1.4.1"
-    // When using Kotlin.
     kapt 'androidx.hilt:hilt-compiler:1.0.0'
 
 
@@ -105,7 +112,7 @@ dependencies {
     // Shimmer
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
+    // Image slider
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
-
 
 }

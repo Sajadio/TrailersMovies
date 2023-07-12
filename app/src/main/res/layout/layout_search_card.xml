@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.sajjadio.trailers.data.model.movie.search.SearchResult" />
+
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.base.BaseInteractListener" />
+
+        <variable
+            name="imageSize"
+            type="com.sajjadio.trailers.utils.Constant" />
+
+        <import type="com.sajjadio.trailers.utils.FormatKt" />
+    </data>
+
+
+    <LinearLayout
+        android:id="@+id/search_root"
+        android:layout_width="match_parent"
+        android:layout_marginVertical="@dimen/normal_margin_size"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> listener.onClickItem(item.id)}"
+        android:background="@color/background_color"
+        android:orientation="horizontal">
+
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/imageViewMovie"
+            android:layout_width="@dimen/search_gallery_width"
+            android:layout_height="@dimen/search_card_height"
+            android:contentDescription="@string/app_name"
+            app:imageSize="@{imageSize.IMAGE_Size_200}"
+            app:imageUrl="@{item.poster_path}"
+            app:layout_constraintDimensionRatio="9:16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:roundPercent="0.11"
+            tools:ignore="MissingConstraints"
+            tools:srcCompat="@drawable/ic_launcher_background" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="@dimen/large_margin_size"
+            android:layout_marginStart="@dimen/medium_margin_size"
+            android:gravity="center|start"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@+id/imageViewMovie"
+            app:layout_constraintTop_toTopOf="@+id/imageViewMovie">
+
+            <TextView
+                android:id="@+id/textViewTitle"
+                style="@style/MediumTitle"
+                android:layout_width="wrap_content"
+                app:setText="@{item.original_title}"
+                tools:text="Title" />
+
+
+            <TextView
+                android:id="@+id/textViewDate"
+                style="@style/NormalLabel"
+                android:layout_marginTop="@dimen/normal_margin_size"
+                app:date="@{item.release_date}"
+                tools:text="Release date: 00.00.0000" />
+
+            <TextView
+                android:id="@+id/textViewGenre"
+                style="@style/NormalLabel"
+                android:layout_marginTop="@dimen/small_margin_size"
+                android:text="Action, Drama"
+                tools:text="Action, Drama" />
+
+            <TextView
+                android:id="@+id/textViewVoteCount"
+                style="@style/NormalLabel"
+                android:layout_marginTop="@dimen/small_margin_size"
+                android:drawablePadding="@dimen/small_padding_size"
+                android:text="@{FormatKt.formatVoteCount(item.vote_count)}"
+                app:drawableEndCompat="@drawable/ic_outline_remove_red_eye_12"
+                tools:text="10.6 k" />
+
+
+            <TextView
+                android:id="@+id/textViewRating"
+                style="@style/TextRating"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@{item.vote_average.toString()}"
+                android:layout_marginTop="@dimen/small_margin_size"
+                android:textColor="@color/primary_text_color"
+                tools:text="6.2" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

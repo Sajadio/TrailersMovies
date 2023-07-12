@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="adapter"
+            type="com.sajjadio.trailers.ui.movie_details.adapter.GalleryOdMovieAdapter" />
+
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_margin_size"
+        android:background="@color/background_color">
+
+        <include
+            layout="@layout/layout_header_text"
+            app:header="@{@string/gallery}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewGallery"
+            style="@style/GalleryRecyclerOfDetails"
+            android:adapter="@{adapter}"
+            tools:ignore="RtlSymmetry"
+            tools:listitem="@layout/layout_gallery_of_person_movie_card" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

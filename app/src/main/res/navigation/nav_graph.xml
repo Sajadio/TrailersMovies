@@ -1,131 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
 
-    <action
-        android:id="@+id/action_trendFragment_to_movieFragment"
-        app:destination="@+id/moiveFragment"
-        app:launchSingleTop="true" />
-
-    <action
-        android:id="@+id/action_popularFragment_to_movieFragment"
-        app:destination="@+id/moiveFragment"
-        app:launchSingleTop="true" />
-
-    <action
-        android:id="@+id/action_ratedFragment_to_movieFragment"
-        app:destination="@+id/moiveFragment"
-        app:launchSingleTop="true" />
-
-    <action
-        android:id="@+id/action_upComingFragment_to_movieFragment"
-        app:destination="@+id/moiveFragment"
-        app:launchSingleTop="true" />
-
-    <action
-        android:id="@+id/action_popularFragment_to_commonFragment"
-        app:destination="@+id/commonFragment"
-        app:launchSingleTop="true"/>
-
-    <action
-        android:id="@+id/action_ratedFragment_to_commonFragment"
-        app:destination="@+id/commonFragment"
-        app:launchSingleTop="true" />
-
-    <action
-        android:id="@+id/action_upComingFragment_to_commonFragment"
-        app:destination="@+id/commonFragment"
-        app:launchSingleTop="true"/>
-
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.trailers.ui.fragment.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:name="com.sajjadio.trailers.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_commonFragment"
+            app:destination="@id/commonFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
+    </fragment>
     <fragment
         android:id="@+id/genresFragment"
-        android:name="com.example.trailers.ui.fragment.genres.GenresFragment"
-        android:label="CategoriesFragment">
+        android:name="com.sajjadio.trailers.ui.genres.GenresFragment"
+        android:label="CategoriesFragment"
+        tools:layout="@layout/fragment_genres">
         <action
-            android:id="@+id/action_genresFragment_to_moiveFragment"
-            app:destination="@id/moiveFragment"/>
+            android:id="@+id/action_genresFragment_to_moviesOfGenreFragment"
+            app:destination="@id/moviesOfGenreFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.trailers.ui.fragment.search.SearchFragment"
-        android:label="SearchFragment">
+        android:name="com.sajjadio.trailers.ui.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
         <action
-            android:id="@+id/action_searchFragment_to_moiveFragment"
-            app:destination="@id/moiveFragment" />
+            android:id="@+id/action_searchFragment_to_movieFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
 
     </fragment>
     <fragment
-        android:id="@+id/moiveFragment"
-        android:name="com.example.trailers.ui.fragment.movie.MovieFragment"
-        android:label="MoiveFragment">
+        android:id="@+id/detailsFragment"
+        android:name="com.sajjadio.trailers.ui.movie_details.MovieDetailsFragment"
+        android:label="DetailsFragment"
+        tools:layout="@layout/fragment_movie_details">
+        <action
+            android:id="@+id/action_detailsFragment_to_similarFragment"
+            app:destination="@id/similarFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_detailsFragment_self"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/action_detailsFragment_to_personFragment"
+            app:destination="@id/personDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/action_detailsFragment_to_personsFragment"
+            app:destination="@id/personsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
 
-        <argument
-            android:name="id"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_moiveFragment_to_similarFragment"
-            app:destination="@id/similarFragment" />
-        <action
-            android:id="@+id/action_moiveFragment_to_actorsFragment"
-            app:destination="@id/actorsFragment"/>
     </fragment>
-    <fragment
-        android:id="@+id/similarFragment"
-        android:name="com.example.trailers.ui.fragment.similar.SimilarFragment"
-        android:label="SimilarFragment">
-        <action
-            android:id="@+id/action_similarFragment_to_moiveFragment"
-            app:destination="@id/moiveFragment" />
-        <argument
-            android:name="iDMovie"
-            app:argType="integer" />
-    </fragment>
+
     <fragment
         android:id="@+id/commonFragment"
-        android:name="com.example.trailers.ui.fragment.common.CommonFragment"
-        android:label="PopularFragment">
+        android:name="com.sajjadio.trailers.ui.common.CommonFragment"
+        android:label="PopularFragment"
+        tools:layout="@layout/fragment_common">
         <action
-            android:id="@+id/action_commonFragment_to_moiveFragment"
-            app:destination="@id/moiveFragment"/>
+            android:id="@+id/action_commonFragment_to_movieFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
 
         <argument
-            android:name="id"
+            android:name="destination"
+            app:argType="com.sajjadio.trailers.utils.Destination" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/personDetailsFragment"
+        android:name="com.sajjadio.trailers.ui.person_details.PersonDetailsFragment"
+        android:label="PersonFragment"
+        tools:layout="@layout/fragment_person_details">
+        <argument
+            android:name="personId"
             app:argType="integer" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/actorsFragment"
-        android:name="com.example.trailers.ui.fragment.movie.ActorsFragment"
-        android:label="ActorsFragment">
-        <argument
-            android:name="info"
-            app:argType="com.example.trailers.data.model.movie.actors.Cast" />
         <action
-            android:id="@+id/action_actorsFragment_to_moiveFragment"
-            app:destination="@id/moiveFragment"/>
+            android:id="@+id/action_personFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/similarFragment"
+        android:name="com.sajjadio.trailers.ui.similar.SimilarFragment"
+        android:label="SimilarFragment"
+        tools:layout="@layout/fragment_similar">
+        <action
+            android:id="@+id/action_similarFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/trendFragment2"
-        android:name="com.example.trailers.ui.fragment.trend.TrendFragment"
-        android:label="TrendFragment" />
+        android:id="@+id/favoriteFragment"
+        android:name="com.sajjadio.trailers.ui.favorite.FavoriteFragment"
+        android:label="FavoriteFragment"
+        tools:layout="@layout/fragment_favorite" />
     <fragment
-        android:id="@+id/upComingFragment2"
-        android:name="com.example.trailers.ui.fragment.upcoming.UpComingFragment"
-        android:label="UpComingFragment" />
+        android:id="@+id/personsFragment"
+        android:name="com.sajjadio.trailers.ui.persons.PersonsFragment"
+        android:label="PersonsFragment"
+        tools:layout="@layout/fragment_persons">
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_personsFragment_to_personFragment"
+            app:destination="@id/personDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
+
+    </fragment>
     <fragment
-        android:id="@+id/popularFragment2"
-        android:name="com.example.trailers.ui.fragment.popular.PopularFragment"
-        android:label="PopularFragment" />
-    <fragment
-        android:id="@+id/ratedFragment2"
-        android:name="com.example.trailers.ui.fragment.rated.RatedFragment"
-        android:label="RatedFragment" />
+        android:id="@+id/moviesOfGenreFragment"
+        android:name="com.sajjadio.trailers.ui.genres.MoviesOfGenreFragment"
+        android:label="MoviesOfGenreFragment"
+        tools:layout="@layout/fragment_movies_of_genres">
+        <argument
+            android:name="genreTitle"
+            app:argType="string" />
+        <argument
+            android:name="genreId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_moviesOfGenreFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
+    </fragment>
 
 </navigation>

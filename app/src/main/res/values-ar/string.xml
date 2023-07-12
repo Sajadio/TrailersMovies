@@ -5,13 +5,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">مرحبا جزء فارغ</string>
     <string name="search">بحث</string>
-    <string name="search_box">البحث عن أفلام…</string>
+    <string name="search_hint">البحث عن أفلام…</string>
     <string name="popular">ألافلام الشائعة</string>
     <string name="movie">فلم</string>
     <string name="movies">أفلام</string>
     <string name="home">الرئيسية</string>
     <string name="menu">قائمة</string>
-    <string name="actors">الممثلين</string>
+    <string name="persons">الممثلين</string>
     <string name="similar">ألافلام المشابهة</string>
     <string name="seeAll">عرض المزيد</string>
     <string name="categories">الاقسام</string>
@@ -28,9 +28,9 @@
     <string name="noConnection">تأكد من أنك متصل بالإنترنت وحاول مرة أخرى</string>
     <string name="notActive">شيئا ما خاطئ</string>
     <string name="no_result">لاتوجد نتيجة!</string>
-    <string name="rated">الأفلام الأعلى تقييمًا</string>
+    <string name="topRated">الأفلام الأعلى تقييمًا</string>
     <string name="upComing">الأفلام القادمة</string>
-    <string name="category">ألانواع</string>
+    <string name="genres">ألانواع</string>
     <string name="trending">الأفلام الشائعة</string>
     <string name="try_again">حاول مرة أخرى</string>
     <string name="seeMorePopular">شاهد المزيد من الأفلام الشائعة</string>

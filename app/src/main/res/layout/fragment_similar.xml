@@ -5,89 +5,99 @@
 
     <data>
 
+        <variable
+            name="adapter"
+            type="com.sajjadio.trailers.ui.common.CommonPagingAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/secondColor">
+        android:background="@color/background_color">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/mainColor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@android:color/transparent"
-                android:minHeight="?attr/actionBarSize"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
+        <include
+            android:id="@+id/appBarLayout"
+            layout="@layout/layout_top_app_bar"
+            app:visible="@{true}"
+            app:titleToolBar="@{@string/similar}" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swiperefreshlayout"
-            android:layout_width="0dp"
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:background="@color/background_color"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appbar">
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rc_similar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/layout_card_similar" />
+                android:id="@+id/recyclerViewSimilar"
+                style="@style/GridRecycler"
+                app:spanCount="2"
+                tools:listitem="@layout/layout_normal_common_card" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="@dimen/size_4"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appbar">
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
-            <LinearLayout
+            <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="2">
+                android:columnCount="2"
+                android:paddingStart="@dimen/normal_padding_size"
+                android:rowCount="2"
+                tools:ignore="RtlSymmetry">
 
                 <include
-                    layout="@layout/shimmer_similar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    layout="@layout/common_shimmer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/normal_margin_size" />
 
                 <include
-                    layout="@layout/shimmer_similar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="4dp"
-                    android:layout_weight="1" />
+                    layout="@layout/common_shimmer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/normal_margin_size" />
 
-            </LinearLayout>
+                <include
+                    layout="@layout/common_shimmer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/normal_margin_size" />
+
+                <include
+                    layout="@layout/common_shimmer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/normal_margin_size" />
+
+                <include
+                    layout="@layout/common_shimmer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/normal_margin_size" />
+
+                <include
+                    layout="@layout/common_shimmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/normal_margin_size" />
+
+            </GridLayout>
+
 
         </com.facebook.shimmer.ShimmerFrameLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

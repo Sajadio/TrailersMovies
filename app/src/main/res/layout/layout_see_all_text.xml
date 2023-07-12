@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <TextView
+        style="@style/NormalLabel"
+        android:layout_marginEnd="@dimen/medium_margin_size"
+        android:clickable="true"
+        android:background="@drawable/ripple"
+        android:text="@string/seeAll"
+        android:drawablePadding="@dimen/small_padding_size"
+        android:fontFamily="@font/roboto"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewHeader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewHeader"
+        tools:ignore="RtlSymmetry"
+        app:drawableEndCompat="@drawable/ic_arrow_right" />
+</layout>

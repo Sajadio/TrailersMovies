@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.sajjadio.trailers.domain.model.Cast" />
+
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.persons.PersonInteractListener" />
+
+        <variable
+            name="imageSize"
+            type="com.sajjadio.trailers.utils.Constant" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="@dimen/normal_person_card_width"
+        android:layout_height="@dimen/normal_person_card_height"
+        android:layout_marginHorizontal="@dimen/normal_margin_size"
+        android:layout_marginTop="@dimen/medium_margin_size"
+        android:background="@color/background_color"
+        android:clickable="true"
+        android:onClick="@{() -> listener.onClickItem(item.id)}"
+        android:orientation="vertical">
+
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/personPoster"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x_x_x_large_size"
+            android:layout_weight="1"
+            android:contentDescription="@string/app_name"
+            app:imageSize="@{imageSize.IMAGE_Size_200}"
+            app:imageUrl="@{item.profile_path}"
+            app:roundPercent="0.11"
+            tools:srcCompat="@drawable/ic_launcher_background" />
+
+        <TextView
+            style="@style/NormalLabel"
+            android:layout_gravity="center"
+            android:layout_weight="0.5"
+            android:text="@{item.original_name}"
+            tools:text="Person" />
+    </LinearLayout>
+
+</layout>

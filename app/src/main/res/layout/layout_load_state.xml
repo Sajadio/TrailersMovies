@@ -5,31 +5,32 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/background_color"
         android:layout_height="wrap_content">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/error_msg"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_8"
-                android:gravity="center"
-                style="@style/Caption"
-                app:layout_constraintBottom_toTopOf="@+id/progress_bar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="No Internet Connection" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/error_msg"
+            style="@style/Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_8"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/progress_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="No Internet Connection" />
 
-            <androidx.core.widget.ContentLoadingProgressBar
-                android:id="@+id/progress_bar"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="@dimen/size_8"
-                app:layout_constraintBottom_toTopOf="@+id/retry_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/error_msg" />
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress_bar"
+            android:layout_width="@dimen/x_large_size"
+            android:layout_height="@dimen/x_large_size"
+            android:layout_marginTop="@dimen/normal_margin_size"
+            app:indicatorColor="@color/primary_color"
+            app:layout_constraintBottom_toTopOf="@+id/retry_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/error_msg" />
 
         <ImageButton
             android:id="@+id/retry_button"
@@ -38,12 +39,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_8"
             android:background="#00000000"
-            android:src="@drawable/ic_baseline_refresh_24"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_refresh"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progress_bar"
-            tools:ignore="SpeakableTextPresentCheck"
-            android:contentDescription="@string/app_name" />
+            tools:ignore="SpeakableTextPresentCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.sajjadio.trailers.domain.model.CommonResult" />
+
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.base.BaseInteractListener" />
+
+        <variable
+            name="imageSize"
+            type="com.sajjadio.trailers.utils.Constant" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:onClick="@{() -> listener.onClickItem(item.id)}"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_marginBottom="@dimen/normal_margin_size"
+        android:layout_marginTop="@dimen/medium_margin_size"
+        android:layout_marginHorizontal="@dimen/normal_margin_size"
+        app:layout_constraintDimensionRatio="9:16"
+        android:background="@color/background_color">
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/imageViewMovie"
+            style="@style/NormalCardImageView"
+            app:roundPercent="0.11"
+            app:imageSize="@{imageSize.IMAGE_Size_500}"
+            app:imageUrl="@{item.poster_path}"
+            tools:ignore="MissingConstraints"
+            tools:srcCompat="@drawable/ic_launcher_background" />
+
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            style="@style/SmallTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewMovie"
+            app:setText="@{item.original_title}"
+            tools:text="The Wrath of Becky" />
+
+        <TextView
+            android:id="@+id/textViewDate"
+            style="@style/NormalLabel"
+            android:layout_marginTop="@dimen/normal_margin_size"
+            app:date="@{item.release_date}"
+            app:layout_constraintStart_toStartOf="@+id/textViewTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+            tools:text="0000-00-00" />
+
+        <TextView
+            android:id="@+id/textViewRating"
+            style="@style/TextRating"
+            android:text="@{item.vote_average.toString()}"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewDate"
+            tools:text="6.2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

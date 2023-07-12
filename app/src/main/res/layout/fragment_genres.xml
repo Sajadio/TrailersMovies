@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.trailers.ui.fragment.genres.viewModel.GenresViewModel" />
+            type="com.sajjadio.trailers.ui.genres.viewModel.GenresViewModel" />
 
     </data>
 
@@ -15,112 +15,24 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/secondColor">
+        android:background="@color/background_color">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/mainColor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@android:color/transparent"
-                android:minHeight="?attr/actionBarSize"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:title="@string/category" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:scrollbars="horizontal"
-            android:layout_height="wrap_content"
-            app:tabTextColor="?attr/textColor"
-            app:tabMode="scrollable"
-            android:scrollbarSize="0dp"
-            app:tabSelectedTextColor="@color/redLight"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appbar"
-            android:background="?attr/mainColor"/>
+        <include
+            android:id="@+id/appBarLayout"
+            layout="@layout/layout_top_app_bar"
+            app:visible="@{false}"
+            app:titleToolBar="@{@string/genres}" />
 
 
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmer"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="visible"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewGenres"
+            style="@style/GridRecycler"
+            app:items="@{viewModel.responseGenresOfMovie.data}"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+            app:spanCount="2"
+            tools:listitem="@layout/layout_genre_card" />
 
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:columnCount="2"
-                android:rowCount="2">
-
-                <include
-                    layout="@layout/common_shimmer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/common_shimmer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_8" />
-
-
-                <include
-                    layout="@layout/common_shimmer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp" />
-
-                <include
-                    layout="@layout/common_shimmer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_8"
-                    android:layout_marginTop="8dp" />
-
-            </GridLayout>
-
-        </com.facebook.shimmer.ShimmerFrameLayout>
-
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swiperefreshlayout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="@dimen/size_4"
-            app:layout_constraintTop_toBottomOf="@+id/tabLayout">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcGenres"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                tools:listitem="@layout/layout_item_card_genres_paging" />
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
-

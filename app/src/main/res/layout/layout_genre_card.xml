@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.sajjadio.trailers.domain.model.Genres" />
+
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.genres.GenresInteractListener" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/genre_card_height"
+        android:layout_marginHorizontal="@dimen/normal_margin_size"
+        android:layout_marginTop="@dimen/medium_margin_size"
+        android:layout_marginBottom="@dimen/normal_margin_size"
+        android:clickable="true"
+        android:onClick="@{() -> listener.onClickGenreItem(item.name,item.id)}"
+        app:cardCornerRadius="@dimen/normal_size"
+        app:layout_constraintDimensionRatio="9:16">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:genreImageUrl="@{item.imageUrl}"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/rounded_button_background_color" />
+
+        <TextView
+            style="@style/LargeTitle"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:text="@{item.name}"
+            tools:text="Title" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

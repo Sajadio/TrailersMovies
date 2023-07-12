@@ -21,7 +21,7 @@
 
 
         <View
-            android:id="@+id/poster"
+            android:id="@+id/imageViewMovie"
             android:layout_width="@dimen/showcase_height4"
             android:layout_height="@dimen/showcase_height2"
             android:background="@color/color_shimmer" />
