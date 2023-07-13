@@ -32,7 +32,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            style="@style/LargeTitle"
+            style="@style/Title.Large"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/medium_margin_size"
@@ -40,7 +40,7 @@
 
         <TextView
             android:id="@+id/textViewDescriptionStory"
-            style="@style/NormalLabelWithoutEllipSize"
+            style="@style/Label.Normal.NoEllipsize"
             android:layout_marginHorizontal="@dimen/medium_margin_size"
             android:layout_marginTop="@dimen/medium_margin_size"
             android:gravity="start|center|top"

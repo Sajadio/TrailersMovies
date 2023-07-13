@@ -13,7 +13,7 @@ import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.appbar.MaterialToolbar
-import com.sajjadio.trailers.data.model.movie.movie_details.Genre
+import com.sajjadio.trailers.domain.model.Genre
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
 import com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener

@@ -41,7 +41,7 @@
             tools:srcCompat="@drawable/ic_launcher_background" />
 
         <TextView
-            style="@style/NormalLabel"
+            style="@style/Label.Normal"
             android:layout_gravity="center"
             android:layout_weight="0.5"
             android:text="@{item.original_name}"

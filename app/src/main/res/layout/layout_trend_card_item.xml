@@ -52,7 +52,7 @@
 
             <TextView
                 android:id="@+id/textViewTitle"
-                style="@style/LargeTitle"
+                style="@style/Title.Large"
                 android:layout_marginEnd="@dimen/large_margin_size"
                 android:layout_marginBottom="@dimen/small_margin_size"
                 android:text="@{item.original_title}"
@@ -63,7 +63,7 @@
 
             <TextView
                 android:id="@+id/textViewGenre"
-                style="@style/NormalLabel"
+                style="@style/Label.Normal"
                 android:layout_marginStart="@dimen/medium_margin_size"
                 android:layout_marginBottom="@dimen/x_large_margin_size"
                 android:text="Action . Drama . Comedy"
@@ -72,7 +72,7 @@
 
             <ImageButton
                 android:id="@+id/ImageButtonPlay"
-                style="@style/SmallPlayButton"
+                style="@style/PlayButton.Small"
                 android:layout_marginEnd="@dimen/medium_margin_size"
                 app:layout_constraintBottom_toBottomOf="@+id/textViewGenre"
                 app:layout_constraintEnd_toEndOf="parent"

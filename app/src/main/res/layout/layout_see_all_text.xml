@@ -8,7 +8,7 @@
     </data>
 
     <TextView
-        style="@style/NormalLabel"
+        style="@style/Label.Normal"
         android:layout_marginEnd="@dimen/medium_margin_size"
         android:clickable="true"
         android:background="@drawable/ripple"

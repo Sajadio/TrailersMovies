@@ -2,7 +2,6 @@ package com.sajjadio.trailers.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.sajjadio.trailers.data.model.movie.trend.TrendResultDto
 import com.sajjadio.trailers.databinding.LayoutTrendCardItemBinding
 import com.sajjadio.trailers.domain.model.TrendMovieResult
 import com.smarteist.autoimageslider.SliderViewAdapter

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.sajjadio.trailers.domain.model.MovieDetails" />
+
+        <variable
+            name="listener"
+            type="com.sajjadio.trailers.ui.favorite.FavoriteInteractListener" />
+
+        <variable
+            name="imageSize"
+            type="com.sajjadio.trailers.utils.Constant" />
+
+        <import type="com.sajjadio.trailers.utils.FormatKt" />
+
+    </data>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/small_card_height"
+        app:cardElevation="0dp"
+        android:layout_marginHorizontal="@dimen/normal_margin_size"
+        android:layout_marginTop="@dimen/medium_margin_size"
+        android:onClick="@{() -> listener.onClickItem(item.id)}"
+        android:layout_marginBottom="@dimen/normal_margin_size"
+        android:background="@color/background_color"
+        android:clickable="true"
+        app:cardCornerRadius="@dimen/normal_size">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageViewMovie"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/app_name"
+                app:imageSize="@{imageSize.IMAGE_Size_500}"
+                app:imageUrl="@{item.poster_path}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_launcher_background" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_overlay" />
+
+            <ImageButton
+                android:id="@+id/imageButtonFave"
+                style="@style/ImageButton.Circular.Small"
+                android:layout_marginTop="@dimen/normal_margin_size"
+                android:layout_marginEnd="@dimen/normal_margin_size"
+                android:src="@drawable/ic_small_fave"
+                android:onClick="@{() -> listener.onClickFavoriteButton(item)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:tint="@color/primary_color" />
+
+            <ImageButton
+                android:id="@+id/ImageButtonPlay"
+                style="@style/PlayButton.Small"
+                android:onClick="@{() -> listener.onClickWatchButton(item.original_title)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/textViewTitle"
+                style="@style/Title.Medium"
+                android:textSize="@dimen/medium_text_size"
+                android:layout_marginBottom="@dimen/small_margin_size"
+                android:text="@{item.original_title}"
+                app:layout_constraintBottom_toTopOf="@+id/textViewGenre"
+                app:layout_constraintEnd_toEndOf="@+id/imageButtonFave"
+                app:layout_constraintStart_toStartOf="@+id/textViewGenre"
+                tools:text="Title" />
+
+            <TextView
+                android:id="@+id/textViewGenre"
+                style="@style/Label.Normal"
+                android:layout_marginStart="@dimen/medium_margin_size"
+                android:layout_marginBottom="@dimen/normal_margin_size"
+                android:text="@{`Runtime: `+FormatKt.formatHourMinutes(item.runtime)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Runtime: 1h 30m" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+</layout>

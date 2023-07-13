@@ -3,16 +3,16 @@ package com.sajjadio.trailers.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.sajjadio.trailers.data.mapper.mapToPersonOfMovie
-import com.sajjadio.trailers.data.mapper.mapToCommon
-import com.sajjadio.trailers.data.mapper.mapToCommonResult
-import com.sajjadio.trailers.data.mapper.mapToGenres
-import com.sajjadio.trailers.data.mapper.mapToImages
-import com.sajjadio.trailers.data.mapper.mapToMovieDetails
-import com.sajjadio.trailers.data.mapper.mapToPerson
-import com.sajjadio.trailers.data.mapper.mapToTrendMove
-import com.sajjadio.trailers.data.model.movie.search.SearchResult
-import com.sajjadio.trailers.data.remote.MovieApiService
+import com.sajjadio.trailers.data.dataSource.local.dao.MovieDao
+import com.sajjadio.trailers.data.dataSource.mapper.mapToPersonOfMovie
+import com.sajjadio.trailers.data.dataSource.mapper.mapToCommonDomain
+import com.sajjadio.trailers.data.dataSource.mapper.mapToCommonResultDomain
+import com.sajjadio.trailers.data.dataSource.mapper.mapToGenresDomain
+import com.sajjadio.trailers.data.dataSource.mapper.mapToImagesDomain
+import com.sajjadio.trailers.data.dataSource.mapper.mapToMovieDetails
+import com.sajjadio.trailers.data.dataSource.mapper.mapToPerson
+import com.sajjadio.trailers.data.dataSource.mapper.mapToTrendMove
+import com.sajjadio.trailers.data.dataSource.remote.MovieApiService
 import com.sajjadio.trailers.data.paging.ComingPagingSource
 import com.sajjadio.trailers.data.paging.MoviesOfGenresPagingSource
 import com.sajjadio.trailers.data.paging.PopularPagingSource
@@ -23,7 +23,7 @@ import com.sajjadio.trailers.domain.model.Cast
 import com.sajjadio.trailers.domain.model.Common
 import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.model.CommonResult
-import com.sajjadio.trailers.domain.model.Genres
+import com.sajjadio.trailers.domain.model.GenresOfMovie
 import com.sajjadio.trailers.domain.model.Person
 import com.sajjadio.trailers.domain.model.Image
 import com.sajjadio.trailers.domain.model.TrendMovie
@@ -39,7 +39,28 @@ import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
     private val movieApi: MovieApiService,
+    private val dao: MovieDao
 ) : MovieRepository {
+
+    override suspend fun addMovie(movieDetails: MovieDetails): Long {
+        return dao.addMovie(movieDetails)
+    }
+
+    override fun getAllSavedMovies(): Flow<List<MovieDetails>> {
+        return dao.getAllSavedMovies()
+    }
+
+    override suspend fun deleteAllMovies() {
+        return dao.deleteAllMovies()
+    }
+
+    override suspend fun checkISMovieSavedByTitle(title: String): Boolean {
+        return dao.checkISMovieSavedByTitle(title)
+    }
+
+    override suspend fun deleteMovie(movieDetails: MovieDetails) {
+        return dao.deleteMovie(movieDetails)
+    }
 
     override suspend fun getTrendMovie(): Flow<NetworkStatus<TrendMovie>> {
         return wrapper({ movieApi.getTrending() }) { trendMovie ->
@@ -49,19 +70,19 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getMoviePopular(): Flow<NetworkStatus<Common>> {
         return wrapper({ movieApi.getPopularMovie() }) {
-            mapToCommon(it)
+            mapToCommonDomain(it)
         }
     }
 
     override suspend fun getMovieTopRated(): Flow<NetworkStatus<Common>> {
         return wrapper({ movieApi.getTopRatedMovie() }) {
-            mapToCommon(it)
+            mapToCommonDomain(it)
         }
     }
 
     override suspend fun getUpComingMovie(): Flow<NetworkStatus<Common>> {
         return wrapper({ movieApi.getUpComingMovie() }) {
-            mapToCommon(it)
+            mapToCommonDomain(it)
         }
     }
 
@@ -79,7 +100,7 @@ class MovieRepositoryImpl @Inject constructor(
         ).flow.flowOn(Dispatchers.IO)
     }
 
-    override fun getMovieSearch(query: String?): Flow<PagingData<SearchResult>> {
+    override fun getMovieSearch(query: String?): Flow<PagingData<CommonResult>> {
         return Pager(config = PagingConfig(
             pageSize = Constant.DEFAULT_PAGE_SIZE,
             prefetchDistance = Constant.PREFETCH_DISTANCE
@@ -97,19 +118,19 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getImagesOfMovieById(movieId: Int?): Flow<NetworkStatus<List<Image>?>> {
         return wrapper({ movieApi.getImagesOfMovieById(movieId) }) { imageDto ->
-            mapToImages(imageDto.images)
+            mapToImagesDomain(imageDto.images)
         }
     }
 
     override suspend fun getImagesOfPersonById(personId: Int?): Flow<NetworkStatus<List<Image>?>> {
         return wrapper({ movieApi.getImagesOfPersonById(personId) }) { imageDto ->
-            mapToImages(imageDto.profileDto)
+            mapToImagesDomain(imageDto.profileDto)
         }
     }
 
     override suspend fun getMoviesOfPersonById(personId: Int?): Flow<NetworkStatus<List<CommonResult>>> {
         return wrapper({ movieApi.getMoviesOfPersonById(personId) }) { similar ->
-            mapToCommonResult(similar.cast)
+            mapToCommonResultDomain(similar.cast)
         }
     }
 
@@ -130,7 +151,7 @@ class MovieRepositoryImpl @Inject constructor(
         page: Int
     ): Flow<NetworkStatus<List<CommonResult>?>> {
         return wrapper({ movieApi.getSimilar(id, page) }) { similar ->
-            mapToCommonResult(similar.results)
+            mapToCommonResultDomain(similar.results)
         }
     }
 
@@ -168,9 +189,11 @@ class MovieRepositoryImpl @Inject constructor(
             }
         ).flow.flowOn(Dispatchers.IO)
 
-    override suspend fun getGenresMovie(): Flow<NetworkStatus<List<Genres>>> {
-        return wrapper({ movieApi.getGenresMovie() }) {
-            mapToGenres(it.genres)
+    override suspend fun getGenresMovie(): Flow<NetworkStatus<List<GenresOfMovie>>> {
+        return wrapper({
+            movieApi.getGenresMovie()
+        }) {
+            mapToGenresDomain(it.genres)
         }
     }
 

@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.sajjadio.trailers.data.model.movie.search.SearchResult" />
+            type="com.sajjadio.trailers.domain.model.CommonResult" />
 
         <variable
             name="listener"
@@ -58,7 +58,7 @@
 
             <TextView
                 android:id="@+id/textViewTitle"
-                style="@style/MediumTitle"
+                style="@style/Title.Medium"
                 android:layout_width="wrap_content"
                 app:setText="@{item.original_title}"
                 tools:text="Title" />
@@ -66,21 +66,21 @@
 
             <TextView
                 android:id="@+id/textViewDate"
-                style="@style/NormalLabel"
+                style="@style/Label.Normal"
                 android:layout_marginTop="@dimen/normal_margin_size"
                 app:date="@{item.release_date}"
                 tools:text="Release date: 00.00.0000" />
 
             <TextView
                 android:id="@+id/textViewGenre"
-                style="@style/NormalLabel"
+                style="@style/Label.Normal"
                 android:layout_marginTop="@dimen/small_margin_size"
                 android:text="Action, Drama"
                 tools:text="Action, Drama" />
 
             <TextView
                 android:id="@+id/textViewVoteCount"
-                style="@style/NormalLabel"
+                style="@style/Label.Normal"
                 android:layout_marginTop="@dimen/small_margin_size"
                 android:drawablePadding="@dimen/small_padding_size"
                 android:text="@{FormatKt.formatVoteCount(item.vote_count)}"

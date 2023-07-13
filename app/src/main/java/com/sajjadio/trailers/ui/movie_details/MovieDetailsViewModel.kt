@@ -1,9 +1,8 @@
 package com.sajjadio.trailers.ui.movie_details
 
 import android.graphics.Bitmap
-import android.util.Log
 import androidx.lifecycle.*
-import com.sajjadio.trailers.data.model.movie.video.VideoMovie
+import com.sajjadio.trailers.data.dataSource.model.movie.video.VideoMovie
 import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener
@@ -128,8 +127,10 @@ class MovieDetailsViewModel @Inject constructor(
         _clickItemEvent.postValue(Event(MovieDetailsDestinationType.BackButton))
     }
 
-    override fun onClickFavoriteButton(item: String) {
-        _clickItemEvent.postValue(Event(MovieDetailsDestinationType.FavoriteItem(item)))
+    override fun onClickFavoriteButton(movieDetails: MovieDetails) {
+        viewModelScope.launch {
+            movieRepo.addMovie(movieDetails)
+        }
     }
 
     override fun onClickToShowBottomSheet(item: MovieDetails, listener: MovieDetailsInteractListener) {

@@ -7,7 +7,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.sajjadio.trailers.data.model.movie.common.CommonResultDto
+import com.sajjadio.trailers.data.dataSource.model.movie.common.CommonResultDto
 import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.ui.base.BaseInteractListener

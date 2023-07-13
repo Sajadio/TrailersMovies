@@ -1,11 +1,15 @@
 package com.sajjadio.trailers.domain.model
 
-import com.sajjadio.trailers.data.model.movie.movie_details.Genre
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.sajjadio.trailers.utils.Constant.MOVIE_TABLE_NAME
 
+@Entity(tableName = MOVIE_TABLE_NAME)
 data class MovieDetails(
-    val backdrop_path: String?,
-    val genres: List<Genre>,
+    @PrimaryKey
     val id: Int,
+    val backdrop_path: String?,
+    val genresOfMovies: List<Genre>,
     val original_title: String,
     val overview: String,
     val runtime: Int,

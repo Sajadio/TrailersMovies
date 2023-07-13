@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="LargeTitle" parent="Widget.AppCompat.TextView">
+    <style name="Title.Large" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLines">1</item>
@@ -12,29 +12,29 @@
         <item name="android:textColor">@color/primary_text_color</item>
     </style>
 
-    <style name="MediumTitle" parent="LargeTitle">
+    <style name="Title.Medium" parent="Title.Large">
         <item name="android:fontFamily">@font/roboto_medium</item>
     </style>
 
-    <style name="SmallTitle" parent="LargeTitle">
+    <style name="Title.Small" parent="Title.Large">
         <item name="android:textSize">@dimen/medium_text_size</item>
         <item name="android:layout_marginTop">@dimen/normal_margin_size</item>
     </style>
 
-    <style name="SmallPlayButton" parent="Widget.AppCompat.ImageButton">
+    <style name="PlayButton.Small" parent="Widget.AppCompat.ImageButton">
         <item name="android:layout_width">@dimen/small_play_button_size</item>
         <item name="android:layout_height">@dimen/small_play_button_size</item>
         <item name="android:background">@drawable/play_button</item>
         <item name="android:src">@drawable/ic_play</item>
     </style>
 
-    <style name="NormalPlayButton" parent="SmallPlayButton">
+    <style name="PlayButton.Normal" parent="PlayButton.Small">
         <item name="android:layout_width">@dimen/normal_button_size</item>
         <item name="android:layout_height">@dimen/normal_button_size</item>
         <item name="android:src">@drawable/ic_normal_play</item>
     </style>
 
-    <style name="NormalLabel" parent="Widget.AppCompat.TextView">
+    <style name="Label.Normal" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLines">1</item>
@@ -45,29 +45,28 @@
         <item name="android:textColor">@color/secondary_text_color</item>
     </style>
 
-    <style name="NormalLabelWithoutEllipSize" parent="NormalLabel">
-        <item name="android:maxLines" />
+    <style name="Label.Normal.NoEllipsize" parent="Label.Normal">
         <item name="android:ellipsize">none</item>
     </style>
 
-    <style name="TextRating" parent="NormalLabel">
+    <style name="TextRating" parent="Label.Normal">
         <item name="android:drawableEnd">@drawable/ic_star</item>
         <item name="android:drawablePadding">@dimen/small_padding_size</item>
         <item name="android:fontFamily">@font/roboto</item>
     </style>
 
 
-    <style name="SmallCardImageView">
+    <style name="Card.Small" parent="CardView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/small_card_height</item>
     </style>
 
-    <style name="NormalCardImageView" parent="SmallCardImageView">
+    <style name="Card.Normal" parent="Card.Small">
         <item name="android:layout_height">@dimen/normal_card_height</item>
         <item name="android:layout_width">@dimen/normal_card_height</item>
     </style>
 
-    <style name="GalleryCardDetails">
+    <style name="GalleryCard">
         <item name="android:layout_width">@dimen/gallery_card_width</item>
         <item name="android:layout_height">@dimen/gallery_card_height</item>
         <item name="android:layout_marginTop">@dimen/medium_margin_size</item>
@@ -100,13 +99,19 @@
         <item name="spanCount">3</item>
     </style>
 
-    <style name="CircularImageButton" parent="Widget.AppCompat.ImageButton">
-        <item name="android:layout_width">@dimen/normal_button_size</item>
-        <item name="android:layout_height">@dimen/normal_button_size</item>
+    <style name="ImageButton.Circular" parent="Widget.AppCompat.ImageButton">
+        <item name="android:layout_width">@dimen/normal_circular_button_size</item>
+        <item name="android:layout_height">@dimen/normal_circular_button_size</item>
         <item name="android:background">@drawable/rounded_clickable</item>
         <item name="android:layout_marginHorizontal">@dimen/medium_margin_size</item>
         <item name="android:layout_marginTop">@dimen/medium_margin_size</item>
         <item name="layout_constraintTop_toTopOf">parent</item>
+    </style>
+
+
+    <style name="ImageButton.Circular.Small" parent="ImageButton.Circular">
+        <item name="android:layout_width">@dimen/small_circular_button_size</item>
+        <item name="android:layout_height">@dimen/small_circular_button_size</item>
     </style>
 
 </resources>

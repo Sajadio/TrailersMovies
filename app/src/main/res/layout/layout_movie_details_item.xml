@@ -54,21 +54,21 @@
 
         <ImageButton
             android:id="@+id/imageButtonBack"
-            style="@style/CircularImageButton"
+            style="@style/ImageButton.Circular"
             android:onClick="@{() -> listener.onClickBackButton()}"
             android:src="@drawable/ic_arrow_left"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageButton
             android:id="@+id/imageButtonFave"
-            style="@style/CircularImageButton"
-            android:onClick="@{() -> listener.onClickFavoriteButton(`item`)}"
+            style="@style/ImageButton.Circular"
+            android:onClick="@{() -> listener.onClickFavoriteButton(item)}"
             android:src="@drawable/ic_large_fave"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/textViewTitle"
-            style="@style/LargeTitle"
+            style="@style/Title.Large"
             android:layout_marginStart="@dimen/medium_margin_size"
             android:layout_marginBottom="@dimen/normal_margin_size"
             android:text="@{item.original_title}"
@@ -78,13 +78,13 @@
 
         <TextView
             android:id="@+id/textViewGenre"
-            style="@style/NormalLabelWithoutEllipSize"
+            style="@style/Label.Normal.NoEllipsize"
             android:layout_width="0dp"
             android:layout_marginStart="@dimen/medium_margin_size"
             android:layout_marginEnd="@dimen/medium_margin_size"
             android:layout_marginBottom="@dimen/normal_margin_size"
             android:gravity="start|center"
-            app:genres="@{item.genres}"
+            app:genres="@{item.genresOfMovies}"
             app:layout_constraintBottom_toTopOf="@+id/textViewRunTime"
             app:layout_constraintEnd_toStartOf="@+id/playButton"
             app:layout_constraintStart_toStartOf="parent"
@@ -92,10 +92,9 @@
 
         <TextView
             android:id="@+id/textViewRunTime"
-            style="@style/NormalLabel"
+            style="@style/Label.Normal"
             android:layout_marginStart="@dimen/medium_margin_size"
             android:layout_marginBottom="@dimen/normal_margin_size"
-            android:drawablePadding="@dimen/small_padding_size"
             android:text="@{`Runtime: `+FormatKt.formatHourMinutes(item.runtime)}"
             app:layout_constraintBottom_toTopOf="@+id/textViewRating"
             app:layout_constraintStart_toStartOf="parent"
@@ -103,7 +102,7 @@
 
         <TextView
             android:id="@+id/textViewRating"
-            style="@style/NormalLabel"
+            style="@style/Label.Normal"
             android:layout_marginStart="@dimen/medium_margin_size"
             android:layout_marginBottom="@dimen/medium_margin_size"
             android:drawablePadding="@dimen/small_padding_size"
@@ -116,7 +115,7 @@
 
         <TextView
             android:id="@+id/textViewVoteCount"
-            style="@style/NormalLabel"
+            style="@style/Label.Normal"
             android:layout_marginStart="@dimen/normal_margin_size"
             android:text="@{`(`+FormatKt.formatVoteCount(item.vote_count)+`K)`}"
             app:layout_constraintBottom_toBottomOf="@+id/textViewRating"
@@ -126,7 +125,7 @@
 
         <ImageButton
             android:id="@+id/playButton"
-            style="@style/NormalPlayButton"
+            style="@style/PlayButton.Normal"
             android:layout_marginEnd="@dimen/medium_margin_size"
             app:layout_constraintBottom_toBottomOf="@+id/textViewRating"
             app:layout_constraintEnd_toEndOf="parent"
@@ -134,7 +133,7 @@
 
         <TextView
             android:id="@+id/textViewStory"
-            style="@style/LargeTitle"
+            style="@style/Title.Large"
             android:layout_marginTop="@dimen/medium_margin_size"
             android:text="@string/story"
             app:layout_constraintStart_toStartOf="@+id/textViewRating"
@@ -142,7 +141,7 @@
 
         <TextView
             android:id="@+id/textViewDescriptionStory"
-            style="@style/NormalLabel"
+            style="@style/Label.Normal"
             android:layout_width="0dp"
             android:layout_marginTop="@dimen/normal_margin_size"
             android:gravity="start|center"
@@ -156,7 +155,7 @@
 
         <TextView
             android:id="@+id/imageButtonShowBottomSheet"
-            style="@style/NormalLabel"
+            style="@style/Label.Normal"
             android:layout_width="wrap_content"
             android:clickable="true"
             android:ellipsize="none"

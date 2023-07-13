@@ -9,7 +9,6 @@ sealed class MovieDetailsDestinationType {
     object Similar : MovieDetailsDestinationType()
     class SimilarItem(val movieId: Int) : MovieDetailsDestinationType()
     object BackButton : MovieDetailsDestinationType()
-    data class FavoriteItem(val item: String) : MovieDetailsDestinationType()
     data class WatchNowMovie(val movieId: Int) : MovieDetailsDestinationType()
     data class BottomSheet(val item: MovieDetails, val listener:MovieDetailsInteractListener) : MovieDetailsDestinationType()
 

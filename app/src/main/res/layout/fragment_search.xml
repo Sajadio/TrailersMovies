@@ -70,7 +70,7 @@
 
                 <TextView
                     android:id="@+id/textViewHeader"
-                    style="@style/LargeTitle"
+                    style="@style/Title.Large"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="@dimen/normal_margin_size"
                     android:gravity="center"
@@ -79,7 +79,7 @@
 
                 <TextView
                     android:id="@+id/textViewHint"
-                    style="@style/NormalLabel"
+                    style="@style/Label.Normal"
                     android:layout_width="wrap_content"
                     android:layout_marginHorizontal="@dimen/x_x_large_margin_size"
                     android:layout_marginTop="@dimen/normal_margin_size"
@@ -112,7 +112,7 @@
 
             <TextView
                 android:id="@+id/hintText2"
-                style="@style/LargeTitle"
+                style="@style/Title.Large"
                 android:gravity="center"
                 android:text="@string/try_another_keyword"
                 android:visibility="invisible"

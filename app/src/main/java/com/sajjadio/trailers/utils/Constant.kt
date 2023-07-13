@@ -1,9 +1,9 @@
 package com.sajjadio.trailers.utils
 
-import com.sajjadio.trailers.R
-
 object Constant {
     const val STORAGE_NAME = "data_Storage"
+    const val MOVIE_TABLE_NAME = "movie_table"
+    const val DATABASE_NAME = "movie_db"
 
     const val IMAGE_PATH = "https://image.tmdb.org/t/p/"
     const val YOUTUBE_BASE = "https://www.youtube.com/watch?v="

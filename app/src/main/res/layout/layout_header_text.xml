@@ -11,7 +11,7 @@
 
     <TextView
         android:id="@+id/textViewHeader"
-        style="@style/LargeTitle"
+        style="@style/Title.Large"
         android:layout_marginStart="@dimen/medium_margin_size"
         android:fontFamily="@font/roboto_bold"
         android:text="@{header}"

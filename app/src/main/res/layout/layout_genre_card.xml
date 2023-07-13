@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.sajjadio.trailers.domain.model.Genres" />
+            type="com.sajjadio.trailers.domain.model.GenresOfMovie" />
 
         <variable
             name="listener"
@@ -38,7 +38,7 @@
             android:background="@color/rounded_button_background_color" />
 
         <TextView
-            style="@style/LargeTitle"
+            style="@style/Title.Large"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:text="@{item.name}"

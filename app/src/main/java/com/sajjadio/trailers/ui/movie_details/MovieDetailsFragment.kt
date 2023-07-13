@@ -72,10 +72,6 @@ class MovieDetailsFragment :
                     MovieDetailsFragmentDirections.actionDetailsFragmentToSimilarFragment(args.movieId)
                 )
 
-            is MovieDetailsDestinationType.FavoriteItem -> {
-                log(destination.item)
-            }
-
             is MovieDetailsDestinationType.WatchNowMovie -> {
                 log(destination.movieId.toString())
             }

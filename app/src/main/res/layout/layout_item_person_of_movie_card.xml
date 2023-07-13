@@ -39,7 +39,7 @@
             tools:srcCompat="@drawable/ic_launcher_background" />
 
         <TextView
-            style="@style/NormalLabel"
+            style="@style/Label.Normal"
             android:layout_marginTop="@dimen/normal_margin_size"
             android:text="@{item.original_name}"
             app:layout_constraintEnd_toEndOf="parent"

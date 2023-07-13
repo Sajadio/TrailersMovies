@@ -1,9 +1,9 @@
 package com.sajjadio.trailers.ui.genres.viewModel
 
+import android.util.Log
 import androidx.lifecycle.*
-import com.sajjadio.trailers.domain.model.Genres
+import com.sajjadio.trailers.domain.model.GenresOfMovie
 import com.sajjadio.trailers.domain.repository.MovieRepository
-import com.sajjadio.trailers.ui.base.BaseInteractListener
 import com.sajjadio.trailers.ui.genres.GenresInteractListener
 import com.sajjadio.trailers.utils.Event
 import com.sajjadio.trailers.utils.NetworkStatus
@@ -16,9 +16,9 @@ class GenresViewModel @Inject constructor(
     private val movieRepo: MovieRepository,
 ) : ViewModel(), GenresInteractListener {
 
-    private val _responseGenresOfMovie: MutableLiveData<NetworkStatus<List<Genres>>> =
+    private val _responseGenresOfMovie: MutableLiveData<NetworkStatus<List<GenresOfMovie>>> =
         MutableLiveData()
-    var responseGenresOfMovie: LiveData<NetworkStatus<List<Genres>>> = _responseGenresOfMovie
+    var responseGenresOfMovie: LiveData<NetworkStatus<List<GenresOfMovie>>> = _responseGenresOfMovie
 
     private val _clickItemEvent = MutableLiveData<Event<Pair<String,Int>>>()
     val clickItemEvent: LiveData<Event<Pair<String,Int>>> = _clickItemEvent

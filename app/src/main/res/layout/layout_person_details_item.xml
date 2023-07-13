@@ -73,7 +73,7 @@
 
         <ImageButton
             android:id="@+id/imageButtonBack"
-            style="@style/CircularImageButton"
+            style="@style/ImageButton.Circular"
             android:onClick="@{() -> listener.onClickBackButton()}"
             android:src="@drawable/ic_arrow_left"
             app:layout_constraintStart_toStartOf="parent" />
@@ -81,7 +81,7 @@
 
         <TextView
             android:id="@+id/textViewTitle"
-            style="@style/LargeTitle"
+            style="@style/Title.Large"
             android:layout_width="wrap_content"
             android:layout_marginTop="@dimen/medium_margin_size"
             android:layout_marginBottom="@dimen/normal_margin_size"
@@ -94,7 +94,7 @@
 
         <TextView
             android:id="@+id/textViewDepartment"
-            style="@style/NormalLabel"
+            style="@style/Label.Normal"
             android:layout_width="match_parent"
             android:layout_marginHorizontal="@dimen/x_x_large_margin_size"
             android:layout_marginTop="@dimen/medium_margin_size"
@@ -108,7 +108,7 @@
 
         <TextView
             android:id="@+id/textViewPopularity"
-            style="@style/LargeTitle"
+            style="@style/Title.Large"
             android:layout_marginStart="@dimen/medium_margin_size"
             android:layout_marginTop="@dimen/medium_margin_size"
             android:gravity="center"
@@ -120,7 +120,7 @@
 
         <TextView
             android:id="@+id/textViewDescriptionPopularity"
-            style="@style/NormalLabel"
+            style="@style/Label.Normal"
             android:layout_marginTop="@dimen/normal_margin_size"
             android:gravity="center"
             android:text="@{item.popularity.toString()}"
@@ -131,7 +131,7 @@
 
         <TextView
             android:id="@+id/textViewBirthday"
-            style="@style/LargeTitle"
+            style="@style/Title.Large"
             android:layout_marginEnd="@dimen/medium_margin_size"
             android:gravity="center"
             android:text="Birthday"
@@ -142,7 +142,7 @@
 
         <TextView
             android:id="@+id/textViewDescriptionBirthday"
-            style="@style/NormalLabel"
+            style="@style/Label.Normal"
             android:layout_marginTop="@dimen/normal_margin_size"
             android:gravity="center"
             android:text="@{item.birthday}"
@@ -153,7 +153,7 @@
 
         <TextView
             android:id="@+id/textViewBio"
-            style="@style/LargeTitle"
+            style="@style/Title.Large"
             android:layout_marginStart="@dimen/medium_margin_size"
             android:layout_marginTop="@dimen/medium_margin_size"
             android:text="@string/bio"
@@ -162,7 +162,7 @@
 
         <TextView
             android:id="@+id/textViewDescriptionBio"
-            style="@style/NormalLabel"
+            style="@style/Label.Normal"
             android:layout_width="0dp"
             android:layout_marginTop="@dimen/normal_margin_size"
             android:gravity="start|center"
@@ -177,7 +177,7 @@
         <TextView
             android:id="@+id/imageButtonShowBottomSheet"
             android:layout_width="wrap_content"
-            style="@style/NormalLabel"
+            style="@style/Label.Normal"
             android:clickable="true"
             android:ellipsize="none"
             android:textColor="@color/primary_color"

@@ -33,7 +33,7 @@
 
         <androidx.constraintlayout.utils.widget.ImageFilterView
             android:id="@+id/imageViewMovie"
-            style="@style/NormalCardImageView"
+            style="@style/Card.Normal"
             app:roundPercent="0.11"
             app:imageSize="@{imageSize.IMAGE_Size_500}"
             app:imageUrl="@{item.poster_path}"
@@ -43,7 +43,7 @@
 
         <TextView
             android:id="@+id/textViewTitle"
-            style="@style/SmallTitle"
+            style="@style/Title.Small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewMovie"
@@ -52,7 +52,7 @@
 
         <TextView
             android:id="@+id/textViewDate"
-            style="@style/NormalLabel"
+            style="@style/Label.Normal"
             android:layout_marginTop="@dimen/normal_margin_size"
             app:date="@{item.release_date}"
             app:layout_constraintStart_toStartOf="@+id/textViewTitle"

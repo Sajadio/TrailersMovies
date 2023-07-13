@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import com.sajjadio.trailers.BR
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.ui.home.utils.HomeItem
-import com.sajjadio.trailers.data.model.movie.trend.TrendResultDto
 import com.sajjadio.trailers.databinding.*
 import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.domain.model.TrendMovieResult
