@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.*
 import com.sajjadio.trailers.ui.home.utils.HomeItem
 import com.sajjadio.trailers.domain.repository.MovieRepository
+import com.sajjadio.trailers.domain.utils.Resource
 import com.sajjadio.trailers.ui.home.adapter.HomeInteractListener
 import com.sajjadio.trailers.utils.Destination
 import com.sajjadio.trailers.utils.*
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,75 +25,79 @@ class HomeViewModel @Inject constructor(
     private val _clickShowAllItemEvent = MutableLiveData<Event<Destination>>()
     val clickShowAllItemEvent: LiveData<Event<Destination>> = _clickShowAllItemEvent
 
-    private var _responseHomeData = MutableLiveData<NetworkStatus<List<HomeItem>>>()
-    var responseHomeData: LiveData<NetworkStatus<List<HomeItem>>> = _responseHomeData
+    private var _responseHomeData = MutableLiveData<List<HomeItem>>()
+
+
+
+
     private val homeData = mutableListOf<HomeItem>()
+
+    private val mediatorLiveData = MediatorLiveData<List<HomeItem>>()
+
+    val responseHomeData: LiveData<List<HomeItem>> = mediatorLiveData
 
     init {
         refreshData()
     }
 
     fun refreshData() {
-        homeData.clear()
-        setUpTrendData()
-        setUpPopularData()
-        setUpRatedData()
-        setUpUpComingData()
+        viewModelScope.launch {
+            movieRepo.refreshHomeItems()
+            viewModelScope.launch {
+                combine(
+                    movieRepo.getUpComingMovie(),
+                    movieRepo.getTopRatedMovies(),
+                    movieRepo.getPopularMovies(),
+                    movieRepo.getTrendMovies()
+                ) { upComing, topRated, popular, trend ->
+                    val homeData = mutableListOf<HomeItem>()
+                    homeData.add(HomeItem.Upcoming(upComing))
+                    homeData.add(HomeItem.TopRated(topRated))
+                    homeData.add(HomeItem.Popular(popular))
+                    homeData.add(HomeItem.Trend(trend))
+                    mediatorLiveData.postValue(homeData)
+                }.collect{}
+            }
+        }
     }
 
     private fun setUpUpComingData() {
         viewModelScope.launch {
-            movieRepo.getUpComingMovie().collect { state ->
-                state.takeIf { it is NetworkStatus.Success }?.let {
-                    it.data?.let { data ->
-                        homeData.add(HomeItem.Upcoming(data.results))
-                        _responseHomeData.postValue(NetworkStatus.Success(homeData))
-                    }
-                }
+            movieRepo.getUpComingMovie().collect { data ->
+                homeData.add(HomeItem.Upcoming(data))
+                _responseHomeData.postValue(homeData)
             }
         }
     }
 
     private fun setUpRatedData() {
         viewModelScope.launch {
-            movieRepo.getMovieTopRated().collect { state ->
-                state.takeIf { it is NetworkStatus.Success }?.let {
-                    it.data?.let { data ->
-                        homeData.add(HomeItem.TopRated(data.results))
-                        _responseHomeData.postValue(NetworkStatus.Success(homeData))
-                    }
-                }
+            movieRepo.getTopRatedMovies().collect { data ->
+                homeData.add(HomeItem.TopRated(data))
+                _responseHomeData.postValue(homeData)
             }
         }
     }
 
     private fun setUpPopularData() {
         viewModelScope.launch {
-            movieRepo.getMoviePopular().collect { state ->
-                state.takeIf { it is NetworkStatus.Success }?.let {
-                    it.data?.let { data ->
-                        homeData.add(HomeItem.Popular(data.results))
-                        _responseHomeData.postValue(NetworkStatus.Success(homeData))
-                    }
-                }
+            movieRepo.getPopularMovies().collect { data ->
+                homeData.add(HomeItem.Popular(data))
+                _responseHomeData.postValue(homeData)
             }
         }
     }
 
     private fun setUpTrendData() {
         viewModelScope.launch {
-            movieRepo.getTrendMovie().collect { state ->
-                state.takeIf { it is NetworkStatus.Success }?.let {
-                    it.data?.let { data ->
-                        homeData.add(HomeItem.Trend(data.results))
-                        _responseHomeData.postValue(NetworkStatus.Success(homeData))
-                    }
-                }
+            movieRepo.getTrendMovies().collect { data ->
+                homeData.add(HomeItem.Trend(data))
+                _responseHomeData.postValue(homeData)
             }
         }
     }
 
-    override fun onClickItem(id:Int) {
+    override fun onClickItem(id: Int) {
         _clickItemEvent.postValue(Event(id))
     }
 

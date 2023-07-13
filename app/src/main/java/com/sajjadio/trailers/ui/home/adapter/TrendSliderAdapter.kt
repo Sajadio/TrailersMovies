@@ -3,11 +3,11 @@ package com.sajjadio.trailers.ui.home.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.sajjadio.trailers.databinding.LayoutTrendCardItemBinding
-import com.sajjadio.trailers.domain.model.TrendMovieResult
+import com.sajjadio.trailers.domain.model.TrendMovie
 import com.smarteist.autoimageslider.SliderViewAdapter
 
 class TrendSliderAdapter(
-    private val items: List<TrendMovieResult>,
+    private val items: List<TrendMovie>,
     private val listener: HomeInteractListener
 ) : SliderViewAdapter<TrendSliderAdapter.SliderHolder>() {
 

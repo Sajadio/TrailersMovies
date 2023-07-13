@@ -6,7 +6,7 @@ import com.sajjadio.trailers.data.dataSource.model.movie.common.CommonResultDto
 
 data class MoviesOfPersonDto(
     @SerializedName("cast")
-    val cast: List<com.sajjadio.trailers.data.dataSource.model.movie.common.CommonResultDto>,
+    val cast: List<CommonResultDto>,
     @SerializedName("crew")
     val crew: List<Any?>?,
     @SerializedName("id")

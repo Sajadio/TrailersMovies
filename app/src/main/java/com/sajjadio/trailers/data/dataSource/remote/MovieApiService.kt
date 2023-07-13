@@ -54,7 +54,7 @@ interface MovieApiService {
     @GET("movie/{id}?")
     suspend fun getMovieDetails(
         @Path("id") movieId: Int?,
-    ): Response<MovieDetailsDto>
+    ): MovieDetailsDto
 
     @GET("movie/{movie_id}/images?")
     suspend fun getImagesOfMovieById(

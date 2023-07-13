@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.sajjadio.trailers.data.dataSource.local.AppDatabase
 import com.sajjadio.trailers.data.dataSource.local.dao.MovieDao
+import com.sajjadio.trailers.data.dataSource.local.dao.MovieDetailsDao
 import com.sajjadio.trailers.utils.Constant.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
@@ -26,6 +27,12 @@ object LocalDatabaseModule {
             AppDatabase::class.java,
             DATABASE_NAME
         ).fallbackToDestructiveMigration().build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMovieDetailsDao(database: AppDatabase):MovieDetailsDao{
+        return database.getMovieDetailsDao()
     }
 
     @Provides

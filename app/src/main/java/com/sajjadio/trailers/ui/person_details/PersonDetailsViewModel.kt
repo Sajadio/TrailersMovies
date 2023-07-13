@@ -1,18 +1,14 @@
 package com.sajjadio.trailers.ui.person_details
 
 import android.graphics.Bitmap
-import android.util.Log
 import androidx.lifecycle.*
-import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.model.Person
 import com.sajjadio.trailers.domain.repository.MovieRepository
-import com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener
-import com.sajjadio.trailers.ui.movie_details.utils.MovieDetailsDestinationType
 import com.sajjadio.trailers.ui.person_details.adapter.PersonDetailsInteractListener
 import com.sajjadio.trailers.ui.person_details.utils.PersonDetailsDestinationType
 import com.sajjadio.trailers.ui.person_details.utils.PersonDetailsItem
 import com.sajjadio.trailers.utils.Event
-import com.sajjadio.trailers.utils.NetworkStatus
+import com.sajjadio.trailers.domain.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,8 +20,8 @@ class PersonDetailsViewModel @Inject constructor(
 ) : ViewModel(), PersonDetailsInteractListener {
 
     private var _responsePersonDetailsData =
-        MutableLiveData<NetworkStatus<List<PersonDetailsItem>>>()
-    var responsePersonDetailsData: LiveData<NetworkStatus<List<PersonDetailsItem>>> =
+        MutableLiveData<Resource<List<PersonDetailsItem>>>()
+    var responsePersonDetailsData: LiveData<Resource<List<PersonDetailsItem>>> =
         _responsePersonDetailsData
     private val personDetailsData = mutableListOf<PersonDetailsItem>()
 
@@ -45,11 +41,11 @@ class PersonDetailsViewModel @Inject constructor(
         personId.let {
             viewModelScope.launch {
                 movieRepo.getPersonById(personId).collect { state ->
-                    state.takeIf { it is NetworkStatus.Success }?.let {
+                    state.takeIf { it is Resource.Success }?.let {
                         it.data?.let { data ->
                             personDetailsData.add(PersonDetailsItem.PersonItem(data))
                             _responsePersonDetailsData.postValue(
-                                NetworkStatus.Success(
+                                Resource.Success(
                                     personDetailsData
                                 )
                             )
@@ -65,10 +61,10 @@ class PersonDetailsViewModel @Inject constructor(
     private fun getImageOfPersonById(personId: Int) {
         viewModelScope.launch {
             movieRepo.getImagesOfPersonById(personId).collect { state ->
-                state.takeIf { it is NetworkStatus.Success }?.let {
+                state.takeIf { it is Resource.Success }?.let {
                     it.data?.let { data ->
                         personDetailsData.add(PersonDetailsItem.GalleryOfPersonItem(data))
-                        _responsePersonDetailsData.postValue(NetworkStatus.Success(personDetailsData))
+                        _responsePersonDetailsData.postValue(Resource.Success(personDetailsData))
                     }
                 }
             }
@@ -78,10 +74,10 @@ class PersonDetailsViewModel @Inject constructor(
     private fun getMoviesOfPerson(id: Int?) {
         viewModelScope.launch {
             movieRepo.getMoviesOfPersonById(id).collect { state ->
-                state.takeIf { it is NetworkStatus.Success }?.let {
+                state.takeIf { it is Resource.Success }?.let {
                     it.data?.let { data ->
                         personDetailsData.add(PersonDetailsItem.MoviesOfPersonItem(data))
-                        _responsePersonDetailsData.postValue(NetworkStatus.Success(personDetailsData))
+                        _responsePersonDetailsData.postValue(Resource.Success(personDetailsData))
                     }
                 }
             }

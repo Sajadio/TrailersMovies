@@ -7,7 +7,7 @@ import com.sajjadio.trailers.R
 import com.sajjadio.trailers.ui.home.utils.HomeItem
 import com.sajjadio.trailers.databinding.*
 import com.sajjadio.trailers.domain.model.CommonResult
-import com.sajjadio.trailers.domain.model.TrendMovieResult
+import com.sajjadio.trailers.domain.model.TrendMovie
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
 import com.sajjadio.trailers.utils.Destination
@@ -48,7 +48,7 @@ class HomeAdapter(
         }
     }
 
-    private fun bindTrendItem(holder: ItemViewHolder, items: List<TrendMovieResult>) {
+    private fun bindTrendItem(holder: ItemViewHolder, items: List<TrendMovie>) {
         with((holder.binding as LayoutRecyclerTrendBinding)) {
             sliderView.setSliderAdapter(TrendSliderAdapter(items, listener))
             sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM)

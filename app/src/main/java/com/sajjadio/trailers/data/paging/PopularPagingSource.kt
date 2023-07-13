@@ -2,8 +2,9 @@ package com.sajjadio.trailers.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.sajjadio.trailers.data.dataSource.mapper.mapToCommonResultDomain
+import com.sajjadio.trailers.domain.mapper.mapToPopularMovieDomain
 import com.sajjadio.trailers.data.dataSource.remote.MovieApiService
+import com.sajjadio.trailers.domain.mapper.mapDtoToCommonResultMovieDomain
 import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.utils.Constant
 
@@ -23,7 +24,7 @@ class PopularPagingSource(
         return try {
             val response = api.getPopularMovie(page = pageNumber)
             val data = response.body()?.results?.let {
-                mapToCommonResultDomain(it)
+                mapDtoToCommonResultMovieDomain(it)
             } ?: emptyList()
             LoadResult.Page(
                 data = data,

@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.data.dataSource.mapper
+package com.sajjadio.trailers.domain.mapper
 
 import com.sajjadio.trailers.data.dataSource.model.movie.persons.CastDto
 import com.sajjadio.trailers.domain.model.Cast

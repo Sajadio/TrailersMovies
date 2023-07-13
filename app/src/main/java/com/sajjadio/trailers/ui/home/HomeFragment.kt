@@ -56,10 +56,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         val adapter = HomeAdapter(viewModel)
         binding.recyclerViewHome.adapter = adapter
         viewModel.responseHomeData.observe(viewLifecycleOwner) {
-            it.let { states ->
-                states.data?.let { data ->
-                    adapter.addNestedItem(data)
-                }
+            it.let { data -> data?.let { adapter.addNestedItem(data) }
             }
         }
     }

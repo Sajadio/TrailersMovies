@@ -1,29 +1,46 @@
 package com.sajjadio.trailers.data.dataSource.local.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.sajjadio.trailers.domain.model.MovieDetails
+import com.sajjadio.trailers.data.dataSource.local.entites.PopularMovieEntity
+import com.sajjadio.trailers.data.dataSource.local.entites.SearchMovieEntity
+import com.sajjadio.trailers.data.dataSource.local.entites.TopRatedMovieEntity
+import com.sajjadio.trailers.data.dataSource.local.entites.TrendMovieEntity
+import com.sajjadio.trailers.data.dataSource.local.entites.UpcomingMovieEntity
 import kotlinx.coroutines.flow.Flow
 
 
 @Dao
 interface MovieDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addPopularMovies(items:List<PopularMovieEntity>)
+
+    @Query("SELECT * FROM popular_movie_table")
+    fun getAllSavedPopularMovies(): Flow<List<PopularMovieEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addMovie(movieDetails: MovieDetails):Long
+    suspend fun addTopRatedMovies(items:List<TopRatedMovieEntity>)
 
-    @Delete
-    suspend fun deleteMovie(movieDetails: MovieDetails)
+    @Query("SELECT * FROM top_rated_movie_table")
+    fun getAllSavedTopRatedMovies(): Flow<List<TopRatedMovieEntity>>
 
-    @Query("DELETE FROM movie_table")
-    suspend fun deleteAllMovies()
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addTrendMovies(items:List<TrendMovieEntity>)
 
-    @Query("SELECT * FROM movie_table")
-     fun getAllSavedMovies(): Flow<List<MovieDetails>>
+    @Query("SELECT * FROM trend_movie_table")
+    fun getAllSavedTrendMovies(): Flow<List<TrendMovieEntity>>
 
-    @Query("SELECT EXISTS (SELECT * FROM movie_table WHERE original_title = :title)")
-    suspend fun checkISMovieSavedByTitle(title: String): Boolean
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addUpComingMovies(items:List<UpcomingMovieEntity>)
+
+    @Query("SELECT * FROM upcoming_movie_table")
+    fun getAllSavedUpComingMovies(): Flow<List<UpcomingMovieEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addSearchMovies(items:List<SearchMovieEntity>)
+
+    @Query("SELECT * FROM search_movie_table")
+    fun getAllSavedSearchMovies(): Flow<List<SearchMovieEntity>>
 }

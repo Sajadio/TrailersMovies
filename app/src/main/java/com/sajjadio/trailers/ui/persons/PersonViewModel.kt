@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import com.sajjadio.trailers.domain.model.Cast
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.utils.Event
-import com.sajjadio.trailers.utils.NetworkStatus
+import com.sajjadio.trailers.domain.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,8 +17,8 @@ class PersonViewModel @Inject constructor(
 
     private val movieId: Int = checkNotNull(savedStateHandle["movieId"])
 
-    private val _responsePersonsOfMovie = MutableLiveData<NetworkStatus<List<Cast>>>()
-    val responsePersonsOfMovie: LiveData<NetworkStatus<List<Cast>>> = _responsePersonsOfMovie
+    private val _responsePersonsOfMovie = MutableLiveData<Resource<List<Cast>>>()
+    val responsePersonsOfMovie: LiveData<Resource<List<Cast>>> = _responsePersonsOfMovie
 
     private val _clickItemEvent = MutableLiveData<Event<Int>>()
     val clickItemEvent: LiveData<Event<Int>> = _clickItemEvent
@@ -31,12 +31,11 @@ class PersonViewModel @Inject constructor(
         viewModelScope.launch {
             movieRepo.getPersonOfMovieById(movieId).collect { status ->
                 when (status) {
-                    NetworkStatus.Loading -> _responsePersonsOfMovie.postValue(NetworkStatus.Loading)
-                    is NetworkStatus.Success ->
-                        _responsePersonsOfMovie.postValue(NetworkStatus.Success(status.data))
+                    is Resource.Success ->
+                        _responsePersonsOfMovie.postValue(Resource.Success(status.data))
 
-                    is NetworkStatus.Error ->
-                        _responsePersonsOfMovie.postValue(NetworkStatus.Error(status.errorMessage))
+                    is Resource.Error ->
+                        _responsePersonsOfMovie.postValue(Resource.Error(status.errorMessage))
                 }
             }
         }

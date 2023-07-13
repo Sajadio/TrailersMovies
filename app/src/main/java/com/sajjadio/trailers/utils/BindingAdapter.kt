@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.sajjadio.trailers.domain.model.Genre
+import com.sajjadio.trailers.domain.utils.Resource
 import com.sajjadio.trailers.ui.base.BaseAdapter
 import com.sajjadio.trailers.ui.base.BaseInteractListener
 import com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener
@@ -27,9 +28,9 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
 
 
 @BindingAdapter("app:loading")
-fun loading(progress: ProgressBar, state: NetworkStatus<Any>?) {
+fun loading(progress: ProgressBar, state: Resource<Any>?) {
     state?.let {
-        progress.isVisible = (it is NetworkStatus.Loading)
+
     }
 }
 
@@ -69,8 +70,8 @@ fun setImage(imageView: ImageView, url: String?) {
 
 
 @BindingAdapter(value = ["app:manageState"])
-fun <T> manageState(view: View, state: NetworkStatus<T>?) {
-    if (state is NetworkStatus.Error)
+fun <T> manageState(view: View, state: Resource<T>?) {
+    if (state is Resource.Error)
         view.visibility = VISIBLE
     else
         view.visibility = INVISIBLE

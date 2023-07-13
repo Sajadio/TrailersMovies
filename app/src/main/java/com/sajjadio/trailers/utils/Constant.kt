@@ -2,7 +2,14 @@ package com.sajjadio.trailers.utils
 
 object Constant {
     const val STORAGE_NAME = "data_Storage"
-    const val MOVIE_TABLE_NAME = "movie_table"
+
+    const val MOVIE_DETAILS_TABLE_NAME = "movie_details_table"
+    const val TREND_MOVIE_TABLE_NAME = "trend_movie_table"
+    const val POPULAR_MOVIE_TABLE_NAME = "popular_movie_table"
+    const val TOP_RATED_MOVIE_TABLE_NAME = "top_rated_movie_table"
+    const val UPCOMING_MOVIE_TABLE_NAME = "upcoming_movie_table"
+    const val SEARCH_MOVIE_TABLE_NAME = "search_movie_table"
+
     const val DATABASE_NAME = "movie_db"
 
     const val IMAGE_PATH = "https://image.tmdb.org/t/p/"

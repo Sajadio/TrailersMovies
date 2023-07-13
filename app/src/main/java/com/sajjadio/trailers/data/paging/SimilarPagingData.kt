@@ -2,8 +2,9 @@ package com.sajjadio.trailers.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.sajjadio.trailers.data.dataSource.mapper.mapToCommonResultDomain
+import com.sajjadio.trailers.domain.mapper.mapToPopularMovieDomain
 import com.sajjadio.trailers.data.dataSource.remote.MovieApiService
+import com.sajjadio.trailers.domain.mapper.mapDtoToCommonResultMovieDomain
 import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.utils.Constant
 
@@ -25,7 +26,7 @@ class SimilarPagingData(
             val response = api.getSimilar(id = id, page = pageNumber)
             val data = response.takeIf { it.isSuccessful }?.let {
                 response.body()?.results?.let {
-                    mapToCommonResultDomain(it)
+                    mapDtoToCommonResultMovieDomain(it)
                 }
             } ?: emptyList()
 

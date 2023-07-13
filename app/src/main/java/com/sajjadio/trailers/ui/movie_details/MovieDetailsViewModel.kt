@@ -9,7 +9,7 @@ import com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListen
 import com.sajjadio.trailers.ui.movie_details.utils.MovieDetailsDestinationType
 import com.sajjadio.trailers.ui.movie_details.utils.MovieDetailsItem
 import com.sajjadio.trailers.utils.Event
-import com.sajjadio.trailers.utils.NetworkStatus
+import com.sajjadio.trailers.domain.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,11 +20,11 @@ class MovieDetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel(), MovieDetailsInteractListener {
 
-    private var _playVideo = MutableLiveData<NetworkStatus<VideoMovie?>>()
-    val playVideo: LiveData<NetworkStatus<VideoMovie?>> = _playVideo
+    private var _playVideo = MutableLiveData<Resource<VideoMovie?>>()
+    val playVideo: LiveData<Resource<VideoMovie?>> = _playVideo
 
-    private var _responseDetailsData = MutableLiveData<NetworkStatus<List<MovieDetailsItem>>>()
-    var responseDetailsData: LiveData<NetworkStatus<List<MovieDetailsItem>>> = _responseDetailsData
+    private var _responseDetailsData = MutableLiveData<Resource<List<MovieDetailsItem>>>()
+    var responseDetailsData: LiveData<Resource<List<MovieDetailsItem>>> = _responseDetailsData
     private val detailsData = mutableListOf<MovieDetailsItem>()
 
     private val _clickItemEvent = MutableLiveData<Event<MovieDetailsDestinationType>>()
@@ -42,16 +42,20 @@ class MovieDetailsViewModel @Inject constructor(
         detailsData.clear()
         movieId.let {
             viewModelScope.launch {
-                movieRepo.getMovieDetails(movieId).collect { state ->
-                    state.takeIf { it is NetworkStatus.Success }?.let {
-                        it.data?.let { data ->
-                            detailsData.add(MovieDetailsItem.MovieItem(data))
-                            _responseDetailsData.postValue(NetworkStatus.Success(detailsData))
-                            getPersonsByMovieId(data.id)
+                when(val resource =  movieRepo.getMovieDetails(movieId)){
+                    is Resource.Success -> {
+                        resource.data?.let {
+                            detailsData.add(MovieDetailsItem.MovieItem(it))
+                            _responseDetailsData.postValue(Resource.Success(detailsData))
+                            getPersonsByMovieId(it.id)
                             getImageOfMovieById(movieId)
-                            getSimilarByMovieId(data.id)
+                            getSimilarByMovieId(it.id)
                             getTrailerOfMovie(movieId)
                         }
+                    }
+
+                    is Resource.Error -> {
+                        _responseDetailsData.postValue(Resource.Error(resource.errorMessage))
                     }
                 }
             }
@@ -61,10 +65,10 @@ class MovieDetailsViewModel @Inject constructor(
     private fun getImageOfMovieById(movieId: Int) {
         viewModelScope.launch {
             movieRepo.getImagesOfMovieById(movieId).collect { state ->
-                state.takeIf { it is NetworkStatus.Success }?.let {
+                state.takeIf { it is Resource.Success }?.let {
                     it.data?.let { data ->
                         detailsData.add(MovieDetailsItem.GalleryItem(data))
-                        _responseDetailsData.postValue(NetworkStatus.Success(detailsData))
+                        _responseDetailsData.postValue(Resource.Success(detailsData))
                     }
                 }
             }
@@ -74,10 +78,10 @@ class MovieDetailsViewModel @Inject constructor(
     private fun getPersonsByMovieId(id: Int) {
         viewModelScope.launch {
             movieRepo.getPersonOfMovieById(id).collect { state ->
-                state.takeIf { it is NetworkStatus.Success }?.let {
+                state.takeIf { it is Resource.Success }?.let {
                     it.data?.let { data ->
                         detailsData.add(MovieDetailsItem.PersonOfMovieItem(data))
-                        _responseDetailsData.postValue(NetworkStatus.Success(detailsData))
+                        _responseDetailsData.postValue(Resource.Success(detailsData))
                     }
                 }
             }
@@ -87,10 +91,10 @@ class MovieDetailsViewModel @Inject constructor(
     private fun getSimilarByMovieId(id: Int) {
         viewModelScope.launch {
             movieRepo.getSimilar(id, PAGE_NUMBER).collect { state ->
-                state.takeIf { it is NetworkStatus.Success }?.let {
+                state.takeIf { it is Resource.Success }?.let {
                     it.data?.let { data ->
                         detailsData.add(MovieDetailsItem.SimilarItemMovie(data))
-                        _responseDetailsData.postValue(NetworkStatus.Success(detailsData))
+                        _responseDetailsData.postValue(Resource.Success(detailsData))
                     }
                 }
             }
