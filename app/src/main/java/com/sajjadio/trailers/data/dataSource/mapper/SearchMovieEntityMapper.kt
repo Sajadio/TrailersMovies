@@ -1,12 +1,13 @@
 package com.sajjadio.trailers.data.dataSource.mapper
 
-import com.sajjadio.trailers.data.dataSource.local.entites.SearchMovieEntity
+
 import com.sajjadio.trailers.data.dataSource.model.movie.common.CommonResultDto
+import com.sajjadio.trailers.domain.model.SearchMovieResult
 
 
-internal fun mapSearchMovieEntity(input: List<CommonResultDto>): List<SearchMovieEntity> {
+internal fun mapSearchMovieEntity(input: List<CommonResultDto>): List<SearchMovieResult> {
     return input.map {
-        SearchMovieEntity(
+        SearchMovieResult(
             id = it.id,
             original_title = it.original_title,
             poster_path = it.poster_path,

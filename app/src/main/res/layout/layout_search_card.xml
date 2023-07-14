@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.sajjadio.trailers.domain.model.SearchResult" />
+            type="com.sajjadio.trailers.domain.model.SearchMovieResult" />
 
         <variable
             name="listener"

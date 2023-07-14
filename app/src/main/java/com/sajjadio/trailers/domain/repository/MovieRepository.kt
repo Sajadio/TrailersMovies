@@ -9,7 +9,7 @@ import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.domain.model.GenresOfMovie
 import com.sajjadio.trailers.domain.model.Person
 import com.sajjadio.trailers.domain.model.Image
-import com.sajjadio.trailers.domain.model.SearchResult
+import com.sajjadio.trailers.domain.model.SearchMovieResult
 import com.sajjadio.trailers.domain.model.TrendMovie
 import com.sajjadio.trailers.domain.utils.Resource
 import kotlinx.coroutines.flow.Flow
@@ -37,7 +37,7 @@ interface MovieRepository {
     suspend fun getSimilar(id: Int?, page: Int): Flow<Resource<List<CommonResult>?>>
     suspend fun getMovieTrailer(id: Int?): Flow<Resource<VideoMovie?>>
     suspend fun getMovieOfActor(person_id: Int?): Flow<Resource<ActorsMovie?>>
-    fun getMovieSearch(query: String?): Flow<PagingData<SearchResult>>
+    fun getMovieSearch(query: String?): Flow<PagingData<SearchMovieResult>>
     fun getMoviesOfGenreById(genreId: Int): Flow<PagingData<CommonResult>>
     suspend fun getGenresMovie(): Flow<Resource<List<GenresOfMovie>>>
     fun getSimilarOfMovie(id: Int): Flow<PagingData<CommonResult>>

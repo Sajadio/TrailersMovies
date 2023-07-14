@@ -1,6 +1,12 @@
 package com.sajjadio.trailers.domain.model
 
-data class SearchResult(
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.sajjadio.trailers.utils.Constant
+
+@Entity(tableName = Constant.SEARCH_MOVIE_TABLE_NAME)
+data class SearchMovieResult(
+    @PrimaryKey
     val id: Int,
     val original_title: String?,
     val poster_path: String?,

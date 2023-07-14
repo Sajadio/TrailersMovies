@@ -1,8 +1,11 @@
 package com.sajjadio.trailers.data.repository
 
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.PagingSource
+import com.sajjadio.trailers.data.dataSource.local.AppDatabase
 import com.sajjadio.trailers.data.dataSource.local.dao.MovieDao
 import com.sajjadio.trailers.data.dataSource.local.dao.MovieDetailsDao
 import com.sajjadio.trailers.data.dataSource.mapper.mapDomainToMovieDetailsEntity
@@ -18,7 +21,7 @@ import com.sajjadio.trailers.data.paging.MoviesOfGenresPagingSource
 import com.sajjadio.trailers.data.paging.PopularPagingSource
 import com.sajjadio.trailers.data.paging.RatedPagingSource
 import com.sajjadio.trailers.data.paging.SimilarPagingData
-import com.sajjadio.trailers.data.paging.SearchPagingSource
+import com.sajjadio.trailers.data.paging.SearchRemoteMediator
 import com.sajjadio.trailers.domain.mapper.mapDtoToCommonResultMovieDomain
 import com.sajjadio.trailers.domain.mapper.mapToImagesDomain
 import com.sajjadio.trailers.domain.mapper.mapToMovieDetailsDomain
@@ -33,7 +36,7 @@ import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.domain.model.GenresOfMovie
 import com.sajjadio.trailers.domain.model.Person
 import com.sajjadio.trailers.domain.model.Image
-import com.sajjadio.trailers.domain.model.SearchResult
+import com.sajjadio.trailers.domain.model.SearchMovieResult
 import com.sajjadio.trailers.domain.model.TrendMovie
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.utils.Constant
@@ -50,7 +53,8 @@ import javax.inject.Inject
 class MovieRepositoryImpl @Inject constructor(
     private val movieApi: MovieApiService,
     private val movieDetailsDao: MovieDetailsDao,
-    private val movieDao: MovieDao
+    private val movieDao: MovieDao,
+    private val db: AppDatabase
 ) : MovieRepository {
 
 
@@ -119,18 +123,29 @@ class MovieRepositoryImpl @Inject constructor(
         ).flow.flowOn(Dispatchers.IO)
     }
 
-    override fun getMovieSearch(query: String?): Flow<PagingData<SearchResult>> {
-        return Pager(config = PagingConfig(
-            pageSize = Constant.DEFAULT_PAGE_SIZE,
-            prefetchDistance = Constant.PREFETCH_DISTANCE
-        ), pagingSourceFactory = {
-            SearchPagingSource(api = movieApi, query = query)
+    @OptIn(ExperimentalPagingApi::class)
+    override fun getMovieSearch(query: String?): Flow<PagingData<SearchMovieResult>> {
+        val pagingSourceFactory: () -> PagingSource<Int, SearchMovieResult> = {
+           movieDao.getAllSavedSearchMovies(query)
         }
+
+        return Pager(
+            config = PagingConfig(
+                pageSize = Constant.DEFAULT_PAGE_SIZE,
+                prefetchDistance = Constant.PREFETCH_DISTANCE
+            ),
+            remoteMediator = SearchRemoteMediator(
+                api = movieApi,
+                db = db,
+                query = query
+            ),
+            pagingSourceFactory = pagingSourceFactory
         ).flow.flowOn(Dispatchers.IO)
     }
 
+
     override suspend fun getMovieDetails(id: Int): Resource<MovieDetails> {
-      return  mapWithResource({ movieApi.getMovieDetails(id) }) { movieDetailsDto ->
+        return mapWithResource({ movieApi.getMovieDetails(id) }) { movieDetailsDto ->
             mapToMovieDetailsDomain(movieDetailsDto)
         }
     }
