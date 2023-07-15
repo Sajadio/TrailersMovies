@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application appSettings. -->
-    <style name="Theme.Movie" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.MovieTrailer" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorPrimaryVariant">@color/black</item>
@@ -17,88 +17,13 @@
         <item name="windowActionBar">true</item>
         <item name="android:windowContentTransitions">true</item>
 
-        <!-- custom colors-->
-        <item name="mainColor">@color/white</item>
-        <item name="secondColor">@color/gryLight</item>
-        <item name="viewColor">@color/gryLight</item>
-        <item name="textColor">@color/blackDark</item>
-        <item name="textColorHint">@color/gry</item>
-        <item name="colorIcons">@color/blackLight</item>
-        <item name="customColorToolbar">#00000000</item>
-        <item name="expandedTitleColor">@color/white</item>
-        <item name="collapsedTitleColor">@color/black</item>
-
-        <item name="android:windowAnimationStyle">@style/windowAnimationTransition</item>
     </style>
 
-
-    <!-- Customize RandonImg style -->
-    <style name="roundedCorners" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerFamilyTopLeft">rounded</item>
-        <item name="cornerFamilyTopRight">cut</item>
-        <item name="cornerSizeBottomRight">50%</item>
-    </style>
-
-    <!-- Customize ratingBar style -->
-    <style name="CustomRatingBar" parent="android:style/Widget.Material.RatingBar.Small">
-        <item name="android:progressTint">@color/yellow</item>
-        <item name="android:numStars">5</item>
-        <item name="android:isIndicator">true</item>
-        <item name="android:progressBackgroundTint">@color/gry</item>
-    </style>
-
-    <style name="BottomSheetItem">
-        <item name="android:textSize">20sp</item>
-        <item name="android:drawablePadding">20dp</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">15dp</item>
-    </style>
-
-    <!-- Customize Toolbar style -->
-    <style name="MyThemeOverlay_Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
-        <item name="icon">@color/white</item>
-    </style>
-
-    <!--  This for smooth rest Fragment when switch between dark\light appSettings-->
-    <style name="windowAnimationTransition">
-        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
-        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
-    </style>
 
     <!--    splash screen-->
-    <style name="Splash" parent="Theme.Movie">
-        <item name="android:windowBackground">@drawable/splash</item>
-    </style>
-
-    <!-- New design -->
-    <style name="Headline6">
-        <item name="android:textSize">@dimen/text_20</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="Caption">
-        <item name="android:textSize">@dimen/text_12</item>
-    </style>
-
-    <style name="Body2">
-        <item name="android:textSize">@dimen/text_14</item>
-    </style>
-
-    <style name="Body1">
-        <item name="android:textSize">@dimen/text_16</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="Headline5">
-        <item name="android:textSize">@dimen/text_24</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="Subtitle2">
-        <item name="android:textSize">@dimen/text_14</item>
-        <item name="android:textStyle">bold</item>
+    <style name="Splash" parent="Theme.MovieTrailer">
+        <item name="android:windowBackground">@color/background_color</item>
+        <item name="postSplashScreenTheme">@style/Theme.MovieTrailer</item>
     </style>
 
 </resources>

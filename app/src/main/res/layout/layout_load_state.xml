@@ -10,7 +10,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/error_msg"
-            style="@style/Caption"
+            style="@style/Label.Normal.NoEllipsize"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_8"

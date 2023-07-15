@@ -114,4 +114,7 @@ dependencies {
     // Image slider
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
 
+    // Splash
+    implementation "androidx.core:core-splashscreen:1.0.1"
+
 }
