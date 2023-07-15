@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/normal_margin_size"
-        android:background="@color/background_color"
+        android:background="@color/secondary_color"
         android:orientation="horizontal">
 
 
@@ -24,7 +24,7 @@
             android:background="@color/shimmer_color"
             android:contentDescription="@string/app_name"
             app:layout_constraintDimensionRatio="9:16"
-            app:roundPercent="0.14"
+            app:roundPercent="0.11"
             tools:ignore="MissingConstraints" />
 
         <LinearLayout

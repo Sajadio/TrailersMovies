@@ -25,14 +25,29 @@ class HomeViewModel @Inject constructor(
     private val mediatorLiveData = MediatorLiveData<List<HomeItem>>()
     val responseHomeData: LiveData<List<HomeItem>> = mediatorLiveData
 
+    private val _loadingState = MutableLiveData<Boolean>()
+    val loadingState: LiveData<Boolean> = _loadingState
+
+    private val _isRefreshing = MutableLiveData<Boolean>()
+    val isRefreshing: LiveData<Boolean> = _isRefreshing
+
     init {
         refreshData()
+        loadData()
     }
 
     fun refreshData() {
         viewModelScope.launch {
+            _isRefreshing.postValue(true)
             movieRepo.refreshHomeItems(PAGE_NUMBER)
-            viewModelScope.launch {
+            _isRefreshing.postValue(false)
+        }
+    }
+
+    private fun loadData() {
+        _loadingState.postValue(true)
+        viewModelScope.launch {
+            try {
                 combine(
                     movieRepo.getUpComingMovie(),
                     movieRepo.getTopRatedMovies(),
@@ -45,7 +60,11 @@ class HomeViewModel @Inject constructor(
                     homeData.add(HomeItem.Popular(popular))
                     homeData.add(HomeItem.Trend(trend))
                     mediatorLiveData.postValue(homeData)
-                }.collect {}
+                }.collect {
+                    _loadingState.postValue(false)
+                }
+            } catch (e: Throwable) {
+                _loadingState.postValue(false)
             }
         }
     }

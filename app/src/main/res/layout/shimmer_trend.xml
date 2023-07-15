@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/large_poster_height"
+        android:background="@color/secondary_color"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/normal_padding_size"
+        android:paddingBottom="@dimen/medium_padding_size">
+
+
+        <LinearLayout
+            android:layout_width="@dimen/x_x_x_large_size"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|bottom"
+            android:layout_margin="@dimen/normal_margin_size"
+            android:layout_marginEnd="@dimen/x_x_large_margin_size"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/normal_size"
+                android:layout_marginVertical="@dimen/normal_margin_size"
+                android:background="@color/shimmer_color" />
+
+            <View
+                android:layout_width="@dimen/x_x_large_size"
+                android:layout_height="@dimen/normal_size"
+                android:background="@color/shimmer_color" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:layout_width="@dimen/normal_button_size"
+            android:layout_height="@dimen/normal_button_size"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="@dimen/normal_margin_size"
+            android:background="@color/shimmer_color"
+            app:roundPercent="1" />
+
+    </LinearLayout>
+</layout>

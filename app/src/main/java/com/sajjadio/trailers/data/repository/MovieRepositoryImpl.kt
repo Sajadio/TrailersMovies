@@ -59,28 +59,28 @@ class MovieRepositoryImpl @Inject constructor(
 ) : MovieRepository {
 
     //----------    region home items  ----------
-    override suspend fun getTrendMovies(): Flow<List<TrendMovie>> {
+    override fun getTrendMovies(): Flow<List<TrendMovie>> {
         return mapLocalDataToFlowList(
             movieLocalDataSource.getAllSavedTrendMovies(),
             ::mapToTrendMovieDomain
         )
     }
 
-    override suspend fun getPopularMovies(): Flow<List<CommonResult>> {
+    override fun getPopularMovies(): Flow<List<CommonResult>> {
         return mapLocalDataToFlowList(
             movieLocalDataSource.getAllSavedPopularMovies(),
             ::mapToPopularMovieDomain
         )
     }
 
-    override suspend fun getTopRatedMovies(): Flow<List<CommonResult>> {
+    override fun getTopRatedMovies(): Flow<List<CommonResult>> {
         return mapLocalDataToFlowList(
             movieLocalDataSource.getAllSavedTopRatedMovies(),
             ::mapToTopRatedMovieDomain
         )
     }
 
-    override suspend fun getUpComingMovie(): Flow<List<CommonResult>> {
+    override fun getUpComingMovie(): Flow<List<CommonResult>> {
         return mapLocalDataToFlowList(
             movieLocalDataSource.getAllSavedUpComingMovies(),
             ::mapToUpcomingMovieDomain

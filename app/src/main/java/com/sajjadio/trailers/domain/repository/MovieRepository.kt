@@ -16,10 +16,10 @@ import kotlinx.coroutines.flow.Flow
 interface MovieRepository {
 
     //----------    region home items  ----------
-    suspend fun getTrendMovies(): Flow<List<TrendMovie>>
-    suspend fun getPopularMovies(): Flow<List<CommonResult>>
-    suspend fun getTopRatedMovies(): Flow<List<CommonResult>>
-    suspend fun getUpComingMovie(): Flow<List<CommonResult>>
+    fun getTrendMovies(): Flow<List<TrendMovie>>
+    fun getPopularMovies(): Flow<List<CommonResult>>
+    fun getTopRatedMovies(): Flow<List<CommonResult>>
+    fun getUpComingMovie(): Flow<List<CommonResult>>
     //----------    endregion  ----------
 
 

@@ -22,13 +22,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     @SuppressLint("ObsoleteSdkInt")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.apply {
-            swipeRefreshLayout.setOnRefreshListener {
-                viewModel?.refreshData()
-                swipeRefreshLayout.isRefreshing = false
-            }
-        }
         setupHomeRecyclerView()
         observeEventWhenClickTrendItem()
         observeEventWhenClickItem()

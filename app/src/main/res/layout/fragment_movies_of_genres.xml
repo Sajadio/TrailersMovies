@@ -59,37 +59,37 @@
                 tools:ignore="RtlSymmetry">
 
                 <include
-                    layout="@layout/common_shimmer"
+                    layout="@layout/shimmer_common_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/normal_margin_size" />
 
                 <include
-                    layout="@layout/common_shimmer"
+                    layout="@layout/shimmer_common_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/normal_margin_size" />
 
                 <include
-                    layout="@layout/common_shimmer"
+                    layout="@layout/shimmer_common_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/normal_margin_size" />
 
                 <include
-                    layout="@layout/common_shimmer"
+                    layout="@layout/shimmer_common_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/normal_margin_size" />
 
                 <include
-                    layout="@layout/common_shimmer"
+                    layout="@layout/shimmer_common_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/normal_margin_size" />
 
                 <include
-                    layout="@layout/common_shimmer"
+                    layout="@layout/shimmer_common_item"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/normal_margin_size" />
