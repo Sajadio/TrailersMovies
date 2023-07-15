@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.sajjadio.trailers.data.base.MovieLocalDataSource
 import com.sajjadio.trailers.data.dataSource.local.entites.PopularMovieEntity
 import com.sajjadio.trailers.data.dataSource.local.entites.TopRatedMovieEntity
 import com.sajjadio.trailers.data.dataSource.local.entites.TrendMovieEntity
@@ -14,37 +15,37 @@ import kotlinx.coroutines.flow.Flow
 
 
 @Dao
-interface MovieDao {
+interface MovieDao : MovieLocalDataSource {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addPopularMovies(items: List<PopularMovieEntity>)
+    override suspend fun addPopularMovies(items: List<PopularMovieEntity>)
 
     @Query("SELECT * FROM popular_movie_table")
-    fun getAllSavedPopularMovies(): Flow<List<PopularMovieEntity>>
+    override fun getAllSavedPopularMovies(): Flow<List<PopularMovieEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addTopRatedMovies(items: List<TopRatedMovieEntity>)
+    override suspend fun addTopRatedMovies(items: List<TopRatedMovieEntity>)
 
     @Query("SELECT * FROM top_rated_movie_table")
-    fun getAllSavedTopRatedMovies(): Flow<List<TopRatedMovieEntity>>
+    override fun getAllSavedTopRatedMovies(): Flow<List<TopRatedMovieEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addTrendMovies(items: List<TrendMovieEntity>)
+    override suspend fun addTrendMovies(items: List<TrendMovieEntity>)
 
     @Query("SELECT * FROM trend_movie_table")
-    fun getAllSavedTrendMovies(): Flow<List<TrendMovieEntity>>
+    override fun getAllSavedTrendMovies(): Flow<List<TrendMovieEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addUpComingMovies(items: List<UpcomingMovieEntity>)
+    override suspend fun addUpComingMovies(items: List<UpcomingMovieEntity>)
 
     @Query("SELECT * FROM upcoming_movie_table")
-    fun getAllSavedUpComingMovies(): Flow<List<UpcomingMovieEntity>>
+    override fun getAllSavedUpComingMovies(): Flow<List<UpcomingMovieEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addSearchMovies(items: List<SearchMovieResult>)
+    override suspend fun addSearchMovies(items: List<SearchMovieResult>)
 
     @Query("SELECT * FROM search_movie_table WHERE original_title LIKE '%' || :query || '%'")
-    fun getAllSavedSearchMovies(query: String?): PagingSource<Int, SearchMovieResult>
+    override fun getAllSavedSearchMovies(query: String?): PagingSource<Int, SearchMovieResult>
 
     @Query("DELETE FROM search_movie_table")
-    fun deleteAllSavedSearchMovies()
+    override fun deleteAllSavedSearchMovies()
 }

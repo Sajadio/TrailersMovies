@@ -5,7 +5,9 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
+import com.sajjadio.trailers.data.base.MovieLocalDataSource
 import com.sajjadio.trailers.data.base.MovieRemoteDataSource
+import com.sajjadio.trailers.data.base.SearchMovieLocalDataSource
 import com.sajjadio.trailers.data.dataSource.local.AppDatabase
 import com.sajjadio.trailers.data.dataSource.local.entites.SearchRemoteKey
 import com.sajjadio.trailers.data.dataSource.mapper.mapSearchMovieEntity
@@ -16,10 +18,9 @@ class SearchRemoteMediator(
     private val movieRemoteDataSource: MovieRemoteDataSource,
     private val db: AppDatabase,
     private val query: String?,
+    private val searchMovieLocalDataSource: SearchMovieLocalDataSource,
+    private val movieLocalDataSource: MovieLocalDataSource,
 ) : RemoteMediator<Int, SearchMovieResult>() {
-
-    private val searchDao = db.getMovieDao()
-    private val searchKeyDao = db.getRemoteKeyDao()
 
     override suspend fun load(
         loadType: LoadType,
@@ -61,8 +62,8 @@ class SearchRemoteMediator(
 
             db.withTransaction {
                 if (loadType == LoadType.REFRESH) {
-                    searchDao.deleteAllSavedSearchMovies()
-                    searchKeyDao.deleteAllRemoteKeys()
+                    movieLocalDataSource.deleteAllSavedSearchMovies()
+                    searchMovieLocalDataSource.deleteAllRemoteKeys()
                 }
                 val keys = data.map { searchResult ->
                     SearchRemoteKey(
@@ -71,8 +72,8 @@ class SearchRemoteMediator(
                         nextPage = nextPage
                     )
                 }
-                searchKeyDao.addAllRemoteKeys(searchRemoteKeys = keys)
-                searchDao.addSearchMovies(items = data)
+                movieLocalDataSource.addSearchMovies(items = data)
+                searchMovieLocalDataSource.addAllRemoteKeys(searchRemoteKeys = keys)
             }
             MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (e: Exception) {
@@ -85,7 +86,7 @@ class SearchRemoteMediator(
     ): SearchRemoteKey? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { id ->
-                searchKeyDao.getRemoteKeys(id = id)
+                searchMovieLocalDataSource.getRemoteKeys(id = id)
             }
         }
     }
@@ -95,7 +96,7 @@ class SearchRemoteMediator(
     ): SearchRemoteKey? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()
             ?.let { searchResult ->
-                searchKeyDao.getRemoteKeys(id = searchResult.id)
+                searchMovieLocalDataSource.getRemoteKeys(id = searchResult.id)
             }
     }
 
@@ -104,7 +105,7 @@ class SearchRemoteMediator(
     ): SearchRemoteKey? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()
             ?.let { searchResult ->
-                searchKeyDao.getRemoteKeys(id = searchResult.id)
+                searchMovieLocalDataSource.getRemoteKeys(id = searchResult.id)
             }
     }
 

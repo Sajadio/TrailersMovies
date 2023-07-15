@@ -4,7 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import com.sajjadio.trailers.data.dataSource.local.AppDatabase
 import com.sajjadio.trailers.data.dataSource.local.dao.MovieDao
-import com.sajjadio.trailers.data.dataSource.local.dao.MovieDetailsDao
+import com.sajjadio.trailers.data.dataSource.local.dao.FavoriteMovieDao
+import com.sajjadio.trailers.data.dataSource.local.dao.SearchMovieRemoteKeyDao
 import com.sajjadio.trailers.utils.Constant.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
@@ -31,13 +32,19 @@ object LocalDatabaseModule {
 
     @Provides
     @Singleton
-    fun provideMovieDetailsDao(database: AppDatabase):MovieDetailsDao{
-        return database.getMovieDetailsDao()
+    fun provideFavoriteMovieDao(database: AppDatabase): FavoriteMovieDao {
+        return database.getFavoriteMovieDao()
     }
 
     @Provides
     @Singleton
-    fun provideMovieDao(database: AppDatabase):MovieDao{
+    fun provideMovieDao(database: AppDatabase): MovieDao {
         return database.getMovieDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideSearchMovieDao(database: AppDatabase): SearchMovieRemoteKeyDao {
+        return database.getSearchMovieRemoteKeyDao()
     }
 }

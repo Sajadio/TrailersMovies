@@ -5,8 +5,8 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.sajjadio.trailers.data.dataSource.local.converter.Converter
 import com.sajjadio.trailers.data.dataSource.local.dao.MovieDao
-import com.sajjadio.trailers.data.dataSource.local.dao.MovieDetailsDao
-import com.sajjadio.trailers.data.dataSource.local.dao.RemoteKeyDao
+import com.sajjadio.trailers.data.dataSource.local.dao.FavoriteMovieDao
+import com.sajjadio.trailers.data.dataSource.local.dao.SearchMovieRemoteKeyDao
 import com.sajjadio.trailers.data.dataSource.local.entites.MovieDetailsEntity
 import com.sajjadio.trailers.data.dataSource.local.entites.PopularMovieEntity
 import com.sajjadio.trailers.data.dataSource.local.entites.SearchRemoteKey
@@ -29,7 +29,7 @@ import com.sajjadio.trailers.domain.model.SearchMovieResult
         SearchRemoteKey::class]
 )
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun getMovieDetailsDao(): MovieDetailsDao
+    abstract fun getFavoriteMovieDao(): FavoriteMovieDao
     abstract fun getMovieDao(): MovieDao
-    abstract fun getRemoteKeyDao(): RemoteKeyDao
+    abstract fun getSearchMovieRemoteKeyDao(): SearchMovieRemoteKeyDao
 }

@@ -5,25 +5,26 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.sajjadio.trailers.data.base.FavoriteMovieLocalDataSource
 import com.sajjadio.trailers.data.dataSource.local.entites.MovieDetailsEntity
 import kotlinx.coroutines.flow.Flow
 
 
 @Dao
-interface MovieDetailsDao {
+interface FavoriteMovieDao : FavoriteMovieLocalDataSource {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addMovie(movieDetails: MovieDetailsEntity): Long
+    override suspend fun addMovie(movieDetails: MovieDetailsEntity): Long
 
     @Delete
-    suspend fun deleteMovie(movieDetails: MovieDetailsEntity)
+    override suspend fun deleteMovie(movieDetails: MovieDetailsEntity)
 
     @Query("DELETE FROM movie_details_table")
-    suspend fun deleteAllMovies()
+    override suspend fun deleteAllMovies()
 
     @Query("SELECT * FROM movie_details_table")
-    fun getAllSavedMovies(): Flow<List<MovieDetailsEntity>>
+    override fun getAllSavedMovies(): Flow<List<MovieDetailsEntity>>
 
     @Query("SELECT EXISTS (SELECT * FROM movie_details_table WHERE id = :movieId)")
-    suspend fun checkIsMovieSaved(movieId: Int): Boolean
+    override suspend fun checkIsMovieSaved(movieId: Int): Boolean
 }

@@ -5,10 +5,11 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.PagingSource
+import com.sajjadio.trailers.data.base.FavoriteMovieLocalDataSource
+import com.sajjadio.trailers.data.base.MovieLocalDataSource
 import com.sajjadio.trailers.data.base.MovieRemoteDataSource
+import com.sajjadio.trailers.data.base.SearchMovieLocalDataSource
 import com.sajjadio.trailers.data.dataSource.local.AppDatabase
-import com.sajjadio.trailers.data.dataSource.local.dao.MovieDao
-import com.sajjadio.trailers.data.dataSource.local.dao.MovieDetailsDao
 import com.sajjadio.trailers.data.dataSource.mapper.mapDomainToMovieDetailsEntity
 import com.sajjadio.trailers.data.dataSource.mapper.mapToPopularMovieEntity
 import com.sajjadio.trailers.data.dataSource.mapper.mapToTopRatedMovieEntity
@@ -51,59 +52,59 @@ import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
     private val movieRemoteDataSource: MovieRemoteDataSource,
-    private val movieDetailsDao: MovieDetailsDao,
-    private val movieDao: MovieDao,
+    private val favoriteMovieLocalDataSource: FavoriteMovieLocalDataSource,
+    private val movieLocalDataSource: MovieLocalDataSource,
+    private val searchMovieLocalDataSource: SearchMovieLocalDataSource,
     private val db: AppDatabase
 ) : MovieRepository {
 
-
     override suspend fun addMovie(movieDetails: MovieDetails) {
-        movieDetailsDao.addMovie(mapDomainToMovieDetailsEntity(movieDetails))
+        favoriteMovieLocalDataSource.addMovie(mapDomainToMovieDetailsEntity(movieDetails))
     }
 
     override fun getAllSavedMovies(): Flow<List<MovieDetails>> {
-        return mapLocalDataWithFlow(
-            movieDetailsDao.getAllSavedMovies(),
+        return mapLocalDataToFlowList(
+            favoriteMovieLocalDataSource.getAllSavedMovies(),
             ::mapToMovieDetailsDomain
         )
     }
 
     override suspend fun deleteAllMovies() {
-        return movieDetailsDao.deleteAllMovies()
+        return favoriteMovieLocalDataSource.deleteAllMovies()
     }
 
     override suspend fun checkIsMovieSaved(movieId: Int): Boolean {
-        return movieDetailsDao.checkIsMovieSaved(movieId)
+        return favoriteMovieLocalDataSource.checkIsMovieSaved(movieId)
     }
 
     override suspend fun deleteMovie(movieDetails: MovieDetails) {
-        return movieDetailsDao.deleteMovie(mapDomainToMovieDetailsEntity(movieDetails))
+        return favoriteMovieLocalDataSource.deleteMovie(mapDomainToMovieDetailsEntity(movieDetails))
     }
 
     override suspend fun getTrendMovies(): Flow<List<TrendMovie>> {
-        return mapLocalDataWithFlow(
-            movieDao.getAllSavedTrendMovies(),
+        return mapLocalDataToFlowList(
+            movieLocalDataSource.getAllSavedTrendMovies(),
             ::mapToTrendMovieDomain
         )
     }
 
     override suspend fun getPopularMovies(): Flow<List<CommonResult>> {
-        return mapLocalDataWithFlow(
-            movieDao.getAllSavedPopularMovies(),
+        return mapLocalDataToFlowList(
+            movieLocalDataSource.getAllSavedPopularMovies(),
             ::mapToPopularMovieDomain
         )
     }
 
     override suspend fun getTopRatedMovies(): Flow<List<CommonResult>> {
-        return mapLocalDataWithFlow(
-            movieDao.getAllSavedTopRatedMovies(),
+        return mapLocalDataToFlowList(
+            movieLocalDataSource.getAllSavedTopRatedMovies(),
             ::mapToTopRatedMovieDomain
         )
     }
 
     override suspend fun getUpComingMovie(): Flow<List<CommonResult>> {
-        return mapLocalDataWithFlow(
-            movieDao.getAllSavedUpComingMovies(),
+        return mapLocalDataToFlowList(
+            movieLocalDataSource.getAllSavedUpComingMovies(),
             ::mapToUpcomingMovieDomain
         )
     }
@@ -125,7 +126,7 @@ class MovieRepositoryImpl @Inject constructor(
     @OptIn(ExperimentalPagingApi::class)
     override fun getMovieSearch(query: String?): Flow<PagingData<SearchMovieResult>> {
         val pagingSourceFactory: () -> PagingSource<Int, SearchMovieResult> = {
-            movieDao.getAllSavedSearchMovies(query)
+            movieLocalDataSource.getAllSavedSearchMovies(query)
         }
 
         return Pager(
@@ -136,7 +137,9 @@ class MovieRepositoryImpl @Inject constructor(
             remoteMediator = SearchRemoteMediator(
                 movieRemoteDataSource = movieRemoteDataSource,
                 db = db,
-                query = query
+                query = query,
+                searchMovieLocalDataSource = searchMovieLocalDataSource ,
+                movieLocalDataSource = movieLocalDataSource
             ),
             pagingSourceFactory = pagingSourceFactory
         ).flow.flowOn(Dispatchers.IO)
@@ -144,37 +147,37 @@ class MovieRepositoryImpl @Inject constructor(
 
 
     override suspend fun getMovieDetails(id: Int): Resource<MovieDetails> {
-        return mapWithResource({ movieRemoteDataSource.getMovieDetails(id) }) { movieDetailsDto ->
+        return mapRemoteDataToResource({ movieRemoteDataSource.getMovieDetails(id) }) { movieDetailsDto ->
             mapToMovieDetailsDomain(movieDetailsDto)
         }
     }
 
     override suspend fun getImagesOfMovieById(movieId: Int?): Flow<Resource<List<Image>?>> {
-        return mapRemoteWithFlow({ movieRemoteDataSource.getImagesOfMovieById(movieId) }) { imageDto ->
+        return mapRemoteDataToFlowResource({ movieRemoteDataSource.getImagesOfMovieById(movieId) }) { imageDto ->
             mapToImagesDomain(imageDto.images)
         }
     }
 
     override suspend fun getImagesOfPersonById(personId: Int?): Flow<Resource<List<Image>?>> {
-        return mapRemoteWithFlow({ movieRemoteDataSource.getImagesOfPersonById(personId) }) { imageDto ->
+        return mapRemoteDataToFlowResource({ movieRemoteDataSource.getImagesOfPersonById(personId) }) { imageDto ->
             mapToImagesDomain(imageDto.profileDto)
         }
     }
 
     override suspend fun getMoviesOfPersonById(personId: Int?): Flow<Resource<List<CommonResult>>> {
-        return mapRemoteWithFlow({ movieRemoteDataSource.getMoviesOfPersonById(personId) }) { similar ->
+        return mapRemoteDataToFlowResource({ movieRemoteDataSource.getMoviesOfPersonById(personId) }) { similar ->
             mapDtoToCommonResultMovieDomain(similar.cast)
         }
     }
 
     override fun getPersonOfMovieById(id: Int): Flow<Resource<List<Cast>?>> {
-        return mapRemoteWithFlow({ movieRemoteDataSource.getPersonOfMovieById(id) }) { actors ->
+        return mapRemoteDataToFlowResource({ movieRemoteDataSource.getPersonOfMovieById(id) }) { actors ->
             actors.cast?.let { castDto -> mapToPersonOfMovie(castDto) }
         }
     }
 
     override fun getPersonById(personId: Int?): Flow<Resource<Person>> {
-        return mapRemoteWithFlow({ movieRemoteDataSource.getPersonById(personId) }) {
+        return mapRemoteDataToFlowResource({ movieRemoteDataSource.getPersonById(personId) }) {
             mapToPerson(it)
         }
     }
@@ -183,7 +186,7 @@ class MovieRepositoryImpl @Inject constructor(
         id: Int?,
         page: Int
     ): Flow<Resource<List<CommonResult>?>> {
-        return mapRemoteWithFlow({ movieRemoteDataSource.getSimilar(id, page) }) { similar ->
+        return mapRemoteDataToFlowResource({ movieRemoteDataSource.getSimilar(id, page) }) { similar ->
             mapDtoToCommonResultMovieDomain(similar.results)
         }
     }
@@ -223,7 +226,7 @@ class MovieRepositoryImpl @Inject constructor(
         ).flow.flowOn(Dispatchers.IO)
 
     override suspend fun getGenresMovie(): Flow<Resource<List<GenresOfMovie>>> {
-        return mapRemoteWithFlow({
+        return mapRemoteDataToFlowResource({
             movieRemoteDataSource.getGenresMovie()
         }) {
             mapToGenresDomain(it.genres)
@@ -231,48 +234,48 @@ class MovieRepositoryImpl @Inject constructor(
     }
 
     override suspend fun refreshHomeItems(page: Int) {
-        refreshWrapper(
+        refreshDataInLocalStorage(
             movieRemoteDataSource::getTrending,
-            movieDao::addTrendMovies,
+            movieLocalDataSource::addTrendMovies,
         ) {
             mapToTrendMovieEntity(it.results)
         }
-        refreshWrapper(
+        refreshDataInLocalStorage(
             { movieRemoteDataSource.getPopularMovie(page) },
-            movieDao::addPopularMovies,
+            movieLocalDataSource::addPopularMovies,
         ) {
             mapToPopularMovieEntity(it.results)
         }
-        refreshWrapper(
+        refreshDataInLocalStorage(
             { movieRemoteDataSource.getTopRatedMovie(page) },
-            movieDao::addTopRatedMovies,
+            movieLocalDataSource::addTopRatedMovies,
         ) {
             mapToTopRatedMovieEntity(it.results)
         }
-        refreshWrapper(
+        refreshDataInLocalStorage(
             { movieRemoteDataSource.getUpComingMovie(page) },
-            movieDao::addUpComingMovies,
+            movieLocalDataSource::addUpComingMovies,
         ) {
             mapToUpcomingMovieEntity(it.results)
         }
-        refreshWrapper(
+        refreshDataInLocalStorage(
             { movieRemoteDataSource.getUpComingMovie(page) },
-            movieDao::addUpComingMovies,
+            movieLocalDataSource::addUpComingMovies,
         ) {
             mapToUpcomingMovieEntity(it.results)
         }
     }
 
-    private suspend fun <T, E> refreshWrapper(
-        request: suspend () -> T,
-        insertIntoDatabase: suspend (List<E>) -> Unit,
-        mapper: (T) -> List<E>?,
+        private suspend fun <T, E> refreshDataInLocalStorage(
+            request: suspend () -> T,
+            refreshDataInLocalStorage: suspend (List<E>) -> Unit,
+            mapResponse: (T) -> List<E>?,
     ) {
         try {
             request().also {
                 it?.let { body ->
-                    mapper(body)?.let { list ->
-                        insertIntoDatabase(list)
+                    mapResponse(body)?.let { list ->
+                        refreshDataInLocalStorage(list)
                     }
                 }
             }
@@ -281,36 +284,36 @@ class MovieRepositoryImpl @Inject constructor(
         }
     }
 
-    private fun <L, D> mapLocalDataWithFlow(
+    private fun <L, D> mapLocalDataToFlowList(
         data: Flow<List<L>>,
-        mapper: (L) -> D
+        mapResponse: (L) -> D
     ): Flow<List<D>> =
         data.map { list ->
             list.map { entity ->
-                mapper(entity)
+                mapResponse(entity)
             }
         }
 
-    private fun <I, O> mapRemoteWithFlow(
+    private fun <I, O> mapRemoteDataToFlowResource(
         function: suspend () -> I,
-        mapper: (I) -> O
+        mapResponse: (I) -> O
     ): Flow<Resource<O>> {
         return flow {
             try {
                 val response = function()
-                emit(Resource.Success(response?.let { mapper(it) }))
+                emit(Resource.Success(response?.let { mapResponse(it) }))
             } catch (e: Exception) {
                 emit(Resource.Error(e.message.toString()))
             }
         }
     }
 
-    private suspend fun <I, O> mapWithResource(
+    private suspend fun <I, O> mapRemoteDataToResource(
         function: suspend () -> I,
-        mapper: (I) -> O
+        mapResponse: (I) -> O
     ): Resource<O> {
         return try {
-            Resource.Success(mapper(function()))
+            Resource.Success(mapResponse(function()))
         } catch (e: Throwable) {
             Resource.Error(e.message)
         }
