@@ -5,15 +5,15 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
+import com.sajjadio.trailers.data.base.MovieRemoteDataSource
 import com.sajjadio.trailers.data.dataSource.local.AppDatabase
 import com.sajjadio.trailers.data.dataSource.local.entites.SearchRemoteKey
 import com.sajjadio.trailers.data.dataSource.mapper.mapSearchMovieEntity
-import com.sajjadio.trailers.data.dataSource.remote.MovieApiService
 import com.sajjadio.trailers.domain.model.SearchMovieResult
 
 @ExperimentalPagingApi
 class SearchRemoteMediator(
-    private val api: MovieApiService,
+    private val movieRemoteDataSource: MovieRemoteDataSource,
     private val db: AppDatabase,
     private val query: String?,
 ) : RemoteMediator<Int, SearchMovieResult>() {
@@ -49,8 +49,8 @@ class SearchRemoteMediator(
                 }
             }
 
-            val response = api.getSearchMovie(page = currentPage, query = query)
-            val data = response.body()?.results?.let {
+            val response = movieRemoteDataSource.getSearchMovie(page = currentPage, query = query)
+            val data = response.results?.let {
                 mapSearchMovieEntity(it)
             }?: emptyList()
 

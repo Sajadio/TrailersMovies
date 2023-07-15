@@ -28,8 +28,6 @@ class HomeViewModel @Inject constructor(
     private var _responseHomeData = MutableLiveData<List<HomeItem>>()
 
 
-
-
     private val homeData = mutableListOf<HomeItem>()
 
     private val mediatorLiveData = MediatorLiveData<List<HomeItem>>()
@@ -42,7 +40,7 @@ class HomeViewModel @Inject constructor(
 
     fun refreshData() {
         viewModelScope.launch {
-            movieRepo.refreshHomeItems()
+            movieRepo.refreshHomeItems(PAGE_NUMBER)
             viewModelScope.launch {
                 combine(
                     movieRepo.getUpComingMovie(),
@@ -56,43 +54,7 @@ class HomeViewModel @Inject constructor(
                     homeData.add(HomeItem.Popular(popular))
                     homeData.add(HomeItem.Trend(trend))
                     mediatorLiveData.postValue(homeData)
-                }.collect{}
-            }
-        }
-    }
-
-    private fun setUpUpComingData() {
-        viewModelScope.launch {
-            movieRepo.getUpComingMovie().collect { data ->
-                homeData.add(HomeItem.Upcoming(data))
-                _responseHomeData.postValue(homeData)
-            }
-        }
-    }
-
-    private fun setUpRatedData() {
-        viewModelScope.launch {
-            movieRepo.getTopRatedMovies().collect { data ->
-                homeData.add(HomeItem.TopRated(data))
-                _responseHomeData.postValue(homeData)
-            }
-        }
-    }
-
-    private fun setUpPopularData() {
-        viewModelScope.launch {
-            movieRepo.getPopularMovies().collect { data ->
-                homeData.add(HomeItem.Popular(data))
-                _responseHomeData.postValue(homeData)
-            }
-        }
-    }
-
-    private fun setUpTrendData() {
-        viewModelScope.launch {
-            movieRepo.getTrendMovies().collect { data ->
-                homeData.add(HomeItem.Trend(data))
-                _responseHomeData.postValue(homeData)
+                }.collect {}
             }
         }
     }
@@ -111,6 +73,10 @@ class HomeViewModel @Inject constructor(
 
     override fun onClickSeeAllUpComingItems(upComing: Destination) {
         _clickShowAllItemEvent.postValue(Event(upComing))
+    }
+
+    private companion object {
+        const val PAGE_NUMBER = 1
     }
 }
 

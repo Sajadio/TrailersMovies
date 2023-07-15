@@ -20,7 +20,7 @@ abstract class BasePagingSource<Key : Number, Value : Any, Mapper : Any> :
     override suspend fun load(params: LoadParams<Key>): LoadResult<Key, Mapper> {
         val pageNumber = params.key ?: Constant.DEFAULT_PAGE_INDEX as Key
         return try {
-            val response = apiCall(pageNumber).body()
+            val response = apiCall(pageNumber)
             val mapper = mapperResponse(response) ?: emptyList()
 
             LoadResult.Page(
@@ -33,7 +33,7 @@ abstract class BasePagingSource<Key : Number, Value : Any, Mapper : Any> :
         }
     }
 
-    abstract suspend fun apiCall(pageNumber: Key): Response<Value>
+    abstract suspend fun apiCall(pageNumber: Key): Value
 
 
     abstract fun mapperResponse(response: Value?): List<Mapper>?

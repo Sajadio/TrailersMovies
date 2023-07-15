@@ -16,14 +16,11 @@ import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
 
-    suspend fun refreshHomeItems()
-
     suspend fun addMovie(movieDetails: MovieDetails)
-     fun getAllSavedMovies(): Flow<List<MovieDetails>>
+    fun getAllSavedMovies(): Flow<List<MovieDetails>>
     suspend fun deleteAllMovies()
-    suspend fun checkIsMovieSaved(movieId:Int):Boolean
+    suspend fun checkIsMovieSaved(movieId: Int): Boolean
     suspend fun deleteMovie(movieDetails: MovieDetails)
-
     suspend fun getTrendMovies(): Flow<List<TrendMovie>>
     suspend fun getPopularMovies(): Flow<List<CommonResult>>
     suspend fun getTopRatedMovies(): Flow<List<CommonResult>>
@@ -32,7 +29,7 @@ interface MovieRepository {
     suspend fun getImagesOfMovieById(movieId: Int?): Flow<Resource<List<Image>?>>
     suspend fun getImagesOfPersonById(personId: Int?): Flow<Resource<List<Image>?>>
     suspend fun getMoviesOfPersonById(personId: Int?): Flow<Resource<List<CommonResult>>>
-     fun getPersonOfMovieById(id: Int): Flow<Resource<List<Cast>?>>
+    fun getPersonOfMovieById(id: Int): Flow<Resource<List<Cast>?>>
     fun getPersonById(personId: Int?): Flow<Resource<Person>>
     suspend fun getSimilar(id: Int?, page: Int): Flow<Resource<List<CommonResult>?>>
     suspend fun getMovieTrailer(id: Int?): Flow<Resource<VideoMovie?>>
@@ -44,5 +41,5 @@ interface MovieRepository {
     fun getPopularMoviePaging(): Flow<PagingData<CommonResult>>
     fun getTopRatedMoviePaging(): Flow<PagingData<CommonResult>>
     fun getUpComingMoviePaging(): Flow<PagingData<CommonResult>>
-
+    suspend fun refreshHomeItems(page: Int)
 }
