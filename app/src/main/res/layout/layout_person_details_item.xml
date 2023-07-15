@@ -43,7 +43,6 @@
             tools:src="@drawable/ic_launcher_background" />
 
         <View
-            android:id="@+id/view2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/gradient_overlay"
@@ -55,12 +54,12 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <androidx.constraintlayout.utils.widget.ImageFilterView
-            android:id="@+id/imageViewPerson"
+            android:id="@+id/view2_person_details"
             android:layout_width="@dimen/gallery_card_height"
-            android:transitionName="big_person_image"
             android:layout_height="@dimen/gallery_card_height"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"
+            android:transitionName="big_person_image"
             app:imageSize="@{imageSize.IMAGE_Size_780}"
             app:imageUrl="@{item.profilePath}"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewMovie"
@@ -80,16 +79,15 @@
 
 
         <TextView
-            android:id="@+id/textViewTitle"
+            android:id="@+id/view3_person_details"
             style="@style/Title.Large"
             android:layout_width="wrap_content"
             android:layout_marginTop="@dimen/medium_margin_size"
-            android:layout_marginBottom="@dimen/normal_margin_size"
             android:gravity="center"
             android:text="@{item.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPerson"
+            app:layout_constraintTop_toBottomOf="@+id/view2_person_details"
             tools:text="Title" />
 
         <TextView
@@ -102,7 +100,7 @@
             android:maxLines="5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+            app:layout_constraintTop_toBottomOf="@+id/view3_person_details"
             app:list="@{item.alsoKnownAs}"
             tools:text="Acting" />
 
@@ -113,7 +111,7 @@
             android:layout_marginTop="@dimen/medium_margin_size"
             android:gravity="center"
             android:text="@string/popularity"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewPerson"
+            app:layout_constraintEnd_toStartOf="@+id/view2_person_details"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewDepartment" />
 
@@ -136,7 +134,7 @@
             android:gravity="center"
             android:text="Birthday"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageViewPerson"
+            app:layout_constraintStart_toEndOf="@+id/view2_person_details"
             app:layout_constraintTop_toTopOf="@+id/textViewPopularity" />
 
 
@@ -154,10 +152,9 @@
         <TextView
             android:id="@+id/textViewBio"
             style="@style/Title.Large"
-            android:layout_marginStart="@dimen/medium_margin_size"
             android:layout_marginTop="@dimen/medium_margin_size"
             android:text="@string/bio"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textViewPopularity"
             app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionPopularity" />
 
         <TextView
@@ -169,20 +166,20 @@
             android:maxLines="3"
             android:text="@{item.biography}"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageButtonShowBottomSheet"
             app:layout_constraintStart_toStartOf="@+id/textViewBio"
             app:layout_constraintTop_toBottomOf="@+id/textViewBio"
-            app:layout_constraintEnd_toStartOf="@+id/imageButtonShowBottomSheet"
             tools:text="After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission. After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission." />
 
         <TextView
             android:id="@+id/imageButtonShowBottomSheet"
-            android:layout_width="wrap_content"
             style="@style/Label.Normal"
+            android:layout_width="wrap_content"
             android:clickable="true"
             android:ellipsize="none"
-            android:textColor="@color/primary_color"
             android:onClick="@{() -> listener.onClickToShowBottomSheet(item,listener)}"
             android:text="@string/read_more"
+            android:textColor="@color/primary_color"
             android:visibility="@{item.biography.length() > 190 ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="@+id/textViewDescriptionBio"
             app:layout_constraintEnd_toEndOf="@+id/textViewBirthday"

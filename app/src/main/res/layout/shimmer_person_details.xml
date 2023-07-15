@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/secondary_color"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/normal_padding_size"
+        android:paddingBottom="@dimen/medium_padding_size">
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/movie_details_image_height"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/imageFilter"
+            android:layout_width="@dimen/gallery_card_height"
+            android:layout_height="@dimen/gallery_card_height"
+            android:background="@color/shimmer_color"
+            app:layout_constraintBottom_toBottomOf="@+id/view1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:roundPercent="1" />
+
+        <View
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/medium_size"
+            android:layout_marginTop="@dimen/medium_margin_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintEnd_toEndOf="@+id/imageFilter"
+            app:layout_constraintStart_toStartOf="@+id/imageFilter"
+            app:layout_constraintTop_toBottomOf="@+id/imageFilter" />
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x_large_size"
+            android:layout_marginHorizontal="@dimen/x_x_large_size"
+            android:layout_marginTop="@dimen/medium_margin_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="@dimen/x_x_large_size"
+            android:layout_height="@dimen/medium_size"
+            android:layout_marginStart="@dimen/medium_margin_size"
+            android:layout_marginTop="@dimen/medium_margin_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintBottom_toBottomOf="@+id/view1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view4" />
+
+
+        <View
+            android:id="@+id/vie6"
+            android:layout_width="@dimen/x_x_large_size"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/medium_margin_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintBottom_toBottomOf="@+id/view5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view5" />
+
+
+        <View
+            android:id="@+id/view7"
+            android:layout_width="@dimen/x_large_size"
+            android:layout_height="@dimen/medium_size"
+            android:layout_marginTop="@dimen/medium_margin_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintStart_toStartOf="@+id/view5"
+            app:layout_constraintTop_toBottomOf="@+id/view1" />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearGallery"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x_x_x_large_size"
+            android:layout_marginTop="@dimen/normal_margin_size"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/view7"
+            app:layout_constraintTop_toBottomOf="@+id/view7">
+
+            <View
+                android:layout_width="@dimen/x_x_x_large_size"
+                android:layout_height="match_parent"
+                android:background="@color/shimmer_color" />
+
+            <View
+                android:layout_width="@dimen/x_x_x_large_size"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/medium_margin_size"
+                android:background="@color/shimmer_color" />
+
+            <View
+                android:layout_width="@dimen/x_x_x_large_size"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/medium_margin_size"
+                android:background="@color/shimmer_color" />
+
+            <View
+                android:layout_width="@dimen/x_x_x_large_size"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/medium_margin_size"
+                android:background="@color/shimmer_color" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:id="@+id/textViewPerson"
+            android:layout_width="@dimen/x_large_size"
+            android:layout_height="@dimen/medium_size"
+            android:layout_marginTop="@dimen/medium_margin_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintStart_toStartOf="@+id/view7"
+            app:layout_constraintTop_toBottomOf="@+id/linearGallery" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x_x_x_large_size"
+            android:layout_marginTop="@dimen/normal_margin_size"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textViewPerson"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerson">
+
+            <View
+                android:layout_width="@dimen/x_x_x_large_size"
+                android:layout_height="match_parent"
+                android:background="@color/shimmer_color" />
+
+            <View
+                android:layout_width="@dimen/x_x_x_large_size"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/medium_margin_size"
+                android:background="@color/shimmer_color" />
+
+            <View
+                android:layout_width="@dimen/x_x_x_large_size"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/medium_margin_size"
+                android:background="@color/shimmer_color" />
+
+            <View
+                android:layout_width="@dimen/x_x_x_large_size"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/medium_margin_size"
+                android:background="@color/shimmer_color" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -32,6 +32,9 @@ class MovieDetailsViewModel @Inject constructor(
 
     private val movieId: Int = checkNotNull(savedStateHandle["movieId"])
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
     var bitmap = MutableLiveData<Bitmap>()
 
     init {
@@ -39,22 +42,24 @@ class MovieDetailsViewModel @Inject constructor(
     }
 
     private fun loadMovieData() {
-        detailsData.clear()
+        _isLoading.postValue(true)
         movieId.let {
             viewModelScope.launch {
-                when(val resource =  movieRepo.getMovieById(movieId)){
+                when (val resource = movieRepo.getMovieById(movieId)) {
                     is Resource.Success -> {
+                        _isLoading.postValue(false)
                         resource.data?.let {
                             detailsData.add(MovieDetailsItem.MovieItem(it))
-                            _responseDetailsData.postValue(Resource.Success(detailsData))
                             getPersonsByMovieId(it.id)
                             getImageOfMovieById(movieId)
                             getSimilarByMovieId(it.id)
                             getTrailerOfMovie(movieId)
+                            _responseDetailsData.postValue(Resource.Success(detailsData))
                         }
                     }
 
                     is Resource.Error -> {
+                        _isLoading.postValue(false)
                         _responseDetailsData.postValue(Resource.Error(resource.errorMessage))
                     }
                 }
@@ -137,15 +142,18 @@ class MovieDetailsViewModel @Inject constructor(
         }
     }
 
-    override fun onClickToShowBottomSheet(item: MovieDetails, listener: MovieDetailsInteractListener) {
-        _clickItemEvent.postValue(Event(MovieDetailsDestinationType.BottomSheet(item,listener)))
+    override fun onClickToShowBottomSheet(
+        item: MovieDetails,
+        listener: MovieDetailsInteractListener
+    ) {
+        _clickItemEvent.postValue(Event(MovieDetailsDestinationType.BottomSheet(item, listener)))
     }
 
     override fun onClickWatchNow(id: Int) {
         _clickItemEvent.postValue(Event(MovieDetailsDestinationType.WatchNowMovie(id)))
     }
 
-    override fun onClickItem(id:Int) {
+    override fun onClickItem(id: Int) {
         _clickItemEvent.postValue(Event(MovieDetailsDestinationType.SimilarItem(id)))
     }
 

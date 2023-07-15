@@ -72,6 +72,9 @@
     <dimen name="dialog_image_width">360dp</dimen>
     <dimen name="dialog_image_height">600dp</dimen>
 
+    <dimen name="movie_details_image_height">400dp</dimen>
+
+
     <dimen name="small_size">4dp</dimen>
     <dimen name="normal_size">8dp</dimen>
     <dimen name="medium_size">16dp</dimen>
@@ -100,7 +103,6 @@
     <dimen name="small_circular_button_size">32dp</dimen>
     <dimen name="normal_circular_button_size">40dp</dimen>
     <dimen name="normal_button_size">48dp</dimen>
-
 
 
 </resources>

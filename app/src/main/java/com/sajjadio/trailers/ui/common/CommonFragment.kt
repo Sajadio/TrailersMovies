@@ -35,15 +35,10 @@ class CommonFragment :
         binding.apply {
             onClickBackButton(appBarLayout.toolbar)
             viewModel?.title = args.destination.name
-
-            swipeRefreshLayout.setOnRefreshListener {
-                adapter?.refresh()
-                swipeRefreshLayout.isRefreshing = false
-            }
             checkDestinationID(args.destination)
         }
 
-        viewModel.clickItemEvent.observeEvent(viewLifecycleOwner){
+        viewModel.clickItemEvent.observeEvent(viewLifecycleOwner) {
             navigateToAnotherDestination(
                 CommonFragmentDirections.actionCommonFragmentToMovieFragment(it)
             )
@@ -65,8 +60,6 @@ class CommonFragment :
                 adapter.submitData(data)
             }
         }
-
-        binding.recyclerViewCommon.hasFixedSize()
         loadStateAdapter()
     }
 
@@ -75,30 +68,10 @@ class CommonFragment :
             header = PagingLoadStateAdapter { adapter.retry() },
             footer = PagingLoadStateAdapter { adapter.retry() }
         )
-
         adapter.addLoadStateListener { loadState ->
-            val isEmptyList = loadState.refresh is LoadState.NotLoading && adapter.itemCount == 0
-            showEmptyList(!isEmptyList)
-
-            binding.recyclerViewCommon.isVisible = loadState.source.refresh is LoadState.NotLoading
             (loadState.source.refresh is LoadState.Loading).also {
-                stateManagement(it)
+                binding.shimmer.isVisible = it
             }
         }
-    }
-
-    private fun showEmptyList(emptyList: Boolean) {
-        binding.recyclerViewCommon.isVisible = !emptyList
-    }
-
-    private fun stateManagement(state: Boolean) {
-        if (state)
-            binding.shimmer.startShimmer()
-        else
-            binding.shimmer.stopShimmer()
-
-        binding.shimmer.isVisible = state
-        binding.swipeRefreshLayout.isVisible = !state
-
     }
 }

@@ -8,6 +8,7 @@
         <variable
             name="adapter"
             type="com.sajjadio.trailers.ui.common.CommonPagingAdapter" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,30 +23,19 @@
             app:titleToolBar="@{@string/similar}"
             app:visible="@{true}" />
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipeRefreshLayout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/background_color"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewSimilar"
-                style="@style/GridRecycler"
-                app:spanCount="2"
-                tools:listitem="@layout/layout_normal_common_card" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSimilar"
+            style="@style/GridRecycler"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            app:spanCount="2"
+            tools:listitem="@layout/layout_normal_common_card" />
 
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 

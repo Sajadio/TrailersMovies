@@ -5,9 +5,9 @@
 
     <data>
 
-      <variable
-          name="viewModel"
-          type="com.sajjadio.trailers.ui.genres.viewModel.MoviesOfGenresViewModel" />
+        <variable
+            name="viewModel"
+            type="com.sajjadio.trailers.ui.genres.viewModel.MoviesOfGenresViewModel" />
 
     </data>
 
@@ -20,85 +20,27 @@
         <include
             android:id="@+id/appBarLayout"
             layout="@layout/layout_top_app_bar"
-            app:visible="@{true}"
-            app:titleToolBar="@{viewModel.titleToolBar}" />
+            app:titleToolBar="@{viewModel.titleToolBar}"
+            app:visible="@{true}" />
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipeRefreshLayout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/background_color"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewCommon"
-                style="@style/GridRecycler"
-                app:spanCount="2"
-                tools:listitem="@layout/layout_normal_common_card" />
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCommon"
+            style="@style/GridRecycler"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            app:spanCount="2"
+            tools:listitem="@layout/layout_normal_common_card" />
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:columnCount="2"
-                android:paddingStart="@dimen/normal_padding_size"
-                android:rowCount="2"
-                tools:ignore="RtlSymmetry">
-
-                <include
-                    layout="@layout/shimmer_common_item"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/normal_margin_size" />
-
-                <include
-                    layout="@layout/shimmer_common_item"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/normal_margin_size" />
-
-                <include
-                    layout="@layout/shimmer_common_item"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/normal_margin_size" />
-
-                <include
-                    layout="@layout/shimmer_common_item"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/normal_margin_size" />
-
-                <include
-                    layout="@layout/shimmer_common_item"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/normal_margin_size" />
-
-                <include
-                    layout="@layout/shimmer_common_item"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/normal_margin_size" />
-
-            </GridLayout>
-
+            <include layout="@layout/shimmer_common" />
 
         </com.facebook.shimmer.ShimmerFrameLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

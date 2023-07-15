@@ -5,6 +5,12 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.sajjadio.trailers.ui.person_details.PersonDetailsViewModel" />
+
+        <import type="android.view.View" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,6 +25,15 @@
             android:background="@color/background_color"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.isLoading() ?View.VISIBLE:View.GONE}">
+
+            <include layout="@layout/shimmer_person_details" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

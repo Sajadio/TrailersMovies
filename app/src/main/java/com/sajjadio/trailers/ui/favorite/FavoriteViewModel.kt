@@ -23,15 +23,7 @@ class FavoriteViewModel @Inject constructor(
     private val repository: MovieRepository
 ):ViewModel() ,FavoriteInteractListener{
 
-    lateinit var  responseSearchMovies:LiveData<List<MovieDetails>>
-
-    init {
-        viewModelScope.launch {
-            repository.getAllSavedMovies().collect{
-
-            }
-        }
-    }
+    val responseSearchMovies:LiveData<List<MovieDetails>> = repository.getAllSavedMovies().asLiveData()
 
     private val _clickItemEvent = MutableLiveData<Event<Int>>()
     val clickItemEvent: LiveData<Event<Int>> = _clickItemEvent

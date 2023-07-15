@@ -14,6 +14,7 @@ import com.sajjadio.trailers.databinding.FragmentMoviesOfGenresBinding
 import com.sajjadio.trailers.ui.PagingLoadStateAdapter
 import com.sajjadio.trailers.ui.common.CommonPagingAdapter
 import com.sajjadio.trailers.ui.genres.viewModel.MoviesOfGenresViewModel
+import com.sajjadio.trailers.ui.similar.SimilarPagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -29,11 +30,7 @@ class MoviesOfGenreFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initialAdapter()
-        checkConnection()
-        refresh()
-
         onClickBackButton(binding.appBarLayout.toolbar)
-
         viewModel.clickItemEvent.observeEvent(viewLifecycleOwner) {
             navigateToAnotherDestination(
                 MoviesOfGenreFragmentDirections.actionMoviesOfGenreFragmentToDetailsFragment(it)
@@ -42,35 +39,13 @@ class MoviesOfGenreFragment :
     }
 
 
-    private fun checkConnection() {
-        NetworkHelper(context = requireContext()).observe(viewLifecycleOwner) { state ->
-
-        }
-    }
-
-    private fun refresh() {
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            checkConnection()
-            initialAdapter()
-            binding.swipeRefreshLayout.isRefreshing = false
-        }
-    }
-
     private fun initialAdapter() {
         adapter = CommonPagingAdapter(viewModel)
-
-        val gridLayoutManager = GridLayoutManager(context, 2)
-        binding.recyclerViewCommon.layoutManager = gridLayoutManager
-        gridLayoutManager.orientation = LinearLayoutManager.VERTICAL
-
-
-        viewModel.responseListOfMovie.observe(viewLifecycleOwner) { data ->
+        viewModel.responseListOfMovie.observe(viewLifecycleOwner) {
             lifecycleScope.launch {
-                adapter.submitData(data)
+                adapter.submitData(it)
             }
         }
-
-        binding.recyclerViewCommon.hasFixedSize()
         loadStateAdapter()
     }
 
@@ -79,33 +54,11 @@ class MoviesOfGenreFragment :
             header = PagingLoadStateAdapter { adapter.retry() },
             footer = PagingLoadStateAdapter { adapter.retry() }
         )
-
         adapter.addLoadStateListener { loadState ->
-            val isEmptyList =
-                loadState.refresh is LoadState.NotLoading && adapter.itemCount == 0
-            showEmptyList(!isEmptyList)
-
-            binding.recyclerViewCommon.isVisible = loadState.source.refresh is LoadState.NotLoading
             (loadState.source.refresh is LoadState.Loading).also {
-                stateManagement(it)
+                binding.shimmer.isVisible = it
             }
         }
-    }
-
-    private fun showEmptyList(emptyList: Boolean) {
-        binding.recyclerViewCommon.isVisible = emptyList
-    }
-
-
-    private fun stateManagement(state: Boolean) {
-        if (state)
-            binding.shimmer.startShimmer()
-        else
-            binding.shimmer.stopShimmer()
-
-        binding.shimmer.isVisible = state
-        binding.swipeRefreshLayout.isVisible = !state
-
     }
 
 }

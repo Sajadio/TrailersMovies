@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/normal_person_card_width"
+        android:layout_height="@dimen/normal_person_card_height"
+        android:layout_marginHorizontal="@dimen/normal_margin_size"
+        android:layout_marginTop="@dimen/medium_margin_size"
+        android:background="@color/background_color"
+        android:orientation="vertical">
+
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/personPoster"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x_x_x_large_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:roundPercent="0.11" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/normal_size"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginHorizontal="@dimen/large_margin_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/personPoster" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -32,7 +32,7 @@
         <ImageView
             android:id="@+id/imageViewMovie"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="@dimen/movie_details_image_height"
             android:layout_gravity="center"
             android:contentDescription="@string/app_name"
             app:imageSize="@{imageSize.IMAGE_Size_H632}"
@@ -43,7 +43,7 @@
             tools:src="@drawable/ic_launcher_background" />
 
         <View
-            android:id="@+id/view2"
+            android:id="@+id/view2_person_details"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/gradient_overlay"
@@ -67,37 +67,35 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
-            android:id="@+id/textViewTitle"
+            android:id="@+id/view3_person_details"
             style="@style/Title.Large"
-            android:layout_marginStart="@dimen/medium_margin_size"
             android:layout_marginBottom="@dimen/normal_margin_size"
             android:text="@{item.original_title}"
-            app:layout_constraintBottom_toTopOf="@+id/textViewGenre"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/view4"
+            app:layout_constraintStart_toStartOf="@+id/view4"
             tools:text="Title" />
 
         <TextView
-            android:id="@+id/textViewGenre"
+            android:id="@+id/view4"
             style="@style/Label.Normal.NoEllipsize"
             android:layout_width="0dp"
-            android:layout_marginStart="@dimen/medium_margin_size"
             android:layout_marginEnd="@dimen/medium_margin_size"
-            android:layout_marginBottom="@dimen/normal_margin_size"
+            android:layout_marginBottom="4dp"
             android:gravity="start|center"
             app:genres="@{item.genresOfMovies}"
             app:layout_constraintBottom_toTopOf="@+id/textViewRunTime"
             app:layout_constraintEnd_toStartOf="@+id/playButton"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textViewRunTime"
             tools:text="Action | Comedy | Drama" />
 
         <TextView
             android:id="@+id/textViewRunTime"
             style="@style/Label.Normal"
-            android:layout_marginStart="@dimen/medium_margin_size"
             android:layout_marginBottom="@dimen/normal_margin_size"
             android:text="@{`Runtime: `+FormatKt.formatHourMinutes(item.runtime)}"
             app:layout_constraintBottom_toTopOf="@+id/textViewRating"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textViewRating"
             tools:text="Runtime: 1h 30m" />
 
         <TextView
@@ -129,7 +127,7 @@
             android:layout_marginEnd="@dimen/medium_margin_size"
             app:layout_constraintBottom_toBottomOf="@+id/textViewRating"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textViewTitle" />
+            app:layout_constraintTop_toTopOf="@+id/view3_person_details" />
 
         <TextView
             android:id="@+id/textViewStory"

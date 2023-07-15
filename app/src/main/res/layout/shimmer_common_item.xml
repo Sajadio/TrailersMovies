@@ -27,7 +27,7 @@
             app:roundPercent="0.11" />
 
         <View
-            android:id="@+id/textViewTitle"
+            android:id="@+id/view3_person_details"
             android:layout_width="0dp"
             android:layout_height="@dimen/medium_size"
             android:layout_marginTop="@dimen/normal_margin_size"
@@ -42,8 +42,8 @@
             android:layout_height="@dimen/medium_size"
             android:layout_marginTop="@dimen/normal_margin_size"
             android:background="@color/shimmer_color"
-            app:layout_constraintStart_toStartOf="@+id/textViewTitle"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+            app:layout_constraintStart_toStartOf="@+id/view3_person_details"
+            app:layout_constraintTop_toBottomOf="@+id/view3_person_details" />
 
         <TextView
             android:id="@+id/textViewRating"

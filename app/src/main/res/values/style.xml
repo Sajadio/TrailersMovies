@@ -47,6 +47,7 @@
 
     <style name="Label.Normal.NoEllipsize" parent="Label.Normal">
         <item name="android:ellipsize">none</item>
+        <item name="android:maxLines"/>
     </style>
 
     <style name="TextRating" parent="Label.Normal">

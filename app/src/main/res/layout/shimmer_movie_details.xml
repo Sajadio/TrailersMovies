@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/secondary_color"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/normal_padding_size"
+        android:paddingBottom="@dimen/medium_padding_size">
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/movie_details_image_height"
+            tools:layout_editor_absoluteX="8dp" />
+
+
+        <View
+            android:id="@+id/view3_person_details"
+            android:layout_width="@dimen/gallery_card_height"
+            android:layout_height="@dimen/medium_size"
+            android:layout_marginBottom="@dimen/normal_margin_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintBottom_toTopOf="@+id/view4"
+            app:layout_constraintStart_toStartOf="@+id/view4" />
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="@dimen/x_x_x_large_size"
+            android:layout_height="@dimen/medium_size"
+            android:layout_marginBottom="@dimen/normal_margin_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintBottom_toTopOf="@+id/textViewRunTime"
+            app:layout_constraintStart_toStartOf="@+id/textViewRunTime" />
+
+        <View
+            android:id="@+id/textViewRunTime"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/medium_size"
+            android:layout_marginBottom="@dimen/normal_margin_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintBottom_toTopOf="@+id/textViewRating"
+            app:layout_constraintEnd_toEndOf="@+id/textViewVoteCount"
+            app:layout_constraintStart_toStartOf="@+id/textViewRating" />
+
+        <View
+            android:id="@+id/textViewRating"
+            android:layout_width="@dimen/x_large_size"
+            android:layout_height="@dimen/medium_size"
+            android:layout_marginStart="@dimen/medium_margin_size"
+            android:layout_marginBottom="@dimen/medium_margin_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintBottom_toBottomOf="@+id/view1"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:id="@+id/textViewVoteCount"
+            android:layout_width="@dimen/x_large_size"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/normal_margin_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewRating"
+            app:layout_constraintStart_toEndOf="@+id/textViewRating"
+            app:layout_constraintTop_toTopOf="@+id/textViewRating" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/playButton"
+            android:layout_width="@dimen/normal_button_size"
+            android:layout_height="@dimen/normal_button_size"
+            android:layout_marginEnd="@dimen/medium_margin_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewRating"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view3_person_details"
+            app:roundPercent="1" />
+
+        <View
+            android:id="@+id/textViewStory"
+            android:layout_width="@dimen/x_large_size"
+            android:layout_height="@dimen/medium_size"
+            android:layout_marginTop="@dimen/medium_margin_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintStart_toStartOf="@+id/textViewRating"
+            app:layout_constraintTop_toBottomOf="@+id/view1" />
+
+        <View
+            android:id="@+id/textViewDescriptionStory"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x_x_large_size"
+            android:layout_marginTop="@dimen/normal_margin_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintEnd_toEndOf="@+id/playButton"
+            app:layout_constraintStart_toStartOf="@+id/textViewStory"
+            app:layout_constraintTop_toBottomOf="@+id/textViewStory" />
+
+        <View
+            android:id="@+id/textViewGallery"
+            android:layout_width="@dimen/x_large_size"
+            android:layout_height="@dimen/medium_size"
+            android:layout_marginTop="@dimen/medium_margin_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintStart_toStartOf="@+id/textViewDescriptionStory"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionStory" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearGallery"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x_x_x_large_size"
+            android:layout_marginTop="@dimen/normal_margin_size"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textViewGallery"
+            app:layout_constraintTop_toBottomOf="@+id/textViewGallery">
+
+            <View
+                android:layout_width="@dimen/x_x_x_large_size"
+                android:layout_height="match_parent"
+                android:background="@color/shimmer_color" />
+
+            <View
+                android:layout_width="@dimen/x_x_x_large_size"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/medium_margin_size"
+                android:background="@color/shimmer_color" />
+
+            <View
+                android:layout_width="@dimen/x_x_x_large_size"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/medium_margin_size"
+                android:background="@color/shimmer_color" />
+
+            <View
+                android:layout_width="@dimen/x_x_x_large_size"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/medium_margin_size"
+                android:background="@color/shimmer_color" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:id="@+id/textViewPerson"
+            android:layout_width="@dimen/x_large_size"
+            android:layout_height="@dimen/medium_size"
+            android:background="@color/shimmer_color"
+            app:layout_constraintStart_toStartOf="@+id/textViewDescriptionStory"
+            app:layout_constraintTop_toBottomOf="@+id/linearGallery" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x_x_x_large_size"
+            android:layout_marginTop="@dimen/normal_margin_size"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textViewPerson"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerson">
+
+            <View
+                android:layout_width="@dimen/x_x_x_large_size"
+                android:layout_height="match_parent"
+                android:background="@color/shimmer_color" />
+
+            <View
+                android:layout_width="@dimen/x_x_x_large_size"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/medium_margin_size"
+                android:background="@color/shimmer_color" />
+
+            <View
+                android:layout_width="@dimen/x_x_x_large_size"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/medium_margin_size"
+                android:background="@color/shimmer_color" />
+
+            <View
+                android:layout_width="@dimen/x_x_x_large_size"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/medium_margin_size"
+                android:background="@color/shimmer_color" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

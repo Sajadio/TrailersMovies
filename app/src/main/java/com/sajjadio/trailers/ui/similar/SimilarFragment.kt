@@ -32,14 +32,7 @@ class SimilarFragment :
 
         onClickBackButton(binding.appBarLayout.toolbar)
         setupSimilarRecyclerView()
-        binding.swipeRefreshLayout.apply {
-            this.setOnRefreshListener {
-                setupSimilarRecyclerView()
-                this.isRefreshing = false
-            }
-        }
-
-        viewModel.clickItemEvent.observeEvent(viewLifecycleOwner){
+        viewModel.clickItemEvent.observeEvent(viewLifecycleOwner) {
             navigateToAnotherDestination(
                 SimilarFragmentDirections.actionSimilarFragmentToDetailsFragment(it)
             )
@@ -52,41 +45,21 @@ class SimilarFragment :
         viewModel.similarOfMovie.observe(viewLifecycleOwner) {
             lifecycleScope.launch {
                 adapter.submitData(it)
-                binding.recyclerViewSimilar.adapter = adapter
-                binding.recyclerViewSimilar.hasFixedSize()
             }
         }
+        loadStateAdapter()
+    }
 
+    private fun loadStateAdapter() {
         binding.recyclerViewSimilar.adapter = adapter.withLoadStateHeaderAndFooter(
             header = PagingLoadStateAdapter { adapter.retry() },
             footer = PagingLoadStateAdapter { adapter.retry() }
         )
-
         adapter.addLoadStateListener { loadState ->
-            val isEmptyList =
-                loadState.refresh is LoadState.NotLoading && adapter.itemCount == 0
-            showEmptyList(isEmptyList)
-            binding.recyclerViewSimilar.isVisible = loadState.source.refresh is LoadState.NotLoading
             (loadState.source.refresh is LoadState.Loading).also {
-                stateManagement(it)
+                binding.shimmer.isVisible = it
             }
         }
     }
 
-    private fun stateManagement(state: Boolean) {
-        binding.apply {
-            if (state)
-                shimmer.startShimmer()
-            else
-                shimmer.stopShimmer()
-
-            shimmer.isVisible = state
-            swipeRefreshLayout.isVisible = !state
-        }
-
-    }
-
-    private fun showEmptyList(emptyList: Boolean) {
-        binding.recyclerViewSimilar.isVisible = !emptyList
-    }
 }

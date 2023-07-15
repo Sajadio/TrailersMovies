@@ -25,6 +25,7 @@
         android:layout_marginTop="@dimen/medium_margin_size"
         android:background="@color/background_color"
         android:clickable="true"
+        android:gravity="center|top"
         android:onClick="@{() -> listener.onClickItem(item.id)}"
         android:orientation="vertical">
 
@@ -33,7 +34,6 @@
             android:id="@+id/personPoster"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x_x_x_large_size"
-            android:layout_weight="1"
             android:contentDescription="@string/app_name"
             app:imageSize="@{imageSize.IMAGE_Size_200}"
             app:imageUrl="@{item.profile_path}"
@@ -42,8 +42,8 @@
 
         <TextView
             style="@style/Label.Normal"
-            android:layout_gravity="center"
-            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|bottom"
             android:text="@{item.original_name}"
             tools:text="Person" />
     </LinearLayout>

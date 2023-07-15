@@ -28,7 +28,6 @@ class CommonViewModel @Inject constructor(
     private val _clickItemEvent = MutableLiveData<Event<Int>>()
     val clickItemEvent: LiveData<Event<Int>> = _clickItemEvent
 
-
     fun checkDestination(destination: Destination) {
         when (destination) {
             Destination.Popular -> {

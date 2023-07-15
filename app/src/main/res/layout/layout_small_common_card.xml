@@ -42,7 +42,7 @@
 
 
         <TextView
-            android:id="@+id/textViewTitle"
+            android:id="@+id/view3_person_details"
             style="@style/Title.Small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,8 +55,8 @@
             style="@style/Label.Normal"
             android:layout_marginTop="@dimen/normal_margin_size"
             app:date="@{item.release_date}"
-            app:layout_constraintStart_toStartOf="@+id/textViewTitle"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+            app:layout_constraintStart_toStartOf="@+id/view3_person_details"
+            app:layout_constraintTop_toBottomOf="@+id/view3_person_details"
             tools:text="0000-00-00" />
 
         <TextView

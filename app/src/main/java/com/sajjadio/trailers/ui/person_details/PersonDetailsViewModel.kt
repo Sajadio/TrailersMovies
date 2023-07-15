@@ -28,6 +28,9 @@ class PersonDetailsViewModel @Inject constructor(
     private val _clickItemEvent = MutableLiveData<Event<PersonDetailsDestinationType>>()
     val clickItemEvent: LiveData<Event<PersonDetailsDestinationType>> = _clickItemEvent
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
     private val personId: Int = checkNotNull(savedStateHandle["personId"])
 
     var bitmap = MutableLiveData<Bitmap>()
@@ -40,17 +43,25 @@ class PersonDetailsViewModel @Inject constructor(
         personDetailsData.clear()
         personId.let {
             viewModelScope.launch {
+                _isLoading.postValue(true)
                 movieRepo.getPersonById(personId).collect { state ->
-                    state.takeIf { it is Resource.Success }?.let {
-                        it.data?.let { data ->
-                            personDetailsData.add(PersonDetailsItem.PersonItem(data))
-                            _responsePersonDetailsData.postValue(
-                                Resource.Success(
-                                    personDetailsData
+                    when (state) {
+                        is Resource.Success -> {
+                            _isLoading.postValue(false)
+                            state.data?.let { data ->
+                                personDetailsData.add(PersonDetailsItem.PersonItem(data))
+                                _responsePersonDetailsData.postValue(
+                                    Resource.Success(
+                                        personDetailsData
+                                    )
                                 )
-                            )
-                            getImageOfPersonById(personId)
-                            getMoviesOfPerson(data.id)
+                                getImageOfPersonById(personId)
+                                getMoviesOfPerson(data.id)
+                            }
+                        }
+
+                        is Resource.Error -> {
+                            _isLoading.postValue(false)
                         }
                     }
                 }
@@ -97,11 +108,11 @@ class PersonDetailsViewModel @Inject constructor(
         _clickItemEvent.postValue(Event(PersonDetailsDestinationType.BackButton))
     }
 
-    override fun onClickItem(id:Int) {
+    override fun onClickItem(id: Int) {
         _clickItemEvent.postValue(Event(PersonDetailsDestinationType.MovieItem(id)))
     }
 
     override fun onClickToShowBottomSheet(item: Person, listener: PersonDetailsInteractListener) {
-        _clickItemEvent.postValue(Event(PersonDetailsDestinationType.BottomSheet(item,listener)))
+        _clickItemEvent.postValue(Event(PersonDetailsDestinationType.BottomSheet(item, listener)))
     }
 }

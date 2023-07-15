@@ -9,6 +9,9 @@
             name="viewModel"
             type="com.sajjadio.trailers.ui.persons.PersonViewModel" />
 
+        <import type="android.view.View" />
+
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,8 +22,8 @@
         <include
             android:id="@+id/appBarLayout"
             layout="@layout/layout_top_app_bar"
-            app:visible="@{true}"
-            app:titleToolBar="@{@string/persons}" />
+            app:titleToolBar="@{@string/persons}"
+            app:visible="@{true}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewPersons"
@@ -31,6 +34,14 @@
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             app:spanCount="3"
             tools:listitem="@layout/layout_item_person_card" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.isLoading() ?View.VISIBLE:View.GONE}">
+
+            <include layout="@layout/shimmer_persons" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -57,7 +57,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageViewMovie">
 
             <TextView
-                android:id="@+id/textViewTitle"
+                android:id="@+id/view3_person_details"
                 style="@style/Title.Medium"
                 android:layout_width="wrap_content"
                 app:setText="@{item.original_title}"
@@ -72,7 +72,7 @@
                 tools:text="Release date: 00.00.0000" />
 
             <TextView
-                android:id="@+id/textViewGenre"
+                android:id="@+id/view4"
                 style="@style/Label.Normal"
                 android:layout_marginTop="@dimen/small_margin_size"
                 android:text="Action, Drama"

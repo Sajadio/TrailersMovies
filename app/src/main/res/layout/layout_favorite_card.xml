@@ -52,7 +52,6 @@
                 tools:src="@drawable/ic_launcher_background" />
 
             <View
-                android:id="@+id/view3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/gradient_overlay" />
@@ -78,18 +77,18 @@
 
 
             <TextView
-                android:id="@+id/textViewTitle"
+                android:id="@+id/view3_person_details"
                 style="@style/Title.Medium"
                 android:textSize="@dimen/medium_text_size"
                 android:layout_marginBottom="@dimen/small_margin_size"
                 android:text="@{item.original_title}"
-                app:layout_constraintBottom_toTopOf="@+id/textViewGenre"
+                app:layout_constraintBottom_toTopOf="@+id/view4"
                 app:layout_constraintEnd_toEndOf="@+id/imageButtonFave"
-                app:layout_constraintStart_toStartOf="@+id/textViewGenre"
+                app:layout_constraintStart_toStartOf="@+id/view4"
                 tools:text="Title" />
 
             <TextView
-                android:id="@+id/textViewGenre"
+                android:id="@+id/view4"
                 style="@style/Label.Normal"
                 android:layout_marginStart="@dimen/medium_margin_size"
                 android:layout_marginBottom="@dimen/normal_margin_size"

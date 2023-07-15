@@ -5,6 +5,12 @@
 
     <data>
 
+
+        <variable
+            name="viewModel"
+            type="com.sajjadio.trailers.ui.movie_details.MovieDetailsViewModel" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -19,6 +25,14 @@
             android:background="@color/background_color"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.isLoading() ?View.VISIBLE:View.GONE}">
+
+            <include layout="@layout/shimmer_movie_details" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
