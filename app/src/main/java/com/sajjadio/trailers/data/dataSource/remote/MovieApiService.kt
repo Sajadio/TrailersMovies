@@ -2,7 +2,6 @@ package com.sajjadio.trailers.data.dataSource.remote
 
 import com.sajjadio.trailers.data.base.MovieRemoteDataSource
 import com.sajjadio.trailers.data.dataSource.model.genre.Genre
-import com.sajjadio.trailers.data.dataSource.model.movie.actorsmovie.ActorsMovie
 import com.sajjadio.trailers.data.dataSource.model.movie.common.CommonDto
 import com.sajjadio.trailers.data.dataSource.model.movie.movie_details.ImageOfMovieDto
 import com.sajjadio.trailers.data.dataSource.model.movie.movie_details.MovieDetailsDto
@@ -19,12 +18,7 @@ import retrofit2.http.Query
 
 interface MovieApiService : MovieRemoteDataSource {
 
-    @GET("discover/movie")
-    override suspend fun getMoviesOfGenreById(
-        @Query("with_genres") genreId: Int,
-        @Query("page") page: Int
-    ): CommonDto
-
+    //----------    region home items  ----------
     @GET("trending/movie/day?")
     override suspend fun getTrending(): TrendMovieDto
 
@@ -36,43 +30,54 @@ interface MovieApiService : MovieRemoteDataSource {
 
     @GET("movie/upcoming?")
     override suspend fun getUpComingMovie(@Query("page") page: Int): CommonDto
+    //----------    endregion  ----------
 
-    @GET("movie/{id}/videos?")
-    override suspend fun getMovieTrailer(@Path("id") id: Int?): VideoMovie
 
+    //----------    region movie details  ----------
     @GET("movie/{id}?")
-    override suspend fun getMovieDetails(@Path("id") movieId: Int?): MovieDetailsDto
+    override suspend fun getMovieById(@Path("id") movieId: Int?): MovieDetailsDto
 
     @GET("movie/{movie_id}/images?")
     override suspend fun getImagesOfMovieById(@Path("movie_id") movieId: Int?): ImageOfMovieDto
+
+    @GET("movie/{id}/credits?")
+    override suspend fun getPersonsOfMovieById(@Path("id") personId: Int?): PersonsDto
+
+    @GET("movie/{id}/similar?")
+    override suspend fun getSimilarOfMovieById(@Path("id") id: Int?, @Query("page") page: Int?): CommonDto
+    //----------    endregion  ----------
+
+
+    //----------    region person details  ----------
+    @GET("person/{id}")
+    override suspend fun getPersonById(@Path("id") personId: Int?): PersonDto
 
     @GET("person/{person_id}/images?")
     override suspend fun getImagesOfPersonById(@Path("person_id") personId: Int?): ImageOfPersonDto
 
     @GET("person/{person_id}/movie_credits?")
     override suspend fun getMoviesOfPersonById(@Path("person_id") personId: Int?): MoviesOfPersonDto
-
-    @GET("movie/{id}/credits?")
-    override suspend fun getPersonOfMovieById(@Path("id") personId: Int?): PersonsDto
-
-    @GET("person/{id}")
-    override suspend fun getPersonById(@Path("id") personId: Int?): PersonDto
-
-    @GET("movie/{id}/similar?")
-    override suspend fun getSimilar(@Path("id") id: Int?, @Query("page") page: Int?): CommonDto
+    //----------    endregion  ----------
 
 
+    //----------    region genres of movie  ----------
     @GET("genre/movie/list")
     override suspend fun getGenresMovie(): Genre
+    @GET("discover/movie")
+    override suspend fun getMoviesOfGenreById(
+        @Query("with_genres") genreId: Int,
+        @Query("page") page: Int
+    ): CommonDto
+    //----------    endregion  ----------
+
+
+    @GET("movie/{id}/videos?")
+    override suspend fun getMovieTrailerById(@Path("id") id: Int?): VideoMovie
 
     @GET("search/movie?")
-    override suspend fun getSearchMovie(
+    override suspend fun getSearchMovieByQuery(
         @Query("query") query: String?,
         @Query("page") page: Int
     ): SearchMovieDto
-
-
-    @GET("person/{person_id}/movie_credits?")
-    override suspend fun getMoviesOfActor(@Path("person_id") personId: Int?): ActorsMovie
 
 }

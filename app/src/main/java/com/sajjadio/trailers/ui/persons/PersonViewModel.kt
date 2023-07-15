@@ -29,7 +29,7 @@ class PersonViewModel @Inject constructor(
 
     private fun loadPersonsData(movieId: Int) {
         viewModelScope.launch {
-            movieRepo.getPersonOfMovieById(movieId).collect { status ->
+            movieRepo.getPersonsOfMovieById(movieId).collect { status ->
                 when (status) {
                     is Resource.Success ->
                         _responsePersonsOfMovie.postValue(Resource.Success(status.data))

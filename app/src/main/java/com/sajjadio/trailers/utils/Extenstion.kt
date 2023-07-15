@@ -92,15 +92,6 @@ fun View.setSnackbar(state: Int) {
 
 }
 
-@SuppressLint("CommitPrefEdits")
-fun Context.setThemes(theme: Int): Int {
-    val pref = this.getSharedPreferences(Constant.PREFERENCE_NAME, Context.MODE_PRIVATE)
-    val editor = pref.edit()
-    editor.putInt(Constant.THEME_APP, theme)
-    editor.apply()
-
-    return pref.getInt(Constant.THEME_APP, 0)
-}
 
 fun View.visibility(isVisible: Boolean?) {
     this.isVisible = isVisible != true

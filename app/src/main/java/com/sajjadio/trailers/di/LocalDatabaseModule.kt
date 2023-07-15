@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.di.module
+package com.sajjadio.trailers.di
 
 import android.content.Context
 import androidx.room.Room

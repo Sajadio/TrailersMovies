@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.sajjadio.trailers.ui.home.viewModel.HomeViewModel" />
+            type="com.sajjadio.trailers.ui.home.HomeViewModel" />
 
     </data>
 

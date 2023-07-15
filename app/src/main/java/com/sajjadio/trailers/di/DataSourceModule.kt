@@ -1,4 +1,4 @@
-package com.sajjadio.trailers.di.module
+package com.sajjadio.trailers.di
 
 import com.sajjadio.trailers.data.base.FavoriteMovieLocalDataSource
 import com.sajjadio.trailers.data.base.MovieLocalDataSource

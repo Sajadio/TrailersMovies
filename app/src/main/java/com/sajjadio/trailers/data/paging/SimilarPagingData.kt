@@ -12,7 +12,7 @@ class SimilarPagingData(
 ) : BasePagingSource<Int, CommonDto, CommonResult>() {
 
     override suspend fun apiCall(pageNumber: Int): CommonDto {
-        return movieRemoteDataSource.getSimilar(page = pageNumber, id = id)
+        return movieRemoteDataSource.getSimilarOfMovieById(page = pageNumber, id = id)
     }
 
     override fun mapperResponse(response: CommonDto?): List<CommonResult>? {

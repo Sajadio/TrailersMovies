@@ -42,7 +42,7 @@ class MovieDetailsViewModel @Inject constructor(
         detailsData.clear()
         movieId.let {
             viewModelScope.launch {
-                when(val resource =  movieRepo.getMovieDetails(movieId)){
+                when(val resource =  movieRepo.getMovieById(movieId)){
                     is Resource.Success -> {
                         resource.data?.let {
                             detailsData.add(MovieDetailsItem.MovieItem(it))
@@ -77,7 +77,7 @@ class MovieDetailsViewModel @Inject constructor(
 
     private fun getPersonsByMovieId(id: Int) {
         viewModelScope.launch {
-            movieRepo.getPersonOfMovieById(id).collect { state ->
+            movieRepo.getPersonsOfMovieById(id).collect { state ->
                 state.takeIf { it is Resource.Success }?.let {
                     it.data?.let { data ->
                         detailsData.add(MovieDetailsItem.PersonOfMovieItem(data))
@@ -90,7 +90,7 @@ class MovieDetailsViewModel @Inject constructor(
 
     private fun getSimilarByMovieId(id: Int) {
         viewModelScope.launch {
-            movieRepo.getSimilar(id, PAGE_NUMBER).collect { state ->
+            movieRepo.getSimilarOfMovieById(id, PAGE_NUMBER).collect { state ->
                 state.takeIf { it is Resource.Success }?.let {
                     it.data?.let { data ->
                         detailsData.add(MovieDetailsItem.SimilarItemMovie(data))

@@ -50,7 +50,7 @@ class SearchRemoteMediator(
                 }
             }
 
-            val response = movieRemoteDataSource.getSearchMovie(page = currentPage, query = query)
+            val response = movieRemoteDataSource.getSearchMovieByQuery(page = currentPage, query = query)
             val data = response.results?.let {
                 mapSearchMovieEntity(it)
             }?: emptyList()
