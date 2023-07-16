@@ -49,7 +49,7 @@ Before running the app, ensure that you have the following:
 
 ## Getting Started
 
-To get started with the TMDA Android app, follow these steps:
+To get started with the Trailer Android app, follow these steps:
 
 1. Clone this repository to your local machine using the following command:
 
