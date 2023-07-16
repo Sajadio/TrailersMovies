@@ -6,17 +6,14 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
-import androidx.recyclerview.widget.GridLayoutManager
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentCommonBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
 import com.sajjadio.trailers.ui.PagingLoadStateAdapter
 import com.sajjadio.trailers.utils.Destination
-import com.sajjadio.trailers.utils.movieToDestination
 import com.sajjadio.trailers.utils.navigateToAnotherDestination
 import com.sajjadio.trailers.utils.observeEvent
 import com.sajjadio.trailers.utils.onClickBackButton
-import com.sajjadio.trailers.utils.setAsActionBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -38,6 +35,10 @@ class CommonFragment :
             checkDestinationID(args.destination)
         }
 
+        observeEventWhenClickItem()
+    }
+
+    private fun observeEventWhenClickItem() {
         viewModel.clickItemEvent.observeEvent(viewLifecycleOwner) {
             navigateToAnotherDestination(
                 CommonFragmentDirections.actionCommonFragmentToMovieFragment(it)
@@ -53,8 +54,6 @@ class CommonFragment :
 
     private fun initialAdapter() {
         adapter = CommonPagingAdapter(viewModel)
-
-        binding.recyclerViewCommon.layoutManager = GridLayoutManager(context, 2)
         viewModel.responseCommonPagingData.observe(viewLifecycleOwner) { data ->
             lifecycleScope.launch {
                 adapter.submitData(data)

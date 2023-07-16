@@ -125,6 +125,7 @@
             android:id="@+id/playButton"
             style="@style/PlayButton.Normal"
             android:layout_marginEnd="@dimen/medium_margin_size"
+            android:onClick="@{() ->listener.onClickWatchNow(item.id)}"
             app:layout_constraintBottom_toBottomOf="@+id/textViewRating"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/view3_person_details" />

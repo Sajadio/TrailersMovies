@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.paging.PagingData
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.appbar.MaterialToolbar
@@ -24,14 +25,6 @@ import com.sajjadio.trailers.ui.person_details.adapter.PersonDetailsInteractList
 @BindingAdapter(value = ["app:items"])
 fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
     (view.adapter as BaseAdapter<T>).setItems(items ?: emptyList())
-}
-
-
-@BindingAdapter("app:loading")
-fun loading(progress: ProgressBar, state: Resource<Any>?) {
-    state?.let {
-
-    }
 }
 
 @BindingAdapter(value = ["app:customWidth"])
@@ -68,14 +61,6 @@ fun setImage(imageView: ImageView, url: String?) {
     }
 }
 
-
-@BindingAdapter(value = ["app:manageState"])
-fun <T> manageState(view: View, state: Resource<T>?) {
-    if (state is Resource.Error)
-        view.visibility = VISIBLE
-    else
-        view.visibility = INVISIBLE
-}
 
 @BindingAdapter(value = ["app:genres"])
 fun setGenres(textView: TextView, genres: List<Genre>?) {

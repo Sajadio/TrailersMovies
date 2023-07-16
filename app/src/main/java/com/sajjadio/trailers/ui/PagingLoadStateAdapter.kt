@@ -15,8 +15,8 @@ class PagingLoadStateAdapter(
     override fun onBindViewHolder(holder: ViewHolder, loadState: LoadState) = holder.bind(loadState)
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState) = ViewHolder(
-        LayoutLoadStateBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-        retry
+        LayoutLoadStateBinding
+            .inflate(LayoutInflater.from(parent.context), parent, false), retry
     )
 
     class ViewHolder(
@@ -32,7 +32,8 @@ class PagingLoadStateAdapter(
             with(binding) {
                 progressBar.isVisible = loadState is LoadState.Loading
                 retryButton.isVisible = loadState is LoadState.Error
-                errorMsg.isVisible = !(loadState as? LoadState.Error)?.error?.message.isNullOrBlank()
+                errorMsg.isVisible =
+                    !(loadState as? LoadState.Error)?.error?.message.isNullOrBlank()
                 errorMsg.text = (loadState as? LoadState.Error)?.error?.message
             }
         }

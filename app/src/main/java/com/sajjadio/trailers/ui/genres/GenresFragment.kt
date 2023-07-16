@@ -19,12 +19,17 @@ class GenresFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.recyclerViewGenres.adapter = GenresAdapter(emptyList(), viewModel)
+        observeEventWhenClickItem()
+    }
 
+    private fun observeEventWhenClickItem() {
         viewModel.clickItemEvent.observeEvent(viewLifecycleOwner) {
             navigateToAnotherDestination(
-                GenresFragmentDirections.actionGenresFragmentToMoviesOfGenreFragment(it.first,it.second)
+                GenresFragmentDirections.actionGenresFragmentToMoviesOfGenreFragment(
+                    it.first,
+                    it.second
+                )
             )
         }
     }

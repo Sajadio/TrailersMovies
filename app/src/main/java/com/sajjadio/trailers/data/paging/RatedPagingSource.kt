@@ -9,10 +9,11 @@ import com.sajjadio.trailers.domain.model.CommonResult
 
 class RatedPagingSource(
     private val movieRemoteDataSource: MovieRemoteDataSource,
+    private val lang: String,
 ) : BasePagingSource<Int, CommonDto, CommonResult>() {
 
     override suspend fun apiCall(pageNumber: Int): CommonDto {
-        return movieRemoteDataSource.getTopRatedMovie(page = pageNumber)
+        return movieRemoteDataSource.getTopRatedMovie(page = pageNumber,lang)
     }
 
     override fun mapperResponse(response: CommonDto?): List<CommonResult>? {

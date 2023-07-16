@@ -5,6 +5,7 @@ import com.sajjadio.trailers.domain.model.Cast
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.utils.Event
 import com.sajjadio.trailers.domain.utils.Resource
+import com.sajjadio.trailers.utils.language
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -33,7 +34,7 @@ class PersonViewModel @Inject constructor(
     private fun loadPersonsData(movieId: Int) {
         viewModelScope.launch {
             _isLoading.postValue(true)
-            movieRepo.getPersonsOfMovieById(movieId).collect { status ->
+            movieRepo.getPersonsOfMovieById(movieId, language()).collect { status ->
                 when (status) {
                     is Resource.Success -> {
                         _isLoading.postValue(false)

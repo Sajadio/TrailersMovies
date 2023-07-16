@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
@@ -46,6 +47,7 @@ fun ImageView.loadImageWithSize(url: String, imageSize: String?) {
         Glide.with(this)
             .load(Constant.IMAGE_PATH + imageSize + url)
             .centerCrop()
+            .placeholder(R.color.secondary_color)
             .into(this)
     }
 }
@@ -58,22 +60,11 @@ fun ImageView.loadImage(url: String) {
 }
 
 
-fun Activity.setAsActionBar(toolbar: Toolbar, isBack: Boolean = true, title: String? = null) {
-    (this as AppCompatActivity).setSupportActionBar(toolbar)
-    toolbar.title = title
-    if (isBack) {
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
-        toolbar.setNavigationOnClickListener { onBackPressed() }
-    }
-}
-
-
 private var stateActive = false
 fun View.setSnackbar(state: Int) {
     if (stateActive) {
         Snackbar.make(this, resources.getString(state), Snackbar.LENGTH_LONG)
-            .setBackgroundTint(resources.getColor(R.color.green)).show()
+            .setBackgroundTint(ContextCompat.getColor(this.context, R.color.green)).show()
         stateActive = false
     }
 
@@ -93,26 +84,6 @@ fun View.setSnackbar(state: Int) {
 }
 
 
-fun View.visibility(isVisible: Boolean?) {
-    this.isVisible = isVisible != true
-}
-
-fun Int.isConnection() = when (this) {
-    R.string.connected -> true
-    R.string.noConnection -> false
-    else -> false
-}
-
-fun Window.changeStatusBarColor(color: Int, show: Boolean = true) {
-    WindowCompat.setDecorFitsSystemWindows(this, show)
-    statusBarColor = ContextCompat.getColor(context, color)
-}
-
-
-fun NavDirections.movieToDestination(view: View?) {
-    view?.findNavController()?.navigate(this)
-}
-
 @SuppressLint("ServiceCast", "ObsoleteSdkInt")
 fun isNetworkAvailable(context: Context): Boolean {
     val connectivityManager =
@@ -123,9 +94,7 @@ fun isNetworkAvailable(context: Context): Boolean {
         return when {
             actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
             actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-            //for other device how are able to connect with Ethernet
             actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-            //for check internet over Bluetooth
             actNw.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
             else -> false
         }
@@ -213,4 +182,10 @@ fun Fragment.onClickBackButton(view: View) {
     view.setOnClickListener {
         findNavController().popBackStack()
     }
+}
+
+fun Activity.playVideo(key: String) {
+    val url = Constant.YOUTUBE_BASE + key
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+    startActivity(intent)
 }

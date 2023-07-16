@@ -5,9 +5,6 @@
 
     <data>
 
-        <variable
-            name="listener"
-            type="com.sajjadio.trailers.ui.movie_details.adapter.MovieDetailsInteractListener" />
 
         <variable
             name="item"
@@ -51,11 +48,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/small_person_card_width" />
 
-        <include
-            layout="@layout/layout_button_watch_now"
-            android:clickable="true"
-            android:onClick="@{() -> listener.onClickWatchNow(item.id)}"
-            tools:ignore="IncludeLayoutParam" />
 
     </LinearLayout>
 </layout>

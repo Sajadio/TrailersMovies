@@ -15,6 +15,10 @@
             type="com.sajjadio.trailers.ui.base.BaseInteractListener" />
 
         <variable
+            name="playVideo"
+            type="com.sajjadio.trailers.ui.home.adapter.HomeInteractListener" />
+
+        <variable
             name="imageSize"
             type="com.sajjadio.trailers.utils.Constant" />
     </data>
@@ -53,28 +57,22 @@
             <TextView
                 android:id="@+id/textViewTitle"
                 style="@style/Title.Large"
+                android:layout_marginStart="@dimen/medium_margin_size"
                 android:layout_marginEnd="@dimen/large_margin_size"
-                android:layout_marginBottom="@dimen/small_margin_size"
+                android:layout_marginBottom="@dimen/small_play_button_size"
                 android:text="@{item.original_title}"
-                app:layout_constraintBottom_toTopOf="@+id/textViewGenre"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/ImageButtonPlay"
-                app:layout_constraintStart_toStartOf="@+id/textViewGenre"
+                app:layout_constraintStart_toStartOf="parent"
                 tools:text="New Releases The Walking Dead: Dead City" />
 
-            <TextView
-                android:id="@+id/textViewGenre"
-                style="@style/Label.Normal"
-                android:layout_marginStart="@dimen/medium_margin_size"
-                android:layout_marginBottom="@dimen/x_large_margin_size"
-                android:text="Action . Drama . Comedy"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
 
             <ImageButton
                 android:id="@+id/ImageButtonPlay"
                 style="@style/PlayButton.Small"
                 android:layout_marginEnd="@dimen/medium_margin_size"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewGenre"
+                android:onClick="@{() -> playVideo.onClickWatchNow(item.id)}"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textViewTitle" />
 

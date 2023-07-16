@@ -30,13 +30,9 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/normal_size"
-                android:layout_marginVertical="@dimen/normal_margin_size"
+                android:layout_marginVertical="@dimen/medium_margin_size"
                 android:background="@color/shimmer_color" />
 
-            <View
-                android:layout_width="@dimen/x_x_large_size"
-                android:layout_height="@dimen/normal_size"
-                android:background="@color/shimmer_color" />
         </LinearLayout>
 
         <androidx.constraintlayout.utils.widget.ImageFilterView

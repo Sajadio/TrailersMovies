@@ -39,7 +39,7 @@
         <com.facebook.shimmer.ShimmerFrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="@{viewModel.loadingState? View.VISIBLE: View.GONE}">
+            android:visibility="@{viewModel.loadingState? View.VISIBLE: View.INVISIBLE}">
 
             <include layout="@layout/shimmer_home" />
 

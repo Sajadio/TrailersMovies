@@ -13,5 +13,5 @@ class FavoriteAdapter(
 }
 interface FavoriteInteractListener: BaseInteractListener{
     fun onClickFavoriteButton(movieDetails: MovieDetails)
-    fun onClickWatchButton(url:String)
+    fun onClickWatchButton(id:Int)
 }

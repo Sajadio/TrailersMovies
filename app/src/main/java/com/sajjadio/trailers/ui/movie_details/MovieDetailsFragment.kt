@@ -1,10 +1,9 @@
 package com.sajjadio.trailers.ui.movie_details
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -72,8 +71,10 @@ class MovieDetailsFragment :
                     MovieDetailsFragmentDirections.actionDetailsFragmentToSimilarFragment(args.movieId)
                 )
 
-            is MovieDetailsDestinationType.WatchNowMovie -> {
-                log(destination.movieId.toString())
+            MovieDetailsDestinationType.WatchNowMovie -> {
+                viewModel.videoUrl.observe(viewLifecycleOwner) {
+                    it?.let { it1 -> requireActivity().playVideo(it1) }
+                }
             }
 
             MovieDetailsDestinationType.Persons -> {
@@ -105,17 +106,4 @@ class MovieDetailsFragment :
         bottomSheetDialog?.show()
     }
 
-
-    private fun setPlayVideo() {
-        viewModel.playVideo.observe(viewLifecycleOwner) {
-            it?.data?.results?.map {
-                startActivity(
-                    Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse(Constant.YOUTUBE_BASE + it.key)
-                    )
-                )
-            }
-        }
-    }
 }

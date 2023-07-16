@@ -31,7 +31,6 @@ class PersonDetailsFragment :
 
     override val LOG_TAG: String = this::class.java.simpleName
     override val viewModelClass = PersonDetailsViewModel::class.java
-    private val args: MovieDetailsFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

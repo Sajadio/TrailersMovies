@@ -9,6 +9,7 @@ import com.sajjadio.trailers.ui.person_details.utils.PersonDetailsDestinationTyp
 import com.sajjadio.trailers.ui.person_details.utils.PersonDetailsItem
 import com.sajjadio.trailers.utils.Event
 import com.sajjadio.trailers.domain.utils.Resource
+import com.sajjadio.trailers.utils.language
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -44,7 +45,7 @@ class PersonDetailsViewModel @Inject constructor(
         personId.let {
             viewModelScope.launch {
                 _isLoading.postValue(true)
-                movieRepo.getPersonById(personId).collect { state ->
+                movieRepo.getPersonById(personId,language()).collect { state ->
                     when (state) {
                         is Resource.Success -> {
                             _isLoading.postValue(false)
@@ -84,7 +85,7 @@ class PersonDetailsViewModel @Inject constructor(
 
     private fun getMoviesOfPerson(id: Int?) {
         viewModelScope.launch {
-            movieRepo.getMoviesOfPersonById(id).collect { state ->
+            movieRepo.getMoviesOfPersonById(id, language()).collect { state ->
                 state.takeIf { it is Resource.Success }?.let {
                     it.data?.let { data ->
                         personDetailsData.add(PersonDetailsItem.MoviesOfPersonItem(data))

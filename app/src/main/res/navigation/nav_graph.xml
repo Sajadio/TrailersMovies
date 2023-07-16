@@ -20,6 +20,9 @@
             app:destination="@id/detailsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/action_homeFragment_to_videoFragment"
+            app:destination="@id/videoFragment" />
     </fragment>
     <fragment
         android:id="@+id/genresFragment"
@@ -72,6 +75,9 @@
             app:destination="@id/personsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/action_detailsFragment_to_videoFragment"
+            app:destination="@id/videoFragment" />
 
     </fragment>
 
@@ -129,6 +135,9 @@
         <action
             android:id="@+id/action_favoriteFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_videoFragment"
+            app:destination="@id/videoFragment" />
     </fragment>
     <fragment
         android:id="@+id/personsFragment"
@@ -161,6 +170,14 @@
             app:destination="@id/detailsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/videoFragment"
+        android:name="com.sajjadio.trailers.ui.video.VideoFragment"
+        android:label="VideoFragment" >
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

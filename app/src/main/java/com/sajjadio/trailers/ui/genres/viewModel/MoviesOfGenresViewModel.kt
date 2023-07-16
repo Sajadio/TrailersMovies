@@ -9,6 +9,7 @@ import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.ui.base.BaseInteractListener
 import com.sajjadio.trailers.utils.Event
+import com.sajjadio.trailers.utils.language
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -36,7 +37,7 @@ class MoviesOfGenresViewModel @Inject constructor(
         viewModelScope.launch {
             genreId.let { id ->
                 movieRepo
-                    .getMoviesOfGenreById(genreId = id)
+                    .getMoviesOfGenreById(genreId = id, language())
                     .cachedIn(viewModelScope).collect { data ->
                         _responseListOfMovie.postValue(data)
                     }

@@ -10,12 +10,9 @@ import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentSimilarBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
 import com.sajjadio.trailers.ui.PagingLoadStateAdapter
-import com.sajjadio.trailers.ui.common.CommonFragmentDirections
-import com.sajjadio.trailers.utils.movieToDestination
 import com.sajjadio.trailers.utils.navigateToAnotherDestination
 import com.sajjadio.trailers.utils.observeEvent
 import com.sajjadio.trailers.utils.onClickBackButton
-import com.sajjadio.trailers.utils.setAsActionBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -29,9 +26,12 @@ class SimilarFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         onClickBackButton(binding.appBarLayout.toolbar)
         setupSimilarRecyclerView()
+        observeEventWhenClickItem()
+    }
+
+    private fun observeEventWhenClickItem() {
         viewModel.clickItemEvent.observeEvent(viewLifecycleOwner) {
             navigateToAnotherDestination(
                 SimilarFragmentDirections.actionSimilarFragmentToDetailsFragment(it)

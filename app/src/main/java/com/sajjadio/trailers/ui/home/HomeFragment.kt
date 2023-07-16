@@ -3,6 +3,7 @@ package com.sajjadio.trailers.ui.home
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.sajjadio.trailers.R
@@ -10,6 +11,7 @@ import com.sajjadio.trailers.databinding.FragmentHomeBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
 import com.sajjadio.trailers.ui.home.adapter.HomeAdapter
 import com.sajjadio.trailers.utils.observeEvent
+import com.sajjadio.trailers.utils.playVideo
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -25,6 +27,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         setupHomeRecyclerView()
         observeEventWhenClickTrendItem()
         observeEventWhenClickItem()
+        observeEventWhenClickWatchNow()
     }
 
     private fun setupHomeRecyclerView() {
@@ -42,6 +45,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
             navigateToAnotherDestination(
                 HomeFragmentDirections.actionHomeFragmentToDetailsFragment(id)
             )
+        }
+    }
+
+    private fun observeEventWhenClickWatchNow() {
+        viewModel.videoUrl.observeEvent(viewLifecycleOwner) { url ->
+            url?.let { requireActivity().playVideo(url) }
         }
     }
 

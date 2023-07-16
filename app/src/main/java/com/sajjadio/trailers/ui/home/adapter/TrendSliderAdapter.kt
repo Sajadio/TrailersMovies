@@ -26,7 +26,7 @@ class TrendSliderAdapter(
         holder.binding.apply {
             item = trend
             listener = this@TrendSliderAdapter.listener
-            executePendingBindings()
+            playVideo = this@TrendSliderAdapter.listener
         }
     }
 

@@ -9,92 +9,54 @@
             name="viewModel"
             type="com.sajjadio.trailers.ui.search.SearchViewModel" />
 
+        <import type="android.view.View" />
+
     </data>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background_color">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTextSearch"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="@dimen/medium_margin_size"
+            android:layout_marginTop="@dimen/medium_margin_size"
+            android:hint="@string/search_hint"
+            android:textColorHint="@color/secondary_text_color"
+            app:boxStrokeColor="@color/transparent_color"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/secondary_text_color"
+            app:hintTextColor="@color/secondary_text_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/ic_search"
+            app:startIconTint="@color/secondary_text_color">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/editTextSearch"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_marginHorizontal="@dimen/medium_margin_size"
-                android:layout_marginTop="@dimen/medium_margin_size"
-                android:hint="@string/search_hint"
-                android:textColorHint="@color/secondary_text_color"
-                app:boxStrokeColor="@color/transparent_color"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/secondary_text_color"
-                app:hintTextColor="@color/secondary_text_color"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:startIconDrawable="@drawable/ic_search"
-                app:startIconTint="@color/secondary_text_color">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_search_box"
-                    android:onTextChanged="@{(text,start,before,count) -> viewModel.onSearchInputChanged(text)}"
-                    android:textColor="@color/primary_text_color" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <LinearLayout
-                android:id="@+id/linearLayoutSearchScreenHint"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/editTextSearch"
-                app:layout_constraintStart_toStartOf="@+id/editTextSearch"
-                app:layout_constraintTop_toBottomOf="@+id/editTextSearch"
-                app:layout_constraintVertical_bias="0.4">
+                android:background="@drawable/rounded_search_box"
+                android:onTextChanged="@{(text,start,before,count) -> viewModel.onSearchInputChanged(text)}"
+                android:textColor="@color/primary_text_color" />
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/start_search_icon" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/textViewHeader"
-                    style="@style/Title.Large"
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="@dimen/normal_margin_size"
-                    android:gravity="center"
-                    android:maxLines="2"
-                    android:text="Search in Flick" />
 
-                <TextView
-                    android:id="@+id/textViewHint"
-                    style="@style/Label.Normal"
-                    android:layout_width="wrap_content"
-                    android:layout_marginHorizontal="@dimen/x_x_large_margin_size"
-                    android:layout_marginTop="@dimen/normal_margin_size"
-                    android:ellipsize="none"
-                    android:gravity="center"
-                    android:maxLines="10"
-                    android:paddingHorizontal="@dimen/large_padding_size"
-                    android:text="By typing in search box, Flick search movies and then shows you the best result."
-                    android:textColor="@color/secondary_text_color" />
-
-            </LinearLayout>
-
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSearch">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rc_search"
+                android:id="@+id/recyclerViewSearch"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/medium_margin_size"
@@ -102,7 +64,6 @@
                 android:clipToPadding="false"
                 android:orientation="vertical"
                 android:paddingHorizontal="@dimen/medium_padding_size"
-                android:visibility="invisible"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -110,63 +71,96 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextSearch"
                 tools:listitem="@layout/layout_search_card" />
 
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutSearchScreenHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.isSearchQueryEmpty() ?View.VISIBLE: View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/editTextSearch"
+            app:layout_constraintStart_toStartOf="@+id/editTextSearch"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSearch"
+            app:layout_constraintVertical_bias="0.4">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/start_search_icon" />
+
             <TextView
-                android:id="@+id/hintText2"
+                android:id="@+id/textViewHeader"
                 style="@style/Title.Large"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin_size"
                 android:gravity="center"
-                android:text="@string/try_another_keyword"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextSearch" />
+                android:maxLines="2"
+                android:text="Search in Flick" />
 
-            <com.facebook.shimmer.ShimmerFrameLayout
-                android:id="@+id/shimmer"
+            <TextView
+                android:id="@+id/textViewHint"
+                style="@style/Label.Normal"
+                android:layout_width="wrap_content"
+                android:layout_marginHorizontal="@dimen/x_x_large_margin_size"
+                android:layout_marginTop="@dimen/normal_margin_size"
+                android:ellipsize="none"
+                android:gravity="center"
+                android:maxLines="10"
+                android:paddingHorizontal="@dimen/large_padding_size"
+                android:text="By typing in search box, Flick search movies and then shows you the best result."
+                android:textColor="@color/secondary_text_color" />
+
+        </LinearLayout>
+
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/background_color"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSearch">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/normal_margin_size"
                 android:background="@color/background_color"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextSearch">
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/medium_padding_size">
 
-                <LinearLayout
+                <include
+                    layout="@layout/shimmer_search"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/normal_margin_size"
-                    android:background="@color/background_color"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="@dimen/medium_padding_size">
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/normal_margin_size" />
 
-                    <include
-                        layout="@layout/shimmer_search"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/normal_margin_size" />
+                <include
+                    layout="@layout/shimmer_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/normal_margin_size" />
 
-                    <include
-                        layout="@layout/shimmer_search"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/normal_margin_size" />
+                <include
+                    layout="@layout/shimmer_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/normal_margin_size" />
 
-                    <include
-                        layout="@layout/shimmer_search"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/normal_margin_size" />
+                <include
+                    layout="@layout/shimmer_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/normal_margin_size" />
+            </LinearLayout>
 
-                    <include
-                        layout="@layout/shimmer_search"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/normal_margin_size" />
-                </LinearLayout>
-
-            </com.facebook.shimmer.ShimmerFrameLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>

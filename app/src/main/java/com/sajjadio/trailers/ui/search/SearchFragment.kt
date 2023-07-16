@@ -9,7 +9,6 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.SnapHelper
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentSearchBinding
 import com.sajjadio.trailers.ui.PagingLoadStateAdapter
@@ -22,99 +21,72 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchFragment :
-    BaseFragment<FragmentSearchBinding, SearchViewModel>(R.layout.fragment_search){
+    BaseFragment<FragmentSearchBinding, SearchViewModel>(R.layout.fragment_search) {
 
     override val LOG_TAG: String = this::class.java.simpleName
     override val viewModelClass = SearchViewModel::class.java
-    private lateinit var searchPagingAdapter: SearchPagingAdapter
-    private lateinit var helper: SnapHelper
+    private lateinit var adapter: SearchPagingAdapter
 
-    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeEventWhenClickItem()
+        hidePartialKeyboard()
+        initialAdapter()
+        onRefresh()
+    }
 
-        helper = LinearSnapHelper()
-        viewModel.clickItemEvent.observeEvent(viewLifecycleOwner){
-            navigateToAnotherDestination(
-                SearchFragmentDirections.actionSearchFragmentToMovieFragment(it)
-            )
-        }
-
+    private fun onRefresh() {
         binding.apply {
-
-            rcSearch.setOnTouchListener { _, _ ->
-                hidePartialKeyboard()
-            }
-            initialAdapter()
-
             swipeRefreshLayout.setOnRefreshListener {
-                searchPagingAdapter.refresh()
+                adapter.refresh()
                 swipeRefreshLayout.isRefreshing = false
             }
 
         }
+    }
 
+    private fun observeEventWhenClickItem() {
+        viewModel.clickItemEvent.observeEvent(viewLifecycleOwner) {
+            navigateToAnotherDestination(
+                SearchFragmentDirections.actionSearchFragmentToMovieFragment(it)
+            )
+        }
     }
 
     private fun initialAdapter() {
-
-        searchPagingAdapter = SearchPagingAdapter(viewModel)
-        binding.rcSearch.adapter = searchPagingAdapter
-        helper.attachToRecyclerView(binding.rcSearch)
-//        searchPagingAdapter.onItemClickListener {
-//            it?.let { id ->
-//                val action = SearchFragmentDirections.actionSearchFragmentToMovieFragment(id)
-//                action.movieToDestination(view)
-//            }
-//        }
-
-        binding.rcSearch.adapter = searchPagingAdapter.withLoadStateHeaderAndFooter(
-            header = PagingLoadStateAdapter { searchPagingAdapter.retry() },
-            footer = PagingLoadStateAdapter { searchPagingAdapter.retry() }
-        )
-
+        adapter = SearchPagingAdapter(viewModel)
         viewModel.responseSearchMovies.observe(viewLifecycleOwner) {
             lifecycleScope.launch {
-                it?.let {
-                    searchPagingAdapter.submitData(it)
-                }
+                it?.let { adapter.submitData(it) }
             }
         }
+        loadStateAdapter()
+    }
 
-        searchPagingAdapter.addLoadStateListener { loadState ->
-            val isEmptyList =
-                loadState.refresh is LoadState.NotLoading && searchPagingAdapter.itemCount == 0
-            showEmptyList(isEmptyList)
+    private fun loadStateAdapter() {
+        binding.recyclerViewSearch.adapter = adapter.withLoadStateHeaderAndFooter(
+            header = PagingLoadStateAdapter { adapter.retry() },
+            footer = PagingLoadStateAdapter { adapter.retry() }
+        )
 
-            binding.rcSearch.isVisible = loadState.source.refresh is LoadState.NotLoading
-            (loadState.source.refresh is LoadState.Loading).also {
-                stateManagement(it)
+        adapter.addLoadStateListener { loadState ->
+            val isEmptyList = loadState.refresh is LoadState.NotLoading && adapter.itemCount == 0
+            binding.recyclerViewSearch.isVisible = !isEmptyList
+            binding.shimmer.isVisible = loadState.source.refresh is LoadState.Loading
+            binding.recyclerViewSearch.isVisible = loadState.source.refresh !is LoadState.Loading
+
+            if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached) {
+                binding.shimmer.isVisible = false
             }
-
         }
     }
 
-    private fun stateManagement(state: Boolean) {
-        if (state) {
-            binding.shimmer.startShimmer()
-            binding.linearLayoutSearchScreenHint.visibility = View.INVISIBLE
-        } else {
-            binding.shimmer.stopShimmer()
-            binding.linearLayoutSearchScreenHint.visibility = View.VISIBLE
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun hidePartialKeyboard() {
+        binding.recyclerViewSearch.setOnTouchListener { _, _ ->
+            val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view?.windowToken, 0)
         }
-
-        binding.shimmer.isVisible = state
-        binding.rcSearch.isVisible = !state
-
-    }
-
-    private fun hidePartialKeyboard(): Boolean {
-        val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        return imm.hideSoftInputFromWindow(view?.windowToken, 0)
-    }
-
-    private fun showEmptyList(emptyList: Boolean) {
-        binding.rcSearch.isVisible = !emptyList
-        binding.hintText2.isVisible = emptyList
     }
 }

@@ -7,12 +7,12 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.sajjadio.trailers.data.dataSource.model.movie.common.CommonResultDto
 import com.sajjadio.trailers.domain.model.CommonResult
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.ui.base.BaseInteractListener
 import com.sajjadio.trailers.utils.Destination
 import com.sajjadio.trailers.utils.Event
+import com.sajjadio.trailers.utils.language
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.plus
@@ -32,21 +32,21 @@ class CommonViewModel @Inject constructor(
         when (destination) {
             Destination.Popular -> {
                 responseCommonPagingData = movieRepo
-                    .getPopularMoviePaging()
+                    .getPopularMoviePaging(language())
                     .cachedIn(viewModelScope + Dispatchers.Main)
                     .asLiveData()
             }
 
             Destination.TopRated -> {
                 responseCommonPagingData = movieRepo
-                    .getTopRatedMoviePaging()
+                    .getTopRatedMoviePaging(language())
                     .cachedIn(viewModelScope + Dispatchers.Main)
                     .asLiveData()
             }
 
             Destination.UpComing -> {
                 responseCommonPagingData = movieRepo
-                    .getUpComingMoviePaging()
+                    .getUpComingMoviePaging(language())
                     .cachedIn(viewModelScope + Dispatchers.Main)
                     .asLiveData()
             }

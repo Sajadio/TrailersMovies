@@ -101,4 +101,6 @@ interface HomeInteractListener : BaseInteractListener {
     fun onClickSeeAllPopularItems(popular: Destination)
     fun onClickSeeAllTopRatedItems(topRated: Destination)
     fun onClickSeeAllUpComingItems(upComing: Destination)
+    fun onClickWatchNow(id: Int)
+
 }

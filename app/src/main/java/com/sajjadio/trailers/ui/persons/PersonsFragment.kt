@@ -2,23 +2,13 @@ package com.sajjadio.trailers.ui.persons
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
-import androidx.paging.LoadState
-import androidx.recyclerview.widget.GridLayoutManager
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentPersonsBinding
-import com.sajjadio.trailers.ui.PagingLoadStateAdapter
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.ui.common.CommonFragmentDirections
-import com.sajjadio.trailers.ui.person_details.PersonDetailsFragmentDirections
-import com.sajjadio.trailers.utils.movieToDestination
 import com.sajjadio.trailers.utils.navigateToAnotherDestination
 import com.sajjadio.trailers.utils.observeEvent
 import com.sajjadio.trailers.utils.onClickBackButton
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class PersonsFragment :

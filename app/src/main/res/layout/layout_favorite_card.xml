@@ -69,7 +69,7 @@
             <ImageButton
                 android:id="@+id/ImageButtonPlay"
                 style="@style/PlayButton.Small"
-                android:onClick="@{() -> listener.onClickWatchButton(item.original_title)}"
+                android:onClick="@{() -> listener.onClickWatchButton(item.id)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

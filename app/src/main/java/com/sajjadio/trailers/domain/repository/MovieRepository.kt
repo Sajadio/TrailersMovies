@@ -1,7 +1,7 @@
 package com.sajjadio.trailers.domain.repository
 
 import androidx.paging.PagingData
-import com.sajjadio.trailers.data.dataSource.model.movie.video.VideoMovie
+import com.sajjadio.trailers.data.dataSource.model.movie.video.VideoMovieDto
 import com.sajjadio.trailers.domain.model.Cast
 import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.model.CommonResult
@@ -10,50 +10,58 @@ import com.sajjadio.trailers.domain.model.Person
 import com.sajjadio.trailers.domain.model.Image
 import com.sajjadio.trailers.domain.model.SearchMovieResult
 import com.sajjadio.trailers.domain.model.TrendMovie
+import com.sajjadio.trailers.domain.model.Video
 import com.sajjadio.trailers.domain.utils.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
 
     //----------    region home items  ----------
-    fun getTrendMovies(): Flow<List<TrendMovie>>
-    fun getPopularMovies(): Flow<List<CommonResult>>
-    fun getTopRatedMovies(): Flow<List<CommonResult>>
-    fun getUpComingMovie(): Flow<List<CommonResult>>
+    fun getTrendMovies(lang: String): Flow<List<TrendMovie>>
+    fun getPopularMovies(lang: String): Flow<List<CommonResult>>
+    fun getTopRatedMovies(lang: String): Flow<List<CommonResult>>
+    fun getUpComingMovie(lang: String): Flow<List<CommonResult>>
     //----------    endregion  ----------
 
 
     //----------    region movie details  ----------
-    suspend fun getMovieById(id: Int): Resource<MovieDetails>
+    suspend fun getMovieById(id: Int, lang: String): Resource<MovieDetails>
     suspend fun getImagesOfMovieById(movieId: Int?): Flow<Resource<List<Image>?>>
-    fun getPersonsOfMovieById(id: Int): Flow<Resource<List<Cast>?>>
-    suspend fun getSimilarOfMovieById(id: Int?, page: Int): Flow<Resource<List<CommonResult>?>>
+    fun getPersonsOfMovieById(id: Int, lang: String): Flow<Resource<List<Cast>?>>
+    suspend fun getSimilarOfMovieById(
+        id: Int?,
+        page: Int,
+        lang: String
+    ): Flow<Resource<List<CommonResult>?>>
     //----------    endregion  ----------
 
 
     //----------    region person details  ----------
-    fun getPersonById(personId: Int?): Flow<Resource<Person>>
+    fun getPersonById(personId: Int?, lang: String): Flow<Resource<Person>>
     suspend fun getImagesOfPersonById(personId: Int?): Flow<Resource<List<Image>?>>
-    suspend fun getMoviesOfPersonById(personId: Int?): Flow<Resource<List<CommonResult>>>
+    suspend fun getMoviesOfPersonById(
+        personId: Int?,
+        lang: String
+    ): Flow<Resource<List<CommonResult>>>
     //----------    endregion  ----------
 
 
     //----------    region common data  ----------
-    fun getSimilarOfMovie(id: Int): Flow<PagingData<CommonResult>>
-    fun getPopularMoviePaging(): Flow<PagingData<CommonResult>>
-    fun getTopRatedMoviePaging(): Flow<PagingData<CommonResult>>
-    fun getUpComingMoviePaging(): Flow<PagingData<CommonResult>>
+    fun getSimilarOfMovie(id: Int, lang: String): Flow<PagingData<CommonResult>>
+    fun getPopularMoviePaging(lang: String): Flow<PagingData<CommonResult>>
+    fun getTopRatedMoviePaging(lang: String): Flow<PagingData<CommonResult>>
+    fun getUpComingMoviePaging(lang: String): Flow<PagingData<CommonResult>>
     //----------    endregion  ----------
 
 
     //----------    region genres of movie  ----------
-    suspend fun getGenresMovie(): Flow<Resource<List<GenresOfMovie>>>
-    fun getMoviesOfGenreById(genreId: Int): Flow<PagingData<CommonResult>>
+    suspend fun getGenresMovie(lang:String): Flow<Resource<List<GenresOfMovie>>>
+    fun getMoviesOfGenreById(genreId: Int,lang:String): Flow<PagingData<CommonResult>>
     //----------    endregion  ----------
 
 
-    suspend fun getMovieTrailer(id: Int?): Flow<Resource<VideoMovie?>>
-    fun getMovieSearch(query: String?): Flow<PagingData<SearchMovieResult>>
+    suspend fun getMovieTrailer(id: Int): Flow<Resource<List<Video>?>>
+    fun getMovieSearchByQuery(query: String?,lang:String): Flow<PagingData<SearchMovieResult>>
 
 
     //----------    region local db of movies  ----------
@@ -62,7 +70,7 @@ interface MovieRepository {
     suspend fun deleteAllMovies()
     suspend fun checkIsMovieSaved(movieId: Int): Boolean
     suspend fun deleteMovie(movieDetails: MovieDetails)
-    suspend fun refreshHomeItems(page: Int)
+    suspend fun refreshHomeItems(page: Int,lang:String)
     //----------    endregion  ----------
 
 }

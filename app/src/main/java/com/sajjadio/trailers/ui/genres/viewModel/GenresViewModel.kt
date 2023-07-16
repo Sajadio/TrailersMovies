@@ -6,6 +6,7 @@ import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.ui.genres.GenresInteractListener
 import com.sajjadio.trailers.utils.Event
 import com.sajjadio.trailers.domain.utils.Resource
+import com.sajjadio.trailers.utils.language
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,7 +29,7 @@ class GenresViewModel @Inject constructor(
 
     private fun loadGenresData() {
         viewModelScope.launch {
-            movieRepo.getGenresMovie().collect { state ->
+            movieRepo.getGenresMovie(language()).collect { state ->
                 _responseGenresOfMovie.postValue(state)
             }
         }
