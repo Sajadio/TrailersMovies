@@ -57,7 +57,7 @@ To get started with the Trailer Android app, follow these steps:
 1. Clone this repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/Bit-Camp-IO/TMDA-Android.git
+git clone https://github.com/Sajadio/TrailersMovies.git
 ```
 
 2. Open Android Studio and select "Open an Existing Project."
