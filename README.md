@@ -15,7 +15,7 @@ This repository contains the source code for the Trailer Android app, which allo
 
 ## Screenshot
 
-<img src="img/home.png" width="250"/>  <img src="img/details.png" width="250"/>  <img src="img/story.png" width="250"/>
+<img src="img/home.png" width="220"/>  <img src="img/details.png" width="220"/>  <img src="img/story.png" width="220"/>
 
 <img src="img/persons.png" width="250"/>  <img src="img/similar.png" width="250"/>  <img src="img/person_details.png" width="250"/> 
 
