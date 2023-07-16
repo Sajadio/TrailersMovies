@@ -1,6 +1,6 @@
 # 📱 Trailer Android App
 
-This repository contains the source code for the Trailer Android app, which allows users to browse and search for movies using the TMDB API. The app provides information such as movie details, and trailers.
+This repository contains the source code for the Trailer Android app, which allows users to browse and search for movies using the Trailer API. The app provides information such as movie details, and trailers.
 
 
 ## 🚀: Features
@@ -47,7 +47,7 @@ Before running the app, ensure that you have the following:
 
 - Android Studio (version 2022.2.1 or higher)
 - Java Development Kit (JDK) (version 1.8 or higher)
-- TMDB API key ([Sign up](https://www.themoviedb.org/documentation/api) for an account and obtain an API key)
+- Trailer API key ([Sign up](https://www.themoviedb.org/documentation/api) for an account and obtain an API key)
 
 
 ## Getting Started
@@ -79,6 +79,8 @@ apiKey =  YOUR_API_KEY
 ## Contributing
 
 Contributions to the Trailers Android app are welcome! If you find any issues or want to add new features, please submit an issue or pull request on the GitHub repository.
+
+## 
 
 When contributing, please adhere to the following guidelines:
 
