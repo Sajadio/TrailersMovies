@@ -15,17 +15,17 @@ This repository contains the source code for the Trailer Android app, which allo
 
 ## Screenshot
 
-<img src="images/home.png" width="250"/>  <img src="images/details.png" width="250"/>
+<img src="img/home.png" width="250"/>  <img src="img/details.png" width="250"/>
 
-<img src="images/story.png" width="250"/>  <img src="images/persons.png" width="250"/>
+<img src="img/story.png" width="250"/>  <img src="img/persons.png" width="250"/>
 
-<img src="images/similar.png" width="250"/>  <img src="images/person_details.png" width="250"/> 
+<img src="img/similar.png" width="250"/>  <img src="img/person_details.png" width="250"/> 
 
-<img src="images/bio.png" width="250"/>  <img src="images/favorite.png" width="250"/>
+<img src="img/bio.png" width="250"/>  <img src="img/favorite.png" width="250"/>
 
-<img src="images/search.png" width="250"/>  <img src="images/searching.png" width="250"/>
+<img src="img/search.png" width="250"/>  <img src="img/searching.png" width="250"/>
 
-<img src="images/genres.png" width="250"/>
+<img src="img/genres.png" width="250"/>
 
 
 ## ⚒️: Tech Stack.
@@ -80,11 +80,14 @@ apiKey =  YOUR_API_KEY
 
 Contributions to the Trailers Android app are welcome! If you find any issues or want to add new features, please submit an issue or pull request on the GitHub repository.
 
-## 
-
 When contributing, please adhere to the following guidelines:
 
 - Fork the repository and create a new branch for your feature or bug fix.
 - Ensure that your code follows the project's code style and conventions.
 - Write clear and concise commit messages and provide a detailed description of your changes.
 - Test your changes thoroughly before submitting a pull request.
+
+
+## Support
+
+If you found this repository helpful and learned even a little something from it, then consider supporting me by giving this repo a Star ⭐️
