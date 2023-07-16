@@ -2,6 +2,7 @@ package com.sajjadio.trailers.ui.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
@@ -20,6 +21,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
     override val LOG_TAG: String = this::class.java.simpleName
     override val viewModelClass = HomeViewModel::class.java
+    private var savedPosition: Int = 0
 
     @SuppressLint("ObsoleteSdkInt")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -28,6 +30,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         observeEventWhenClickTrendItem()
         observeEventWhenClickItem()
         observeEventWhenClickWatchNow()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        savedPosition =  binding.recyclerViewHome.computeVerticalScrollOffset()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.recyclerViewHome.scrollBy(0, savedPosition)
     }
 
     private fun setupHomeRecyclerView() {
