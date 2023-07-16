@@ -99,7 +99,7 @@
                 android:layout_marginTop="@dimen/normal_margin_size"
                 android:gravity="center"
                 android:maxLines="2"
-                android:text="Search in Flick" />
+                android:text="@string/search_in_trailer" />
 
             <TextView
                 android:id="@+id/textViewHint"
@@ -111,7 +111,7 @@
                 android:gravity="center"
                 android:maxLines="10"
                 android:paddingHorizontal="@dimen/large_padding_size"
-                android:text="By typing in search box, Flick search movies and then shows you the best result."
+                android:text="@string/by_typing_in_search_box_trailer_search_movies_and_then_shows_you_the_best_result"
                 android:textColor="@color/secondary_text_color" />
 
         </LinearLayout>

@@ -14,7 +14,10 @@ import com.sajjadio.trailers.utils.Destination
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 
 class HomeAdapter(
-    private val listener: HomeInteractListener
+    private val listener: HomeInteractListener,
+    private val popularTitle: String,
+    private val topRatedTitle: String,
+    private val upcomingTitle: String,
 ) : BaseAdapter<HomeItem>(listOf(), listener) {
 
     override var layoutId: Int = 0
@@ -59,7 +62,7 @@ class HomeAdapter(
         with(holder.binding) {
             setVariable(BR.adapter, CommonAdapter(items, listener))
             setVariable(BR.listener, listener)
-            setVariable(BR.header, "Popular")
+            setVariable(BR.header, popularTitle)
         }
     }
 
@@ -67,7 +70,7 @@ class HomeAdapter(
         with(holder.binding) {
             setVariable(BR.adapter, CommonAdapter(items, listener))
             setVariable(BR.listener, listener)
-            setVariable(BR.header, "Top Rated")
+            setVariable(BR.header, topRatedTitle)
         }
     }
 
@@ -75,7 +78,7 @@ class HomeAdapter(
         with(holder.binding) {
             setVariable(BR.adapter, CommonAdapter(items, listener))
             setVariable(BR.listener, listener)
-            setVariable(BR.header, "UpComing")
+            setVariable(BR.header, upcomingTitle)
         }
     }
 

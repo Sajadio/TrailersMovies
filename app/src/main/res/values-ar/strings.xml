@@ -1,44 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Trailer</string>
-    <string name="favorite">مفضل</string>
-    <string name="page_title">عنوان الصفحة</string>
+    <string name="favorite">المفضلة</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">مرحبا جزء فارغ</string>
     <string name="search">بحث</string>
-    <string name="search_hint">البحث عن أفلام…</string>
-    <string name="popular">ألافلام الشائعة</string>
-    <string name="movie">فلم</string>
+    <string name="search_hint">ابحث عن الأفلام…</string>
+    <string name="popular">شائع</string>
+    <string name="top_rated">أعلى تقييمًا</string>
+    <string name="upcoming">قادمة</string>
+    <string name="movie">فيلم</string>
     <string name="movies">أفلام</string>
     <string name="home">الرئيسية</string>
-    <string name="menu">قائمة</string>
-    <string name="persons">الممثلين</string>
-    <string name="similar">ألافلام المشابهة</string>
-    <string name="seeAll">عرض المزيد</string>
-    <string name="categories">الاقسام</string>
-    <string name="tv">مسلسلات</string>
-    <string name="all">الكل</string>
-    <string name="language">اللغة</string>
-    <string name="mode">سمة</string>
-    <string name="english">إنجليزي</string>
-    <string name="arabic">عربي</string>
-    <string name="light">نهاري</string>
-    <string name="dark">داكن</string>
-    <string name="systemDefault">النظام الافتراضي</string>
+    <string name="persons">الأشخاص</string>
+    <string name="similar">مماثلة</string>
+    <string name="gallery">معرض الصور</string>
+    <string name="seeAll">عرض الكل</string>
     <string name="connected">متصل</string>
-    <string name="noConnection">تأكد من أنك متصل بالإنترنت وحاول مرة أخرى</string>
-    <string name="notActive">شيئا ما خاطئ</string>
-    <string name="no_result">لاتوجد نتيجة!</string>
-    <string name="topRated">الأفلام الأعلى تقييمًا</string>
-    <string name="upComing">الأفلام القادمة</string>
-    <string name="genres">ألانواع</string>
-    <string name="trending">الأفلام الشائعة</string>
+    <string name="noConnection">تأكد من اتصالك بالإنترنت وحاول مرة أخرى</string>
+    <string name="notActive">عذرًا، حدث خطأ!</string>
+    <string name="no_result">لا توجد نتائج بعد!</string>
+    <string name="genres">الأنواع</string>
     <string name="try_again">حاول مرة أخرى</string>
-    <string name="seeMorePopular">شاهد المزيد من الأفلام الشائعة</string>
-    <string name="seeMoreTopRated">شاهد المزيد من الأفلام ذات التصنيف الأعلى</string>
-    <string name="seeMoreTopComing">شاهد المزيد من الأفلام القادمة</string>
-    <string name="can_t_search">لايمكنك البحث بدون الانترنت</string>
-    <string name="problem_network">عذرا ، لا يمكن الاتصال بالخادم. يرجى التحقق من الإنترنت الخاص بك وحاول مرة أخرى</string>
+    <string name="problem_network">عذرًا، لا يمكن الاتصال بالخادم. يُرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى</string>
     <string name="connection_problem">مشكلة في الاتصال</string>
-    <string name="read_more">read mor</string>
+    <string name="story">القصة</string>
+    <string name="bio">نبذة عن</string>
+    <string name="popularity">الشهرة</string>
+    <string name="watch_now">مشاهدة الآن</string>
+    <string name="read_more">قراءة المزيد</string>
+    <string name="search_in_trailer">البحث في المقطع</string>
+    <string name="by_typing_in_search_box_trailer_search_movies_and_then_shows_you_the_best_result">عن طريق كتابة كلمة البحث في المربع، ستبحث المقطورة عن الأفلام وتعرض لك أفضل النتائج</string>
+
 </resources>

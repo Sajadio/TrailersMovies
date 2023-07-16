@@ -31,7 +31,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     }
 
     private fun setupHomeRecyclerView() {
-        val adapter = HomeAdapter(viewModel)
+        val adapter = HomeAdapter(
+            viewModel,
+            getString(R.string.popular),
+            getString(R.string.top_rated),
+            getString(R.string.upcoming)
+        )
         binding.recyclerViewHome.adapter = adapter
         viewModel.responseHomeData.observe(viewLifecycleOwner) {
             it.let { data ->
