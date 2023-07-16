@@ -24,6 +24,7 @@ This repository contains the source code for the Trailer Android app, which allo
 <img src="img/searching.png" width="250"/>  <img src="img/genres.png" width="250"/>
 
 
+
 ## ⚒️: Tech Stack.
 
 1. [Kotlin](https://developer.android.com/kotlin)
