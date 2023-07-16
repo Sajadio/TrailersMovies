@@ -25,6 +25,7 @@ class MovieDetailsFragment :
     override val LOG_TAG: String = this::class.java.simpleName
     override val viewModelClass = MovieDetailsViewModel::class.java
     private val args: MovieDetailsFragmentArgs by navArgs()
+    private var savedPosition: Int = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -104,6 +105,16 @@ class MovieDetailsFragment :
             setVariable(BR.listener, destination.listener)
         }
         bottomSheetDialog?.show()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        savedPosition =  binding.recyclerViewDetails.computeVerticalScrollOffset()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.recyclerViewDetails.scrollBy(0, savedPosition)
     }
 
 }

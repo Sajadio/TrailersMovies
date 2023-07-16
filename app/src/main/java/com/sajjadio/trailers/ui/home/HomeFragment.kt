@@ -32,16 +32,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         observeEventWhenClickWatchNow()
     }
 
-    override fun onPause() {
-        super.onPause()
-        savedPosition =  binding.recyclerViewHome.computeVerticalScrollOffset()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        binding.recyclerViewHome.scrollBy(0, savedPosition)
-    }
-
     private fun setupHomeRecyclerView() {
         val adapter = HomeAdapter(
             viewModel,
@@ -82,5 +72,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     private fun navigateToAnotherDestination(action: NavDirections) {
         findNavController().navigate(action)
     }
+    override fun onPause() {
+        super.onPause()
+        savedPosition =  binding.recyclerViewHome.computeVerticalScrollOffset()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        binding.recyclerViewHome.scrollBy(0, savedPosition)
+    }
 }

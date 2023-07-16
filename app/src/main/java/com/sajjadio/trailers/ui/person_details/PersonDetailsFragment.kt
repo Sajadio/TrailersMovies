@@ -31,6 +31,7 @@ class PersonDetailsFragment :
 
     override val LOG_TAG: String = this::class.java.simpleName
     override val viewModelClass = PersonDetailsViewModel::class.java
+    private var savedPosition: Int = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -94,5 +95,15 @@ class PersonDetailsFragment :
 
     private fun navigateToAnotherDestination(action: NavDirections) {
         findNavController().navigate(action)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        savedPosition =  binding.recyclerViewPerson.computeVerticalScrollOffset()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.recyclerViewPerson.scrollBy(0, savedPosition)
     }
 }
