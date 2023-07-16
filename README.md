@@ -1,49 +1,93 @@
-## Trailers 
-The purpose of this project is to learn how to use features and libraries like (Coroutines, Retrofit, and more) in a real project.
+# 📱 Trailer Android App
 
-# Screens
-
-<img src="/img/Screenshot1.png" vspace="5" align= "left" height="400" width="200">
-<img src="/img/Screenshot2.png" vspace="5" align= "left"  height="400" width="200">
-<img src="/img/Screenshot3.png" vspace="5" height="400" width="200" >
-
-<img src="/img/Screenshot4.png" vspace="5" align= "left" height="400" width="200" >
-<img src="/img/Screenshot5.png" vspace="5" align= "left" height="400" width="200">
-<img src="/img/Screenshot6.png" vspace="5" height="400" width="200">
-
-<img src="/img/Screenshot7.png" vspace="5" align= "left" height="400" width="200">
-<img src="/img/Screenshot8.png" vspace="5" align= "left" height="400" width="200">
-<img src="/img/Screenshot9.png" vspace="5" height="400" width="200">
+This repository contains the source code for the Trailer Android app, which allows users to browse and search for movies using the Trailer API. The app provides information such as movie details, and trailers.
 
 
-## Features and Libraries that  used to build app 🛠:
-- <a href="https://developer.android.com/kotlin/coroutines">Coroutines.</a>
-- <a href="https://developer.android.com/kotlin/flow">Kotlin Flow.</a>
-- <a href="https://developer.android.com/topic/libraries/architecture/viewmodel">MVVM.</a>
-- <a href="https://developer.android.com/topic/libraries/architecture/livedata">LiveData.</a>
-- <a href="https://developer.android.com/training/dependency-injection/hilt-android?authuser=1">Hilt.</a>
-- <a href="https://github.com/square/retrofit">Retrofit.</a>
-- <a href="https://developer.android.com/training/data-storage/room">Room.</a>
-- <a href="https://developer.android.com/guide/navigation/navigation-getting-started">Navigation Components.</a>
-- <a href="https://developer.android.com/topic/architecture">Repository Pattern.</a>
-- <a href="https://developer.android.com/topic/libraries/data-binding">Data-Binding.</a>
-- <a href="https://github.com/bumptech/glide">Glid.</a>
-- <a href="https://developer.android.com/topic/libraries/architecture/paging/v3-migration">Paging 3.</a>
-- <a href="https://developer.android.com/topic/libraries/architecture/datastore">Data Store.</a>
-- <a href="https://facebook.github.io/shimmer-android/">Shimmer.</a>
+## [Video](https://streamable.com/cw093l)
 
 
-## APIs
-Trailers is powered by the tmdb.
+## 🚀: Features
+
+- Search for movies by title
+- View movie details including synopsis, release date, and average rating
+- Watch movie trailers
+- Mark movies as favorites for quick access
+- Explore popular, Top rated, and upcoming movies
+- Show images for Actors and movies and you can download them to your gallery
+
+
+## Screenshot
+
+<img src="img/home.png" width="220"/>  <img src="img/details.png" width="220"/>  <img src="img/story.png" width="220"/>
+
+<img src="img/persons.png" width="220"/>  <img src="img/similar.png" width="220"/>  <img src="img/person_details.png" width="220"/> 
+
+<img src="img/bio.png" width="220"/>  <img src="img/favorite.png" width="220"/>  <img src="img/search.png" width="220"/>
+
+<img src="img/searching.png" width="220"/>  <img src="img/genres.png" width="220"/>
+
+
+
+## ⚒️: Tech Stack.
+
+1. [Kotlin](https://developer.android.com/kotlin)
+2. [Retrofit](https://square.github.io/retrofit/)
+3. [Dagger Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+4. [Logging Interceptor](https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor/README.md)
+5. [Coroutines](https://developer.android.com/kotlin/coroutine)
+6. [Kotlin Flow](https://developer.android.com/kotlin/flow)
+7. [Room Database](https://developer.android.com/training/data-storage/room)
+8. [Paging 3](https://developer.android.com/topic/libraries/architecture/paging/v3-migration)
+9. [Shimmer](https://facebook.github.io/shimmer-android/)
+
 
 ## Prerequisites
-Generate your own API Keys from  the following : 
 
-<ul>
-<li><a href = 'https://www.themoviedb.org/documentation/api'>TMDB</a>
-</ul>
+Before running the app, ensure that you have the following:
+
+- Android Studio (version 2022.2.1 or higher)
+- Java Development Kit (JDK) (version 1.8 or higher)
+- Trailer API key ([Sign up](https://www.themoviedb.org/documentation/api) for an account and obtain an API key)
+
+
+## Getting Started
+
+To get started with the Trailer Android app, follow these steps:
+
+1. Clone this repository to your local machine using the following command:
+
+```bash
+https://github.com/Sajadio/TrailersMovies.git
+```
+
+2. Open Android Studio and select "Open an Existing Project."
+3. Navigate to the cloned project directory and select it.
+4. Android Studio will build and sync the project automatically.
+5. Once the project is synced, navigate to the `app` directory in the project structure.
+6. Open `local.properties` and add the following code, replacing `YOUR_API_KEY` with your Trailers API key:
+
+```xml
+
+apiKey =  YOUR_API_KEY  
+
+```
+
+7. Save the file.
+8. Run the app on an emulator or physical device by clicking the "Run" button in Android Studio.
+
 
 ## Contributing
 
-Please fork this repository and contribute back using <a href="https://github.com/sajadio/Trailers-MDB/pulls">pull requests.</a><br>
-Any contributions, large or small, major features, bug fixes, additional language translations, unit/integration tests are welcomed.
+Contributions to the Trailers Android app are welcome! If you find any issues or want to add new features, please submit an issue or pull request on the GitHub repository.
+
+When contributing, please adhere to the following guidelines:
+
+- Fork the repository and create a new branch for your feature or bug fix.
+- Ensure that your code follows the project's code style and conventions.
+- Write clear and concise commit messages and provide a detailed description of your changes.
+- Test your changes thoroughly before submitting a pull request.
+
+
+## Support
+
+If you found this repository helpful and learned even a little something from it, then consider supporting me by giving this repo a Star ⭐️
