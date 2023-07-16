@@ -3,6 +3,9 @@
 This repository contains the source code for the Trailer Android app, which allows users to browse and search for movies using the Trailer API. The app provides information such as movie details, and trailers.
 
 
+## [Video](https://streamable.com/cw093l)
+
+
 ## 🚀: Features
 
 - Search for movies by title
