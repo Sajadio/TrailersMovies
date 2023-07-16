@@ -12,6 +12,6 @@ class FavoriteAdapter(
     override var layoutId = R.layout.layout_favorite_card
 }
 interface FavoriteInteractListener: BaseInteractListener{
-    fun onClickFavoriteButton(movieDetails: MovieDetails)
+    fun onClickFavoriteButton(movieId:Int)
     fun onClickWatchButton(id:Int)
 }

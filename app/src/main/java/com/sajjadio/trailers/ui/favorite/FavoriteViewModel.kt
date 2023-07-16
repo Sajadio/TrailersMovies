@@ -1,22 +1,16 @@
 package com.sajjadio.trailers.ui.favorite
 
-import android.annotation.SuppressLint
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import com.sajjadio.trailers.domain.model.CommonResult
-import com.sajjadio.trailers.domain.model.MovieDetails
+import com.sajjadio.trailers.domain.model.FavoriteMovie
 import com.sajjadio.trailers.domain.repository.MovieRepository
 import com.sajjadio.trailers.domain.utils.Resource
-import com.sajjadio.trailers.ui.base.BaseInteractListener
 import com.sajjadio.trailers.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,12 +18,12 @@ class FavoriteViewModel @Inject constructor(
     private val movieRepo: MovieRepository
 ):ViewModel() ,FavoriteInteractListener{
 
-    val responseSearchMovies:LiveData<List<MovieDetails>> = movieRepo.getAllSavedMovies().asLiveData()
+    val responseSearchMovies:LiveData<List<FavoriteMovie>> = movieRepo.getAllSavedMovies().asLiveData()
 
     private val _clickItemEvent = MutableLiveData<Event<Int>>()
     val clickItemEvent: LiveData<Event<Int>> = _clickItemEvent
-    private var _videoUrl = MutableLiveData<String?>()
-    val videoUrl: LiveData<String?> = _videoUrl
+    private var _videoUrl = MutableLiveData<Event<String?>>()
+    val videoUrl: LiveData<Event<String?>> = _videoUrl
 
     private fun getTrailerOfMovie(id: Int) {
         viewModelScope.launch {
@@ -37,7 +31,7 @@ class FavoriteViewModel @Inject constructor(
                 when (status) {
                     is Resource.Success -> {
                         status.data?.let {
-                            _videoUrl.postValue(it.first().key)
+                            _videoUrl.postValue(Event(it.first().key))
                         }
                     }
 
@@ -48,9 +42,9 @@ class FavoriteViewModel @Inject constructor(
         }
     }
 
-    override fun onClickFavoriteButton(movieDetails: MovieDetails) {
+    override fun onClickFavoriteButton(movieId:Int) {
         viewModelScope.launch {
-            movieRepo.deleteMovie(movieDetails)
+            movieRepo.deleteMovie(movieId)
         }
     }
 

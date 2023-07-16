@@ -2,11 +2,9 @@ package com.sajjadio.trailers.ui.favorite
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
 import com.sajjadio.trailers.R
 import com.sajjadio.trailers.databinding.FragmentFavoriteBinding
 import com.sajjadio.trailers.ui.base.BaseFragment
-import com.sajjadio.trailers.ui.search.SearchViewModel
 import com.sajjadio.trailers.utils.navigateToAnotherDestination
 import com.sajjadio.trailers.utils.observeEvent
 import com.sajjadio.trailers.utils.playVideo
@@ -28,7 +26,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding, FavoriteViewModel
     }
 
     private fun observeEventWhenClickWatchNow() {
-        viewModel.videoUrl.observe(viewLifecycleOwner) { url ->
+        viewModel.videoUrl.observeEvent(viewLifecycleOwner) { url ->
             url?.let { requireActivity().playVideo(url) }
         }
     }

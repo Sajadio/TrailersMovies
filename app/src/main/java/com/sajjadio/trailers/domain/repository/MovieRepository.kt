@@ -1,10 +1,10 @@
 package com.sajjadio.trailers.domain.repository
 
 import androidx.paging.PagingData
-import com.sajjadio.trailers.data.dataSource.model.movie.video.VideoMovieDto
 import com.sajjadio.trailers.domain.model.Cast
 import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.model.CommonResult
+import com.sajjadio.trailers.domain.model.FavoriteMovie
 import com.sajjadio.trailers.domain.model.GenresOfMovie
 import com.sajjadio.trailers.domain.model.Person
 import com.sajjadio.trailers.domain.model.Image
@@ -25,7 +25,7 @@ interface MovieRepository {
 
 
     //----------    region movie details  ----------
-    suspend fun getMovieById(id: Int, lang: String): Resource<MovieDetails>
+    suspend fun getMovieById(id: Int, lang: String, isSavedItem: Boolean?): Resource<MovieDetails>
     suspend fun getImagesOfMovieById(movieId: Int?): Flow<Resource<List<Image>?>>
     fun getPersonsOfMovieById(id: Int, lang: String): Flow<Resource<List<Cast>?>>
     suspend fun getSimilarOfMovieById(
@@ -55,22 +55,22 @@ interface MovieRepository {
 
 
     //----------    region genres of movie  ----------
-    suspend fun getGenresMovie(lang:String): Flow<Resource<List<GenresOfMovie>>>
-    fun getMoviesOfGenreById(genreId: Int,lang:String): Flow<PagingData<CommonResult>>
+    suspend fun getGenresMovie(lang: String): Flow<Resource<List<GenresOfMovie>>>
+    fun getMoviesOfGenreById(genreId: Int, lang: String): Flow<PagingData<CommonResult>>
     //----------    endregion  ----------
 
 
     suspend fun getMovieTrailer(id: Int): Flow<Resource<List<Video>?>>
-    fun getMovieSearchByQuery(query: String?,lang:String): Flow<PagingData<SearchMovieResult>>
+    fun getMovieSearchByQuery(query: String?, lang: String): Flow<PagingData<SearchMovieResult>>
 
 
     //----------    region local db of movies  ----------
     suspend fun addMovie(movieDetails: MovieDetails)
-    fun getAllSavedMovies(): Flow<List<MovieDetails>>
+    fun getAllSavedMovies(): Flow<List<FavoriteMovie>>
     suspend fun deleteAllMovies()
-    suspend fun checkIsMovieSaved(movieId: Int): Boolean
-    suspend fun deleteMovie(movieDetails: MovieDetails)
-    suspend fun refreshHomeItems(page: Int,lang:String)
+    suspend fun checkIsMovieSaved(movieId: Int): Flow<Boolean>
+    suspend fun deleteMovie(movieId:Int)
+    suspend fun refreshHomeItems(page: Int, lang: String)
     //----------    endregion  ----------
 
 }

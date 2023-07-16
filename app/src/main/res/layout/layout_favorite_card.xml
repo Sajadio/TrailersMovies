@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.sajjadio.trailers.domain.model.MovieDetails" />
+            type="com.sajjadio.trailers.domain.model.FavoriteMovie" />
 
         <variable
             name="listener"
@@ -62,7 +62,7 @@
                 android:layout_marginTop="@dimen/normal_margin_size"
                 android:layout_marginEnd="@dimen/normal_margin_size"
                 android:src="@drawable/ic_small_fave"
-                android:onClick="@{() -> listener.onClickFavoriteButton(item)}"
+                android:onClick="@{() -> listener.onClickFavoriteButton(item.id)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:tint="@color/primary_color" />
 

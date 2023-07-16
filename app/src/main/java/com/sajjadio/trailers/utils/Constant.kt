@@ -2,7 +2,7 @@ package com.sajjadio.trailers.utils
 
 object Constant {
 
-    const val MOVIE_DETAILS_TABLE_NAME = "movie_details_table"
+    const val FAVOIRE_MOVIE_TABLE_NAME = "favorite_movie_table"
     const val TREND_MOVIE_TABLE_NAME = "trend_movie_table"
     const val POPULAR_MOVIE_TABLE_NAME = "popular_movie_table"
     const val TOP_RATED_MOVIE_TABLE_NAME = "top_rated_movie_table"

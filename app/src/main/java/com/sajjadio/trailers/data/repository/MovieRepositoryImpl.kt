@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import com.sajjadio.trailers.data.base.FavoriteMovieLocalDataSource
 import com.sajjadio.trailers.data.base.MovieLocalDataSource
 import com.sajjadio.trailers.data.base.MovieRemoteDataSource
-import com.sajjadio.trailers.data.dataSource.mapper.mapDomainToMovieDetailsEntity
+import com.sajjadio.trailers.data.dataSource.mapper.mapMovieDetailsDomainToFavoriteMovieEntity
 import com.sajjadio.trailers.data.dataSource.mapper.mapToPopularMovieEntity
 import com.sajjadio.trailers.data.dataSource.mapper.mapToTopRatedMovieEntity
 import com.sajjadio.trailers.data.dataSource.mapper.mapToTrendMovieEntity
@@ -20,9 +20,10 @@ import com.sajjadio.trailers.data.paging.RatedPagingSource
 import com.sajjadio.trailers.data.paging.SearchPagingData
 import com.sajjadio.trailers.data.paging.SimilarPagingData
 import com.sajjadio.trailers.domain.mapper.mapDtoToCommonResultMovieDomain
+import com.sajjadio.trailers.domain.mapper.mapDtoToMovieDetailsDomain
 import com.sajjadio.trailers.domain.mapper.mapDtoToVideoResultMovieDomain
+import com.sajjadio.trailers.domain.mapper.mapEntityToFavoriteMovieDomain
 import com.sajjadio.trailers.domain.mapper.mapToImagesDomain
-import com.sajjadio.trailers.domain.mapper.mapToMovieDetailsDomain
 import com.sajjadio.trailers.domain.mapper.mapToPerson
 import com.sajjadio.trailers.domain.mapper.mapToPersonOfMovie
 import com.sajjadio.trailers.domain.mapper.mapToTopRatedMovieDomain
@@ -31,6 +32,7 @@ import com.sajjadio.trailers.domain.mapper.mapToUpcomingMovieDomain
 import com.sajjadio.trailers.domain.model.Cast
 import com.sajjadio.trailers.domain.model.MovieDetails
 import com.sajjadio.trailers.domain.model.CommonResult
+import com.sajjadio.trailers.domain.model.FavoriteMovie
 import com.sajjadio.trailers.domain.model.GenresOfMovie
 import com.sajjadio.trailers.domain.model.Person
 import com.sajjadio.trailers.domain.model.Image
@@ -87,14 +89,18 @@ class MovieRepositoryImpl @Inject constructor(
 
 
     //----------    region movie details  ----------
-    override suspend fun getMovieById(id: Int, lang: String): Resource<MovieDetails> {
+    override suspend fun getMovieById(
+        id: Int,
+        lang: String,
+        isSavedItem: Boolean?
+    ): Resource<MovieDetails> {
         return mapRemoteDataToResource({
             movieRemoteDataSource.getMovieById(
                 id,
                 language()
             )
         }) { movieDetailsDto ->
-            mapToMovieDetailsDomain(movieDetailsDto)
+            mapDtoToMovieDetailsDomain(movieDetailsDto, isSavedItem)
         }
     }
 
@@ -224,7 +230,7 @@ class MovieRepositoryImpl @Inject constructor(
 
 
     override suspend fun getMovieTrailer(id: Int): Flow<Resource<List<Video>?>> {
-        return mapRemoteDataToFlowResource({movieRemoteDataSource.getMovieTrailerById(id)}){
+        return mapRemoteDataToFlowResource({ movieRemoteDataSource.getMovieTrailerById(id) }) {
             mapDtoToVideoResultMovieDomain(it.results)
         }
     }
@@ -250,13 +256,17 @@ class MovieRepositoryImpl @Inject constructor(
 
     //----------    region local db of movies  ----------
     override suspend fun addMovie(movieDetails: MovieDetails) {
-        favoriteMovieLocalDataSource.addMovie(mapDomainToMovieDetailsEntity(movieDetails))
+        favoriteMovieLocalDataSource.addMovie(
+            mapMovieDetailsDomainToFavoriteMovieEntity(
+                movieDetails
+            )
+        )
     }
 
-    override fun getAllSavedMovies(): Flow<List<MovieDetails>> {
+    override fun getAllSavedMovies(): Flow<List<FavoriteMovie>> {
         return mapLocalDataToFlowList(
             favoriteMovieLocalDataSource.getAllSavedMovies(),
-            ::mapToMovieDetailsDomain
+            ::mapEntityToFavoriteMovieDomain
         )
     }
 
@@ -264,12 +274,12 @@ class MovieRepositoryImpl @Inject constructor(
         return favoriteMovieLocalDataSource.deleteAllMovies()
     }
 
-    override suspend fun checkIsMovieSaved(movieId: Int): Boolean {
+    override suspend fun checkIsMovieSaved(movieId: Int): Flow<Boolean> {
         return favoriteMovieLocalDataSource.checkIsMovieSaved(movieId)
     }
 
-    override suspend fun deleteMovie(movieDetails: MovieDetails) {
-        return favoriteMovieLocalDataSource.deleteMovie(mapDomainToMovieDetailsEntity(movieDetails))
+    override suspend fun deleteMovie(movieId: Int) {
+        return favoriteMovieLocalDataSource.deleteMovie(movieId)
     }
 
     override suspend fun refreshHomeItems(page: Int, lang: String) {
@@ -358,16 +368,6 @@ class MovieRepositoryImpl @Inject constructor(
             Resource.Success(mapResponse(function()))
         } catch (e: Throwable) {
             Resource.Error(e.message)
-        }
-    }
-
-    private fun <T> wrapWithFlow(function: suspend () -> T): Flow<Resource<T>> {
-        return flow {
-            try {
-                emit(Resource.Success(function.invoke()))
-            } catch (e: Exception) {
-                emit(Resource.Error(e.message.toString()))
-            }
         }
     }
     //----------    endregion  ----------

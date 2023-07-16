@@ -11,5 +11,6 @@ data class MovieDetails(
     val poster_path: String?,
     val release_date: String,
     val vote_average: Float,
-    val vote_count: Int
+    val vote_count: Int,
+    val isSavedItem: Boolean?
 )

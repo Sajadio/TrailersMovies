@@ -60,11 +60,21 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageButton
-            android:id="@+id/imageButtonFave"
+            android:id="@+id/imageButtonUnFaveItem"
             style="@style/ImageButton.Circular"
             android:onClick="@{() -> listener.onClickFavoriteButton(item)}"
             android:src="@drawable/ic_large_fave"
+            android:visibility="@{item.isSavedItem() ? View.GONE: View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imageButtonFaveItem"
+            style="@style/ImageButton.Circular"
+            android:onClick="@{() -> listener.onClickDeleteFavoriteItemButton(item.id)}"
+            android:src="@drawable/ic_bold_fave"
+            android:visibility="@{item.isSavedItem() ? View.VISIBLE: View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/primary_color" />
 
         <TextView
             android:id="@+id/view3_person_details"

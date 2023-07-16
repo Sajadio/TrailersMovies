@@ -117,6 +117,7 @@ interface MovieDetailsInteractListener : BaseInteractListener {
     fun onClickDownloadImage(bitmap: Bitmap)
     fun onClickBackButton()
     fun onClickFavoriteButton(movieDetails: MovieDetails)
+    fun onClickDeleteFavoriteItemButton(movieId:Int)
     fun onClickToShowBottomSheet(item: MovieDetails,listener: MovieDetailsInteractListener)
     fun onClickWatchNow(id: Int)
 

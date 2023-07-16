@@ -12,7 +12,6 @@ import com.sajjadio.trailers.domain.utils.Resource
 import com.sajjadio.trailers.utils.language
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,29 +29,38 @@ class MovieDetailsViewModel @Inject constructor(
 
     private val movieId: Int = checkNotNull(savedStateHandle["movieId"])
 
-    private val _isLoading = MutableLiveData<Boolean>()
+    private val _isLoading = MutableLiveData(true)
     val isLoading: LiveData<Boolean> = _isLoading
 
     private var _videoUrl = MutableLiveData<String?>()
     val videoUrl: LiveData<String?> = _videoUrl
 
+
     var bitmap = MutableLiveData<Bitmap>()
 
     init {
-        loadMovieData()
+        checkIsMovieSaved(movieId)
     }
 
-    private fun loadMovieData() {
-        _isLoading.postValue(true)
-        movieId.let {
+    private fun checkIsMovieSaved(movieId: Int) {
+        viewModelScope.launch {
+            movieRepo.checkIsMovieSaved(movieId).collect {
+                loadMovieData(movieId,it)
+            }
+        }
+    }
+
+    private fun loadMovieData(movieId: Int, isItemSaved: Boolean) {
+        this.movieId.let {
             viewModelScope.launch {
-                when (val resource = movieRepo.getMovieById(movieId, language())) {
+                when (val resource = movieRepo.getMovieById(movieId, language(), isItemSaved)) {
                     is Resource.Success -> {
                         _isLoading.postValue(false)
                         resource.data?.let {
+                            detailsData.clear()
                             detailsData.add(MovieDetailsItem.MovieItem(it))
                             getPersonsByMovieId(it.id)
-                            getImageOfMovieById(movieId)
+                            getImageOfMovieById(this@MovieDetailsViewModel.movieId)
                             getSimilarByMovieId(it.id)
                             _responseDetailsData.postValue(Resource.Success(detailsData))
                         }
@@ -147,6 +155,12 @@ class MovieDetailsViewModel @Inject constructor(
     override fun onClickFavoriteButton(movieDetails: MovieDetails) {
         viewModelScope.launch {
             movieRepo.addMovie(movieDetails)
+        }
+    }
+
+    override fun onClickDeleteFavoriteItemButton(movieId: Int) {
+        viewModelScope.launch {
+            movieRepo.deleteMovie(movieId)
         }
     }
 
