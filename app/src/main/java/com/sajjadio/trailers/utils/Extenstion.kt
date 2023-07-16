@@ -148,11 +148,13 @@ fun Context.openLargeImageInDialog(
     val dialog = Dialog(this)
     dialog.setContentView(R.layout.dialog_image)
     val largeImage = dialog.findViewById<ImageView>(R.id.largeImage)
-    val downloadButton = dialog.findViewById<ImageView>(R.id.imageButtonBack)
+    val downloadButton = dialog.findViewById<ImageView>(R.id.imageButtonDownload)
     downloadButton.setOnClickListener {
         getBitmap(imageSize, imageUrl, onClickDownloadImage)
     }
-    largeImage.loadImageWithSize(imageUrl, imageSize)
+    Glide.with(this)
+        .load(Constant.IMAGE_PATH + imageSize + imageUrl)
+        .into(largeImage)
     dialog.show()
 }
 

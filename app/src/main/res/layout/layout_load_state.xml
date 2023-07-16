@@ -5,8 +5,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/background_color"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/background_color">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/error_msg"
@@ -21,12 +21,12 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="No Internet Connection" />
 
-        <com.google.android.material.progressindicator.CircularProgressIndicator
+        <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="@dimen/x_large_size"
             android:layout_height="@dimen/x_large_size"
             android:layout_marginTop="@dimen/normal_margin_size"
-            app:indicatorColor="@color/primary_color"
+            android:indeterminateTint="@color/primary_color"
             app:layout_constraintBottom_toTopOf="@+id/retry_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

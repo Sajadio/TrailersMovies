@@ -23,7 +23,7 @@
     <androidx.constraintlayout.utils.widget.ImageFilterView
         style="@style/GalleryCard"
         app:onClickDownloadImage="@{listener}"
-        app:imageSize="@{imageSize.IMAGE_Size_300}"
+        app:imageSize="@{imageSize.IMAGE_Size_780}"
         app:imageUrl="@{item.filePath}"
         app:largeImage="@{item.filePath}"
         app:largeImageSize="@{imageSize.IMAGE_Size_780}"

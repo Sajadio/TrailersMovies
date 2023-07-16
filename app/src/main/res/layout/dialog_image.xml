@@ -8,14 +8,14 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/clickable_color">
+        android:layout_width="@dimen/dialog_image_width"
+        android:layout_height="@dimen/dialog_image_height"
+        android:background="@color/background_color">
 
         <ImageView
             android:id="@+id/largeImage"
-            android:layout_width="@dimen/dialog_image_width"
-            android:layout_height="@dimen/dialog_image_height"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -23,14 +23,15 @@
             tools:src="@drawable/ic_launcher_background" />
 
         <ImageButton
-            android:id="@+id/imageButtonBack"
-            android:layout_width="@dimen/normal_button_size"
-            android:layout_height="@dimen/normal_button_size"
+            android:id="@+id/imageButtonDownload"
+            android:layout_width="@dimen/small_circular_button_size"
+            android:layout_height="@dimen/small_circular_button_size"
             android:layout_margin="@dimen/medium_margin_size"
             android:background="@drawable/rounded_clickable"
             android:src="@drawable/ic_download"
             app:layout_constraintStart_toStartOf="@+id/largeImage"
             app:layout_constraintTop_toTopOf="@+id/largeImage" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

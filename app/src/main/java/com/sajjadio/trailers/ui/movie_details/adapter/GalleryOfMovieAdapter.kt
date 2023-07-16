@@ -4,7 +4,7 @@ import com.sajjadio.trailers.R
 import com.sajjadio.trailers.domain.model.Image
 import com.sajjadio.trailers.ui.base.BaseAdapter
 
-class GalleryOdMovieAdapter(
+class GalleryOfMovieAdapter(
     items: List<Image>,
     listener: MovieDetailsInteractListener
 ) : BaseAdapter<Image>(items, listener) {

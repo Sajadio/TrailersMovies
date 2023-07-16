@@ -70,7 +70,7 @@
     <dimen name="gallery_card_height">150dp</dimen>
     <dimen name="card_radius_size">@dimen/normal_margin_size</dimen>
     <dimen name="dialog_image_width">360dp</dimen>
-    <dimen name="dialog_image_height">600dp</dimen>
+    <dimen name="dialog_image_height">540dp</dimen>
 
     <dimen name="movie_details_image_height">400dp</dimen>
 

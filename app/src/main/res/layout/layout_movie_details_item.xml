@@ -53,7 +53,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageViewMovie" />
 
         <ImageButton
-            android:id="@+id/imageButtonBack"
+            android:id="@+id/imageButtonDownload"
             style="@style/ImageButton.Circular"
             android:onClick="@{() -> listener.onClickBackButton()}"
             android:src="@drawable/ic_arrow_left"

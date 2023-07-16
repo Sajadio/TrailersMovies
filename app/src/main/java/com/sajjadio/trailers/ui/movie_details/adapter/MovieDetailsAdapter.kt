@@ -72,7 +72,7 @@ class MovieDetailsAdapter(
 
     private fun bindGalleryItem(holder: ItemViewHolder, items: List<Image>) {
         with(holder.binding) {
-            setVariable(BR.adapter, GalleryOdMovieAdapter(items, listener))
+            setVariable(BR.adapter, GalleryOfMovieAdapter(items, listener))
             setVariable(BR.listener, listener)
         }
     }
